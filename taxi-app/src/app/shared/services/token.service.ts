@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,5 +6,15 @@ import { Injectable } from '@angular/core';
 })
 export class TokenService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  public signOut() {}
+
+  public saveToken() {}
+
+  public getToken() {}
+
+  public saveUser() {}
+
+  public getUser() {}
 }
