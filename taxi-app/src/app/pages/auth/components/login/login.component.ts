@@ -13,7 +13,6 @@ export class LoginComponent implements OnInit {
     password: ['', Validators.required]
   })
 
-
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
@@ -22,5 +21,4 @@ export class LoginComponent implements OnInit {
   public onSubmit() {
     console.log(this.loginForm.value);
   }
-
 }
