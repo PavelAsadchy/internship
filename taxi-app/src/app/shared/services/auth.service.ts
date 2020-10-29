@@ -45,8 +45,7 @@ export class AuthService {
   public logout(): Observable<boolean> {
     return this.http.post(AUTH_URL + '/logout', {
       'refreshToken': this.getRefreshToken()
-    })
-      .pipe(
+    }).pipe(
         tap(() => this.doLogoutUser()),
         mapTo(true),
         catchError(error => {
@@ -66,7 +65,26 @@ export class AuthService {
     localStorage.removeItem(REFRESH_TOKEN);
   }
 
-  private getRefreshToken() {}
+  public refreshToken() {
+    return this.http.post(AUTH_URL + '/refresh', {
+      'refreshToken': this.getRefreshToken()
+    }).pipe(
+      tap((tokens: ITokens) => this.storeJwtToken(tokens.jwt))
+    )
+  }
+
+  private storeJwtToken(jwt: string): void {
+    localStorage.setItem(JWT_TOKEN, jwt);
+  }
+  
+  private getRefreshToken(): string {
+    return localStorage.getItem(REFRESH_TOKEN);
+  }
+
+
+  private getJwtToken(): string {
+    return localStorage.getItem(JWT_TOKEN);
+  }
 
   public register(user: IUser): Observable<any> {
     return this.http.post(AUTH_URL + 'signup', {
