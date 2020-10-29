@@ -8,10 +8,12 @@ import { AuthModule } from './pages/auth/auth.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BoardModule } from './pages/board/board.module';
 import { ProfileModule } from './pages/profile/profile.module';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
