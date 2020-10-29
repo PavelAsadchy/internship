@@ -82,16 +82,16 @@ export class AuthService {
   }
 
 
-  private getJwtToken(): string {
+  public getJwtToken(): string {
     return localStorage.getItem(JWT_TOKEN);
   }
 
-  public register(user: IUser): Observable<any> {
-    return this.http.post(AUTH_URL + 'signup', {
-      username: user.username,
-      email: user.email,
-      password: user.password
-    })
-  }
+  // public register(user: IUser): Observable<any> {
+  //   return this.http.post(AUTH_URL + 'signup', {
+  //     username: user.username,
+  //     email: user.email,
+  //     password: user.password
+  //   })
+  // }
   
 }

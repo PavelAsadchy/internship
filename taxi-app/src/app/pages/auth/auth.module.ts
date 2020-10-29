@@ -5,6 +5,8 @@ import { LoginComponent } from './components/login/login.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthRoutingModule } from './auth-routing.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from 'src/app/shared/interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,13 @@ import { AuthRoutingModule } from './auth-routing.module';
   imports: [
     SharedModule,
     AuthRoutingModule
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   exports: [
     AuthComponent
