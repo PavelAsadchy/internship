@@ -7,7 +7,6 @@ import {
   HttpErrorResponse
 } from '@angular/common/http';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
-import { TOKEN_HEADER_KEY } from '../consts/consts'
 import { AuthService } from '../services/auth.service';
 import { catchError, filter, retry, switchMap, take } from 'rxjs/operators';
 import { ITokens } from '../models/tokens.model';
@@ -16,7 +15,7 @@ import { ITokens } from '../models/tokens.model';
 export class AuthInterceptor implements HttpInterceptor {
 
   private isTokenRefreshing: boolean = false;
-  private refreshTokenSubject: BehaviorSubject<string> = new BehaviorSubject('');
+  private refreshTokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>(null);
 
   constructor(private authService: AuthService) {}
 
@@ -30,9 +29,10 @@ export class AuthInterceptor implements HttpInterceptor {
         catchError((error: HttpErrorResponse) => {
           if (error.status === 401) {
             return this.handle401error(request, next);
+          } else {
+            console.log(error.error);
+            return throwError(error);  
           }
-          console.log(error.error);
-          return throwError(error);
         })
       );
   }
@@ -40,7 +40,7 @@ export class AuthInterceptor implements HttpInterceptor {
   private addToken(request: HttpRequest<unknown>, token: string) {
     return request.clone({
       setHeaders: {
-        TOKEN_HEADER_KEY: `Bearer ${token}`
+        'Authorization': `Bearer ${token}`
       }
     });
   }

@@ -4,7 +4,6 @@ import { Observable, of } from 'rxjs';
 import { catchError, mapTo, tap } from 'rxjs/operators'
 import { AUTH_URL, JWT_TOKEN, REFRESH_TOKEN } from '../consts/consts';
 import { ITokens } from '../models/tokens.model';
-// import { ICredentials } from '../models/credentials.model';
 import { IUser } from '../models/user.model';
 
 @Injectable({
@@ -17,7 +16,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   public isLoggedIn(): boolean {
-    return false;
+    return Boolean(this.getJwtToken());
   }
 
   public login(user: IUser): Observable<boolean> {
@@ -65,7 +64,7 @@ export class AuthService {
     localStorage.removeItem(REFRESH_TOKEN);
   }
 
-  public refreshToken() {
+  public refreshToken(): Observable<ITokens> {
     return this.http.post(AUTH_URL + '/refresh', {
       'refreshToken': this.getRefreshToken()
     }).pipe(
@@ -85,13 +84,4 @@ export class AuthService {
   public getJwtToken(): string {
     return localStorage.getItem(JWT_TOKEN);
   }
-
-  // public register(user: IUser): Observable<any> {
-  //   return this.http.post(AUTH_URL + 'signup', {
-  //     username: user.username,
-  //     email: user.email,
-  //     password: user.password
-  //   })
-  // }
-  
 }
