@@ -1,0 +1,78 @@
+@import "../../shared/UI/colors.scss";
+
+.board {
+    position: relative;
+    display: flex;
+}
+
+.nav {
+    position: fixed;
+    padding: 100px 50px;
+    width: 300px;
+    height: 100vh;
+    transition: left .3s;
+    background-color: $dark-xxl;    
+
+    
+    &__trigger {
+        display: none;
+
+        &:checked ~ .nav__btn {
+            right: 20px;
+
+            & > span:first-child {
+                top: 10px;
+                transform: rotate(45deg);
+            }
+
+            & > span:nth-child(2n) {
+                opacity: 0;
+            }
+
+            & > span:last-child {
+                top: -10px;
+                transform: rotate(-45deg);
+            }
+        }
+    }
+
+    &__btn {
+        position: absolute;
+        top: 20px;
+        right: -50px;
+        width: 30px;
+        cursor: pointer;
+
+        & > span {
+            position: relative;
+            display: block;
+            height: 5px;
+            margin-top: 5px;
+            transition: .3s;
+            background: $dark-xl;
+
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+    }
+}
+
+.content {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    height: 100vh;
+    padding: 100px 50px;
+    transition: margin-left .3s;
+    background: $light-xl;
+
+    &__item {
+        margin: 5px 0;
+        width: calc(50% - 5px);
+        min-width: 200px;
+        height: 80px;
+    }
+}

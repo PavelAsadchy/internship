@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Menu } from 'src/app/shared/consts/menu.const';
 
 @Component({
   selector: 'app-board',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BoardComponent implements OnInit {
 
+  public isNavActive = false;
+
+  public menuContent = Menu;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  public navToggle(): void {
+    this.isNavActive = !this.isNavActive;
   }
 
 }
