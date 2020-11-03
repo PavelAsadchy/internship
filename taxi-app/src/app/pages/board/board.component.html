@@ -1,17 +1,13 @@
 <div class="board">
     <div
         class="board__nav nav"
-        [style.left]="isNavActive ? '0' : '-300px'"
+        [style.left]="isNavActive ? '0' : '-250px'"
+        (mouseover)="navToggle()"
+        (mouseout)="navToggle()"
     >
-        <input
-            type="checkbox"
-            class="nav__trigger"
-            id="hmt"
-        >
         <label
-            for="hmt"
             class="nav__btn"
-            (click)="navToggle()"
+            [class.opened]="isNavActive"
         >
             <span></span>
             <span></span>
@@ -19,12 +15,13 @@
         </label>
         <app-menu-side
             class="nav__menu-side menu-side"
-            [menuContent]="menuContent"></app-menu-side>
+            [menuContent]="menuContent">
+        </app-menu-side>
     </div>
 
     <div
         class="board__content content"
-        [style.margin-left]="isNavActive ? '300px' : '0'"
+        [style.margin-left]="isNavActive ? '300px' : '50px'"
     >
         <app-menu-main
             class="content__menu-main"

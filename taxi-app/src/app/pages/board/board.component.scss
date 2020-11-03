@@ -13,11 +13,27 @@
     transition: left .3s;
     background-color: $dark-xxl;    
 
-    
-    &__trigger {
-        display: none;
+    &__btn {
+        position: absolute;
+        top: 20px;
+        right: 10px;
+        width: 30px;
+        cursor: pointer;
 
-        &:checked ~ .nav__btn {
+        & > span {
+            position: relative;
+            display: block;
+            height: 5px;
+            margin-top: 5px;
+            transition: .3s;
+            background: $dark-xl;
+
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+
+        &.opened {
             right: 20px;
 
             & > span:first-child {
@@ -35,27 +51,6 @@
             }
         }
     }
-
-    &__btn {
-        position: absolute;
-        top: 20px;
-        right: -50px;
-        width: 30px;
-        cursor: pointer;
-
-        & > span {
-            position: relative;
-            display: block;
-            height: 5px;
-            margin-top: 5px;
-            transition: .3s;
-            background: $dark-xl;
-
-            &:first-child {
-                margin-top: 0;
-            }
-        }
-    }
 }
 
 .content {
@@ -67,7 +62,7 @@
 
     &__menu-main {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         flex-wrap: wrap;
     }
 }
