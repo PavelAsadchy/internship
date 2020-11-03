@@ -7,6 +7,8 @@ import { BoardDriverComponent } from './components/board-driver/board-driver.com
 import { BoardUserComponent } from './components/board-user/board-user.component';
 import { MenuSideComponent } from './components/menu-side/menu-side.component';
 import { MenuMainComponent } from './components/menu-main/menu-main.component';
+import { CreateBookingComponent } from './components/create-booking/create-booking.component';
+import { BookingListComponent } from './components/booking-list/booking-list.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { MenuMainComponent } from './components/menu-main/menu-main.component';
     BoardDriverComponent,
     BoardUserComponent,
     MenuSideComponent,
-    MenuMainComponent
+    MenuMainComponent,
+    CreateBookingComponent,
+    BookingListComponent
   ],
   imports: [
     SharedModule,
