@@ -55,7 +55,6 @@ app.post('/logout', function (req, res) {
 
 app.post('/refresh', function (req, res) {
     const refreshToken = req.body.refreshToken;
-    
 
     if (refreshToken in refreshTokens) {
       const user = {
@@ -69,9 +68,5 @@ app.post('/refresh', function (req, res) {
       res.sendStatus(401);
     }
 });
-
-// app.get('/random', passport.authenticate('jwt'), function (req, res) {
-//   res.json({value: Math.floor(Math.random()*100) });
-// })
 
 app.listen(8080);
