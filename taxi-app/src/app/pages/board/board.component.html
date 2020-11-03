@@ -8,7 +8,6 @@
             class="nav__trigger"
             id="hmt"
         >
-
         <label
             for="hmt"
             class="nav__btn"
@@ -18,21 +17,19 @@
             <span></span>
             <span></span>
         </label>
-
-        <app-menu class="nav__menu"></app-menu>
+        <app-menu-side
+            class="nav__menu-side menu-side"
+            [menuContent]="menuContent"></app-menu-side>
     </div>
 
     <div
         class="board__content content"
         [style.margin-left]="isNavActive ? '300px' : '0'"
     >
-        <button
-            mat-raised-button
-            class="content__item"
-            *ngFor="let item of menuContent"
+        <app-menu-main
+            class="content__menu-main"
+            [menuContent]="menuContent"
         >
-            <mat-icon color="primary">{{ item.icon }}</mat-icon>
-            {{ item.name }}
-        </button>
+        </app-menu-main>
     </div>
 </div>

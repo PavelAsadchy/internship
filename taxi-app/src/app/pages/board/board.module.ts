@@ -5,7 +5,8 @@ import { BoardComponent } from './board.component';
 import { BoardAdminComponent } from './components/board-admin/board-admin.component';
 import { BoardDriverComponent } from './components/board-driver/board-driver.component';
 import { BoardUserComponent } from './components/board-user/board-user.component';
-import { MenuComponent } from './components/menu/menu.component';
+import { MenuSideComponent } from './components/menu-side/menu-side.component';
+import { MenuMainComponent } from './components/menu-main/menu-main.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { MenuComponent } from './components/menu/menu.component';
     BoardAdminComponent,
     BoardDriverComponent,
     BoardUserComponent,
-    MenuComponent
+    MenuSideComponent,
+    MenuMainComponent
   ],
   imports: [
     SharedModule,

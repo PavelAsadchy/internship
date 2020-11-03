@@ -8,6 +8,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
+import { MatRippleModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [],
@@ -21,6 +23,8 @@ import { MatListModule } from '@angular/material/list';
     HttpClientModule,
     MatSidenavModule,
     MatListModule,
+    MatCardModule,
+    MatRippleModule,
   ],
   exports: [
     CommonModule,
@@ -32,6 +36,8 @@ import { MatListModule } from '@angular/material/list';
     HttpClientModule,
     MatSidenavModule,
     MatListModule,
+    MatCardModule,
+    MatRippleModule,
   ]
 })
 export class SharedModule { }

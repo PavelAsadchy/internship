@@ -1,0 +1,11 @@
+<mat-card
+    matRipple
+    class="menu-main__item"
+    *ngFor="let item of menuContent"
+>
+    <mat-icon color="primary">{{ item.icon }}</mat-icon>
+    <span>
+        <mat-card-title>{{ item.name }}</mat-card-title>
+        <mat-card-subtitle>{{ item.description }}</mat-card-subtitle>
+    </span>
+</mat-card>
