@@ -1,15 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-board-admin',
   templateUrl: './board-admin.component.html',
   styleUrls: ['./board-admin.component.scss']
 })
-export class BoardAdminComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+export class BoardAdminComponent {
 
 }

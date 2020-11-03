@@ -24,10 +24,6 @@ const routes: Routes = [
     component: NotFoundComponent,
     canActivate: [AuthGuard]
   },
-  {
-    path: '**',
-    component: NotFoundComponent
-  }
 ];
 
 @NgModule({

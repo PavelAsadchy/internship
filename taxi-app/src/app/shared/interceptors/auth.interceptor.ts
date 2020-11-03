@@ -30,14 +30,13 @@ export class AuthInterceptor implements HttpInterceptor {
           if (error.status === 401) {
             return this.handle401error(request, next);
           } else {
-            console.log(error.error);
             return throwError(error);  
           }
         })
       );
   }
 
-  private addToken(request: HttpRequest<unknown>, token: string) {
+  private addToken(request: HttpRequest<unknown>, token: string): HttpRequest<unknown> {
     return request.clone({
       setHeaders: {
         'Authorization': `Bearer ${token}`
@@ -45,7 +44,7 @@ export class AuthInterceptor implements HttpInterceptor {
     });
   }
 
-  private handle401error(request: HttpRequest<unknown>, next: HttpHandler) {
+  private handle401error(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     if (!this.isTokenRefreshing) {
       this.isTokenRefreshing = true;
       this.refreshTokenSubject.next(null);
@@ -61,7 +60,7 @@ export class AuthInterceptor implements HttpInterceptor {
     } else {
       return this.refreshTokenSubject
         .pipe(
-          filter(token => token != null),
+          filter(token => !!token),
           take(1),
           switchMap(jwt => {
             return next.handle(this.addToken(request, jwt));
