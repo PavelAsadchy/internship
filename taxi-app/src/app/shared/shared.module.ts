@@ -10,6 +10,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatRippleModule } from '@angular/material/core';
+import { AngularSplitModule } from 'angular-split';
 
 @NgModule({
   declarations: [],
@@ -25,6 +26,7 @@ import { MatRippleModule } from '@angular/material/core';
     MatListModule,
     MatCardModule,
     MatRippleModule,
+    AngularSplitModule.forRoot(),
   ],
   exports: [
     CommonModule,
@@ -38,6 +40,7 @@ import { MatRippleModule } from '@angular/material/core';
     MatListModule,
     MatCardModule,
     MatRippleModule,
+    AngularSplitModule,
   ]
 })
 export class SharedModule { }

@@ -22,7 +22,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     AuthModule,
     BrowserAnimationsModule,
     BoardModule,
-    ProfileModule
+    ProfileModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
