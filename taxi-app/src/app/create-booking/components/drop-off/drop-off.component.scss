@@ -2,15 +2,11 @@
 
 .drop-off {
 
-    &__label {
-        font-weight: bold;
-    }
-
     &__radio-btn {
         @include marginsForRadioBtns;
     }
 
     &__address {
-        @include styleForBookingBlocks
+        @include styleForBookingBlocks;
     }
 }

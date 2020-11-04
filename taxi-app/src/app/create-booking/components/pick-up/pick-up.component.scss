@@ -16,6 +16,6 @@
     }
 
     &__address {
-        @include styleForBookingBlocks
+        @include styleForBookingBlocks;
     }
 }

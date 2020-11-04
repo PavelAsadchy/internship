@@ -11,6 +11,7 @@ import { DropOffComponent } from './components/drop-off/drop-off.component';
 import { NotesComponent } from './components/notes/notes.component';
 import { PaymentOptionsComponent } from './components/payment-options/payment-options.component';
 import { VehicleComponent } from './components/vehicle/vehicle.component';
+import { PassengerInformationComponent } from './components/passenger-information/passenger-information.component';
 
 
 
@@ -26,6 +27,7 @@ import { VehicleComponent } from './components/vehicle/vehicle.component';
     CustomerInformationComponent,
     PaymentOptionsComponent,
     NotesComponent,
+    PassengerInformationComponent,
   ],
   imports: [
     SharedModule,

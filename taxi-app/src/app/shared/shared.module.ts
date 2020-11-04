@@ -12,6 +12,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatRippleModule } from '@angular/material/core';
 import { AngularSplitModule } from 'angular-split';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [],
@@ -30,6 +32,8 @@ import { MatRadioModule } from '@angular/material/radio';
     MatRippleModule,
     AngularSplitModule.forRoot(),
     MatRadioModule,
+    MatTabsModule,
+    MatSlideToggleModule,
   ],
   exports: [
     CommonModule,
@@ -46,6 +50,8 @@ import { MatRadioModule } from '@angular/material/radio';
     MatRippleModule,
     AngularSplitModule,
     MatRadioModule,
+    MatTabsModule,
+    MatSlideToggleModule,
   ]
 })
 export class SharedModule { }

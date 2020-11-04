@@ -1,0 +1,5 @@
+@import '../../../shared/UI/mixins.scss';
+
+.note {
+    @include styleForBookingBlocks;
+}
