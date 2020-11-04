@@ -14,6 +14,10 @@
         &:not(:last-child) {
             margin-bottom: 20px;
         }
+
+        &--home {
+            margin-top: 50px;
+        }
     }
 
     &__link {
@@ -26,6 +30,4 @@
             color: $main;
         }
     }
-
-    
 }

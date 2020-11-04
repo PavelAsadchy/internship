@@ -12,5 +12,14 @@
                 {{ item.name }}
             </a>
         </li>
+        <li class="menu__item menu__item--home">
+            <mat-icon>{{ menuItemHome.icon }}</mat-icon>
+            <a
+                class="menu__link"
+                [routerLink]="['/board']"
+            >
+                {{ menuItemHome.name }}
+            </a>
+        </li>
     </ul>
 </nav>

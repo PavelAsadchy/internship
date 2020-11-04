@@ -11,6 +11,8 @@ export class MenuSideComponent {
 
   public menuContent: IMenuItem[] = null;
 
+  public menuItemHome: IMenuItem = new IMenuItem('Home page', 'Return to home page', 'home', '')
+
   constructor(private menuService: MenuService) {}
 
   ngOnInit(): void {
