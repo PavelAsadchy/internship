@@ -14,8 +14,7 @@
             <span></span>
         </label>
         <app-menu-side
-            class="nav__menu-side menu-side"
-            [menuContent]="menuContent">
+            class="nav__menu-side menu-side">
         </app-menu-side>
     </div>
 
@@ -23,11 +22,6 @@
         class="board__content content"
         [style.margin-left]="isNavActive ? '300px' : '50px'"
     >
-        <app-menu-main
-            class="content__menu-main"
-            [menuContent]="menuContent"
-        >
-        </app-menu-main>
         <router-outlet></router-outlet>
     </div>
 </div>

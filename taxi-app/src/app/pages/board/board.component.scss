@@ -3,6 +3,14 @@
 .board {
     position: relative;
     display: flex;
+
+    &__content {
+        flex-grow: 1;
+        min-height: 100vh;
+        padding: 10px;
+        transition: margin-left .3s;
+        background: $light-xl;    
+    }
 }
 
 .nav {
@@ -50,25 +58,5 @@
                 transform: rotate(-45deg);
             }
         }
-    }
-}
-
-.content {
-    flex-grow: 1;
-    min-height: 100vh;
-    padding: 100px 50px;
-    transition: margin-left .3s;
-    background: $light-xl;
-
-    &__menu-main {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-}
-
-@media screen and (max-width: 600px) {
-    .content__menu-main {
-        justify-content: center;
     }
 }

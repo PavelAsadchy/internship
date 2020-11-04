@@ -13,7 +13,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: BoardUserComponent,
+        component: MenuMainComponent,
       },
       {
         path: 'create-booking',
