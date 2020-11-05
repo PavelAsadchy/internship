@@ -12,6 +12,7 @@ import { NotesComponent } from './components/notes/notes.component';
 import { PaymentOptionsComponent } from './components/payment-options/payment-options.component';
 import { VehicleComponent } from './components/vehicle/vehicle.component';
 import { PassengerInformationComponent } from './components/passenger-information/passenger-information.component';
+import { CreateBookingCalculationService } from '../shared/services/create-booking-calculation.service';
 
 
 
@@ -34,6 +35,9 @@ import { PassengerInformationComponent } from './components/passenger-informatio
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAFYEI6Mv2SthzLCRsN_jTogm5aWJ8Ajt8'
     }),
+  ],
+  providers: [
+    CreateBookingCalculationService,
   ],
   exports: [
     CreateBookingComponent

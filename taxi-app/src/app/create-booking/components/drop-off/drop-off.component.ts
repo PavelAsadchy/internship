@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CreateBookingCalculationService } from 'src/app/shared/services/create-booking-calculation.service';
 
 @Component({
   selector: 'app-drop-off',
@@ -7,13 +8,6 @@ import { Component } from '@angular/core';
 })
 export class DropOffComponent {
 
-  public dropOffAddressSelect: string;
+  constructor(public createBookingCalculationService: CreateBookingCalculationService) {}
 
-  public dropOffAddress: string[] = [
-    'Address',
-    'Airport',
-    'Rocco',
-    'Head Office',
-    'Indefinite',
-  ]
 }

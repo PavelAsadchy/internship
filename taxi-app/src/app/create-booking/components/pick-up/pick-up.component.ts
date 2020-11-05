@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CreateBookingCalculationService } from 'src/app/shared/services/create-booking-calculation.service';
 
 @Component({
   selector: 'app-pick-up',
@@ -7,19 +8,6 @@ import { Component } from '@angular/core';
 })
 export class PickUpComponent {
 
-  public pickUpTimeSelect: string;
+  constructor(public createBookingCalculationService: CreateBookingCalculationService) {}
 
-  public pickUpAddressSelect: string;
-
-  public pickUpTime: string[] = [
-    'Now',
-    'Later',
-  ]
-
-  public pickUpAddress: string[] = [
-    'Address',
-    'Airport',
-    'Rocco',
-    'Head Office',
-  ]
 }

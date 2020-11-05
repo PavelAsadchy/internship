@@ -14,6 +14,7 @@ import { AngularSplitModule } from 'angular-split';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [],
@@ -34,6 +35,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatRadioModule,
     MatTabsModule,
     MatSlideToggleModule,
+    MatCheckboxModule,
   ],
   exports: [
     CommonModule,
@@ -52,6 +54,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatRadioModule,
     MatTabsModule,
     MatSlideToggleModule,
+    MatCheckboxModule,
   ]
 })
 export class SharedModule { }

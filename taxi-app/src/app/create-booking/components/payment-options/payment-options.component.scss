@@ -1,0 +1,15 @@
+@import '../../../shared/UI/mixins.scss';
+
+.payment-options {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+
+    &__label {
+        font-weight: bold;
+    }
+
+    &__radio-btn {
+        @include marginsForRadioBtns;
+    }
+}

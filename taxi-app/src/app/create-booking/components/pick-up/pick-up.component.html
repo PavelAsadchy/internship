@@ -2,16 +2,16 @@
     class="pick-up__label"
     id="pick-up-label"
 >
-    Pick up Client
+    {{ createBookingCalculationService.bookingOptions.pickUp.time.label }}
 </label>
 <mat-radio-group
     color="primary"
     aria-labelledby="pick-up-label"
-    [(ngModel)]="pickUpTimeSelect"
+    [(ngModel)]="createBookingCalculationService.bookingOptions.pickUp.time.selected"
 >
     <mat-radio-button
         class="pick-up__radio-btn"
-        *ngFor="let pickUp of pickUpTime"
+        *ngFor="let pickUp of createBookingCalculationService.bookingOptions.pickUp.time.options"
         [value]="pickUp"
     >
         {{ pickUp }}
@@ -19,14 +19,16 @@
 </mat-radio-group>
 
 <div class="pick-up__address">
-    <caption>Pick Up</caption>
+    <caption>
+        {{ createBookingCalculationService.bookingOptions.pickUp.address.caption }}
+    </caption>
     <mat-radio-group
         color="primary"
-        [(ngModel)]="pickUpAddressSelect"
+        [(ngModel)]="createBookingCalculationService.bookingOptions.pickUp.address.selected"
     >
         <mat-radio-button
             class="pick-up__radio-btn"
-            *ngFor="let pickUpAddr of pickUpAddress"
+            *ngFor="let pickUpAddr of createBookingCalculationService.bookingOptions.pickUp.address.options"
             [value]="pickUpAddr"
         >
             {{ pickUpAddr }}

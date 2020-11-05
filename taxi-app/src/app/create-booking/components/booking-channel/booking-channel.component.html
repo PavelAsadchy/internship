@@ -2,16 +2,16 @@
     class="booking-channel__label"
     id="booking-channel-label"
 >
-    Booking channel
+    {{ createBookingCalculationService.bookingOptions.bookingChannel.channel.label }}
 </label>
 <mat-radio-group
     color="primary"
     aria-labelledby="booking-channel-label"
-    [(ngModel)]="selectedBookingChannel"
+    [(ngModel)]="createBookingCalculationService.bookingOptions.bookingChannel.channel.selected"
 >
     <mat-radio-button
         class="booking-channel__radio-btn"
-        *ngFor="let bookingChannel of bookingChannels"
+        *ngFor="let bookingChannel of createBookingCalculationService.bookingOptions.bookingChannel.channel.options"
         [value]="bookingChannel"
     >
         {{ bookingChannel }}

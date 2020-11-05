@@ -2,4 +2,15 @@
 
 .customer-information {
     @include styleForBookingBlocks;
+    margin-bottom: 20px;
+
+    &__field-wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__field {
+        width: 49%;
+    }
 }
+

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CreateBookingCalculationService } from 'src/app/shared/services/create-booking-calculation.service';
 
 @Component({
   selector: 'app-booking-channel',
@@ -6,16 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./booking-channel.component.scss']
 })
 export class BookingChannelComponent {
-
-  public selectedBookingChannel: string;
-
-  public bookingChannels: string[] = [
-    'Call',
-    'Email',
-    'Walking Rocco',
-    'Concierge',
-    'Goods Delivery',
-    'Mobile App',
-    'Bot',
-  ]
+  
+  constructor(public createBookingCalculationService: CreateBookingCalculationService) {}
+  
 }

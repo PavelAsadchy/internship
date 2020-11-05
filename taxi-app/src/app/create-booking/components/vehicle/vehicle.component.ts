@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CreateBookingCalculationService } from 'src/app/shared/services/create-booking-calculation.service';
 
 @Component({
   selector: 'app-vehicle',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./vehicle.component.scss']
 })
 export class VehicleComponent {
+
+  constructor(public createBookingCalculationService: CreateBookingCalculationService) {}
 
 }

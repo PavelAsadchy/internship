@@ -1,23 +1,30 @@
 <div class="customer-information">
-    <caption>Customer & Loyalty</caption>
+    <caption>
+        {{ createBookingCalculationService.bookingOptions.customerInformation.caption }}
+    </caption>
     <mat-tab-group>
         <mat-tab label="Customer">
             <mat-form-field>
                 <span matPrefix>+1 &nbsp;</span>
-                <input matInput placeholder="Phone">
+                <input matInput placeholder="Phone*">
             </mat-form-field>
-            <mat-form-field>
-                <input matInput placeholder="Email">
-            </mat-form-field>
-            <mat-form-field>
-                <input matInput placeholder="Name">
-            </mat-form-field>
+            <div class="customer-information__field-wrapper">
+                <div class="customer-information__field">
+                    <mat-form-field>
+                        <input matInput placeholder="Email">
+                    </mat-form-field>
+                </div>
+                <div class="customer-information__field">
+                    <mat-form-field>
+                        <input matInput placeholder="Name*">
+                    </mat-form-field>
+                </div>
+            </div>
         </mat-tab>
-        <mat-tab label="Second"> Content 2 </mat-tab>
-        <mat-tab label="Third"> Content 3 </mat-tab>
       </mat-tab-group>
 </div>
 <mat-slide-toggle
+    color="primary"
     [(ngModel)]="isSliderChecked"
 >
     Set passenger information
