@@ -4,7 +4,14 @@
     @include styleForBookingBlocks;
 
     &__wrapper {
-        display: flex;
-        flex-flow: row wrap;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 5px;
+        list-style: none;
+    }
+
+    &__unit {
+        border-radius: 4px;
+        background: $light-xxl;
     }
 }

@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { IVehicle } from 'src/app/shared/models/bookingOptions.model';
 
 @Component({
   selector: 'app-vehicle-item',
   templateUrl: './vehicle-item.component.html',
   styleUrls: ['./vehicle-item.component.scss']
 })
-export class VehicleItemComponent implements OnInit {
+export class VehicleItemComponent {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  @Input()
+  vehicleItem: IVehicle;
 
 }

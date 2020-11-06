@@ -1,6 +1,14 @@
 <div class="vehicle">
     <caption>Vehicle</caption>
-    <div class="vehicle__wrapper">
-        <app-vehicle-item></app-vehicle-item>
-    </div>
+    <ul class="vehicle__wrapper">
+        <li
+            class="vehicle__unit"
+            *ngFor="let vehicleItem of createBookingCalculationService.bookingOptions.vehicle.items"
+        >
+            <app-vehicle-item
+                [vehicleItem]="vehicleItem"
+            >
+            </app-vehicle-item>
+        </li>
+    </ul>
 </div>

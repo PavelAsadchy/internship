@@ -1,10 +1,30 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { IBookingOptions } from '../models/bookingOptions.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CreateBookingCalculationService {
+  
+  // private baseUrl: string = 'assets';
+
+  // bookingOptions: Observable<IBookingOptions> = this.loadBookingOptions();
+
+  // constructor(private httpClient: HttpClient) {}
+
+  // loadBookingOptions(): Observable<IBookingOptions> {
+  //   console.log(this.httpClient.get<IBookingOptions>(`${this.baseUrl}/booking-options.json`))
+  //   return this.httpClient.get<IBookingOptions>(`${this.baseUrl}/booking-options.json`)
+  //     .pipe(
+  //       map((json: any) => {
+  //         console.log(json)
+  //         return (json || {}).filter(Boolean).map(JSON.parse(json));
+  //       })
+  //     );
+  // }
 
   bookingOptions: IBookingOptions = {
     bookingChannel: {
@@ -60,52 +80,52 @@ export class CreateBookingCalculationService {
       items: [
         {
           name: 'Cab',
-          img: '',
+          img: 'assets/vehicles/vehicle.png',
           capacity: '1-4',
         },
         {
           name: 'Branded standart Cab',
-          img: '',
+          img: 'assets/vehicles/vehicle.png',
           capacity: '1-4',
         },
         {
           name: 'Van',
-          img: '',
+          img: 'assets/vehicles/vehicle.png',
           capacity: '5-8',
         },
         {
           name: 'Executive Cab',
-          img: '',
+          img: 'assets/vehicles/vehicle.png',
           capacity: '1-4',
         },
         {
           name: 'Executive Van',
-          img: '',
+          img: 'assets/vehicles/vehicle.png',
           capacity: '5-8',
         },
         {
           name: 'Luxury Executive',
-          img: '',
+          img: 'assets/vehicles/vehicle.png',
           capacity: '1-4',
         },
         {
           name: 'Mini Bus',
-          img: '',
+          img: 'assets/vehicles/vehicle.png',
           capacity: '9-14',
         },
         {
           name: 'Restricted Mobility',
-          img: '',
+          img: 'assets/vehicles/vehicle.png',
           capacity: '1-4',
         },
         {
           name: 'Vintage',
-          img: '',
+          img: 'assets/vehicles/vehicle.png',
           capacity: '1-2',
         },
         {
           name: 'Luxury Exec. Van',
-          img: '',
+          img: 'assets/vehicles/vehicle.png',
           capacity: '5-8',
         },
       ],

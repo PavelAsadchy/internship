@@ -9,7 +9,7 @@ interface IRadioSection extends IHeadings {
     options: string[];
 }
 
-interface IVehicle {
+export interface IVehicle {
     name: string;
     img: string;
     capacity: string;
