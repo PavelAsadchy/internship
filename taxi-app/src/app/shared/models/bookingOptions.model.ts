@@ -9,6 +9,12 @@ interface IRadioSection extends IHeadings {
     options: string[];
 }
 
+interface IVehicle {
+    name: string;
+    img: string;
+    capacity: string;
+}
+
 interface IChannel {
     channel: IRadioSection;
 }
@@ -22,7 +28,9 @@ interface IDropOff {
     address: IRadioSection;
 }
 
-interface IVehicle {}
+interface IVehicleList {
+    items: IVehicle[];
+}
 
 interface IClientInformation extends IHeadings {
     phone: string;
@@ -50,7 +58,7 @@ export interface IBookingOptions {
     bookingChannel: IChannel;
     pickUp: IPickUp;
     dropOff: IDropOff;
-    vehicle: IVehicle;
+    vehicle: IVehicleList;
     customerInformation: IClientInformation;
     passengerInformation: IClientInformation;
     paymentOptions: IPaymentOptions;

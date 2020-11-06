@@ -6,7 +6,7 @@ import { IBookingOptions } from '../models/bookingOptions.model';
 })
 export class CreateBookingCalculationService {
 
-  public bookingOptions: IBookingOptions = {
+  bookingOptions: IBookingOptions = {
     bookingChannel: {
       channel: {
         label: 'Booking channel',
@@ -56,7 +56,60 @@ export class CreateBookingCalculationService {
         note: 'If you choose the option "Indefinite", you have to set a custom price.',
       },
     },
-    vehicle: {},
+    vehicle: {
+      items: [
+        {
+          name: 'Cab',
+          img: '',
+          capacity: '1-4',
+        },
+        {
+          name: 'Branded standart Cab',
+          img: '',
+          capacity: '1-4',
+        },
+        {
+          name: 'Van',
+          img: '',
+          capacity: '5-8',
+        },
+        {
+          name: 'Executive Cab',
+          img: '',
+          capacity: '1-4',
+        },
+        {
+          name: 'Executive Van',
+          img: '',
+          capacity: '5-8',
+        },
+        {
+          name: 'Luxury Executive',
+          img: '',
+          capacity: '1-4',
+        },
+        {
+          name: 'Mini Bus',
+          img: '',
+          capacity: '9-14',
+        },
+        {
+          name: 'Restricted Mobility',
+          img: '',
+          capacity: '1-4',
+        },
+        {
+          name: 'Vintage',
+          img: '',
+          capacity: '1-2',
+        },
+        {
+          name: 'Luxury Exec. Van',
+          img: '',
+          capacity: '5-8',
+        },
+      ],
+    },
     customerInformation: {
       caption: 'Customer & Loyalty',
       phone: null,
@@ -103,16 +156,12 @@ export class CreateBookingCalculationService {
             note: '(+€5)',
           },
           {
-            name: 'Baby seat',
+            name: 'Immediate Return',
             checked: false,
             note: '(Extra Fee)',
           },
           {
             name: 'No Luggage',
-            checked: false,
-          },
-          {
-            name: 'Extra Luggage',
             checked: false,
           },
           {
@@ -160,6 +209,4 @@ export class CreateBookingCalculationService {
       }
     },
   }
-
-  constructor() { }
 }

@@ -49,6 +49,7 @@
     </label>
     <mat-checkbox
         class="payment-options__checkbox"
+        color="primary"
         aria-labelledby="payment-options-options"
         *ngFor="let paymentBasicOption of createBookingCalculationService.bookingOptions.paymentOptions.basicOptions.options"
         [(ngModel)]="paymentBasicOption.checked"
@@ -63,15 +64,18 @@
     >
         {{ createBookingCalculationService.bookingOptions.paymentOptions.extraOptions.label }}
     </label>
-    <mat-checkbox
-        class="payment-options__checkbox"
-        aria-labelledby="payment-options-extras"
-        *ngFor="let paymentExtraOption of createBookingCalculationService.bookingOptions.paymentOptions.extraOptions.options"
-        [(ngModel)]="paymentExtraOption.checked"
-    >
-        {{ paymentExtraOption.name }}{{ paymentExtraOption.note }}
-    </mat-checkbox>
-    <p>
+    <div class="payment-options__checkbox-wrapper">
+        <mat-checkbox
+            class="payment-options__checkbox"
+            color="primary"
+            aria-labelledby="payment-options-extras"
+            *ngFor="let paymentExtraOption of createBookingCalculationService.bookingOptions.paymentOptions.extraOptions.options"
+            [(ngModel)]="paymentExtraOption.checked"
+        >
+            {{ paymentExtraOption.name }} {{ paymentExtraOption.note }}
+        </mat-checkbox>
+    </div>
+    <p class="payment-options__note">
         {{ createBookingCalculationService.bookingOptions.paymentOptions.extraOptions.note }}
     </p>
 </section>

@@ -13,6 +13,7 @@ import { PaymentOptionsComponent } from './components/payment-options/payment-op
 import { VehicleComponent } from './components/vehicle/vehicle.component';
 import { PassengerInformationComponent } from './components/passenger-information/passenger-information.component';
 import { CreateBookingCalculationService } from '../shared/services/create-booking-calculation.service';
+import { VehicleItemComponent } from './components/vehicle-item/vehicle-item.component';
 
 
 
@@ -29,6 +30,7 @@ import { CreateBookingCalculationService } from '../shared/services/create-booki
     PaymentOptionsComponent,
     NotesComponent,
     PassengerInformationComponent,
+    VehicleItemComponent,
   ],
   imports: [
     SharedModule,

@@ -2,4 +2,9 @@
 
 .vehicle {
     @include styleForBookingBlocks;
+
+    &__wrapper {
+        display: flex;
+        flex-flow: row wrap;
+    }
 }

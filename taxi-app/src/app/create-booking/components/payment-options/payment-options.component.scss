@@ -12,4 +12,19 @@
     &__radio-btn {
         @include marginsForRadioBtns;
     }
+
+    &__checkbox-wrapper {
+        display: flex;
+        flex-flow: row wrap;
+
+        & > .mat-checkbox {
+            width: 50%;
+            min-width: 200px;
+        }
+    
+    }
+
+    &__note {
+        margin-top: 10px;
+    }
 }
