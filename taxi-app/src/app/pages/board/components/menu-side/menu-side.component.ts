@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { IMenuItem } from 'src/app/shared/models/menu-item.model';
 import { MenuService } from 'src/app/shared/services/menu.service';
 
@@ -7,17 +9,27 @@ import { MenuService } from 'src/app/shared/services/menu.service';
   templateUrl: './menu-side.component.html',
   styleUrls: ['./menu-side.component.scss']
 })
-export class MenuSideComponent {
+export class MenuSideComponent implements OnInit, OnDestroy {
 
-  public menuContent: IMenuItem[] = null;
+  menuContent: IMenuItem[] = null;
 
-  public menuItemHome: IMenuItem = new IMenuItem('Home page', 'Return to home page', 'home', '')
+  menuItemHome: IMenuItem = new IMenuItem('Home page', 'Return to home page', 'home', '')
 
-  constructor(private menuService: MenuService) {}
+  private sub: Subject<void> = new Subject<void>();
+
+  constructor(private readonly menuService: MenuService) {}
 
   ngOnInit(): void {
-    this.menuService.menuItemList$.subscribe(
+    this.menuService.menuItemList$
+    .pipe(
+      takeUntil(this.sub)
+    ).subscribe(
       menuItems => this.menuContent = menuItems
     );
+  }
+  
+  ngOnDestroy(): void {
+    this.sub.next();
+    this.sub.complete();
   }
 }
