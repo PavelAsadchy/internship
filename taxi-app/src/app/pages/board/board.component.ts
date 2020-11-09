@@ -10,23 +10,22 @@ import { MenuService } from 'src/app/shared/services/menu.service';
 })
 export class BoardComponent implements OnInit {
 
-  public isNavActive = false;
+  isNavActive = false;
 
-  public menuContent: IMenuItem[] = [
+  menuContent: IMenuItem[] = [
     new IMenuItem('Create Booking', 'Add a new booking entry', 'book', 'create-booking'),
     new IMenuItem('Booking List', 'View a list of bookings', 'library_books', 'booking-list'),
     new IMenuItem('item3', 'description', 'account_box', 'board'),
     new IMenuItem('item4', 'description', 'account_box', 'board'),
   ];
 
-  constructor(private menuService: MenuService) {}
+  constructor(private readonly menuService: MenuService) {}
 
   ngOnInit(): void {
     this.menuService.setMenuItemList(this.menuContent);
   }
 
-  public navToggle(): void {
+  navToggle(): void {
     this.isNavActive = !this.isNavActive;
   }
-
 }

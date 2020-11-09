@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { IMenuItem } from 'src/app/shared/models/menu-item.model';
 import { MenuService } from 'src/app/shared/services/menu.service';
 
@@ -10,21 +11,25 @@ import { MenuService } from 'src/app/shared/services/menu.service';
 })
 export class MenuMainComponent implements OnInit, OnDestroy {
 
-  private sub: Subscription;
+  menuContent: IMenuItem[] = null;
 
-  public menuContent: IMenuItem[] = null;
+  menu: IMenuItem[] = null;
+  
+  private sub: Subject<void> = new Subject<void>();
 
-  public menu: IMenuItem[] = null;
-
-  constructor(private menuService: MenuService) {}
+  constructor(private readonly menuService: MenuService) {}
 
   ngOnInit(): void {
-    this.sub = this.menuService.menuItemList$.subscribe(
+    this.menuService.menuItemList$
+    .pipe(
+      takeUntil(this.sub)
+    ).subscribe(
       menuItems => this.menuContent = menuItems
     );
   }
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
+    this.sub.next();
+    this.sub.complete();
   }
 }
