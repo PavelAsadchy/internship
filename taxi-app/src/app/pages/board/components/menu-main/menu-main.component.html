@@ -1,0 +1,14 @@
+<div class="menu-main">
+    <mat-card
+        matRipple
+        class="menu-main__item"
+        *ngFor="let item of menuContent"
+        [routerLink]="['/board', item.link]"
+    >
+        <mat-icon color="primary">{{ item.icon }}</mat-icon>
+        <span>
+            <mat-card-title>{{ item.name }}</mat-card-title>
+            <mat-card-subtitle>{{ item.description }}</mat-card-subtitle>
+        </span>
+    </mat-card>
+</div>

@@ -5,13 +5,21 @@ import { BoardComponent } from './board.component';
 import { BoardAdminComponent } from './components/board-admin/board-admin.component';
 import { BoardDriverComponent } from './components/board-driver/board-driver.component';
 import { BoardUserComponent } from './components/board-user/board-user.component';
+import { MenuSideComponent } from './components/menu-side/menu-side.component';
+import { MenuMainComponent } from './components/menu-main/menu-main.component';
+import { CreateBookingComponent } from './components/create-booking/create-booking.component';
+import { BookingListComponent } from './components/booking-list/booking-list.component';
 
 @NgModule({
   declarations: [
     BoardComponent,
     BoardAdminComponent,
     BoardDriverComponent,
-    BoardUserComponent
+    BoardUserComponent,
+    MenuSideComponent,
+    MenuMainComponent,
+    CreateBookingComponent,
+    BookingListComponent
   ],
   imports: [
     SharedModule,
