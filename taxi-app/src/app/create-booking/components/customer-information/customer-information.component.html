@@ -5,9 +5,17 @@
     <mat-tab-group>
         <mat-tab label="Customer">
             <mat-form-field>
-                <span matPrefix>+1 &nbsp;</span>
-                <mat-label>Phone*</mat-label>
-                <input matInput placeholder="Phone*">
+                <span matPrefix>{{ telOptions.prefix }} &nbsp;</span>
+                <!-- <mat-label>Phone*</mat-label> -->
+                <input
+                    matInput
+                    ng2TelInput
+                    [ng2TelInputOptions]="telOptions"
+                    (hasError)="hasError($event)"
+                    (ng2TelOutput)="getNumber($event)"
+                    (intlTelInputObject)="telInputObject($event)"
+                    (countryChange)="onCountryChange($event)"
+                    [placeholder]="telOptions.prefix">
             </mat-form-field>
             <div class="customer-information__field-wrapper">
                 <div class="customer-information__field">

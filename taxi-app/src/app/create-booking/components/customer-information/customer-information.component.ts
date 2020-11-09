@@ -12,4 +12,30 @@ export class CustomerInformationComponent {
   @Input()
   customerInformation: IClientInformation;
 
+  telOptions = {
+    initialCountry: 'by',
+    prefix: '',
+
+  }
+
+  prefix: string;
+
+  hasError(event) {
+    console.log(event);
+  }
+
+  getNumber(event) {
+    console.log(event);
+  }
+
+  telInputObject(event) {
+    console.log(event);
+    this.telOptions.prefix = event.s.dialCode
+  }
+
+  onCountryChange(event) {
+    console.log(event);
+    this.telOptions.prefix = event.dialCode;
+
+  }
 }

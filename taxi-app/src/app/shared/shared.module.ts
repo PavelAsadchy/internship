@@ -15,6 +15,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { Ng2TelInputModule } from 'ng2-tel-input';
 
 @NgModule({
   declarations: [],
@@ -36,6 +37,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatTabsModule,
     MatSlideToggleModule,
     MatCheckboxModule,
+    Ng2TelInputModule,
   ],
   exports: [
     CommonModule,
@@ -55,6 +57,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatTabsModule,
     MatSlideToggleModule,
     MatCheckboxModule,
+    Ng2TelInputModule,
   ]
 })
 export class SharedModule { }
