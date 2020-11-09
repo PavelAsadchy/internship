@@ -3,7 +3,7 @@
     <ul class="vehicle__wrapper">
         <li
             class="vehicle__unit"
-            *ngFor="let vehicleItem of createBookingCalculationService.bookingOptions.vehicle.items"
+            *ngFor="let vehicleItem of vehicle.items"
         >
             <app-vehicle-item
                 [vehicleItem]="vehicleItem"

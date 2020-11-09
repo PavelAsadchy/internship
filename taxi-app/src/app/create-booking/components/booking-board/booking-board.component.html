@@ -1,21 +1,52 @@
 <div class="booking-board">
     <div class="booking-board__component">
-        <app-booking-channel></app-booking-channel>
+        <app-booking-channel
+            [bookingChannel]="bookingOptions.bookingChannel"
+        >
+        </app-booking-channel>
     </div>
     <div class="booking-board__component">
-        <app-pick-up></app-pick-up>
+        <app-pick-up
+            [pickUp]="bookingOptions.pickUp"
+        >
+        </app-pick-up>
     </div>
     <div class="booking-board__component">
-        <app-drop-off></app-drop-off>
+        <app-drop-off
+            [dropOff]="bookingOptions.dropOff"
+        >
+        </app-drop-off>
     </div>
     <div class="booking-board__component">
-        <app-vehicle></app-vehicle>
+        <app-vehicle
+            [vehicle]="bookingOptions.vehicle"
+        >
+        </app-vehicle>
     </div>
     <div class="booking-board__component">
-        <app-customer-information></app-customer-information>
+        <app-customer-information
+            [customerInformation]="bookingOptions.customerInformation"
+        >
+        </app-customer-information>
     </div>
     <div class="booking-board__component">
-        <app-payment-options></app-payment-options>
+        <mat-slide-toggle
+            color="primary"
+            [(ngModel)]="isSliderChecked"
+        >
+            Set passenger information
+        </mat-slide-toggle>
+        <app-passenger-information
+            *ngIf="isSliderChecked"
+            [passengerInformation]="bookingOptions.passengerInformation"
+        >
+        </app-passenger-information>
+    </div>
+    <div class="booking-board__component">
+        <app-payment-options
+            [paymentOptions]="bookingOptions.paymentOptions"
+        >
+        </app-payment-options>
     </div>
     <div class="booking-board__component">
         <app-notes></app-notes>

@@ -15,24 +15,24 @@ export interface IVehicle {
     capacity: string;
 }
 
-interface IChannel {
+export interface IChannel {
     channel: IRadioSection;
 }
 
-interface IPickUp {
+export interface IPickUp {
     time: IRadioSection;
     address: IRadioSection;
 }
 
-interface IDropOff {
+export interface IDropOff {
     address: IRadioSection;
 }
 
-interface IVehicleList {
+export interface IVehicleList {
     items: IVehicle[];
 }
 
-interface IClientInformation extends IHeadings {
+export interface IClientInformation extends IHeadings {
     phone: string;
     email?: string;
     name: string;
@@ -47,7 +47,7 @@ interface ICheckboxOptions extends IHeadings {
     options: ICheckboxSection[];
 }
 
-interface IPaymentOptions {
+export interface IPaymentOptions {
     channel: IRadioSection;
     type: IRadioSection;
     basicOptions: ICheckboxOptions;

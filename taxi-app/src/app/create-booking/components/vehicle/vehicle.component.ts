@@ -1,13 +1,15 @@
-import { Component } from '@angular/core';
-import { CreateBookingCalculationService } from 'src/app/shared/services/create-booking-calculation.service';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { IVehicleList } from 'src/app/shared/models/bookingOptions.model';
 
 @Component({
   selector: 'app-vehicle',
   templateUrl: './vehicle.component.html',
-  styleUrls: ['./vehicle.component.scss']
+  styleUrls: ['./vehicle.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class VehicleComponent {
 
-  constructor(public createBookingCalculationService: CreateBookingCalculationService) {}
+  @Input()
+  vehicle: IVehicleList;
 
 }

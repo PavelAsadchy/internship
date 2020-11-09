@@ -1,15 +1,15 @@
-import { Component } from '@angular/core';
-import { CreateBookingCalculationService } from 'src/app/shared/services/create-booking-calculation.service';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { IClientInformation } from 'src/app/shared/models/bookingOptions.model';
 
 @Component({
   selector: 'app-customer-information',
   templateUrl: './customer-information.component.html',
-  styleUrls: ['./customer-information.component.scss']
+  styleUrls: ['./customer-information.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CustomerInformationComponent {
 
-  constructor(public createBookingCalculationService: CreateBookingCalculationService) {}
-
-  public isSliderChecked: boolean = false;
+  @Input()
+  customerInformation: IClientInformation;
 
 }

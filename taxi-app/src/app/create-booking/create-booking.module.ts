@@ -12,8 +12,8 @@ import { NotesComponent } from './components/notes/notes.component';
 import { PaymentOptionsComponent } from './components/payment-options/payment-options.component';
 import { VehicleComponent } from './components/vehicle/vehicle.component';
 import { PassengerInformationComponent } from './components/passenger-information/passenger-information.component';
-import { CreateBookingCalculationService } from '../shared/services/create-booking-calculation.service';
 import { VehicleItemComponent } from './components/vehicle-item/vehicle-item.component';
+import { BookingOptionsService } from '../shared/services/booking-options.service';
 
 
 
@@ -39,7 +39,7 @@ import { VehicleItemComponent } from './components/vehicle-item/vehicle-item.com
     }),
   ],
   providers: [
-    CreateBookingCalculationService,
+    BookingOptionsService
   ],
   exports: [
     CreateBookingComponent

@@ -1,6 +1,6 @@
 <div class="customer-information">
     <caption>
-        {{ createBookingCalculationService.bookingOptions.customerInformation.caption }}
+        {{ customerInformation.caption }}
     </caption>
     <mat-tab-group>
         <mat-tab label="Customer">
@@ -24,12 +24,5 @@
                 </div>
             </div>
         </mat-tab>
-      </mat-tab-group>
+    </mat-tab-group>
 </div>
-<mat-slide-toggle
-    color="primary"
-    [(ngModel)]="isSliderChecked"
->
-    Set passenger information
-</mat-slide-toggle>
-<app-passenger-information *ngIf="isSliderChecked"></app-passenger-information>

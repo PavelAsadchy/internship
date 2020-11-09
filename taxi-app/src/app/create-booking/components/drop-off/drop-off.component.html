@@ -1,14 +1,14 @@
 <div class="drop-off__address">
     <caption>
-        {{ createBookingCalculationService.bookingOptions.dropOff.address.caption }}
+        {{ dropOff.address.caption }}
     </caption>
     <mat-radio-group
         color="primary"
-        [(ngModel)]="createBookingCalculationService.bookingOptions.dropOff.address.selected"
+        [(ngModel)]="dropOff.address.selected"
     >
         <mat-radio-button
             class="drop-off__radio-btn"
-            *ngFor="let dropOffAddr of createBookingCalculationService.bookingOptions.dropOff.address.options"
+            *ngFor="let dropOffAddr of dropOff.address.options"
             [value]="dropOffAddr"
         >
             {{ dropOffAddr }}
@@ -17,5 +17,5 @@
     <mat-form-field>
         <input matInput placeholder="Search for an address*">
     </mat-form-field>
-    <p>{{ createBookingCalculationService.bookingOptions.dropOff.address.note }}</p>
+    <p>{{ dropOff.address.note }}</p>
 </div>

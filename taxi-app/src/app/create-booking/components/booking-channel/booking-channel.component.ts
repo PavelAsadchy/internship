@@ -1,13 +1,15 @@
-import { Component } from '@angular/core';
-import { CreateBookingCalculationService } from 'src/app/shared/services/create-booking-calculation.service';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { IChannel } from 'src/app/shared/models/bookingOptions.model';
 
 @Component({
   selector: 'app-booking-channel',
   templateUrl: './booking-channel.component.html',
-  styleUrls: ['./booking-channel.component.scss']
+  styleUrls: ['./booking-channel.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BookingChannelComponent {
-  
-  constructor(public createBookingCalculationService: CreateBookingCalculationService) {}
-  
+
+  @Input()
+  bookingChannel: IChannel;
+
 }
