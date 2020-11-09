@@ -10,7 +10,7 @@ import { BookingOptionsService } from 'src/app/shared/services/booking-options.s
 })
 export class BookingBoardComponent implements OnInit {
 
-  bookingOptions: IBookingOptions = null;
+  bookingOptions: IBookingOptions;
 
   isSliderChecked: boolean = false;
 

@@ -1,4 +1,4 @@
-<div class="booking-board">
+<div class="booking-board" *ngIf="bookingOptions">
     <div class="booking-board__component">
         <app-booking-channel
             [bookingChannel]="bookingOptions.bookingChannel"
