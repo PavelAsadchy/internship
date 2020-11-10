@@ -27,4 +27,8 @@ export class BookingBoardComponent implements OnInit {
     this.sub.next();
     this.sub.complete();
   }
+
+  onChanged(event: Event) {
+    console.log(event);
+  }
 }

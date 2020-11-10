@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { IVehicle } from 'src/app/shared/models/bookingOptions.model';
 
 @Component({
@@ -11,4 +11,11 @@ export class VehicleItemComponent {
   @Input()
   vehicleItem: IVehicle;
 
+  @Output()
+  clickedVehicle: EventEmitter<IVehicle> = new EventEmitter<IVehicle>();
+
+  @HostListener('click')
+  onVehicleClick(): void {
+    this.clickedVehicle.emit(this.vehicleItem);
+  }
 }

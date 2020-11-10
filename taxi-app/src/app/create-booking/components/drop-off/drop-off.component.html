@@ -1,21 +1,22 @@
 <div class="drop-off__address">
     <caption>
-        {{ dropOff.address.caption }}
+        {{ dropOff.point.caption }}
     </caption>
     <mat-radio-group
         color="primary"
-        [(ngModel)]="dropOff.address.selected"
+        [(ngModel)]="dropOff.point.selected"
+        (change)="onChange()"
     >
         <mat-radio-button
             class="drop-off__radio-btn"
-            *ngFor="let dropOffAddr of dropOff.address.options"
+            *ngFor="let dropOffAddr of dropOff.point.options"
             [value]="dropOffAddr"
         >
             {{ dropOffAddr }}
         </mat-radio-button>
     </mat-radio-group>
-    <mat-form-field>
+    <mat-form-field #addressInput>
         <input matInput placeholder="Search for an address*">
     </mat-form-field>
-    <p>{{ dropOff.address.note }}</p>
+    <p>{{ dropOff.point.note }}</p>
 </div>

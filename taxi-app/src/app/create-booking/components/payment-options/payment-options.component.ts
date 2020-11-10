@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { IPaymentOptions } from 'src/app/shared/models/bookingOptions.model';
 
 @Component({
@@ -12,4 +12,10 @@ export class PaymentOptionsComponent {
   @Input()
   paymentOptions: IPaymentOptions;
 
+  @Output()
+  onChanged: EventEmitter<IPaymentOptions> = new EventEmitter<IPaymentOptions>();
+
+  onChange(): void {
+    this.onChanged.emit(this.paymentOptions);
+  }
 }

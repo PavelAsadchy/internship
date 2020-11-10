@@ -21,11 +21,13 @@ export interface IChannel {
 
 export interface IPickUp {
     time: IRadioSection;
-    address: IRadioSection;
+    point: IRadioSection;
+    address: string;
 }
 
 export interface IDropOff {
-    address: IRadioSection;
+    point: IRadioSection;
+    address: string;
 }
 
 export interface IVehicleList {

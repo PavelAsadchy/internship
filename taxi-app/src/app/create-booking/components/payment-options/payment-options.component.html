@@ -9,6 +9,7 @@
         color="primary"
         aria-labelledby="payment-options-channel"
         [(ngModel)]="paymentOptions.channel.selected"
+        (change)="onChange()"
     >
         <mat-radio-button
             class="payment-options__radio-btn"
@@ -30,6 +31,7 @@
         color="primary"
         aria-labelledby="payment-options-type"
         [(ngModel)]="paymentOptions.type.selected"
+        (change)="onChange()"
     >
         <mat-radio-button
             class="payment-options__radio-btn"
@@ -53,6 +55,7 @@
         aria-labelledby="payment-options-options"
         *ngFor="let paymentBasicOption of paymentOptions.basicOptions.options"
         [(ngModel)]="paymentBasicOption.checked"
+        (change)="onChange()"
     >
         {{ paymentBasicOption.name }}
     </mat-checkbox>
@@ -71,6 +74,7 @@
             aria-labelledby="payment-options-extras"
             *ngFor="let paymentExtraOption of paymentOptions.extraOptions.options"
             [(ngModel)]="paymentExtraOption.checked"
+            (change)="onChange()"
         >
             {{ paymentExtraOption.name }} {{ paymentExtraOption.note }}
         </mat-checkbox>

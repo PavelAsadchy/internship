@@ -8,6 +8,7 @@
     color="primary"
     aria-labelledby="pick-up-label"
     [(ngModel)]="pickUp.time.selected"
+    (change)="onChange()"
 >
     <mat-radio-button
         class="pick-up__radio-btn"
@@ -20,21 +21,25 @@
 
 <div class="pick-up__address">
     <caption>
-        {{ pickUp.address.caption }}
+        {{ pickUp.point.caption }}
     </caption>
     <mat-radio-group
         color="primary"
-        [(ngModel)]="pickUp.address.selected"
+        [(ngModel)]="pickUp.point.selected"
+        (change)="onChange()"
     >
         <mat-radio-button
             class="pick-up__radio-btn"
-            *ngFor="let pickUpAddr of pickUp.address.options"
+            *ngFor="let pickUpAddr of pickUp.point.options"
             [value]="pickUpAddr"
         >
             {{ pickUpAddr }}
         </mat-radio-button>
     </mat-radio-group>
-    <mat-form-field>
-        <input matInput placeholder="Search for an address*">
+    <mat-form-field #addressInput>
+        <input
+            matInput
+            placeholder="Search for an address*"
+            [(ngModel)]="pickUp.address">
     </mat-form-field>
 </div>

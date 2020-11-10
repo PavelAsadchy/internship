@@ -23,7 +23,7 @@
                 "Later"
             ]
         },
-        "address": {
+        "point": {
             "caption": "Pick Up",
             "selected": null,
             "options": [
@@ -32,10 +32,11 @@
                 "Rocco",
                 "Head Office"
             ]
-        }
+        },
+        "address": ""
     },
     "dropOff": {
-        "address": {
+        "point": {
             "caption": "Drop Off",
             "selected": null,
             "options": [
@@ -46,7 +47,8 @@
                 "Indefinite"
             ],
             "note": "If you choose the option \"Indefinite\", you have to set a custom price."
-        }
+        },
+        "address": ""
     },
     "vehicle": {
         "items": [

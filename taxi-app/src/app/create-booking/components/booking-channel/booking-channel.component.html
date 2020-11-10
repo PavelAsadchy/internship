@@ -8,6 +8,7 @@
     color="primary"
     aria-labelledby="booking-channel-label"
     [(ngModel)]="bookingChannel.channel.selected"
+    (change)="onChange()"
 >
     <mat-radio-button
         class="booking-channel__radio-btn"

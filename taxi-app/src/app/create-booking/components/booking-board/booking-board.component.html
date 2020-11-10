@@ -2,24 +2,28 @@
     <div class="booking-board__component">
         <app-booking-channel
             [bookingChannel]="bookingOptions.bookingChannel"
+            (onChanged)="onChanged($event)"
         >
         </app-booking-channel>
     </div>
     <div class="booking-board__component">
         <app-pick-up
             [pickUp]="bookingOptions.pickUp"
+            (onChanged)="onChanged($event)"
         >
         </app-pick-up>
     </div>
     <div class="booking-board__component">
         <app-drop-off
             [dropOff]="bookingOptions.dropOff"
+            (onChanged)="onChanged($event)"
         >
         </app-drop-off>
     </div>
     <div class="booking-board__component">
         <app-vehicle
             [vehicle]="bookingOptions.vehicle"
+            (selectedVehicle)="onChanged($event)"
         >
         </app-vehicle>
     </div>
@@ -45,6 +49,7 @@
     <div class="booking-board__component">
         <app-payment-options
             [paymentOptions]="bookingOptions.paymentOptions"
+            (onChanged)="onChanged($event)"
         >
         </app-payment-options>
     </div>
