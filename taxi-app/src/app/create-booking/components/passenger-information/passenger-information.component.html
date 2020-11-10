@@ -3,9 +3,17 @@
         {{ passengerInformation.caption }}
     </caption>
     <mat-form-field>
-        <span matPrefix>+1 &nbsp;</span>
-        <mat-label>Phone*</mat-label>
-        <input matInput placeholder="Phone*">
+        <mat-label class="passenger-information__phone-label">Phone*</mat-label>
+        <input
+            matInput
+            ng2TelInput
+            type="tel"
+            [ng2TelInputOptions]="telOptions"
+            (ng2TelOutput)="getNumber($event)"
+            (intlTelInputObject)="telInputObject($event)"
+            (countryChange)="onCountryChange($event)"
+        >
+        <span matPrefix>{{ telOptions.prefix }} &nbsp;</span>
     </mat-form-field>
     <mat-form-field>
         <mat-label>Name*</mat-label>

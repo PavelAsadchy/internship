@@ -13,3 +13,15 @@
         width: 49%;
     }
 }
+
+::ng-deep .iti--allow-dropdown .iti__flag-container {
+    left: -30px;
+}
+
+::ng-deep .mat-form-field-prefix {
+    left: 50px;
+}
+
+mat-label.customer-information__phone-label {
+    margin-left: 50px;
+}

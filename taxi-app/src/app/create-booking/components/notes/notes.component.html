@@ -1,13 +1,13 @@
 <div class="note">
     <caption>Notes</caption>
-    <mat-form-field hintLabel="Max length:&nbsp;">
+    <mat-form-field>
         <mat-label>Driver's note</mat-label>
         <textarea matInput #inputOne maxLength="1000" placeholder="Driver's note"></textarea>
-        <mat-hint>{{ inputOne.value?.length || 0 }}/1000</mat-hint>
+        <mat-hint>Max length: {{ inputOne.value?.length || 0 }}/1000</mat-hint>
     </mat-form-field>
-    <mat-form-field hintLabel="Length:&nbsp;">
+    <mat-form-field>
         <mat-label>Dispatcher's note</mat-label>
         <textarea matInput #inputTwo placeholder="Dispatcher's note"></textarea>
-        <mat-hint>{{ inputTwo.value?.length || 0 }}</mat-hint>
+        <mat-hint>Length: {{ inputTwo.value?.length || 0 }}</mat-hint>
     </mat-form-field>
 </div>

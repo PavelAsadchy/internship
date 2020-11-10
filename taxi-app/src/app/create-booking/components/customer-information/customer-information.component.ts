@@ -15,13 +15,7 @@ export class CustomerInformationComponent {
   telOptions = {
     initialCountry: 'by',
     prefix: '',
-
-  }
-
-  prefix: string;
-
-  hasError(event) {
-    console.log(event);
+    preferredCountries: ['by', 'ru']
   }
 
   getNumber(event) {
@@ -30,12 +24,11 @@ export class CustomerInformationComponent {
 
   telInputObject(event) {
     console.log(event);
-    this.telOptions.prefix = event.s.dialCode
+    this.telOptions.prefix = event.s.dialCode;
   }
 
   onCountryChange(event) {
     console.log(event);
     this.telOptions.prefix = event.dialCode;
-
   }
 }

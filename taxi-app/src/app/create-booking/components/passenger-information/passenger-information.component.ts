@@ -12,4 +12,24 @@ export class PassengerInformationComponent {
   @Input()
   passengerInformation: IClientInformation;
 
+  telOptions = {
+    initialCountry: 'by',
+    prefix: '',
+    preferredCountries: ['by', 'ru']
+  }
+
+  getNumber(event) {
+    console.log(event);
+  }
+
+  telInputObject(event) {
+    console.log(event);
+    this.telOptions.prefix = event.s.dialCode;
+  }
+
+  onCountryChange(event) {
+    console.log(event);
+    this.telOptions.prefix = event.dialCode;
+  }
+
 }
