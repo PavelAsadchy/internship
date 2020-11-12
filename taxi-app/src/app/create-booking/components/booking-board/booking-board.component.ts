@@ -57,13 +57,12 @@ export class BookingBoardComponent implements OnInit {
     .subscribe((data: IBookingOptions) => {
       this.bookingOptions = data;
       
-      this.bookingOptions.paymentOptions.basicOptions.options.forEach(check => {
-        
-      })
     });
 
-    this.bookingOptionsForm.valueChanges
-    .subscribe(value => console.log(value));
+    this.bookingOptionsForm.controls.pickUp.valueChanges
+    .subscribe(status => {
+      this.createBookingCalculationService.createRandomCalculation(status.time);
+    });
   }
 
   ngOnDestroy(): void {
@@ -76,10 +75,18 @@ export class BookingBoardComponent implements OnInit {
   }
 
   trigger(): void {
-    console.log(this.isSliderChecked)
+    console.log(this.bookingOptionsForm.controls.pickUp.valid)
   }
 
   onBookingOptionsSubmit(): void {
     console.log('form submit')
+  }
+
+  checkConrolValidity(control): boolean {
+    return !this.bookingOptionsForm.controls[control].valid;
+  }
+
+  checkFormValidity(): boolean {
+    return !this.bookingOptionsForm.valid;
   }
 }

@@ -71,77 +71,71 @@
             <app-notes [parentForm]="bookingOptionsForm"></app-notes>
         </div>
         <div class="booking-board__component booking-board__component--right">
+            <span
+                class="booking-board__mandatory booking-board__mandatory--heading"
+                [class.valid]="checkFormValidity()"
+            >
+                Mandatory fields
+            </span>
+            <span
+                class="booking-board__mandatory"
+                [class.valid]="checkConrolValidity('pickUp')"
+            >
+                Pick Up Address
+            </span>
+            <span
+                class="booking-board__mandatory"
+                [class.valid]="checkConrolValidity('dropOff')"
+            >
+                Drop Off Address
+            </span>
+            <span
+                class="booking-board__mandatory"
+                [class.valid]="checkConrolValidity('vehicle')"
+            >
+                Vehicle
+            </span>
+            <span
+                class="booking-board__mandatory"
+                [class.valid]="checkConrolValidity('customerInformation')"
+            >
+                Customer Phone
+            </span>
+            <span
+                class="booking-board__mandatory"
+                [class.valid]="checkConrolValidity('customerInformation')"
+            >
+                Customer Name
+            </span>
+            <span
+                class="booking-board__mandatory"
+                [class.valid]="checkFormValidity()"
+            >
+                Price
+            </span>
+        </div>
+
+        <div class="booking-board__component booking-board__component--right">
             <button
                 mat-raised-button
                 color="primary"
                 class="booking-board__submit"
                 [disabled]="bookingOptionsForm.invalid">
                 summary
+                <mat-icon>keyboard_arrow_right</mat-icon>
             </button>
         </div>    
     </form>
 
+    <div class="booking-board__footer">
+        <div class="booking-board__price">
+            <span>Price calculated</span>
+            <span>{{ createBookingCalculationService.price
+                ? createBookingCalculationService.price
+                : 'NA' }}
+            </span>
+        </div>
+    </div>
 
-    <button (click)="trigger()">trigger</button>
-
-
-    <div class="booking-board__component">
-        <!-- <app-booking-channel
-            [bookingChannel]="bookingOptions.bookingChannel"
-            (onChanged)="onChanged($event)"
-        >
-        </app-booking-channel> -->
-    </div>
-    <div class="booking-board__component">
-        <!-- <app-pick-up
-            [pickUp]="bookingOptions.pickUp"
-            (onChanged)="onChanged($event)"
-        >
-        </app-pick-up> -->
-    </div>
-    <div class="booking-board__component">
-        <!-- <app-drop-off
-            [dropOff]="bookingOptions.dropOff"
-            (onChanged)="onChanged($event)"
-        >
-        </app-drop-off> -->
-    </div>
-    <div class="booking-board__component">
-        <!-- <app-vehicle
-            [vehicle]="bookingOptions.vehicle"
-            (selectedVehicle)="onChanged($event)"
-        >
-        </app-vehicle> -->
-    </div>
-    <div class="booking-board__component">
-        <!-- <app-customer-information
-            [customerInformation]="bookingOptions.customerInformation"
-        >
-        </app-customer-information> -->
-    </div>
-    <div class="booking-board__component">
-        <!-- <mat-slide-toggle
-            color="primary"
-            [(ngModel)]="isSliderChecked"
-        >
-            Set passenger information
-        </mat-slide-toggle>
-        <app-passenger-information
-            *ngIf="isSliderChecked"
-            [passengerInformation]="bookingOptions.passengerInformation"
-        >
-        </app-passenger-information> -->
-    </div>
-    <div class="booking-board__component">
-        <!-- <app-payment-options
-            [paymentOptions]="bookingOptions.paymentOptions"
-            (onChanged)="onChanged($event)"
-        >
-        </app-payment-options> -->
-    </div>
-    <div class="booking-board__component">
-        <!-- <app-notes></app-notes> -->
-    </div>
+    <!-- <button (click)="trigger()">trigger</button> -->
 </div>
-
-<button (click)="createBookingCalculationService.trigger()">trigger</button>

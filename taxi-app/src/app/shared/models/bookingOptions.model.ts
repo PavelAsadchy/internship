@@ -69,38 +69,38 @@ export interface IBookingOptions {
 import { Validators } from '@angular/forms';
 
 export class BookingChannel {
-    channel = [null, Validators.required];
+    channel = [null];
 }
 
 export class PickUp {
-    time = [null, Validators.required];
-    point = [null, Validators.required];
+    time = [null];
+    point = [null];
     address = ['', Validators.required];
 }
 
 export class DropOff {
-    point = [null, Validators.required];
+    point = [null];
     address = ['', Validators.required];
 }
 
 export class Vehicle {
-    items = [null, Validators.required]; 
+    items = [null]; 
 }
 
 export class CustomerInformation {
     phone = ['', Validators.required]; 
-    email = ['', Validators.required]; 
+    email = ['']; 
     name = ['', Validators.required]; 
 }
 
 export class PassengerInformation {
-    phone = ['', Validators.required];
-    name = ['', Validators.required];
+    phone = [''];
+    name = [''];
 }
 
 export class PaymentOptions {
-    channel = [null, Validators.required];
-    type = [null, Validators.required];
+    channel = [null];
+    type = [null];
 }
 
 export class Check {
@@ -118,6 +118,6 @@ export class PaymentBasicOptions {
 
 
 export class Notes {
-    toDriver = ['', Validators.required];
-    toDispatcher = ['', Validators.required];
+    toDriver = [''];
+    toDispatcher = [''];
 }

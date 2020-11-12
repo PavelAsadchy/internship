@@ -18,7 +18,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { Ng2TelInputModule } from 'ng2-tel-input';
 
 @NgModule({
-  declarations: [],
   imports: [
     CommonModule,
     FormsModule,

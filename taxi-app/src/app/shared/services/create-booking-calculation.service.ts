@@ -1,20 +1,25 @@
 import { Injectable } from '@angular/core';
-import { BookingOptionsType } from '../consts/consts';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CreateBookingCalculationService {
 
-  bookingOptions = BookingOptionsType;
+  price: number = 0;
 
-  keys: any[];
+  createRandomCalculation(field): void {
+    switch (field) {
+      case ('Now'): this.price = this.randomPrice(30, 50)
+      break;
 
-  constructor () {
-    this.keys = Object.keys(this.bookingOptions);
+      case ('Later'): this.price = this.randomPrice(1, 10)
+      break;
+
+      default: 0;
+    }
   }
 
-  trigger(): void {
-    console.log(this.bookingOptions);
+  randomPrice(min, max): number {
+    return Math.floor(Math.random() * (max - min) + min);
   }
 }
