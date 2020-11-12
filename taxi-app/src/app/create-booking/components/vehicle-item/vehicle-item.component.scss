@@ -4,12 +4,12 @@
     display: flex;
     flex-direction: column;
     padding: 5px;
-    filter: opacity(.5);
-    transition: filter .3s;
-    cursor: pointer;
+    // filter: opacity(.5);
+    // transition: filter .3s;
+    // cursor: pointer;
 
     &:hover {
-        filter: opacity(1);
+        // filter: opacity(1);
     }
 
     & > img {

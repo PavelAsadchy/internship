@@ -59,6 +59,9 @@ export class BookingBoardComponent implements OnInit {
       
     });
 
+    this.bookingOptionsForm.valueChanges
+    .subscribe(status => console.log(status))
+
     this.bookingOptionsForm.controls.pickUp.valueChanges
     .subscribe(status => {
       this.createBookingCalculationService.createRandomCalculation(status.time);

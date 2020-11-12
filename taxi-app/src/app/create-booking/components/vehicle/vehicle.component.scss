@@ -12,7 +12,26 @@
     }
 
     &__unit {
+        // display: flex;
+        // flex-direction: column;
+        // padding: 5px;
+        filter: opacity(.5);
+        transition: filter .3s;
+        cursor: pointer;    
         border-radius: 4px;
         background: $light-xxl;
+
+        &:hover {
+            filter: opacity(1);
+        }
     }
+}
+
+::ng-deep .vehicle__unit .mat-radio-container {
+    display: none !important;
+}
+
+::ng-deep .vehicle .mat-radio-checked {
+    filter: opacity(1) !important;
+    border: 2px solid $primary;
 }

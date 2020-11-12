@@ -84,7 +84,7 @@ export class DropOff {
 }
 
 export class Vehicle {
-    items = [null]; 
+    items = [null, Validators.required]; 
 }
 
 export class CustomerInformation {

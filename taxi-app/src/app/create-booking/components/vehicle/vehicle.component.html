@@ -1,7 +1,27 @@
 <div class="vehicle" [formGroup]="parentForm">
     <caption>Vehicle</caption>
-    <ul class="vehicle__wrapper" formGroupName="vehicle">
-        <!-- <input type="radio" formControlName="items"> -->
+    <div formGroupName="vehicle">
+        <mat-radio-group
+            class="vehicle__wrapper"
+            color="primary"
+            aria-labelledby="booking-channel-label"
+            formControlName="items"
+        >
+            <mat-radio-button
+                class="vehicle__unit"
+                *ngFor="let vehicleItem of vehicle.items"
+                [value]="vehicleItem"
+            >
+                <app-vehicle-item
+                    [vehicleItem]="vehicleItem"
+                    (clickedVehicle)="onVehicleSelect($event)"
+                >
+                </app-vehicle-item>
+            </mat-radio-button>
+        </mat-radio-group>
+    </div>
+
+    <!-- <ul class="vehicle__wrapper" formGroupName="vehicle">
         <li
             class="vehicle__unit"
             *ngFor="let vehicleItem of vehicle.items"
@@ -16,7 +36,7 @@
                 </app-vehicle-item>
             </label>
         </li>
-    </ul>
+    </ul> -->
 
     <!-- <ul class="vehicle__wrapper">
         <li
