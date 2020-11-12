@@ -1,4 +1,5 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, map } from 'rxjs/operators';
 import { IPickUp } from 'src/app/shared/models/bookingOptions.model';
@@ -12,6 +13,9 @@ import { IPickUp } from 'src/app/shared/models/bookingOptions.model';
 export class PickUpComponent implements AfterViewInit, OnDestroy {
 
   private sub: Subscription;
+
+  @Input()
+  parentForm: FormGroup;
 
   @Input()
   pickUp: IPickUp;

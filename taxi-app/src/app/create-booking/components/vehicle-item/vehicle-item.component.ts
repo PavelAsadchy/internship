@@ -1,4 +1,5 @@
 import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { IVehicle } from 'src/app/shared/models/bookingOptions.model';
 
 @Component({
@@ -7,6 +8,9 @@ import { IVehicle } from 'src/app/shared/models/bookingOptions.model';
   styleUrls: ['./vehicle-item.component.scss']
 })
 export class VehicleItemComponent {
+  
+  // @Input()
+  // parentForm: FormGroup;
 
   @Input()
   vehicleItem: IVehicle;

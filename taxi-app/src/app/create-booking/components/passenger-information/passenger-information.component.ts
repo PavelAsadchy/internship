@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { IClientInformation } from 'src/app/shared/models/bookingOptions.model';
 
 @Component({
@@ -8,6 +9,9 @@ import { IClientInformation } from 'src/app/shared/models/bookingOptions.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PassengerInformationComponent {
+
+  @Input()
+  parentForm: FormGroup;
 
   @Input()
   passengerInformation: IClientInformation;

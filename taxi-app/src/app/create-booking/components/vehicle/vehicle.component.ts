@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { IVehicle, IVehicleList } from 'src/app/shared/models/bookingOptions.model';
 
 @Component({
@@ -8,6 +9,9 @@ import { IVehicle, IVehicleList } from 'src/app/shared/models/bookingOptions.mod
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class VehicleComponent {
+    
+  @Input()
+  parentForm: FormGroup;
 
   @Input()
   vehicle: IVehicleList;

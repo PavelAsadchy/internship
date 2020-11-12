@@ -65,3 +65,59 @@ export interface IBookingOptions {
     passengerInformation: IClientInformation;
     paymentOptions: IPaymentOptions;
 }
+
+import { Validators } from '@angular/forms';
+
+export class BookingChannel {
+    channel = [null, Validators.required];
+}
+
+export class PickUp {
+    time = [null, Validators.required];
+    point = [null, Validators.required];
+    address = ['', Validators.required];
+}
+
+export class DropOff {
+    point = [null, Validators.required];
+    address = ['', Validators.required];
+}
+
+export class Vehicle {
+    items = [null, Validators.required]; 
+}
+
+export class CustomerInformation {
+    phone = ['', Validators.required]; 
+    email = ['', Validators.required]; 
+    name = ['', Validators.required]; 
+}
+
+export class PassengerInformation {
+    phone = ['', Validators.required];
+    name = ['', Validators.required];
+}
+
+export class PaymentOptions {
+    channel = [null, Validators.required];
+    type = [null, Validators.required];
+}
+
+export class Check {
+    constructor(
+        public name: string,
+        public value: string
+    ) {}
+}
+
+export class PaymentBasicOptions {
+
+}
+    // basicOptions = [null, Validators.required];
+    // extraOptions = [null, Validators.required];
+
+
+export class Notes {
+    toDriver = ['', Validators.required];
+    toDispatcher = ['', Validators.required];
+}

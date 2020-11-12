@@ -1,40 +1,126 @@
 <div class="booking-board" *ngIf="bookingOptions">
+    <form
+        class="booking-board__form"
+        [formGroup]="bookingOptionsForm"
+        (ngSubmit)="onBookingOptionsSubmit()"
+    >
+        <div class="booking-board__component">
+            <app-booking-channel
+                [parentForm]="bookingOptionsForm"
+                [bookingChannel]="bookingOptions.bookingChannel"
+                (onChanged)="onChanged($event)"
+            >
+            </app-booking-channel>
+        </div>
+        <div class="booking-board__component">
+            <app-pick-up
+                [parentForm]="bookingOptionsForm"
+                [pickUp]="bookingOptions.pickUp"
+                (onChanged)="onChanged($event)"
+            >
+            </app-pick-up>
+        </div>
+        <div class="booking-board__component">
+            <app-drop-off
+                [parentForm]="bookingOptionsForm"
+                [dropOff]="bookingOptions.dropOff"
+                (onChanged)="onChanged($event)"
+            >
+            </app-drop-off>
+        </div>
+        <div class="booking-board__component">
+            <!-- <app-vehicle
+                [parentForm]="bookingOptionsForm"
+                [vehicle]="bookingOptions.vehicle"
+                (selectedVehicle)="onChanged($event)"
+            >
+            </app-vehicle> -->
+        </div>
+        <div class="booking-board__component">
+            <app-customer-information
+                [parentForm]="bookingOptionsForm"
+                [customerInformation]="bookingOptions.customerInformation"
+            >
+            </app-customer-information>
+        </div>
+        
+        <div class="booking-board__component">
+            <mat-slide-toggle
+                color="primary"
+                [(ngModel)]="isSliderChecked"
+                [ngModelOptions]="{standalone: true}"
+            >
+                Set passenger information
+            </mat-slide-toggle>
+            <app-passenger-information
+                *ngIf="isSliderChecked"
+                [parentForm]="bookingOptionsForm"
+                [passengerInformation]="bookingOptions.passengerInformation"
+            >
+            </app-passenger-information>
+        </div>
+        <div class="booking-board__component">
+            <app-payment-options
+                [parentForm]="bookingOptionsForm"
+                [paymentOptions]="bookingOptions.paymentOptions"
+                (onChanged)="onChanged($event)"
+            >
+            </app-payment-options>
+        </div>
+        <div class="booking-board__component">
+            <app-notes [parentForm]="bookingOptionsForm"></app-notes>
+        </div>
+        <div class="booking-board__component booking-board__component--right">
+            <button
+                mat-raised-button
+                color="primary"
+                class="booking-board__submit"
+                [disabled]="bookingOptionsForm.invalid">
+                summary
+            </button>
+        </div>    
+    </form>
+
+
+    <button (click)="trigger()">trigger</button>
+
+
     <div class="booking-board__component">
-        <app-booking-channel
+        <!-- <app-booking-channel
             [bookingChannel]="bookingOptions.bookingChannel"
             (onChanged)="onChanged($event)"
         >
-        </app-booking-channel>
+        </app-booking-channel> -->
     </div>
     <div class="booking-board__component">
-        <app-pick-up
+        <!-- <app-pick-up
             [pickUp]="bookingOptions.pickUp"
             (onChanged)="onChanged($event)"
         >
-        </app-pick-up>
+        </app-pick-up> -->
     </div>
     <div class="booking-board__component">
-        <app-drop-off
+        <!-- <app-drop-off
             [dropOff]="bookingOptions.dropOff"
             (onChanged)="onChanged($event)"
         >
-        </app-drop-off>
+        </app-drop-off> -->
     </div>
     <div class="booking-board__component">
-        <app-vehicle
+        <!-- <app-vehicle
             [vehicle]="bookingOptions.vehicle"
             (selectedVehicle)="onChanged($event)"
         >
-        </app-vehicle>
+        </app-vehicle> -->
     </div>
     <div class="booking-board__component">
-        <app-customer-information
+        <!-- <app-customer-information
             [customerInformation]="bookingOptions.customerInformation"
         >
-        </app-customer-information>
+        </app-customer-information> -->
     </div>
     <div class="booking-board__component">
-        <mat-slide-toggle
+        <!-- <mat-slide-toggle
             color="primary"
             [(ngModel)]="isSliderChecked"
         >
@@ -44,17 +130,17 @@
             *ngIf="isSliderChecked"
             [passengerInformation]="bookingOptions.passengerInformation"
         >
-        </app-passenger-information>
+        </app-passenger-information> -->
     </div>
     <div class="booking-board__component">
-        <app-payment-options
+        <!-- <app-payment-options
             [paymentOptions]="bookingOptions.paymentOptions"
             (onChanged)="onChanged($event)"
         >
-        </app-payment-options>
+        </app-payment-options> -->
     </div>
     <div class="booking-board__component">
-        <app-notes></app-notes>
+        <!-- <app-notes></app-notes> -->
     </div>
 </div>
 

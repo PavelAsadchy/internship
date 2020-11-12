@@ -1,4 +1,29 @@
-<label
+<div [formGroup]="parentForm">
+    <label
+        class="booking-channel__label"
+        id="booking-channel-label"
+    >
+        {{ bookingChannel.channel.label }}
+    </label>
+    <div formGroupName="bookingChannel">
+        <mat-radio-group
+            color="primary"
+            aria-labelledby="booking-channel-label"
+            formControlName="channel"
+        >
+            <mat-radio-button
+                class="booking-channel__radio-btn"
+                *ngFor="let bookingChannel of bookingChannel.channel.options"
+                [value]="bookingChannel"
+            >
+                {{ bookingChannel }}
+            </mat-radio-button>
+        </mat-radio-group>
+    </div>
+</div>
+
+
+<!-- <label
     class="booking-channel__label"
     id="booking-channel-label"
 >
@@ -17,4 +42,4 @@
     >
         {{ bookingChannel }}
     </mat-radio-button>
-</mat-radio-group>
+</mat-radio-group> -->

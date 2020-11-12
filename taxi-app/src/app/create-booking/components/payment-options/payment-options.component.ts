@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { IPaymentOptions } from 'src/app/shared/models/bookingOptions.model';
 
 @Component({
@@ -10,6 +11,9 @@ import { IPaymentOptions } from 'src/app/shared/models/bookingOptions.model';
 export class PaymentOptionsComponent {
 
   @Input()
+  parentForm: FormGroup;
+
+  @Input()
   paymentOptions: IPaymentOptions;
 
   @Output()
@@ -17,5 +21,17 @@ export class PaymentOptionsComponent {
 
   onChange(): void {
     this.onChanged.emit(this.paymentOptions);
+  }
+
+  onCheckboxChange(event) {
+    console.log(event)
+    const checkArray: FormArray = this.parentForm.get('checkExtraOptions') as FormArray;
+
+    if (event.target.checked) {
+      checkArray.push(new FormControl(event.target.name));
+    } else {
+      const index = checkArray.controls.findIndex(control => control.value === event.target.name);
+      checkArray.removeAt(index);
+    }
   }
 }

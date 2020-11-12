@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { IChannel } from 'src/app/shared/models/bookingOptions.model';
 
 @Component({
@@ -8,6 +9,9 @@ import { IChannel } from 'src/app/shared/models/bookingOptions.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BookingChannelComponent {
+
+  @Input()
+  parentForm: FormGroup;
 
   @Input()
   bookingChannel: IChannel;

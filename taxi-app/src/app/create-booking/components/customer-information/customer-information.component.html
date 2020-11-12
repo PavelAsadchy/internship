@@ -1,9 +1,9 @@
-<div class="customer-information">
+<div class="customer-information" [formGroup]="parentForm">
     <caption>
         {{ customerInformation.caption }}
     </caption>
     <mat-tab-group>
-        <mat-tab label="Customer">
+        <mat-tab label="Customer" formGroupName="customerInformation">
             <mat-form-field>
                 <mat-label class="customer-information__phone-label">Phone*</mat-label>
                 <input
@@ -14,6 +14,7 @@
                     (ng2TelOutput)="getNumber($event)"
                     (intlTelInputObject)="telInputObject($event)"
                     (countryChange)="onCountryChange($event)"
+                    formControlName="phone"
                 >
                 <span matPrefix>{{ telOptions.prefix }} &nbsp;</span>
             </mat-form-field>
@@ -21,13 +22,22 @@
                 <div class="customer-information__field">
                     <mat-form-field>
                         <mat-label>Email*</mat-label>
-                        <input matInput type="email" placeholder="Email">
+                        <input
+                            matInput
+                            type="email"
+                            placeholder="Email"
+                            formControlName="email"
+                        >
                     </mat-form-field>
                 </div>
                 <div class="customer-information__field">
                     <mat-form-field>
                         <mat-label>Name*</mat-label>
-                        <input matInput placeholder="Name*">
+                        <input
+                            matInput
+                            placeholder="Name*"
+                            formControlName="name"
+                        >
                     </mat-form-field>
                 </div>
             </div>

@@ -1,4 +1,38 @@
-<div class="vehicle">
+<div class="vehicle" [formGroup]="parentForm">
+    <caption>Vehicle</caption>
+    <ul class="vehicle__wrapper" formGroupName="vehicle">
+        <!-- <input type="radio" formControlName="items"> -->
+        <li
+            class="vehicle__unit"
+            *ngFor="let vehicleItem of vehicle.items"
+        >
+            <label>
+                <input type="radio" formControlName="items">
+                <app-vehicle-item
+                    [vehicleItem]="vehicleItem"
+                    (clickedVehicle)="onVehicleSelect($event)"
+                    formControlName="items"
+                >
+                </app-vehicle-item>
+            </label>
+        </li>
+    </ul>
+
+    <!-- <ul class="vehicle__wrapper">
+        <li
+            class="vehicle__unit"
+            *ngFor="let vehicleItem of vehicle.items"
+        >
+            <app-vehicle-item
+                [vehicleItem]="vehicleItem"
+                (clickedVehicle)="onVehicleSelect($event)"
+            >
+            </app-vehicle-item>
+        </li>
+    </ul> -->
+</div>
+
+<!-- <div class="vehicle">
     <caption>Vehicle</caption>
     <ul class="vehicle__wrapper">
         <li
@@ -12,4 +46,4 @@
             </app-vehicle-item>
         </li>
     </ul>
-</div>
+</div> -->

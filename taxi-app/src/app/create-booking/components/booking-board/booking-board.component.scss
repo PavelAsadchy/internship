@@ -1,7 +1,19 @@
 .booking-board {
     padding: 10px;
 
-    &__component:not(:last-child) {
-        margin-bottom: 40px;
+    &__component {
+
+        &:not(:last-child) {
+            margin-bottom: 40px;
+        }
+
+        &--right {
+            display: flex;
+            justify-content: flex-end;
+        }
+    }
+
+    &__submit {
+        text-transform: uppercase;
     }
 }

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, map } from 'rxjs/operators';
 import { IDropOff } from 'src/app/shared/models/bookingOptions.model';
@@ -12,6 +13,9 @@ import { IDropOff } from 'src/app/shared/models/bookingOptions.model';
 export class DropOffComponent {
 
   private sub: Subscription;
+
+  @Input()
+  parentForm: FormGroup;
 
   @Input()
   dropOff: IDropOff;
