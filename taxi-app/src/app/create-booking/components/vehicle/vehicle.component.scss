@@ -9,6 +9,16 @@
         gap: 5px;
         margin: 0;
         list-style: none;
+
+        & input {
+            display: none;
+
+            &:checked + .vehicle__unit {
+                outline: 3px solid $primary;
+                filter: opacity(1) !important;
+            }
+        }
+
     }
 
     &__unit {
@@ -24,14 +34,6 @@
         &:hover {
             filter: opacity(1);
         }
+
     }
-}
-
-::ng-deep .vehicle__unit .mat-radio-container {
-    display: none !important;
-}
-
-::ng-deep .vehicle .mat-radio-checked {
-    filter: opacity(1) !important;
-    border: 2px solid $primary;
 }
