@@ -1,7 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
-import { IBookingOptions } from '../shared/models/bookingOptions.model';
-import { BookingOptionsService } from '../shared/services/booking-options.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-create-booking',
@@ -10,19 +7,4 @@ import { BookingOptionsService } from '../shared/services/booking-options.servic
 })
 export class CreateBookingComponent {
 
-  // bookingOptions: IBookingOptions = null;
-
-  // private sub: Subject<void> = new Subject<void>();
-
-  // constructor(private bookingOptionsService: BookingOptionsService) { }
-
-  // ngOnInit(): void {
-  //   this.bookingOptionsService.loadBookingOptions()
-  //   .subscribe((data: IBookingOptions) => this.bookingOptions = data);
-  // }
-
-  // ngOnDestroy(): void {
-  //   this.sub.next();
-  //   this.sub.complete();
-  // }
 }

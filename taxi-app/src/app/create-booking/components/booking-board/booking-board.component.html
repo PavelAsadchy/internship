@@ -129,9 +129,11 @@
     <div class="booking-board__footer">
         <div class="booking-board__price">
             <span>Price calculated</span>
-            <span>{{ createBookingCalculationService.price
-                ? createBookingCalculationService.price
-                : 'NA' }}
+            <span *ngIf="createBookingCalculationService.price">
+                {{ createBookingCalculationService.price | currency }}
+            </span>
+            <span *ngIf="!createBookingCalculationService.price">
+                NA
             </span>
         </div>
     </div>

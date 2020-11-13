@@ -48,4 +48,6 @@ export class CreateBookingCalculationService {
   randomPrice(min, max): number {
     return Math.floor(Math.random() * (max - min) + min);
   }
+
+  formSubmit(form): void {}
 }

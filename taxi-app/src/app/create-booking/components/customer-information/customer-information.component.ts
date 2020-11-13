@@ -22,10 +22,6 @@ export class CustomerInformationComponent {
     preferredCountries: ['by', 'ru']
   }
 
-  getNumber(event) {
-    console.log(event);
-  }
-
   telInputObject(event) {
     this.telOptions.prefix = event.s.dialCode;
   }

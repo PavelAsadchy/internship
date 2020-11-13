@@ -23,12 +23,10 @@ export class PassengerInformationComponent {
   }
 
   telInputObject(event) {
-    console.log(event);
     this.telOptions.prefix = event.s.dialCode;
   }
 
   onCountryChange(event) {
-    console.log(event);
     this.telOptions.prefix = event.dialCode;
   }
 }

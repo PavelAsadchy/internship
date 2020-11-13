@@ -59,7 +59,7 @@ export class BookingBoardComponent implements OnInit {
   }
 
   onBookingOptionsSubmit(): void {
-    console.log('form submit')
+    this.createBookingCalculationService.formSubmit(this.bookingOptionsForm);
   }
 
   checkFormValidity(): boolean {
