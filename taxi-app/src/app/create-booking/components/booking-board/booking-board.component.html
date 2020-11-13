@@ -6,39 +6,35 @@
     >
         <div class="booking-board__component">
             <app-booking-channel
-                [parentForm]="bookingOptionsForm"
+                [parentGroup]="bookingOptionsForm.get('bookingChannel')"
                 [bookingChannel]="bookingOptions.bookingChannel"
-                (onChanged)="onChanged($event)"
             >
             </app-booking-channel>
         </div>
         <div class="booking-board__component">
             <app-pick-up
-                [parentForm]="bookingOptionsForm"
+                [parentGroup]="bookingOptionsForm.get('pickUp')"
                 [pickUp]="bookingOptions.pickUp"
-                (onChanged)="onChanged($event)"
             >
             </app-pick-up>
         </div>
         <div class="booking-board__component">
             <app-drop-off
-                [parentForm]="bookingOptionsForm"
+                [parentGroup]="bookingOptionsForm.get('dropOff')"
                 [dropOff]="bookingOptions.dropOff"
-                (onChanged)="onChanged($event)"
             >
             </app-drop-off>
         </div>
         <div class="booking-board__component">
             <app-vehicle
-                [parentForm]="bookingOptionsForm"
+                [parentGroup]="bookingOptionsForm.get('vehicle')"
                 [vehicle]="bookingOptions.vehicle"
-                (selectedVehicle)="onChanged($event)"
             >
             </app-vehicle>
         </div>
         <div class="booking-board__component">
             <app-customer-information
-                [parentForm]="bookingOptionsForm"
+                [parentGroup]="bookingOptionsForm.get('customerInformation')"
                 [customerInformation]="bookingOptions.customerInformation"
             >
             </app-customer-information>
@@ -54,21 +50,24 @@
             </mat-slide-toggle>
             <app-passenger-information
                 *ngIf="isSliderChecked"
-                [parentForm]="bookingOptionsForm"
+                [parentGroup]="bookingOptionsForm.get('passengerInformation')"
                 [passengerInformation]="bookingOptions.passengerInformation"
             >
             </app-passenger-information>
         </div>
         <div class="booking-board__component">
-            <app-payment-options
-                [parentForm]="bookingOptionsForm"
-                [paymentOptions]="bookingOptions.paymentOptions"
-                (onChanged)="onChanged($event)"
+            <app-payment
+                [parentGroup]="bookingOptionsForm.get('payment')"
+                [payment]="bookingOptions.payment"
             >
-            </app-payment-options>
+            </app-payment>
         </div>
         <div class="booking-board__component">
-            <app-notes [parentForm]="bookingOptionsForm"></app-notes>
+            <app-notes
+                [parentGroup]="bookingOptionsForm.get('notes')"
+                [notes]="bookingOptions.notes"
+            >
+            </app-notes>
         </div>
         <div class="booking-board__component booking-board__component--right">
             <span
@@ -126,7 +125,6 @@
             </button>
         </div>    
     </form>
-
     <div class="booking-board__footer">
         <div class="booking-board__price">
             <span>Price calculated</span>
@@ -136,6 +134,4 @@
             </span>
         </div>
     </div>
-
-    <!-- <button (click)="trigger()">trigger</button> -->
 </div>

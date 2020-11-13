@@ -1,29 +1,25 @@
-<div class="passenger-information" [formGroup]="parentForm">
+<div class="passenger-information" [formGroup]="parentGroup">
     <caption>
         {{ passengerInformation.caption }}
     </caption>
-    <div formGroupName="passengerInformation">
-        <mat-form-field>
-            <mat-label class="passenger-information__phone-label">Phone*</mat-label>
-            <input
-                matInput
-                ng2TelInput
-                type="tel"
-                [ng2TelInputOptions]="telOptions"
-                (ng2TelOutput)="getNumber($event)"
-                (intlTelInputObject)="telInputObject($event)"
-                (countryChange)="onCountryChange($event)"
-                formControlName="phone"
-            >
-            <span matPrefix>{{ telOptions.prefix }} &nbsp;</span>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Name*</mat-label>
-            <input
-                matInput
-                placeholder="Name*"
-                formControlName="name"
-            >
-        </mat-form-field>
-    </div>
+    <mat-form-field>
+        <mat-label class="passenger-information__phone-label">Phone*</mat-label>
+        <input
+            matInput
+            ng2TelInput
+            [ng2TelInputOptions]="telOptions"
+            (intlTelInputObject)="telInputObject($event)"
+            (countryChange)="onCountryChange($event)"
+            formControlName="phone"
+        >
+        <span matPrefix>{{ telOptions.prefix }} &nbsp;</span>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Name*</mat-label>
+        <input
+            matInput
+            placeholder="Name*"
+            formControlName="name"
+        >
+    </mat-form-field>
 </div>

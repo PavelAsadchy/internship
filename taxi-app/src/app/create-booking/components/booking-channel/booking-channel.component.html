@@ -1,11 +1,11 @@
-<div [formGroup]="parentForm">
+<div [formGroup]="parentGroup">
     <label
         class="booking-channel__label"
         id="booking-channel-label"
     >
         {{ bookingChannel.channel.label }}
     </label>
-    <div formGroupName="bookingChannel">
+    <div>
         <mat-radio-group
             color="primary"
             aria-labelledby="booking-channel-label"
@@ -21,25 +21,3 @@
         </mat-radio-group>
     </div>
 </div>
-
-
-<!-- <label
-    class="booking-channel__label"
-    id="booking-channel-label"
->
-    {{ bookingChannel.channel.label }}
-</label>
-<mat-radio-group
-    color="primary"
-    aria-labelledby="booking-channel-label"
-    [(ngModel)]="bookingChannel.channel.selected"
-    (change)="onChange()"
->
-    <mat-radio-button
-        class="booking-channel__radio-btn"
-        *ngFor="let bookingChannel of bookingChannel.channel.options"
-        [value]="bookingChannel"
-    >
-        {{ bookingChannel }}
-    </mat-radio-button>
-</mat-radio-group> -->

@@ -1,8 +1,8 @@
-<div class="drop-off__address" [formGroup]="parentForm">
+<div class="drop-off__address" [formGroup]="parentGroup">
     <caption>
-        {{ dropOff.point.caption }}
+        {{ dropOff.caption }}
     </caption>
-    <div formGroupName="dropOff">
+    <div>
         <mat-radio-group
             color="primary"
             formControlName="point"
@@ -25,26 +25,3 @@
     </div>
     <p>{{ dropOff.point.note }}</p>
 </div>
-
-<!-- <div class="drop-off__address">
-    <caption>
-        {{ dropOff.point.caption }}
-    </caption>
-    <mat-radio-group
-        color="primary"
-        [(ngModel)]="dropOff.point.selected"
-        (change)="onChange()"
-    >
-        <mat-radio-button
-            class="drop-off__radio-btn"
-            *ngFor="let dropOffAddr of dropOff.point.options"
-            [value]="dropOffAddr"
-        >
-            {{ dropOffAddr }}
-        </mat-radio-button>
-    </mat-radio-group>
-    <mat-form-field #addressInput>
-        <input matInput placeholder="Search for an address*">
-    </mat-form-field>
-    <p>{{ dropOff.point.note }}</p>
-</div> -->

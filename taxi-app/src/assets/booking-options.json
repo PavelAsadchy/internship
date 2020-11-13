@@ -24,7 +24,6 @@
             ]
         },
         "point": {
-            "caption": "Pick Up",
             "selected": null,
             "options": [
                 "Address",
@@ -33,11 +32,11 @@
                 "Head Office"
             ]
         },
-        "address": ""
+        "address": "",
+        "caption": "Pick Up"
     },
     "dropOff": {
         "point": {
-            "caption": "Drop Off",
             "selected": null,
             "options": [
                 "Address",
@@ -48,7 +47,8 @@
             ],
             "note": "If you choose the option \"Indefinite\", you have to set a custom price."
         },
-        "address": ""
+        "address": "",
+        "caption": "Drop Off"
     },
     "vehicle": {
         "items": [
@@ -102,7 +102,8 @@
                 "img": "assets/vehicles/vehicle.png",
                 "capacity": "5-8"
             }
-        ]
+        ],
+        "caption": "Vehicle"
     },
     "customerInformation": {
         "caption": "Customer & Loyalty",
@@ -115,24 +116,26 @@
         "phone": null,
         "name": null
     },
-    "paymentOptions": {
-        "channel": {
-            "label": "Payment channel",
-            "selected": null,
-            "options": [
-                "In Vehicle",
-                "Over The Counter",
-                "Invoice"
-            ]
+    "payment": {
+        "paymentOptions": {
+            "channel": {
+                "label": "Payment channel",
+                "selected": null,
+                "options": [
+                    "In Vehicle",
+                    "Over The Counter",
+                    "Invoice"
+                ]
+            },
+            "type": {
+                "label": "Payment type",
+                "selected": null,
+                "options": [
+                    "Cash"
+                ]
+            }
         },
-        "type": {
-            "label": "Payment type",
-            "selected": null,
-            "options": [
-                "Cash"
-            ]
-        },
-        "basicOptions": {
+        "checkBasicOptions": {
             "label": "Payment Options",
             "options": [
                 {
@@ -141,7 +144,7 @@
                 }
             ]
         },
-        "extraOptions": {
+        "checkExtraOptions": {
             "label": "Extras",
             "options": [
                 {
@@ -201,5 +204,8 @@
             ],
             "note": "When you check an extra option, the price is re-calculated because some options could increase it's value"
         }
+    },
+    "notes": {
+        "caption": "Notes"
     }
 }

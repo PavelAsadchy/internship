@@ -1,11 +1,11 @@
-<form [formGroup]="parentForm">
+<form [formGroup]="parentGroup">
     <div formGroupName="paymentOptions">
         <section class="payment-options">
             <label
                 class="payment-options__label"
                 id="payment-options-channel"
             >
-                {{ paymentOptions.channel.label }}
+                {{ payment.paymentOptions.channel.label }}
             </label>
             <mat-radio-group
                 color="primary"
@@ -14,7 +14,7 @@
             >
                 <mat-radio-button
                     class="payment-options__radio-btn"
-                    *ngFor="let paymentChannel of paymentOptions.channel.options"
+                    *ngFor="let paymentChannel of payment.paymentOptions.channel.options"
                     [value]="paymentChannel"
                 >
                     {{ paymentChannel }}
@@ -26,7 +26,7 @@
                 class="payment-options__label"
                 id="payment-options-type"
             >
-                {{ paymentOptions.type.label }}
+                {{ payment.paymentOptions.type.label }}
             </label>
             <mat-radio-group
                 color="primary"
@@ -35,7 +35,7 @@
             >
                 <mat-radio-button
                     class="payment-options__radio-btn"
-                    *ngFor="let paymentType of paymentOptions.type.options"
+                    *ngFor="let paymentType of payment.paymentOptions.type.options"
                     [value]="paymentType"
                 >
                     {{ paymentType }}
@@ -48,13 +48,13 @@
             class="payment-options__label"
             id="payment-options-options"
         >
-            {{ paymentOptions.basicOptions.label }}
+            {{ payment.checkBasicOptions.label }}
         </label>
         <mat-checkbox
             class="payment-options__checkbox"
             color="primary"
             aria-labelledby="payment-options-options"
-            *ngFor="let paymentBasicOption of paymentOptions.basicOptions.options"
+            *ngFor="let paymentBasicOption of payment.checkBasicOptions.options"
             (change)="onBasicOptionsChange($event, paymentBasicOption)"
         >
             {{ paymentBasicOption.name }}
@@ -65,21 +65,21 @@
             class="payment-options__label"
             id="payment-options-extras"
         >
-            {{ paymentOptions.extraOptions.label }}
+            {{ payment.checkExtraOptions.label }}
         </label>
         <div class="payment-options__checkbox-wrapper">
             <mat-checkbox
                 class="payment-options__checkbox"
                 color="primary"
                 aria-labelledby="payment-options-extras"
-                *ngFor="let paymentExtraOption of paymentOptions.extraOptions.options"
+                *ngFor="let paymentExtraOption of payment.checkExtraOptions.options"
                 (change)="onExtraOptionsChange($event, paymentExtraOption)"
             >
                 {{ paymentExtraOption.name }} {{ paymentExtraOption.note }}
             </mat-checkbox>
         </div>
         <p class="payment-options__note">
-            {{ paymentOptions.extraOptions.note }}
+            {{ payment.checkExtraOptions.note }}
         </p>
     </section>
 </form>

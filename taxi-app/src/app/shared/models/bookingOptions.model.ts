@@ -19,18 +19,18 @@ export interface IChannel {
     channel: IRadioSection;
 }
 
-export interface IPickUp {
+export interface IPickUp extends IHeadings {
     time: IRadioSection;
     point: IRadioSection;
     address: string;
 }
 
-export interface IDropOff {
+export interface IDropOff extends IHeadings {
     point: IRadioSection;
     address: string;
 }
 
-export interface IVehicleList {
+export interface IVehicleList extends IHeadings {
     items: IVehicle[];
 }
 
@@ -40,7 +40,7 @@ export interface IClientInformation extends IHeadings {
     name: string;
 }
 
-interface ICheckboxSection extends IHeadings {
+export interface ICheckboxSection extends IHeadings {
     name: string;
     checked: boolean;
 }
@@ -52,9 +52,15 @@ interface ICheckboxOptions extends IHeadings {
 export interface IPaymentOptions {
     channel: IRadioSection;
     type: IRadioSection;
-    basicOptions: ICheckboxOptions;
-    extraOptions: ICheckboxOptions;
 }
+
+export interface IPayment {
+    paymentOptions: IPaymentOptions;
+    checkBasicOptions: ICheckboxOptions;
+    checkExtraOptions: ICheckboxOptions;
+}
+
+export interface INotes extends IHeadings {}
 
 export interface IBookingOptions {
     bookingChannel: IChannel;
@@ -63,7 +69,8 @@ export interface IBookingOptions {
     vehicle: IVehicleList;
     customerInformation: IClientInformation;
     passengerInformation: IClientInformation;
-    paymentOptions: IPaymentOptions;
+    payment: IPayment;
+    notes: INotes;
 }
 
 import { Validators } from '@angular/forms';
@@ -88,14 +95,14 @@ export class Vehicle {
 }
 
 export class CustomerInformation {
-    phone = ['', Validators.required]; 
-    email = ['']; 
-    name = ['', Validators.required]; 
+    phone = ['', [Validators.required, Validators.pattern('[0-9]{12}')]]; 
+    email = ['', Validators.email]; 
+    name = ['', [Validators.required, Validators.pattern('[A-Za-z]{1,32}')]]; 
 }
 
 export class PassengerInformation {
-    phone = [''];
-    name = [''];
+    phone = ['', [Validators.pattern('[0-9]{12}')]];
+    name = ['', [Validators.pattern('[A-Za-z]{1,32}')]];
 }
 
 export class PaymentOptions {
@@ -113,9 +120,6 @@ export class Check {
 export class PaymentBasicOptions {
 
 }
-    // basicOptions = [null, Validators.required];
-    // extraOptions = [null, Validators.required];
-
 
 export class Notes {
     toDriver = [''];

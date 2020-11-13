@@ -22,9 +22,6 @@
     }
 
     &__unit {
-        // display: flex;
-        // flex-direction: column;
-        // padding: 5px;
         filter: opacity(.5);
         transition: filter .3s;
         cursor: pointer;    

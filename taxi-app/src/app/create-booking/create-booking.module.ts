@@ -9,7 +9,7 @@ import { PickUpComponent } from './components/pick-up/pick-up.component';
 import { CustomerInformationComponent } from './components/customer-information/customer-information.component';
 import { DropOffComponent } from './components/drop-off/drop-off.component';
 import { NotesComponent } from './components/notes/notes.component';
-import { PaymentOptionsComponent } from './components/payment-options/payment-options.component';
+import { PaymentComponent } from './components/payment/payment.component';
 import { VehicleComponent } from './components/vehicle/vehicle.component';
 import { PassengerInformationComponent } from './components/passenger-information/passenger-information.component';
 import { VehicleItemComponent } from './components/vehicle-item/vehicle-item.component';
@@ -27,7 +27,7 @@ import { BookingOptionsService } from '../shared/services/booking-options.servic
     DropOffComponent,
     VehicleComponent,
     CustomerInformationComponent,
-    PaymentOptionsComponent,
+    PaymentComponent,
     NotesComponent,
     PassengerInformationComponent,
     VehicleItemComponent,

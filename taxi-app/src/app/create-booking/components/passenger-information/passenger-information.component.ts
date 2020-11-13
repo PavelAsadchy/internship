@@ -11,7 +11,7 @@ import { IClientInformation } from 'src/app/shared/models/bookingOptions.model';
 export class PassengerInformationComponent {
 
   @Input()
-  parentForm: FormGroup;
+  parentGroup: FormGroup;
 
   @Input()
   passengerInformation: IClientInformation;
@@ -20,10 +20,6 @@ export class PassengerInformationComponent {
     initialCountry: 'by',
     prefix: '',
     preferredCountries: ['by', 'ru']
-  }
-
-  getNumber(event) {
-    console.log(event);
   }
 
   telInputObject(event) {
@@ -35,5 +31,4 @@ export class PassengerInformationComponent {
     console.log(event);
     this.telOptions.prefix = event.dialCode;
   }
-
 }

@@ -11,7 +11,7 @@ import { IClientInformation } from 'src/app/shared/models/bookingOptions.model';
 export class CustomerInformationComponent {
 
   @Input()
-  parentForm: FormGroup;
+  parentGroup: FormGroup;
 
   @Input()
   customerInformation: IClientInformation;
@@ -27,12 +27,10 @@ export class CustomerInformationComponent {
   }
 
   telInputObject(event) {
-    console.log(event);
     this.telOptions.prefix = event.s.dialCode;
   }
 
   onCountryChange(event) {
-    console.log(event);
     this.telOptions.prefix = event.dialCode;
   }
 }

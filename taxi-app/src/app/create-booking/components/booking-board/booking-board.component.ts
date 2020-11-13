@@ -23,26 +23,12 @@ export class BookingBoardComponent implements OnInit {
     vehicle: this.fb.group(new Vehicle()),
     customerInformation: this.fb.group(new CustomerInformation()),
     passengerInformation: this.fb.group(new PassengerInformation()),
-    paymentOptions: this.fb.group(new PaymentOptions()),
-    checkBasicOptions: this.fb.array([]),
-    checkExtraOptions: this.fb.array([]),
+    payment: this.fb.group({
+      paymentOptions: this.fb.group(new PaymentOptions()),
+      checkBasicOptions: this.fb.array([]),
+      checkExtraOptions: this.fb.array([]),
+    }),
     notes: this.fb.group(new Notes()),
-    // new BookingChannel(),
-    // new PickUp()
-    // channel: [null, Validators.required],
-    // time: [null, Validators.required],
-    // point: [null, Validators.required],
-    // address: ['', Validators.required],
-    
-    // pickUpTime: [null, Validators.required],
-    // bookingChannel: this.fb.group(new BookingChannel()),
-    // pickUp: this.fb.group(new PickUp()),
-    // dropOff: this.fb.group(new DropOff()),
-    // vehicle: this.fb.group(new Vehicle()),
-    // customerInformation: this.fb.group(new CustomerInformation()),
-    // passengerInformation: this.fb.group(new PassengerInformation()),
-    // paymentOptions: this.fb.group(new PaymentOptions()),
-    // notes: this.fb.group(new Notes()),
   })
 
   isSliderChecked: boolean = false;
@@ -57,29 +43,20 @@ export class BookingBoardComponent implements OnInit {
     this.bookingOptionsService.loadBookingOptions()
     .subscribe((data: IBookingOptions) => {
       this.bookingOptions = data;
-      
     });
 
     this.bookingOptionsForm.valueChanges
     .subscribe(status => console.log(status))
 
-    this.bookingOptionsForm.controls.pickUp.valueChanges
-    .subscribe(status => {
-      this.createBookingCalculationService.createRandomCalculation(status.time);
-    });
+    // this.bookingOptionsForm.controls.pickUp.valueChanges
+    // .subscribe(status => {
+    //   this.createBookingCalculationService.createRandomCalculation(status.time);
+    // });
   }
 
   ngOnDestroy(): void {
     this.sub.next();
     this.sub.complete();
-  }
-
-  onChanged(event: Event) {
-    console.log(event);
-  }
-
-  trigger(): void {
-    console.log(this.bookingOptionsForm.controls.pickUp.valid)
   }
 
   onBookingOptionsSubmit(): void {

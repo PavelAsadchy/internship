@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { IChannel } from 'src/app/shared/models/bookingOptions.model';
 
@@ -11,15 +11,9 @@ import { IChannel } from 'src/app/shared/models/bookingOptions.model';
 export class BookingChannelComponent {
 
   @Input()
-  parentForm: FormGroup;
+  parentGroup: FormGroup;
 
   @Input()
   bookingChannel: IChannel;
 
-  @Output()
-  onChanged: EventEmitter<IChannel> = new EventEmitter<IChannel>();
-
-  onChange(): void {
-    this.onChanged.emit(this.bookingChannel);
-  }
 }

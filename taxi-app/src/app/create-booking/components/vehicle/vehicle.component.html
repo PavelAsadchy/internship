@@ -1,82 +1,23 @@
-<div class="vehicle" [formGroup]="parentForm">
-    <caption>Vehicle</caption>
-        <div class="vehicle__wrapper" formGroupName="vehicle">
-            <label
-                
-                *ngFor="let vehicleItem of vehicle.items"
-            >
-                <input type="radio" [value]="vehicleItem" formControlName="items">
-                <div class="vehicle__unit">
-                    <app-vehicle-item 
-                        [vehicleItem]="vehicleItem"
-                        (clickedVehicle)="onVehicleSelect($event)"
-                    >
-                    </app-vehicle-item>
-                </div>
-            </label>
-        </div>
-        <!-- <mat-radio-group
-            class="vehicle__wrapper"
-            color="primary"
-            aria-labelledby="booking-channel-label"
-            formControlName="items"
+<div class="vehicle" [formGroup]="parentGroup">
+    <caption>
+        {{ vehicle.caption }}
+    </caption>
+    <div class="vehicle__wrapper">
+        <label        
+            *ngFor="let vehicleItem of vehicle.items"
         >
-            <mat-radio-button
-                class="vehicle__unit"
-                *ngFor="let vehicleItem of vehicle.items"
+            <input
+                type="radio"
                 [value]="vehicleItem"
+                formControlName="items"
             >
-                <app-vehicle-item
+            <div class="vehicle__unit">
+                <app-vehicle-item 
                     [vehicleItem]="vehicleItem"
                     (clickedVehicle)="onVehicleSelect($event)"
                 >
                 </app-vehicle-item>
-            </mat-radio-button>
-        </mat-radio-group> -->
-
-    <!-- <ul class="vehicle__wrapper" formGroupName="vehicle">
-        <li
-            class="vehicle__unit"
-            *ngFor="let vehicleItem of vehicle.items"
-        >
-            <label>
-                <input type="radio" formControlName="items">
-                <app-vehicle-item
-                    [vehicleItem]="vehicleItem"
-                    (clickedVehicle)="onVehicleSelect($event)"
-                    formControlName="items"
-                >
-                </app-vehicle-item>
-            </label>
-        </li>
-    </ul> -->
-
-    <!-- <ul class="vehicle__wrapper">
-        <li
-            class="vehicle__unit"
-            *ngFor="let vehicleItem of vehicle.items"
-        >
-            <app-vehicle-item
-                [vehicleItem]="vehicleItem"
-                (clickedVehicle)="onVehicleSelect($event)"
-            >
-            </app-vehicle-item>
-        </li>
-    </ul> -->
+            </div>
+        </label>
+    </div>
 </div>
-
-<!-- <div class="vehicle">
-    <caption>Vehicle</caption>
-    <ul class="vehicle__wrapper">
-        <li
-            class="vehicle__unit"
-            *ngFor="let vehicleItem of vehicle.items"
-        >
-            <app-vehicle-item
-                [vehicleItem]="vehicleItem"
-                (clickedVehicle)="onVehicleSelect($event)"
-            >
-            </app-vehicle-item>
-        </li>
-    </ul>
-</div> -->
