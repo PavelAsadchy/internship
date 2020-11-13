@@ -43,48 +43,43 @@
             </mat-radio-group>
         </section>
     </div>
-    <div formGroupName="checkBasicOptions">
-        <section class="payment-options">
-            <label
-                class="payment-options__label"
-                id="payment-options-options"
-            >
-                {{ paymentOptions.basicOptions.label }}
-            </label>
+    <section class="payment-options" formGroupName="checkBasicOptions">
+        <label
+            class="payment-options__label"
+            id="payment-options-options"
+        >
+            {{ paymentOptions.basicOptions.label }}
+        </label>
+        <mat-checkbox
+            class="payment-options__checkbox"
+            color="primary"
+            aria-labelledby="payment-options-options"
+            *ngFor="let paymentBasicOption of paymentOptions.basicOptions.options"
+            (change)="onBasicOptionsChange($event, paymentBasicOption)"
+        >
+            {{ paymentBasicOption.name }}
+        </mat-checkbox>
+    </section>
+    <section class="payment-options" formGroupName="checkExtraOptions">
+        <label
+            class="payment-options__label"
+            id="payment-options-extras"
+        >
+            {{ paymentOptions.extraOptions.label }}
+        </label>
+        <div class="payment-options__checkbox-wrapper">
             <mat-checkbox
-                type="checkbox"
                 class="payment-options__checkbox"
                 color="primary"
-                aria-labelledby="payment-options-options"
-                *ngFor="let paymentBasicOption of paymentOptions.basicOptions.options"
-                (change)="onCheckboxChange($event)"
+                aria-labelledby="payment-options-extras"
+                *ngFor="let paymentExtraOption of paymentOptions.extraOptions.options"
+                (change)="onExtraOptionsChange($event, paymentExtraOption)"
             >
-                {{ paymentBasicOption.name }}
+                {{ paymentExtraOption.name }} {{ paymentExtraOption.note }}
             </mat-checkbox>
-        </section>
-    </div>
-    <div formGroupName="checkExtraOptions">
-        <section class="payment-options">
-            <label
-                class="payment-options__label"
-                id="payment-options-extras"
-            >
-                {{ paymentOptions.extraOptions.label }}
-            </label>
-            <div class="payment-options__checkbox-wrapper">
-                <mat-checkbox
-                    class="payment-options__checkbox"
-                    color="primary"
-                    aria-labelledby="payment-options-extras"
-                    *ngFor="let paymentExtraOption of paymentOptions.extraOptions.options"
-                    (change)="onCheckboxChange($event)"
-                >
-                    {{ paymentExtraOption.name }} {{ paymentExtraOption.note }}
-                </mat-checkbox>
-            </div>
-            <p class="payment-options__note">
-                {{ paymentOptions.extraOptions.note }}
-            </p>
-        </section>
-    </div>
+        </div>
+        <p class="payment-options__note">
+            {{ paymentOptions.extraOptions.note }}
+        </p>
+    </section>
 </form>

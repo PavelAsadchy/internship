@@ -6,7 +6,7 @@ export const REFRESH_TOKEN = 'REFRESH_TOKEN';
 export const LOCATION_API_URL = 'https://ipapi.co/json/';
 
 export enum BookingOptionsType {
-    BOOLING_CHANNEL = 'BOOLING_CHANNEL',
+    BOOKING_CHANNEL = 'BOOKING_CHANNEL',
     PICK_UP_TIME = 'PICK_UP_TIME',
     PICK_UP_POINT = 'PICK_UP_POINT',
     PICK_UP_ADDRESS = 'PICK_UP_ADDRESS',

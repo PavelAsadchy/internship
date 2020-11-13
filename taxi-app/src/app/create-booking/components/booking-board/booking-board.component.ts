@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { BookingChannel, CustomerInformation, DropOff, IBookingOptions, Notes, PassengerInformation, PaymentOptions, PickUp, Vehicle } from 'src/app/shared/models/bookingOptions.model';
 import { BookingOptionsService } from 'src/app/shared/services/booking-options.service';
 import { CreateBookingCalculationService } from 'src/app/shared/services/create-booking-calculation.service';
+import { BookingOptionsType } from 'src/app/shared/consts/consts';
 
 @Component({
   selector: 'app-booking-board',
