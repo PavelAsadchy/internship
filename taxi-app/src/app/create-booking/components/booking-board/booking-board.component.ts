@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { BookingChannel, CustomerInformation, DropOff, IBookingOptions, Notes, PassengerInformation, PaymentOptions, PickUp, Vehicle } from 'src/app/shared/models/bookingOptions.model';
 import { BookingOptionsService } from 'src/app/shared/services/booking-options.service';
 import { CreateBookingCalculationService } from 'src/app/shared/services/create-booking-calculation.service';
-import { BookingOptionsType } from 'src/app/shared/consts/consts';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-booking-board',
@@ -41,17 +41,16 @@ export class BookingBoardComponent implements OnInit {
 
   ngOnInit(): void {
     this.bookingOptionsService.loadBookingOptions()
-    .subscribe((data: IBookingOptions) => {
+    .pipe(
+      takeUntil(this.sub)
+    ).subscribe((data: IBookingOptions) => {
       this.bookingOptions = data;
     });
 
     this.bookingOptionsForm.valueChanges
-    .subscribe(status => console.log(status))
-
-    // this.bookingOptionsForm.controls.pickUp.valueChanges
-    // .subscribe(status => {
-    //   this.createBookingCalculationService.createRandomCalculation(status.time);
-    // });
+    .subscribe(status => {
+      this.createBookingCalculationService.createRandomCalculation(status);
+    });
   }
 
   ngOnDestroy(): void {
@@ -63,11 +62,17 @@ export class BookingBoardComponent implements OnInit {
     console.log('form submit')
   }
 
-  checkConrolValidity(control): boolean {
+  checkFormValidity(): boolean {
+    return !this.bookingOptionsForm.valid;
+  }
+
+  checkConrolValidity(control: string): boolean {
     return !this.bookingOptionsForm.controls[control].valid;
   }
 
-  checkFormValidity(): boolean {
-    return !this.bookingOptionsForm.valid;
+  checkFieldValidity(control: string, field: string): boolean {
+    return this.bookingOptionsForm.controls[control].get(field).status === 'INVALID'
+    ? true
+    : false;
   }
 }
