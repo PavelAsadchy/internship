@@ -13,7 +13,7 @@ export class MenuSideComponent implements OnInit, OnDestroy {
 
   menuContent: IMenuItem[] = null;
 
-  menuItemHome: IMenuItem = new IMenuItem('Home page', 'Return to home page', 'home', '')
+  menuItemHome: IMenuItem = new IMenuItem('Home page', 'Return to home page', 'home', '');
 
   private sub: Subject<void> = new Subject<void>();
 
@@ -27,7 +27,7 @@ export class MenuSideComponent implements OnInit, OnDestroy {
       menuItems => this.menuContent = menuItems
     );
   }
-  
+
   ngOnDestroy(): void {
     this.sub.next();
     this.sub.complete();

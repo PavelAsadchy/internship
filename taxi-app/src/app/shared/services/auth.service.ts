@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { catchError, mapTo, tap } from 'rxjs/operators'
+import { catchError, mapTo, tap } from 'rxjs/operators';
 import { AUTH_URL, JWT_TOKEN, REFRESH_TOKEN } from '../consts/consts';
 import { ITokens } from '../models/tokens.model';
 import { IUser } from '../models/user.model';
@@ -32,22 +32,22 @@ export class AuthService {
 
   logout(): Observable<boolean> {
     return this.http.post<any>(AUTH_URL + '/logout', {
-      'refreshToken': this.getRefreshToken()
+      refreshToken: this.getRefreshToken()
     }).pipe(
-        tap(() => this.doLogoutUser()),
-        mapTo(true),
-        catchError(error => {
-          return of(false);
-        })
-      )
+      tap(() => this.doLogoutUser()),
+      mapTo(true),
+      catchError(error => {
+        return of(false);
+      })
+    );
   }
 
   refreshToken(): Observable<ITokens> {
     return this.http.post<any>(AUTH_URL + '/refresh', {
-      'refreshToken': this.getRefreshToken()
+      refreshToken: this.getRefreshToken()
     }).pipe(
       tap((tokens: ITokens) => this.storeJwtToken(tokens.jwt))
-    )
+    );
   }
 
   getJwtToken(): string {

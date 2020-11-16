@@ -14,10 +14,10 @@ import { ITokens } from '../models/tokens.model';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  private isTokenRefreshing: boolean = false;
+  private isTokenRefreshing = false;
   private refreshTokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>(null);
 
-  constructor(private authService: AuthService) {}
+  constructor(private readonly authService: AuthService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     if (this.authService.getJwtToken()) {
@@ -30,7 +30,7 @@ export class AuthInterceptor implements HttpInterceptor {
           if (error.status === 401) {
             return this.handle401error(request, next);
           } else {
-            return throwError(error);  
+            return throwError(error);
           }
         })
       );
@@ -39,7 +39,7 @@ export class AuthInterceptor implements HttpInterceptor {
   private addToken(request: HttpRequest<unknown>, token: string): HttpRequest<unknown> {
     return request.clone({
       setHeaders: {
-        'Authorization': `Bearer ${token}`
+        Authorization: `Bearer ${token}`
       }
     });
   }
@@ -56,7 +56,7 @@ export class AuthInterceptor implements HttpInterceptor {
             this.refreshTokenSubject.next(tokens.jwt);
             return next.handle(this.addToken(request, tokens.jwt));
           })
-        )
+        );
     } else {
       return this.refreshTokenSubject
         .pipe(
@@ -65,7 +65,7 @@ export class AuthInterceptor implements HttpInterceptor {
           switchMap(jwt => {
             return next.handle(this.addToken(request, jwt));
           })
-        )
+        );
     }
   }
 }

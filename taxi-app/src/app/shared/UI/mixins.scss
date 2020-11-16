@@ -1,0 +1,27 @@
+@import './colors.scss';
+
+@mixin marginsForRadioBtns {
+    margin: 5px 20px 5px 0;
+}
+
+@mixin styleForBookingBlocks {
+    position: relative;
+    margin-top: 20px;
+    padding: 16px;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 4px;
+
+    & caption {
+        position: absolute;
+        top: -16px;
+        right: 16px;
+        padding: 5px;
+        color: $light-xxl;
+        background: $dark-xxl;
+    }
+
+    & mat-form-field {
+        margin-top: 10px;
+        width: 100%;
+    }
+}
