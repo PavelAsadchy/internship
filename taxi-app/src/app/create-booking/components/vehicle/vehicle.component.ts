@@ -9,7 +9,7 @@ import { IVehicleList } from 'src/app/shared/models/bookingOptions.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class VehicleComponent {
-    
+
   @Input()
   parentGroup: FormGroup;
 

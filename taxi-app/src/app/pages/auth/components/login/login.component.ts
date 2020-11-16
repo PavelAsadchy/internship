@@ -15,7 +15,7 @@ export class LoginComponent implements OnDestroy {
   loginForm = this.fb.group({
     username: ['', Validators.required],
     password: ['', Validators.required]
-  })
+  });
 
   private sub: Subject<void> = new Subject<void>();
 
@@ -28,7 +28,7 @@ export class LoginComponent implements OnDestroy {
     this.sub.complete();
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.authService.login({
       username: this.loginForm.value.username,
       password: this.loginForm.value.password
@@ -36,7 +36,9 @@ export class LoginComponent implements OnDestroy {
     .pipe(
       takeUntil(this.sub)
     ).subscribe(success => {
-      if (success) this.router.navigate(['/board']);
+      if (success) {
+        this.router.navigate(['/board']);
+      };
     });
   }
 }

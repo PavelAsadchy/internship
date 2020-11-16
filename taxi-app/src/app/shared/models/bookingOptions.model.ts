@@ -91,13 +91,13 @@ export class DropOff {
 }
 
 export class Vehicle {
-    items = [null, Validators.required]; 
+    items = [null, Validators.required];
 }
 
 export class CustomerInformation {
-    phone = ['', [Validators.required, Validators.pattern('[0-9]{12}')]]; 
-    email = ['', Validators.email]; 
-    name = ['', [Validators.required, Validators.pattern('[A-Za-z]{1,32}')]]; 
+    phone = ['', [Validators.required, Validators.pattern('[0-9]{12}')]];
+    email = ['', Validators.email];
+    name = ['', [Validators.required, Validators.pattern('[A-Za-z]{1,32}')]];
 }
 
 export class PassengerInformation {

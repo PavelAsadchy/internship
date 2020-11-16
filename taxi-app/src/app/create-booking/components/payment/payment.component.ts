@@ -34,5 +34,5 @@ export class PaymentComponent {
       const index = checkArray.controls.findIndex(control => control.value === option.name);
       checkArray.removeAt(index);
     }
-  } 
+  }
 }

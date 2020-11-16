@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { BookingChannel, CustomerInformation, DropOff, IBookingOptions, Notes, PassengerInformation, PaymentOptions, PickUp, Vehicle } from 'src/app/shared/models/bookingOptions.model';
@@ -12,7 +12,7 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./booking-board.component.scss'],
   providers: [CreateBookingCalculationService]
 })
-export class BookingBoardComponent implements OnInit {
+export class BookingBoardComponent implements OnInit, OnDestroy {
 
   bookingOptions: IBookingOptions;
 
@@ -29,9 +29,9 @@ export class BookingBoardComponent implements OnInit {
       checkExtraOptions: this.fb.array([]),
     }),
     notes: this.fb.group(new Notes()),
-  })
+  });
 
-  isSliderChecked: boolean = false;
+  isSliderChecked = false;
 
   private sub: Subject<void> = new Subject<void>();
 

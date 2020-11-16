@@ -8,7 +8,7 @@ import { IBookingOptions } from '../models/bookingOptions.model';
 })
 export class BookingOptionsService {
 
-  private baseUrl: string = 'assets';
+  private baseUrl = 'assets';
 
   constructor(private httpClient: HttpClient) { }
 

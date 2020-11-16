@@ -14,7 +14,7 @@ export class MenuMainComponent implements OnInit, OnDestroy {
   menuContent: IMenuItem[] = null;
 
   menu: IMenuItem[] = null;
-  
+
   private sub: Subject<void> = new Subject<void>();
 
   constructor(private readonly menuService: MenuService) {}

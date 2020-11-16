@@ -20,13 +20,13 @@ export class PassengerInformationComponent {
     initialCountry: 'by',
     prefix: '',
     preferredCountries: ['by', 'ru']
-  }
+  };
 
-  telInputObject(event) {
+  telInputObject(event): void {
     this.telOptions.prefix = event.s.dialCode;
   }
 
-  onCountryChange(event) {
+  onCountryChange(event): void {
     this.telOptions.prefix = event.dialCode;
   }
 }
