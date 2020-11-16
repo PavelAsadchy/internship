@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BoardModule } from './pages/board/board.module';
 import { ProfileModule } from './pages/profile/profile.module';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,10 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     BrowserAnimationsModule,
     BoardModule,
     ProfileModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAFYEI6Mv2SthzLCRsN_jTogm5aWJ8Ajt8'
+    }),
+
   ],
   providers: [],
   bootstrap: [AppComponent]

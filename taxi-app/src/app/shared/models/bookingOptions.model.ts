@@ -117,10 +117,6 @@ export class Check {
     ) {}
 }
 
-export class PaymentBasicOptions {
-
-}
-
 export class Notes {
     toDriver = [''];
     toDispatcher = [''];

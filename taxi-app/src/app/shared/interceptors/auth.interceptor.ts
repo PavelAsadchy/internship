@@ -17,7 +17,7 @@ export class AuthInterceptor implements HttpInterceptor {
   private isTokenRefreshing = false;
   private refreshTokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>(null);
 
-  constructor(private authService: AuthService) {}
+  constructor(private readonly authService: AuthService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     if (this.authService.getJwtToken()) {

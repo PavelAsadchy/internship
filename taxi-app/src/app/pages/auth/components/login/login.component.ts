@@ -38,7 +38,7 @@ export class LoginComponent implements OnDestroy {
     ).subscribe(success => {
       if (success) {
         this.router.navigate(['/board']);
-      };
+      }
     });
   }
 }

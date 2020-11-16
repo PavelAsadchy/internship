@@ -8,7 +8,7 @@ import { BoardUserComponent } from './components/board-user/board-user.component
 import { MenuSideComponent } from './components/menu-side/menu-side.component';
 import { MenuMainComponent } from './components/menu-main/menu-main.component';
 import { BookingListComponent } from './components/booking-list/booking-list.component';
-import { CreateBookingModule } from 'src/app/create-booking/create-booking.module';
+import { CreateBookingModule } from 'src/app/pages/create-booking/create-booking.module';
 
 @NgModule({
   declarations: [

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CreateBookingComponent } from 'src/app/create-booking/create-booking.component';
+import { CreateBookingComponent } from 'src/app/pages/create-booking/container/create-booking.component';
 import { BoardComponent } from './board.component';
 import { BookingListComponent } from './components/booking-list/booking-list.component';
 import { MenuMainComponent } from './components/menu-main/menu-main.component';
