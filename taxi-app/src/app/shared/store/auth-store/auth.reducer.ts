@@ -26,6 +26,9 @@ export const authReducer = (
         errorMessage: action.payload.err,
       };
 
+    case AuthActionsType.LOGOUT:
+      return initialAuthState;
+
     default:
       return state;
   }

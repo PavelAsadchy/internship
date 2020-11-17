@@ -59,4 +59,12 @@ export class AuthEffects {
 
   @Effect({ dispatch: false })
   loginFailure$ = this.actions$.pipe(ofType(AuthActionsType.LOGIN_FAILURE));
+
+  @Effect({ dispatch: false })
+  logout$ = this.actions$.pipe(
+    ofType(AuthActionsType.LOGOUT),
+    tap(() => {
+      this.authService.logout();
+    })
+  );
 }
