@@ -1,7 +1,17 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { combineLatest, forkJoin, Observable, Subject } from 'rxjs';
-import { BookingChannel, CustomerInformation, DropOff, IBookingOptions, Notes, PassengerInformation, PaymentOptions, PickUp, Vehicle } from 'src/app/shared/models/bookingOptions.model';
+import {
+  BookingChannel,
+  CustomerInformation,
+  DropOff,
+  IBookingOptions,
+  Notes,
+  PassengerInformation,
+  PaymentOptions,
+  PickUp,
+  Vehicle,
+} from 'src/app/shared/models/bookingOptions.model';
 import { BookingOptionsService } from 'src/app/shared/services/booking-options.service';
 import { CreateBookingCalculationService } from 'src/app/shared/services/create-booking-calculation.service';
 import { takeUntil } from 'rxjs/operators';
@@ -10,10 +20,9 @@ import { takeUntil } from 'rxjs/operators';
   selector: 'app-booking-board',
   templateUrl: './booking-board.component.html',
   styleUrls: ['./booking-board.component.scss'],
-  providers: [CreateBookingCalculationService]
+  providers: [CreateBookingCalculationService],
 })
 export class BookingBoardComponent implements OnInit, OnDestroy {
-
   bookingOptions: IBookingOptions;
 
   price: number;
@@ -37,24 +46,24 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
 
   private sub: Subject<void> = new Subject<void>();
 
-  constructor(private fb: FormBuilder,
-              private readonly bookingOptionsService: BookingOptionsService,
-              private readonly createBookingCalculationService: CreateBookingCalculationService) { }
+  constructor(
+    private fb: FormBuilder,
+    private readonly bookingOptionsService: BookingOptionsService,
+    private readonly createBookingCalculationService: CreateBookingCalculationService
+  ) {}
 
   ngOnInit(): void {
     combineLatest([
       this.bookingOptionsService.loadBookingOptions(),
-      this.createBookingCalculationService.price$
+      this.createBookingCalculationService.price$,
     ])
-    .pipe(
-      takeUntil(this.sub)
-    ).subscribe(([data, price]: [IBookingOptions, number]) => {
-      this.bookingOptions = data;
-      this.price = price;
-    });
+      .pipe(takeUntil(this.sub))
+      .subscribe(([data, price]: [IBookingOptions, number]) => {
+        this.bookingOptions = data;
+        this.price = price;
+      });
 
-    this.bookingOptionsForm.valueChanges
-    .subscribe(status => {
+    this.bookingOptionsForm.valueChanges.subscribe((status) => {
       this.createBookingCalculationService.createRandomCalculation(status);
     });
   }
@@ -77,8 +86,8 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
   }
 
   checkFieldValidity(control: string, field: string): boolean {
-    return this.bookingOptionsForm.controls[control].get(field).status === 'INVALID'
-    ? true
-    : false;
+    return (
+      this.bookingOptionsForm.controls[control].get(field).status === 'INVALID'
+    );
   }
 }
