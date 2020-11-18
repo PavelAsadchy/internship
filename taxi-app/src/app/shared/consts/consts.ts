@@ -1,3 +1,5 @@
+import { MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+
 export const AUTH_URL = 'http://localhost:8080';
 
 export const USER_NAME = 'USER_NAME';
@@ -25,4 +27,14 @@ export enum BookingOptionsType {
   PAYMENT_EXTRAS = 'PAYMENT_EXTRAS',
   DRIVER_NOTE = 'DRIVER_NOTE',
   DISPATCHER_NOTE = 'DISPATCHER_NOTE',
+}
+interface SnackbarOptions {
+  duration: number,
+  horizontalPosition: MatSnackBarHorizontalPosition;
+  verticalPosition: MatSnackBarVerticalPosition;
+}
+export const SNACKBAR_OPTIONS: SnackbarOptions = {
+  duration: 3000,
+  horizontalPosition: 'center',
+  verticalPosition: 'top'
 }

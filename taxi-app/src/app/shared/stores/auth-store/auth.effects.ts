@@ -8,13 +8,16 @@ import { ITokens } from '../../models/tokens.model';
 import { ILoggedInUser } from '../../models/loggedInUser.model';
 import { of } from 'rxjs';
 import { IUser } from '../../models/user.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SNACKBAR_OPTIONS } from '../../consts/consts';
 
 @Injectable()
 export class AuthEffects {
   constructor(
     private actions$: Actions,
     private readonly authService: AuthService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar,
   ) {}
 
   login$ = createEffect(() =>
@@ -56,13 +59,25 @@ export class AuthEffects {
         tap((loggedInUser: ILoggedInUser) => {
           this.authService.doLoginUser(loggedInUser);
           this.router.navigate(['/board']);
+          this.snackBar.open('Welcome', 'Ok', {
+            duration: SNACKBAR_OPTIONS.duration,
+            horizontalPosition: SNACKBAR_OPTIONS.horizontalPosition,
+            verticalPosition: SNACKBAR_OPTIONS.verticalPosition
+          });
         })
       ),
     { dispatch: false }
   );
 
   loginFailure$ = createEffect(
-    () => this.actions$.pipe(ofType(AuthActions.ActionsType.LOGIN_FAILURE)),
+    () => this.actions$.pipe(
+      ofType(AuthActions.ActionsType.LOGIN_FAILURE),
+      tap(() => this.snackBar.open('Wrong data', 'Try again', {
+        duration: SNACKBAR_OPTIONS.duration,
+        horizontalPosition: SNACKBAR_OPTIONS.horizontalPosition,
+        verticalPosition: SNACKBAR_OPTIONS.verticalPosition
+      }))
+      ),
     { dispatch: false }
   );
 
@@ -70,7 +85,14 @@ export class AuthEffects {
     () =>
       this.actions$.pipe(
         ofType(AuthActions.ActionsType.LOGOUT),
-        tap(() => this.authService.logout())
+        tap(() => {
+          this.authService.logout();
+          this.snackBar.open('Come back later', 'Ok', {
+            duration: SNACKBAR_OPTIONS.duration,
+            horizontalPosition: SNACKBAR_OPTIONS.horizontalPosition,
+            verticalPosition: SNACKBAR_OPTIONS.verticalPosition
+          })
+        })
       ),
     { dispatch: false }
   );
