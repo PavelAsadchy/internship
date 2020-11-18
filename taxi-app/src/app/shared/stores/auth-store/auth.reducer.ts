@@ -20,7 +20,7 @@ const authReducer = createReducer(
     user: null,
     errorMessage: err,
   })),
-  on(AuthActions.AUTH_LOGOUT_ACTION, (state) => INITIAL_AUTH_STATE)
+  on(AuthActions.AUTH_LOGOUT_ACTION, () => INITIAL_AUTH_STATE)
 );
 
 export function reducer(state: IAuthState | undefined, action: Action) {

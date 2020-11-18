@@ -4,7 +4,10 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { IMenuItem } from 'src/app/shared/models/menu-item.model';
 import { MenuService } from 'src/app/shared/services/menu.service';
-import { AUTH_LOGOUT_ACTION } from 'src/app/shared/stores/auth-store/auth.actions';
+import {
+  AUTH_LOGOUT_ACTION,
+  AUTH_REFRESH_TOKEN,
+} from 'src/app/shared/stores/auth-store/auth.actions';
 
 @Component({
   selector: 'app-menu-side',
@@ -48,5 +51,9 @@ export class MenuSideComponent implements OnInit, OnDestroy {
 
   logout(): void {
     this.store.dispatch(AUTH_LOGOUT_ACTION());
+  }
+
+  trigger(): void {
+    this.store.dispatch(AUTH_REFRESH_TOKEN());
   }
 }

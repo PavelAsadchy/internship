@@ -74,4 +74,39 @@ export class AuthEffects {
       ),
     { dispatch: false }
   );
+
+  refreshToken$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.ActionsType.REFRESH_TOKEN),
+      switchMap(() => {
+        return this.authService.refreshToken().pipe(
+          map((jwt: string) => {
+            return AuthActions.AUTH_REFRESH_TOKEN_SUCCESS({ jwt });
+          }),
+          catchError((error) =>
+            of(AuthActions.AUTH_REFRESH_TOKEN_FAILURE_ACTION({ err: error }))
+          )
+        );
+      })
+    )
+  );
+
+  refreshTokenSuccess$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(AuthActions.ActionsType.REFRESH_TOKEN_SUCCESS),
+        tap((jwt: string) => {
+          this.authService.storeJwtToken(jwt);
+        })
+      ),
+    { dispatch: false }
+  );
+
+  refreshTokenFailure$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(AuthActions.ActionsType.REFRESH_TOKEN_FAILURE_ACTION)
+      ),
+    { dispatch: false }
+  );
 }
