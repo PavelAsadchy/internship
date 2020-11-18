@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { AuthLoginAction } from 'src/app/shared/store/auth-store/auth.actions';
+import { AUTH_LOGIN_ACTION } from 'src/app/shared/stores/auth-store/auth.actions';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +21,6 @@ export class LoginComponent {
       username: this.loginForm.value.username,
       password: this.loginForm.value.password,
     };
-    this.store.dispatch(new AuthLoginAction({ user: payload }));
+    this.store.dispatch(AUTH_LOGIN_ACTION({ user: payload }));
   }
 }

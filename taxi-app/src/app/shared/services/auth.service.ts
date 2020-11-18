@@ -22,8 +22,8 @@ export class AuthService {
     return Boolean(this.getJwtToken());
   }
 
-  login(user: IUser): Observable<any> {
-    return this.http.post<any>(AUTH_URL + '/login', user);
+  login(user: IUser): Observable<ITokens> {
+    return this.http.post<ITokens>(AUTH_URL + '/login', user);
   }
 
   logout(): void {
@@ -35,7 +35,7 @@ export class AuthService {
 
   refreshToken(): Observable<ITokens> {
     return this.http
-      .post<any>(AUTH_URL + '/refresh', {
+      .post<ITokens>(AUTH_URL + '/refresh', {
         refreshToken: this.getRefreshToken(),
       })
       .pipe(tap((tokens: ITokens) => this.storeJwtToken(tokens.jwt)));

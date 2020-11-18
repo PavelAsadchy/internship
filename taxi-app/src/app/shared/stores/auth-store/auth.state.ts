@@ -1,5 +1,4 @@
 import { ILoggedInUser } from '../../models/loggedInUser.model';
-import { authReducer } from './auth.reducer';
 
 export interface IAuthState {
   isLoggedIn: boolean;
@@ -7,12 +6,8 @@ export interface IAuthState {
   errorMessage: string;
 }
 
-export const initialAuthState: IAuthState = {
+export const INITIAL_AUTH_STATE: IAuthState = {
   isLoggedIn: false,
   user: null,
   errorMessage: null,
-};
-
-export const reducers = {
-  auth: authReducer,
 };

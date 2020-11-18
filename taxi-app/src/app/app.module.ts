@@ -11,9 +11,9 @@ import { ProfileModule } from './pages/profile/profile.module';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { AgmCoreModule } from '@agm/core';
 import { EffectsModule } from '@ngrx/effects';
-import { AuthEffects } from './shared/store/auth-store/auth.effects';
+import { AuthEffects } from './shared/stores/auth-store/auth.effects';
 import { StoreModule } from '@ngrx/store';
-import { reducers } from './shared/store/auth-store/auth.state';
+import * as fromAuth from './shared/stores/auth-store/auth.reducer';
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],
@@ -28,7 +28,7 @@ import { reducers } from './shared/store/auth-store/auth.state';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAFYEI6Mv2SthzLCRsN_jTogm5aWJ8Ajt8',
     }),
-    StoreModule.forRoot(reducers, {}),
+    StoreModule.forRoot({ auth: fromAuth.reducer }),
     EffectsModule.forRoot([AuthEffects]),
   ],
   providers: [],

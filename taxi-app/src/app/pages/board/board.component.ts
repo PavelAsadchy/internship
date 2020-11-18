@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { ILoggedInUser } from 'src/app/shared/models/loggedInUser.model';
 import { IMenuItem } from 'src/app/shared/models/menu-item.model';
 import { MenuService } from 'src/app/shared/services/menu.service';
-import { selectAuthUser } from 'src/app/shared/store/auth-store/auth.selectors';
-import { IAuthState } from 'src/app/shared/store/auth-store/auth.state';
+import { SELECT_AUTH_USER } from 'src/app/shared/stores/auth-store/auth.selectors';
+import { IAuthState } from 'src/app/shared/stores/auth-store/auth.state';
 
 @Component({
   selector: 'app-board',
@@ -16,7 +15,7 @@ import { IAuthState } from 'src/app/shared/store/auth-store/auth.state';
 export class BoardComponent implements OnInit {
   isNavActive = false;
 
-  user$: Observable<string> = this.store$.pipe(select(selectAuthUser));
+  user$: Observable<string> = this.store$.select(SELECT_AUTH_USER);
 
   menuContent: IMenuItem[] = [
     new IMenuItem(
