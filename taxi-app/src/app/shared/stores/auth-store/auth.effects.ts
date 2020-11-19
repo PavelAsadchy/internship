@@ -72,8 +72,7 @@ export class AuthEffects {
     () =>
       this.actions$.pipe(
         ofType(AuthActions.ActionsType.LOGIN_FAILURE),
-        map((action: { type: string; err: string }) => action.err),
-        tap((err) =>
+        tap(() =>
           this.store.dispatch(
             SHOW_MESSAGE_ACTION({ message: SHOW_MESSAGE_VALUES.loginFailure })
           )
