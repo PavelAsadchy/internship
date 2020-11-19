@@ -1,80 +1,68 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { catchError, mapTo, tap } from 'rxjs/operators';
-import { AUTH_URL, JWT_TOKEN, REFRESH_TOKEN } from '../consts/consts';
+import { Observable } from 'rxjs';
+import {
+  AUTH_URL,
+  JWT_TOKEN,
+  REFRESH_TOKEN,
+  USER_NAME,
+} from '../consts/consts';
+import { ILoggedInUser } from '../models/loggedInUser.model';
 import { ITokens } from '../models/tokens.model';
 import { IUser } from '../models/user.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
-  loggedUser: string = null;
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   isLoggedIn(): boolean {
     return Boolean(this.getJwtToken());
   }
 
-  login(user: IUser): Observable<boolean> {
-    return this.http.post<any>(AUTH_URL + '/login', user)
-      .pipe(
-        tap((tokens: ITokens) => this.doLoginUser(user.username, tokens)),
-        mapTo(true),
-        catchError(error => {
-          return of(false);
-        })
-      );
+  login(user: IUser): Observable<ITokens> {
+    return this.http.post<ITokens>(AUTH_URL + '/login', user);
   }
 
-  logout(): Observable<boolean> {
-    return this.http.post<any>(AUTH_URL + '/logout', {
-      refreshToken: this.getRefreshToken()
-    }).pipe(
-      tap(() => this.doLogoutUser()),
-      mapTo(true),
-      catchError(error => {
-        return of(false);
-      })
-    );
+  logout(): void {
+    this.http.post<any>(AUTH_URL + '/logout', {
+      refreshToken: this.getRefreshToken(),
+    });
+    this.doLogoutUser();
   }
 
-  refreshToken(): Observable<ITokens> {
-    return this.http.post<any>(AUTH_URL + '/refresh', {
-      refreshToken: this.getRefreshToken()
-    }).pipe(
-      tap((tokens: ITokens) => this.storeJwtToken(tokens.jwt))
-    );
+  refreshToken(): Observable<string> {
+    return this.http.post<string>(AUTH_URL + '/refresh', {
+      refreshToken: this.getRefreshToken(),
+    });
   }
 
   getJwtToken(): string {
     return localStorage.getItem(JWT_TOKEN);
   }
 
-  private doLoginUser(username: string, tokens: ITokens): void {
-    this.loggedUser = username;
-    this.storeTokens(tokens);
+  doLoginUser(user: ILoggedInUser): void {
+    this.storeUser(user);
   }
 
-  private storeTokens(tokens: ITokens): void {
-    localStorage.setItem(JWT_TOKEN, tokens.jwt);
-    localStorage.setItem(REFRESH_TOKEN, tokens.refreshToken);
+  private storeUser(user: ILoggedInUser) {
+    localStorage.setItem(USER_NAME, user.username);
+    localStorage.setItem(JWT_TOKEN, user.jwt);
+    localStorage.setItem(REFRESH_TOKEN, user.refreshToken);
   }
 
   private doLogoutUser(): void {
-    this.loggedUser = null;
     this.removeTokens();
   }
 
   private removeTokens(): void {
+    localStorage.removeItem(USER_NAME);
     localStorage.removeItem(JWT_TOKEN);
     localStorage.removeItem(REFRESH_TOKEN);
   }
 
-  private storeJwtToken(jwt: string): void {
+  storeJwtToken(jwt: string): void {
     localStorage.setItem(JWT_TOKEN, jwt);
   }
 

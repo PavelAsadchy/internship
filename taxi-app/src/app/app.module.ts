@@ -10,12 +10,12 @@ import { BoardModule } from './pages/board/board.module';
 import { ProfileModule } from './pages/profile/profile.module';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { AgmCoreModule } from '@agm/core';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { GlobalStoreModule } from './shared/stores/global-store.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NotFoundComponent
-  ],
+  declarations: [AppComponent, NotFoundComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -25,11 +25,13 @@ import { AgmCoreModule } from '@agm/core';
     BoardModule,
     ProfileModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAFYEI6Mv2SthzLCRsN_jTogm5aWJ8Ajt8'
+      apiKey: 'AIzaSyAFYEI6Mv2SthzLCRsN_jTogm5aWJ8Ajt8',
     }),
-
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
+    GlobalStoreModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

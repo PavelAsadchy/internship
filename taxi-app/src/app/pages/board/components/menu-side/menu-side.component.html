@@ -21,5 +21,11 @@
                 {{ menuItemHome.name }}
             </a>
         </li>
+        <li class="menu__item menu__item--home">
+            <mat-icon>{{ menuItemLogout.icon }}</mat-icon>
+            <a class="menu__link" [routerLink]="['/login']" (click)="logout()">
+                {{ menuItemLogout.name }}
+            </a>
+        </li>
     </ul>
 </nav>
