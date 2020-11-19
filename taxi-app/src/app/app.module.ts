@@ -14,6 +14,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './shared/stores/auth-store/auth.effects';
 import { StoreModule } from '@ngrx/store';
 import * as fromAuth from './shared/stores/auth-store/auth.reducer';
+import * as fromMessage from './shared/stores/message-store/message.reducer';
+import { MessageEffects } from './shared/stores/message-store/message.effects';
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],
@@ -28,8 +30,11 @@ import * as fromAuth from './shared/stores/auth-store/auth.reducer';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAFYEI6Mv2SthzLCRsN_jTogm5aWJ8Ajt8',
     }),
-    StoreModule.forRoot({ auth: fromAuth.reducer }),
-    EffectsModule.forRoot([AuthEffects]),
+    StoreModule.forRoot({
+      auth: fromAuth.reducer,
+      message: fromMessage.reducer,
+    }),
+    EffectsModule.forRoot([AuthEffects, MessageEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent],

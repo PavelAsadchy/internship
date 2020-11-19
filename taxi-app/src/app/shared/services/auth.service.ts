@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import {
   AUTH_URL,
   JWT_TOKEN,
@@ -32,14 +31,6 @@ export class AuthService {
     });
     this.doLogoutUser();
   }
-
-  // refreshToken(): Observable<ITokens> {
-  //   return this.http
-  //     .post<ITokens>(AUTH_URL + '/refresh', {
-  //       refreshToken: this.getRefreshToken(),
-  //     })
-  //     .pipe(tap((tokens: ITokens) => this.storeJwtToken(tokens.jwt)));
-  // }
 
   refreshToken(): Observable<string> {
     return this.http.post<string>(AUTH_URL + '/refresh', {
