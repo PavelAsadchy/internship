@@ -11,7 +11,7 @@ import {
   PaymentOptions,
   PickUp,
   Vehicle,
-} from 'src/app/shared/models/bookingOptions.model';
+} from 'src/app/shared/models/booking-options.model';
 import { BookingOptionsService } from 'src/app/shared/services/booking-options.service';
 import { CreateBookingCalculationService } from 'src/app/shared/services/create-booking-calculation.service';
 import { takeUntil } from 'rxjs/operators';

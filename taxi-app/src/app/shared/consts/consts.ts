@@ -1,4 +1,4 @@
-import { MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { SnackbarOptions } from '../models/snackbar-options.model';
 
 export const AUTH_URL = 'http://localhost:8080';
 
@@ -28,13 +28,9 @@ export enum BookingOptionsType {
   DRIVER_NOTE = 'DRIVER_NOTE',
   DISPATCHER_NOTE = 'DISPATCHER_NOTE',
 }
-interface SnackbarOptions {
-  duration: number,
-  horizontalPosition: MatSnackBarHorizontalPosition;
-  verticalPosition: MatSnackBarVerticalPosition;
-}
+
 export const SNACKBAR_OPTIONS: SnackbarOptions = {
   duration: 3000,
   horizontalPosition: 'center',
-  verticalPosition: 'top'
-}
+  verticalPosition: 'top',
+};

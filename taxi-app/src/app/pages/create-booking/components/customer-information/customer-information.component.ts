@@ -1,15 +1,14 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { IClientInformation } from 'src/app/shared/models/bookingOptions.model';
+import { IClientInformation } from 'src/app/shared/models/booking-options.model';
 
 @Component({
   selector: 'app-customer-information',
   templateUrl: './customer-information.component.html',
   styleUrls: ['./customer-information.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CustomerInformationComponent {
-
   @Input()
   parentGroup: FormGroup;
 
@@ -19,7 +18,7 @@ export class CustomerInformationComponent {
   telOptions = {
     initialCountry: 'by',
     prefix: '',
-    preferredCountries: ['by', 'ru']
+    preferredCountries: ['by', 'ru'],
   };
 
   telInputObject(event): void {
