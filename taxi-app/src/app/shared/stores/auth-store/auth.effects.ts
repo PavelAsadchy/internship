@@ -8,14 +8,9 @@ import { ITokens } from '../../models/tokens.model';
 import { ILoggedInUser } from '../../models/loggedInUser.model';
 import { of } from 'rxjs';
 import { IUser } from '../../models/user.model';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { SNACKBAR_OPTIONS } from '../../consts/consts';
 import { Store } from '@ngrx/store';
-import {
-  MESSAGE_ON_LOGIN_FAILURE_ACTION,
-  MESSAGE_ON_LOGIN_SUCCESS_ACTION,
-  MESSAGE_ON_LOGOUT,
-} from '../message-store/message.actions';
+import { SHOW_MESSAGE_ACTION } from '../message-store/message.actions';
+import { SHOW_MESSAGE_VALUES } from '../../consts/consts';
 
 @Injectable()
 export class AuthEffects {
@@ -23,7 +18,6 @@ export class AuthEffects {
     private actions$: Actions,
     private readonly authService: AuthService,
     private router: Router,
-    private snackBar: MatSnackBar,
     private store: Store
   ) {}
 
@@ -66,12 +60,9 @@ export class AuthEffects {
         tap((loggedInUser: ILoggedInUser) => {
           this.authService.doLoginUser(loggedInUser);
           this.router.navigate(['/board']);
-          this.store.dispatch(MESSAGE_ON_LOGIN_SUCCESS_ACTION());
-          // this.snackBar.open('Welcome', 'Ok', {
-          //   duration: SNACKBAR_OPTIONS.duration,
-          //   horizontalPosition: SNACKBAR_OPTIONS.horizontalPosition,
-          //   verticalPosition: SNACKBAR_OPTIONS.verticalPosition
-          // });
+          this.store.dispatch(
+            SHOW_MESSAGE_ACTION({ message: SHOW_MESSAGE_VALUES.loginSuccess })
+          );
         })
       ),
     { dispatch: false }
@@ -83,13 +74,10 @@ export class AuthEffects {
         ofType(AuthActions.ActionsType.LOGIN_FAILURE),
         map((action: { type: string; err: string }) => action.err),
         tap((err) =>
-          this.store.dispatch(MESSAGE_ON_LOGIN_FAILURE_ACTION({ err: err }))
+          this.store.dispatch(
+            SHOW_MESSAGE_ACTION({ message: SHOW_MESSAGE_VALUES.loginFailure })
+          )
         )
-        // tap(() => this.snackBar.open('Wrong data', 'Try again', {
-        //   duration: SNACKBAR_OPTIONS.duration,
-        //   horizontalPosition: SNACKBAR_OPTIONS.horizontalPosition,
-        //   verticalPosition: SNACKBAR_OPTIONS.verticalPosition
-        // }))
       ),
     { dispatch: false }
   );
@@ -100,12 +88,9 @@ export class AuthEffects {
         ofType(AuthActions.ActionsType.LOGOUT),
         tap(() => {
           this.authService.logout();
-          this.store.dispatch(MESSAGE_ON_LOGOUT());
-          // this.snackBar.open('Come back later', 'Ok', {
-          //   duration: SNACKBAR_OPTIONS.duration,
-          //   horizontalPosition: SNACKBAR_OPTIONS.horizontalPosition,
-          //   verticalPosition: SNACKBAR_OPTIONS.verticalPosition
-          // })
+          this.store.dispatch(
+            SHOW_MESSAGE_ACTION({ message: SHOW_MESSAGE_VALUES.logout })
+          );
         })
       ),
     { dispatch: false }

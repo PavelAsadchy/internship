@@ -4,9 +4,9 @@ import { IMessageState, INITIAL_MESSAGE_STATE } from './message.state';
 
 const messageReducer = createReducer(
   INITIAL_MESSAGE_STATE,
-  on(MessageActions.MESSAGE_ON_LOGIN_FAILURE_ACTION, (state, { err }) => ({
+  on(MessageActions.SHOW_MESSAGE_ACTION, (state, { message }) => ({
     ...state,
-    error: err,
+    message: message.value,
   }))
 );
 

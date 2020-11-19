@@ -1,4 +1,5 @@
-import { SnackbarOptions } from '../models/snackbar-options.model';
+import { IShowMessageOnAction } from '../models/show-message.model';
+import { ISnackbarOptions } from '../models/show-message.model';
 
 export const AUTH_URL = 'http://localhost:8080';
 
@@ -29,8 +30,26 @@ export enum BookingOptionsType {
   DISPATCHER_NOTE = 'DISPATCHER_NOTE',
 }
 
-export const SNACKBAR_OPTIONS: SnackbarOptions = {
+export const SNACKBAR_OPTIONS: ISnackbarOptions = {
   duration: 3000,
   horizontalPosition: 'center',
   verticalPosition: 'top',
+};
+
+export const SHOW_MESSAGE_VALUES: IShowMessageOnAction = {
+  loginSuccess: {
+    value: 'Welcome',
+    action: 'Ok',
+    options: SNACKBAR_OPTIONS,
+  },
+  loginFailure: {
+    value: 'Wrong data, please try again',
+    action: 'Ok',
+    options: SNACKBAR_OPTIONS,
+  },
+  logout: {
+    value: 'Come back later',
+    action: 'Ok',
+    options: SNACKBAR_OPTIONS,
+  },
 };
