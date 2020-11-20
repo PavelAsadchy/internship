@@ -8,6 +8,8 @@ export const JWT_TOKEN = 'JWT_TOKEN';
 export const REFRESH_TOKEN = 'REFRESH_TOKEN';
 
 export const LOCATION_API_URL = 'https://ipapi.co/json/';
+export const DATABASE_URL =
+  'https://taxi-app-294611.firebaseio.com/booking-list';
 
 export enum BookingOptionsType {
   BOOKING_CHANNEL = 'BOOKING_CHANNEL',

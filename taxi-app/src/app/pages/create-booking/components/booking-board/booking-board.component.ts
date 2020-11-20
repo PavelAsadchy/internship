@@ -15,12 +15,13 @@ import {
 import { BookingOptionsService } from 'src/app/shared/services/booking-options.service';
 import { CreateBookingCalculationService } from 'src/app/shared/services/create-booking-calculation.service';
 import { takeUntil } from 'rxjs/operators';
+import { BookingListService } from 'src/app/shared/services/booking-list.service';
 
 @Component({
   selector: 'app-booking-board',
   templateUrl: './booking-board.component.html',
   styleUrls: ['./booking-board.component.scss'],
-  providers: [CreateBookingCalculationService],
+  providers: [CreateBookingCalculationService, BookingListService],
 })
 export class BookingBoardComponent implements OnInit, OnDestroy {
   bookingOptions: IBookingOptions;
@@ -49,7 +50,8 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private readonly bookingOptionsService: BookingOptionsService,
-    private readonly createBookingCalculationService: CreateBookingCalculationService
+    private readonly createBookingCalculationService: CreateBookingCalculationService,
+    private readonly bookingListService: BookingListService
   ) {}
 
   ngOnInit(): void {
@@ -89,5 +91,17 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
     return (
       this.bookingOptionsForm.controls[control].get(field).status === 'INVALID'
     );
+  }
+
+  trigger(): void {
+    // let formObj = this.bookingOptionsForm.getRawValue();
+    // // console.log(formObj);
+    // this.bookingListService
+    //   .saveBooking(formObj)
+    //   .subscribe((resp) => console.log(resp));
+
+    this.bookingListService
+      .loadBooking()
+      .subscribe((resp) => console.log(resp));
   }
 }
