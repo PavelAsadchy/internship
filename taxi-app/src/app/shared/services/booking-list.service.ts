@@ -31,4 +31,15 @@ export class BookingListService {
       })
     );
   }
+
+  removeBooking(bookingOptions: IBookingOptions): Observable<void> {
+    return this.http.delete<void>(`${DATABASE_URL}/${bookingOptions.id}.json`);
+  }
+
+  editBooking(bookingOptions: IBookingOptions, options) {
+    return this.http.patch(
+      `${DATABASE_URL}/${bookingOptions.id}.json`,
+      options
+    );
+  }
 }
