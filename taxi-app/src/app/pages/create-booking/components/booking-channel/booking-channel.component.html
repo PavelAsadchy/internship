@@ -13,10 +13,10 @@
         >
             <mat-radio-button
                 class="booking-channel__radio-btn"
-                *ngFor="let bookingChannel of bookingChannel.channel.options"
-                [value]="bookingChannel"
+                *ngFor="let bookingChannel of bookingChannelOptions | keyvalue: originalOrder"
+                [value]="bookingChannel.key"
             >
-                {{ bookingChannel }}
+                {{ bookingChannel.value }}
             </mat-radio-button>
         </mat-radio-group>
     </div>

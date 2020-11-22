@@ -32,6 +32,79 @@ export enum BookingOptionsType {
   DISPATCHER_NOTE = 'DISPATCHER_NOTE',
 }
 
+export enum BookingChannelOptions {
+  CALL = 'Call',
+  EMAIL = 'Email',
+  WALKING_ROCCO = 'Walking Rocco',
+  CONCIERGE = 'Concierge',
+  GOODS_DELIVERY = 'Goods Delivery',
+  MOBILE_APP = 'Mobile App',
+  BOT = 'Bot',
+}
+
+export enum PickUpTimeOptions {
+  NOW = 'Now',
+  LATER = 'Later',
+}
+
+export enum PickUpPointOptions {
+  ADRESS = 'Adress',
+  AIRPORT = 'Airport',
+  ROCCO = 'Rocco',
+  HEAD_OFFICE = 'Head Office',
+}
+
+export enum DropOffPointOptions {
+  ADRESS = 'Adress',
+  AIRPORT = 'Airport',
+  ROCCO = 'Rocco',
+  HEAD_OFFICE = 'Head Office',
+  INDEGINITI = 'Indefinite',
+}
+
+export enum VehicleOptions {
+  CAB = 'Cab',
+  BRANDED_STANDART_CAB = 'Branded standart Cab',
+  VAN = 'Van',
+  EXECUTIVE_CAB = 'Executive Cab',
+  EXECUTIVE_VAN = 'Executive Cab',
+  LUXURY_EXECUTIVE = 'Luxury Executive',
+  MINI_BUS = 'Mini Bus',
+  RESTRICTED_MOBILITY = 'Restricted Mobility',
+  VINTAGE = 'Vintage',
+  LUXURY_EXEV_VAN = 'Luxury Exec. Van',
+}
+
+export enum PaymentChannels {
+  IN_VEHICLE = 'In Vehicle',
+  OVER_THE_COUNTER = 'Over The Counter',
+  INVOICE = 'Invoice',
+}
+
+export enum PaymentTypes {
+  CASH = 'Cash',
+}
+
+export enum PaymentBasicOptions {
+  WILLING_TO_SHARE = 'Willing to share',
+}
+
+export enum PaymentExtraOptions {
+  BABY_SEAT = 'Baby seat',
+  IMMEDIATE_RETURN = 'Immediate Return',
+  NO_LUGGAGE = 'No Luggage',
+  EXTRA_LUGGAGE = 'Extra Luggage',
+  STATION_WAGON = 'Station Wagon',
+  PET_ONBOARD = 'Pet Onboard',
+  RECEIPT = 'Receipt',
+  RESTRICTED_MOBILITY = 'Restricted Mobility',
+  STEP_STOOL = 'Step Stool',
+  ARRIVAL_PACK = 'Arrival Pack',
+  KEYS_FROM_OFFICE = 'Keys From Office',
+  MALE_DRIVER = 'Male Driver',
+  FEMALE_DRIVER = 'Female Driver',
+}
+
 export const SNACKBAR_OPTIONS: ISnackbarOptions = {
   duration: 3000,
   horizontalPosition: 'center',

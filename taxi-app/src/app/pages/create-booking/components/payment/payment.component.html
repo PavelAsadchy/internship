@@ -15,10 +15,10 @@
             >
                 <mat-radio-button
                     class="payment-options__radio-btn"
-                    *ngFor="let paymentChannel of payment.paymentOptions.channel.options"
-                    [value]="paymentChannel"
+                    *ngFor="let paymentChannel of paymentChannels | keyvalue: originalOrder"
+                    [value]="paymentChannel.key"
                 >
-                    {{ paymentChannel }}
+                    {{ paymentChannel.value }}
                 </mat-radio-button>
             </mat-radio-group>
         </section>
@@ -37,10 +37,10 @@
             >
                 <mat-radio-button
                     class="payment-options__radio-btn"
-                    *ngFor="let paymentType of payment.paymentOptions.type.options"
-                    [value]="paymentType"
+                    *ngFor="let paymentType of paymentTypes | keyvalue: originalOrder"
+                    [value]="paymentType.key"
                 >
-                    {{ paymentType }}
+                    {{ paymentType.value }}
                 </mat-radio-button>
             </mat-radio-group>
         </section>

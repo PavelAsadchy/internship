@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { PaymentBasicOptions, PaymentChannels, PaymentTypes } from 'src/app/shared/consts/consts';
 import {
   ICheckboxSection,
   IPayment,
@@ -18,6 +19,12 @@ export class PaymentComponent {
 
   @Input()
   payment: IPayment;
+
+  paymentChannels = PaymentChannels;
+
+  paymentTypes = PaymentTypes;
+
+  paymentBasicOptions = PaymentBasicOptions;
 
   onBasicOptionsChange(
     event: MatCheckboxChange,
@@ -53,4 +60,9 @@ export class PaymentComponent {
       checkArray.removeAt(index);
     }
   }
+
+  originalOrder(): number {
+    return 0;
+  }
+
 }

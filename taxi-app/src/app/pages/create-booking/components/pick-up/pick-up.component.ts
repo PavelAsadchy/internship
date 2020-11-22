@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { PickUpPointOptions, PickUpTimeOptions } from 'src/app/shared/consts/consts';
 import { IPickUp } from 'src/app/shared/models/booking-options.model';
 
 @Component({
@@ -14,4 +15,13 @@ export class PickUpComponent {
 
   @Input()
   pickUp: IPickUp;
+
+  pickUpTimeOptions = PickUpTimeOptions;
+
+  pickUpPointOptions = PickUpPointOptions;
+
+  originalOrder(): number {
+    return 0;
+  }
+
 }

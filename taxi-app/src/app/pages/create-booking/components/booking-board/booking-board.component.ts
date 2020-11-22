@@ -95,9 +95,9 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
 
   trigger(): void {
     let formObj = this.bookingOptionsForm.getRawValue();
-    this.bookingListService
-      .saveBooking(formObj)
-      .subscribe((resp) => console.log(resp));
+    // this.bookingListService
+    //   .saveBooking(formObj)
+    //   .subscribe((resp) => console.log(resp));
     // this.bookingOptionsForm.reset();
     console.log(formObj);
 

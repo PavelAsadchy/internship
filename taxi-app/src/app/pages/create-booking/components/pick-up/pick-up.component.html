@@ -14,10 +14,10 @@
         >
             <mat-radio-button
                 class="pick-up__radio-btn"
-                *ngFor="let pickUp of pickUp.time.options"
-                [value]="pickUp"
+                *ngFor="let pickUp of pickUpTimeOptions | keyvalue: originalOrder"
+                [value]="pickUp.key"
             >
-                {{ pickUp }}
+                {{ pickUp.value }}
             </mat-radio-button>
         </mat-radio-group>
         <div class="pick-up__point">
@@ -31,10 +31,10 @@
             >
                 <mat-radio-button
                     class="pick-up__radio-btn"
-                    *ngFor="let point of pickUp.point.options"
-                    [value]="point"
+                    *ngFor="let point of pickUpPointOptions | keyvalue: originalOrder"
+                    [value]="point.key"
                 >
-                    {{ point }}
+                    {{ point.value }}
                 </mat-radio-button>
             </mat-radio-group>
             <mat-form-field #addressInput>
