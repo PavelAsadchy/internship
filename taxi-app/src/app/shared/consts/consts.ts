@@ -127,4 +127,14 @@ export const SHOW_MESSAGE_VALUES: IShowMessageOnAction = {
     action: 'Ok',
     options: SNACKBAR_OPTIONS,
   },
+  loadBookings: {
+    value: 'Loading bookings',
+    action: 'Ok',
+    options: SNACKBAR_OPTIONS,
+  },
+  loadBookingsFail: {
+    value: 'Fail to load bookings',
+    action: 'Ok',
+    options: SNACKBAR_OPTIONS,
+  },
 };

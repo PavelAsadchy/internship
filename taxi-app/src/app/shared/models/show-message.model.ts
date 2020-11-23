@@ -19,4 +19,6 @@ export interface IShowMessageOnAction {
   loginSuccess: IShowMessage;
   loginFailure: IShowMessage;
   logout: IShowMessage;
+  loadBookings: IShowMessage;
+  loadBookingsFail: IShowMessage;
 }
