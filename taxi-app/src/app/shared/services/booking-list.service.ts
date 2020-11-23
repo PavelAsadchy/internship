@@ -11,15 +11,15 @@ import { IBookingOptions } from '../models/booking-options.model';
 export class BookingListService {
   constructor(private http: HttpClient) {}
 
-  saveBooking(bookingOptions: IBookingOptions) {
-    return this.http.post(`${DATABASE_URL}.json`, bookingOptions).pipe(
+  createBooking(bookingOptions: IBookingOptions): Observable<IBookingOptions> {
+    return this.http.post<IBookingOptions>(`${DATABASE_URL}.json`, bookingOptions).pipe(
       map((response: any) => {
         return { ...bookingOptions, id: response.name };
       })
     );
   }
 
-  loadBooking(): Observable<IBookingOptions[]> {
+  loadBookings(): Observable<IBookingOptions[]> {
     return this.http.get<IBookingOptions[]>(`${DATABASE_URL}.json`).pipe(
       map((savedBookings: any) => {
         return savedBookings
@@ -36,10 +36,10 @@ export class BookingListService {
     return this.http.delete<void>(`${DATABASE_URL}/${bookingOptions.id}.json`);
   }
 
-  editBooking(bookingOptions: IBookingOptions, options) {
-    return this.http.patch(
+  editBooking(bookingOptions: IBookingOptions, newBookingOptions: IBookingOptions): Observable<IBookingOptions> {
+    return this.http.put<IBookingOptions>(
       `${DATABASE_URL}/${bookingOptions.id}.json`,
-      options
+      newBookingOptions
     );
   }
 }
