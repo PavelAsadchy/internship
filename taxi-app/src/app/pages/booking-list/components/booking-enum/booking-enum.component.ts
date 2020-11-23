@@ -1,15 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-booking-enum',
   templateUrl: './booking-enum.component.html',
-  styleUrls: ['./booking-enum.component.scss']
+  styleUrls: ['./booking-enum.component.scss'],
 })
-export class BookingEnumComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class BookingEnumComponent {}

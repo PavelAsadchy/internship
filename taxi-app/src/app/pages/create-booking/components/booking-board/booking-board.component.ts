@@ -50,8 +50,7 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private readonly bookingOptionsService: BookingOptionsService,
-    private readonly createBookingCalculationService: CreateBookingCalculationService,
-    private readonly bookingListService: BookingListService
+    private readonly createBookingCalculationService: CreateBookingCalculationService
   ) {}
 
   ngOnInit(): void {
