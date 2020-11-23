@@ -1,11 +1,14 @@
+import { KeyValue } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material/checkbox';
-import { PaymentBasicOptions, PaymentChannels, PaymentTypes } from 'src/app/shared/consts/consts';
 import {
-  ICheckboxSection,
-  IPayment,
-} from 'src/app/shared/models/booking-options.model';
+  PaymentBasicOptions,
+  PaymentChannels,
+  PaymentExtraOptions,
+  PaymentTypes,
+} from 'src/app/shared/consts/consts';
+import { IPayment } from 'src/app/shared/models/booking-options.model';
 
 @Component({
   selector: 'app-payment',
@@ -26,9 +29,11 @@ export class PaymentComponent {
 
   paymentBasicOptions = PaymentBasicOptions;
 
+  paymentExtraoptions = PaymentExtraOptions;
+
   onBasicOptionsChange(
     event: MatCheckboxChange,
-    option: ICheckboxSection
+    option: KeyValue<string, string>
   ): void {
     const checkArray: FormArray = this.parentGroup.get(
       'checkBasicOptions'
@@ -38,7 +43,7 @@ export class PaymentComponent {
 
   onExtraOptionsChange(
     event: MatCheckboxChange,
-    option: ICheckboxSection
+    option: KeyValue<string, string>
   ): void {
     const checkArray: FormArray = this.parentGroup.get(
       'checkExtraOptions'
@@ -49,13 +54,13 @@ export class PaymentComponent {
   setNewValue(
     checkArray: FormArray,
     event: MatCheckboxChange,
-    option: ICheckboxSection
+    option: KeyValue<string, string>
   ): void {
     if (event.checked) {
-      checkArray.push(new FormControl(option.name));
+      checkArray.push(new FormControl(option.key));
     } else {
       const index = checkArray.controls.findIndex(
-        (control) => control.value === option.name
+        (control) => control.value === option.key
       );
       checkArray.removeAt(index);
     }
@@ -64,5 +69,4 @@ export class PaymentComponent {
   originalOrder(): number {
     return 0;
   }
-
 }

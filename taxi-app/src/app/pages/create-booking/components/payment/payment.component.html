@@ -60,10 +60,10 @@
             class="payment-options__checkbox"
             color="primary"
             aria-labelledby="payment-options-options"
-            *ngFor="let paymentBasicOption of payment.checkBasicOptions.options"
+            *ngFor="let paymentBasicOption of paymentBasicOptions | keyvalue: originalOrder"
             (change)="onBasicOptionsChange($event, paymentBasicOption)"
         >
-            {{ paymentBasicOption.name }}
+            {{ paymentBasicOption.value }}
         </mat-checkbox>
     </section>
     <section
@@ -82,10 +82,10 @@
                 class="payment-options__checkbox"
                 color="primary"
                 aria-labelledby="payment-options-extras"
-                *ngFor="let paymentExtraOption of payment.checkExtraOptions.options"
+                *ngFor="let paymentExtraOption of paymentExtraoptions | keyvalue: originalOrder"
                 (change)="onExtraOptionsChange($event, paymentExtraOption)"
             >
-                {{ paymentExtraOption.name }} {{ paymentExtraOption.note }}
+                {{ paymentExtraOption.value }}
             </mat-checkbox>
         </div>
         <p class="payment-options__note">

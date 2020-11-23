@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { combineLatest, forkJoin, Observable, Subject } from 'rxjs';
+import { combineLatest, Subject } from 'rxjs';
 import {
   BookingChannel,
   CustomerInformation,
@@ -91,18 +91,5 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
     return (
       this.bookingOptionsForm.controls[control].get(field).status === 'INVALID'
     );
-  }
-
-  trigger(): void {
-    let formObj = this.bookingOptionsForm.getRawValue();
-    // this.bookingListService
-    //   .saveBooking(formObj)
-    //   .subscribe((resp) => console.log(resp));
-    // this.bookingOptionsForm.reset();
-    console.log(formObj);
-
-    // this.bookingListService
-    //   .loadBooking()
-    //   .subscribe((resp) => console.log(resp));
   }
 }

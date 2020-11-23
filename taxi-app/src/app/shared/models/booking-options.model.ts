@@ -15,6 +15,12 @@ export interface IVehicle {
   capacity: string;
 }
 
+export interface IVehicleNew {
+  name: string;
+  img: string;
+  capacity: string;
+}
+
 export interface IChannel {
   channel: IRadioSection;
 }

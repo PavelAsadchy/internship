@@ -21,5 +21,4 @@ export class VehicleComponent {
   originalOrder(): number {
     return 0;
   }
-
 }

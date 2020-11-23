@@ -90,8 +90,8 @@ export enum PaymentBasicOptions {
 }
 
 export enum PaymentExtraOptions {
-  BABY_SEAT = 'Baby seat',
-  IMMEDIATE_RETURN = 'Immediate Return',
+  BABY_SEAT = 'Baby seat (+€5)',
+  IMMEDIATE_RETURN = 'Immediate Return (Extra Fee)',
   NO_LUGGAGE = 'No Luggage',
   EXTRA_LUGGAGE = 'Extra Luggage',
   STATION_WAGON = 'Station Wagon',
