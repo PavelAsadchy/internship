@@ -11,60 +11,40 @@ import { IBookingOptions } from '../models/booking-options.model';
 export class BookingListService {
   constructor(private http: HttpClient) {}
 
-  saveBooking(bookingOptions: IBookingOptions) {
-    return this.http.post(`${DATABASE_URL}.json`, bookingOptions).pipe(
-      map((response: any) => {
-        return { ...bookingOptions, id: response.name };
-      })
-    );
+  createBooking(bookingOptions: IBookingOptions): Observable<IBookingOptions> {
+    return this.http
+      .post<IBookingOptions>(`${DATABASE_URL}.json`, bookingOptions)
+      .pipe(
+        map((response: any) => {
+          return { ...bookingOptions, id: response.name };
+        })
+      );
   }
 
   loadBooking(): Observable<any> {
-    return this.http.get<any>(`${DATABASE_URL}.json`);
-    // .pipe(
-    //     map((savedBookings: any) => {
-    //       return savedBookings
-    //         ? Object.keys(savedBookings).map((key: string) => ({
-    //             ...savedBookings[key],
-    //             id: key,
-    //           }))
-    //         : [];
-    //     })
-    //   );
-    // }
-
-    // loadBooking(): Observable<any> {
-    //   return this.http.get<any>(`https://jsonplaceholder.typicode.com/todos/1`);
-    // .pipe(
-    //   map((savedBookings: any) => {
-    //     return savedBookings
-    //       ? Object.keys(savedBookings).map((key: string) => ({
-    //           ...savedBookings[key],
-    //           id: key,
-    //         }))
-    //       : [];
-    //   })
-    // );
+    return this.http.get<any>(`${DATABASE_URL}.json`).pipe(
+      map((savedBookings: any) => {
+        return savedBookings
+          ? Object.keys(savedBookings).map((key: string) => ({
+              ...savedBookings[key],
+              id: key,
+            }))
+          : [];
+      })
+    );
   }
-
-  // createUser(value, avatar) {
-  //   return this.db.collection('users').add({
-  //     name: value.name,
-  //     nameToSearch: value.name.toLowerCase(),
-  //     surname: value.surname,
-  //     age: parseInt(value.age),
-  //     avatar: avatar,
-  //   });
-  // }
 
   removeBooking(bookingOptions: IBookingOptions): Observable<void> {
     return this.http.delete<void>(`${DATABASE_URL}/${bookingOptions.id}.json`);
   }
 
-  editBooking(bookingOptions: IBookingOptions, options) {
-    return this.http.patch(
+  editBooking(
+    bookingOptions: IBookingOptions,
+    newBookingOptions: IBookingOptions
+  ): Observable<IBookingOptions> {
+    return this.http.put<IBookingOptions>(
       `${DATABASE_URL}/${bookingOptions.id}.json`,
-      options
+      newBookingOptions
     );
   }
 }
