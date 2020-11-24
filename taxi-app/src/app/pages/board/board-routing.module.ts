@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CreateBookingComponent } from 'src/app/pages/create-booking/container/create-booking.component';
 import { BoardComponent } from './board.component';
-import { BookingListComponent } from './components/booking-list/booking-list.component';
+import { BookingListComponent } from 'src/app/pages/booking-list/container/booking-list.component';
 import { MenuMainComponent } from './components/menu-main/menu-main.component';
 
 const routes: Routes = [
@@ -22,12 +22,12 @@ const routes: Routes = [
         path: 'booking-list',
         component: BookingListComponent,
       },
-    ]
+    ],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class BoardRoutingModule { }
+export class BoardRoutingModule {}

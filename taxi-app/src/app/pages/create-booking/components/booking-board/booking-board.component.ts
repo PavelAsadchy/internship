@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { combineLatest, forkJoin, Observable, Subject } from 'rxjs';
+import { combineLatest, Subject } from 'rxjs';
 import {
   BookingChannel,
   CustomerInformation,
@@ -15,12 +15,13 @@ import {
 import { BookingOptionsService } from 'src/app/shared/services/booking-options.service';
 import { CreateBookingCalculationService } from 'src/app/shared/services/create-booking-calculation.service';
 import { takeUntil } from 'rxjs/operators';
+import { BookingListService } from 'src/app/shared/services/booking-list.service';
 
 @Component({
   selector: 'app-booking-board',
   templateUrl: './booking-board.component.html',
   styleUrls: ['./booking-board.component.scss'],
-  providers: [CreateBookingCalculationService],
+  providers: [CreateBookingCalculationService, BookingListService],
 })
 export class BookingBoardComponent implements OnInit, OnDestroy {
   bookingOptions: IBookingOptions;

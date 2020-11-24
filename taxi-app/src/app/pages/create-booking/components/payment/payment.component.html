@@ -15,10 +15,10 @@
             >
                 <mat-radio-button
                     class="payment-options__radio-btn"
-                    *ngFor="let paymentChannel of payment.paymentOptions.channel.options"
-                    [value]="paymentChannel"
+                    *ngFor="let paymentChannel of paymentChannels | keyvalue: originalOrder"
+                    [value]="paymentChannel.key"
                 >
-                    {{ paymentChannel }}
+                    {{ paymentChannel.value }}
                 </mat-radio-button>
             </mat-radio-group>
         </section>
@@ -37,10 +37,10 @@
             >
                 <mat-radio-button
                     class="payment-options__radio-btn"
-                    *ngFor="let paymentType of payment.paymentOptions.type.options"
-                    [value]="paymentType"
+                    *ngFor="let paymentType of paymentTypes | keyvalue: originalOrder"
+                    [value]="paymentType.key"
                 >
-                    {{ paymentType }}
+                    {{ paymentType.value }}
                 </mat-radio-button>
             </mat-radio-group>
         </section>
@@ -60,10 +60,10 @@
             class="payment-options__checkbox"
             color="primary"
             aria-labelledby="payment-options-options"
-            *ngFor="let paymentBasicOption of payment.checkBasicOptions.options"
+            *ngFor="let paymentBasicOption of paymentBasicOptions | keyvalue: originalOrder"
             (change)="onBasicOptionsChange($event, paymentBasicOption)"
         >
-            {{ paymentBasicOption.name }}
+            {{ paymentBasicOption.value }}
         </mat-checkbox>
     </section>
     <section
@@ -82,10 +82,10 @@
                 class="payment-options__checkbox"
                 color="primary"
                 aria-labelledby="payment-options-extras"
-                *ngFor="let paymentExtraOption of payment.checkExtraOptions.options"
+                *ngFor="let paymentExtraOption of paymentExtraoptions | keyvalue: originalOrder"
                 (change)="onExtraOptionsChange($event, paymentExtraOption)"
             >
-                {{ paymentExtraOption.name }} {{ paymentExtraOption.note }}
+                {{ paymentExtraOption.value }}
             </mat-checkbox>
         </div>
         <p class="payment-options__note">
