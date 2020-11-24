@@ -19,18 +19,43 @@ export class BookingListService {
     );
   }
 
-  loadBooking(): Observable<IBookingOptions[]> {
-    return this.http.get<IBookingOptions[]>(`${DATABASE_URL}.json`).pipe(
-      map((savedBookings: any) => {
-        return savedBookings
-          ? Object.keys(savedBookings).map((key: string) => ({
-              ...savedBookings[key],
-              id: key,
-            }))
-          : [];
-      })
-    );
+  loadBooking(): Observable<any> {
+    return this.http.get<any>(`${DATABASE_URL}.json`);
+    // .pipe(
+    //     map((savedBookings: any) => {
+    //       return savedBookings
+    //         ? Object.keys(savedBookings).map((key: string) => ({
+    //             ...savedBookings[key],
+    //             id: key,
+    //           }))
+    //         : [];
+    //     })
+    //   );
+    // }
+
+    // loadBooking(): Observable<any> {
+    //   return this.http.get<any>(`https://jsonplaceholder.typicode.com/todos/1`);
+    // .pipe(
+    //   map((savedBookings: any) => {
+    //     return savedBookings
+    //       ? Object.keys(savedBookings).map((key: string) => ({
+    //           ...savedBookings[key],
+    //           id: key,
+    //         }))
+    //       : [];
+    //   })
+    // );
   }
+
+  // createUser(value, avatar) {
+  //   return this.db.collection('users').add({
+  //     name: value.name,
+  //     nameToSearch: value.name.toLowerCase(),
+  //     surname: value.surname,
+  //     age: parseInt(value.age),
+  //     avatar: avatar,
+  //   });
+  // }
 
   removeBooking(bookingOptions: IBookingOptions): Observable<void> {
     return this.http.delete<void>(`${DATABASE_URL}/${bookingOptions.id}.json`);

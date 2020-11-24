@@ -17,28 +17,43 @@ export class BookingEffects {
     private readonly bookingListService: BookingListService
   ) {}
 
-  loadBookings$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(BookingActions.ActionsType.LOAD_BOOKINGS),
-      tap(() =>
-        this.store.dispatch(
-          SHOW_MESSAGE_ACTION({ message: SHOW_MESSAGE_VALUES.loadBookings })
-        )
+  loadBookings$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(BookingActions.ActionsType.LOAD_BOOKINGS),
+        tap((action) => {
+          console.log(action);
+          this.bookingListService
+            .loadBooking()
+            .subscribe((res) => console.log(res));
+        })
       ),
-      switchMap(() => {
-        return this.bookingListService.loadBooking().pipe(
-          map((bookings: IBookingOptions[]) => {
-            return BookingActions.BOOKING_LOAD_SUCCESS_ACTION({
-              bookingList: bookings,
-            });
-          }),
-          catchError((error) =>
-            of(BookingActions.BOOKING_LOAD_FAIL_ACTION({ err: error }))
-          )
-        );
-      })
-    )
+    { dispatch: false }
   );
+
+  // loadBookings$ = createEffect(
+  //   () =>
+  //     this.actions$.pipe(
+  //       ofType(BookingActions.ActionsType.LOAD_BOOKINGS),
+  //       tap(() =>
+  //         this.store.dispatch(
+  //           SHOW_MESSAGE_ACTION({ message: SHOW_MESSAGE_VALUES.loadBookings })
+  //         )
+  //       ),
+  //       switchMap(() => {
+  //         return this.bookingListService.loadBooking().pipe(
+  //           map((bookings: IBookingOptions[]) => {
+  //             return BookingActions.BOOKING_LOAD_SUCCESS_ACTION({
+  //               bookingList: bookings,
+  //             });
+  //           }),
+  //           catchError((error) =>
+  //             of(BookingActions.BOOKING_LOAD_FAIL_ACTION({ err: error }))
+  //           )
+  //         );
+  //       })
+  //     ),
+  // );
 
   loadBookingsFail$ = createEffect(
     () =>

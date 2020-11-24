@@ -50,7 +50,8 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private readonly bookingOptionsService: BookingOptionsService,
-    private readonly createBookingCalculationService: CreateBookingCalculationService
+    private readonly createBookingCalculationService: CreateBookingCalculationService,
+    private readonly bookingListService: BookingListService
   ) {}
 
   ngOnInit(): void {
@@ -90,5 +91,13 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
     return (
       this.bookingOptionsForm.controls[control].get(field).status === 'INVALID'
     );
+  }
+
+  trigger() {
+    let formObj = this.bookingOptionsForm.getRawValue();
+    // console.log(formObj);
+    this.bookingListService
+      .loadBooking()
+      .subscribe((resp) => console.log(resp));
   }
 }
