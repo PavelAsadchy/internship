@@ -32,12 +32,14 @@ export class BookingListService {
     return this.http.get<IBookingOptions>(`${DATABASE_URL}/${bookingId}.json`);
   }
 
-  createBooking(bookingOptions: IBookingOptions): Observable<IBookingOptions> {
+  createBooking(
+    newBookingOptions: IBookingOptions
+  ): Observable<IBookingOptions> {
     return this.http
-      .post<IBookingOptions>(`${DATABASE_URL}.json`, bookingOptions)
+      .post<IBookingOptions>(`${DATABASE_URL}.json`, newBookingOptions)
       .pipe(
         map((response: any) => {
-          return { ...bookingOptions, id: response.name };
+          return { ...newBookingOptions, id: response.name };
         })
       );
   }

@@ -93,4 +93,46 @@ export class BookingEffects {
       ),
     { dispatch: false }
   );
+
+  createBooking$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(BookingActions.ActionsType.CREATE_BOOKING),
+      tap(() =>
+        this.store.dispatch(
+          SHOW_MESSAGE_ACTION({ message: SHOW_MESSAGE_VALUES.createBooking })
+        )
+      ),
+      map(
+        (action: { newBooking: IBookingOptions; type: string }) =>
+          action.newBooking
+      ),
+      switchMap((newBooking) => {
+        return this.bookingListService.createBooking(newBooking).pipe(
+          map((booking: IBookingOptions) => {
+            return BookingActions.BOOKING_CREATE_SUCCESS_ACTION({
+              newBooking: booking,
+            });
+          }),
+          catchError((error) =>
+            of(BookingActions.BOOKING_CREATE_FAIL_ACTION({ err: error }))
+          )
+        );
+      })
+    )
+  );
+
+  createBookingFail$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(BookingActions.ActionsType.CREATE_BOOKING_FAIL),
+        tap(() =>
+          this.store.dispatch(
+            SHOW_MESSAGE_ACTION({
+              message: SHOW_MESSAGE_VALUES.createBookingFail,
+            })
+          )
+        )
+      ),
+    { dispatch: false }
+  );
 }

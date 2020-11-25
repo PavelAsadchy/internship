@@ -49,12 +49,12 @@ export const BOOKING_LOAD_FAIL_ACTION = createAction(
 
 export const BOOKING_CREATE_ACTION = createAction(
   ActionsType.CREATE_BOOKING,
-  props<{ booking: IBookingOptions }>()
+  props<{ newBooking: IBookingOptions }>()
 );
 
 export const BOOKING_CREATE_SUCCESS_ACTION = createAction(
   ActionsType.CREATE_BOOKING_SUCCESS,
-  props<{ booking: IBookingOptions }>()
+  props<{ newBooking: IBookingOptions }>()
 );
 
 export const BOOKING_CREATE_FAIL_ACTION = createAction(

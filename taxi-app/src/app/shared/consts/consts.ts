@@ -133,7 +133,7 @@ export const SHOW_MESSAGE_VALUES: IShowMessageOnAction = {
     options: SNACKBAR_OPTIONS,
   },
   loadBookingsFail: {
-    value: 'Fail to load bookings',
+    value: 'Failed to load bookings',
     action: null,
     options: SNACKBAR_OPTIONS,
   },
@@ -143,7 +143,17 @@ export const SHOW_MESSAGE_VALUES: IShowMessageOnAction = {
     options: SNACKBAR_OPTIONS,
   },
   loadBookingFail: {
-    value: 'Fail to load selected booking',
+    value: 'Failed to load selected booking',
+    action: null,
+    options: SNACKBAR_OPTIONS,
+  },
+  createBooking: {
+    value: 'Saving new booking',
+    action: null,
+    options: SNACKBAR_OPTIONS,
+  },
+  createBookingFail: {
+    value: 'Failed to save new booking',
     action: null,
     options: SNACKBAR_OPTIONS,
   },
