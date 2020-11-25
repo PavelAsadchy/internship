@@ -44,17 +44,14 @@ export class BookingListService {
       );
   }
 
-  removeBooking(bookingOptions: IBookingOptions): Observable<void> {
-    return this.http.delete<void>(`${DATABASE_URL}/${bookingOptions.id}.json`);
-  }
-
-  editBooking(
-    bookingOptions: IBookingOptions,
-    newBookingOptions: IBookingOptions
-  ): Observable<IBookingOptions> {
+  updateBooking(bookingOptions: IBookingOptions): Observable<IBookingOptions> {
     return this.http.put<IBookingOptions>(
       `${DATABASE_URL}/${bookingOptions.id}.json`,
-      newBookingOptions
+      bookingOptions
     );
+  }
+
+  removeBooking(bookingOptions: IBookingOptions): Observable<void> {
+    return this.http.delete<void>(`${DATABASE_URL}/${bookingOptions.id}.json`);
   }
 }

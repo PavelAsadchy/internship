@@ -157,4 +157,14 @@ export const SHOW_MESSAGE_VALUES: IShowMessageOnAction = {
     action: null,
     options: SNACKBAR_OPTIONS,
   },
+  updateBooking: {
+    value: 'Updating new options',
+    action: null,
+    options: SNACKBAR_OPTIONS,
+  },
+  updateBookingFail: {
+    value: 'Failed to update new options',
+    action: null,
+    options: SNACKBAR_OPTIONS,
+  },
 };

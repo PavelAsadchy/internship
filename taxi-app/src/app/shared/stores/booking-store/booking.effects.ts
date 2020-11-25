@@ -64,7 +64,7 @@ export class BookingEffects {
         )
       ),
       map((action: { bookingId: string; type: string }) => action.bookingId),
-      switchMap((bookingId) => {
+      switchMap((bookingId: string) => {
         return this.bookingListService.getBookingById(bookingId).pipe(
           map((booking: IBookingOptions) => {
             return BookingActions.BOOKING_LOAD_SUCCESS_ACTION({
@@ -106,7 +106,7 @@ export class BookingEffects {
         (action: { newBooking: IBookingOptions; type: string }) =>
           action.newBooking
       ),
-      switchMap((newBooking) => {
+      switchMap((newBooking: IBookingOptions) => {
         return this.bookingListService.createBooking(newBooking).pipe(
           map((booking: IBookingOptions) => {
             return BookingActions.BOOKING_CREATE_SUCCESS_ACTION({
@@ -129,6 +129,50 @@ export class BookingEffects {
           this.store.dispatch(
             SHOW_MESSAGE_ACTION({
               message: SHOW_MESSAGE_VALUES.createBookingFail,
+            })
+          )
+        )
+      ),
+    { dispatch: false }
+  );
+
+  updateBooking$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(BookingActions.ActionsType.UPDATE_BOOKING),
+      tap(() =>
+        this.store.dispatch(
+          SHOW_MESSAGE_ACTION({ message: SHOW_MESSAGE_VALUES.updateBooking })
+        )
+      ),
+      map(
+        (action: { booking: IBookingOptions; type: string }) => action.booking
+      ),
+      switchMap((booking: IBookingOptions) => {
+        return this.bookingListService.updateBooking(booking).pipe(
+          map((updatedBooking: IBookingOptions) => {
+            return BookingActions.BOOKING_UPDATE_SUCCESS_ACTION({
+              update: {
+                id: updatedBooking.id,
+                changes: updatedBooking,
+              },
+            });
+          }),
+          catchError((error) =>
+            of(BookingActions.BOOKING_UPDATE_FAIL_ACTION({ err: error }))
+          )
+        );
+      })
+    )
+  );
+
+  updateBookingFail$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(BookingActions.ActionsType.UPDATE_BOOKING_FAIL),
+        tap(() =>
+          this.store.dispatch(
+            SHOW_MESSAGE_ACTION({
+              message: SHOW_MESSAGE_VALUES.updateBookingFail,
             })
           )
         )
