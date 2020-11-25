@@ -51,7 +51,7 @@ export class BookingListService {
     );
   }
 
-  removeBooking(bookingOptions: IBookingOptions): Observable<void> {
-    return this.http.delete<void>(`${DATABASE_URL}/${bookingOptions.id}.json`);
+  deleteBooking(bookingId: string): Observable<void> {
+    return this.http.delete<void>(`${DATABASE_URL}/${bookingId}.json`);
   }
 }

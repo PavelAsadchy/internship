@@ -167,4 +167,14 @@ export const SHOW_MESSAGE_VALUES: IShowMessageOnAction = {
     action: null,
     options: SNACKBAR_OPTIONS,
   },
+  deleteBookingSuccess: {
+    value: 'Booking was deleted',
+    action: null,
+    options: SNACKBAR_OPTIONS,
+  },
+  deleteBookingFail: {
+    value: 'Failed to delete the booking',
+    action: null,
+    options: SNACKBAR_OPTIONS,
+  },
 };

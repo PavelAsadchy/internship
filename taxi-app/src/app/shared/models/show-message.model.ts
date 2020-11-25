@@ -27,4 +27,6 @@ export interface IShowMessageOnAction {
   createBookingFail: IShowMessage;
   updateBooking: IShowMessage;
   updateBookingFail: IShowMessage;
+  deleteBookingSuccess: IShowMessage;
+  deleteBookingFail: IShowMessage;
 }
