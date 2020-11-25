@@ -17,20 +17,6 @@ export class BookingEffects {
     private readonly bookingListService: BookingListService
   ) {}
 
-  // loadBookings$ = createEffect(
-  //   () =>
-  //     this.actions$.pipe(
-  //       ofType(BookingActions.ActionsType.LOAD_BOOKINGS),
-  //       tap((action) => {
-  //         console.log(action);
-  //         this.bookingListService
-  //           .loadBooking()
-  //           .subscribe((res) => console.log(res));
-  //       })
-  //     ),
-  //   { dispatch: false }
-  // );
-
   loadBookings$ = createEffect(() =>
     this.actions$.pipe(
       ofType(BookingActions.ActionsType.LOAD_BOOKINGS),
@@ -40,14 +26,14 @@ export class BookingEffects {
         )
       ),
       switchMap(() => {
-        return this.bookingListService.loadBooking().pipe(
+        return this.bookingListService.loadBookings().pipe(
           map((bookings: IBookingOptions[]) => {
-            return BookingActions.BOOKING_LOAD_SUCCESS_ACTION({
+            return BookingActions.BOOKINGS_LOAD_SUCCESS_ACTION({
               bookingList: bookings,
             });
           }),
           catchError((error) =>
-            of(BookingActions.BOOKING_LOAD_FAIL_ACTION({ err: error }))
+            of(BookingActions.BOOKINGS_LOAD_FAIL_ACTION({ err: error }))
           )
         );
       })
@@ -62,6 +48,45 @@ export class BookingEffects {
           this.store.dispatch(
             SHOW_MESSAGE_ACTION({
               message: SHOW_MESSAGE_VALUES.loadBookingsFail,
+            })
+          )
+        )
+      ),
+    { dispatch: false }
+  );
+
+  loadBooking$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(BookingActions.ActionsType.LOAD_BOOKING),
+      tap(() =>
+        this.store.dispatch(
+          SHOW_MESSAGE_ACTION({ message: SHOW_MESSAGE_VALUES.loadBooking })
+        )
+      ),
+      map((action: { bookingId: string; type: string }) => action.bookingId),
+      switchMap((bookingId) => {
+        return this.bookingListService.getBookingById(bookingId).pipe(
+          map((booking: IBookingOptions) => {
+            return BookingActions.BOOKING_LOAD_SUCCESS_ACTION({
+              selectedBooking: booking,
+            });
+          }),
+          catchError((error) =>
+            of(BookingActions.BOOKING_LOAD_FAIL_ACTION({ err: error }))
+          )
+        );
+      })
+    )
+  );
+
+  loadBookingFail$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(BookingActions.ActionsType.LOAD_BOOKING_FAIL),
+        tap(() =>
+          this.store.dispatch(
+            SHOW_MESSAGE_ACTION({
+              message: SHOW_MESSAGE_VALUES.loadBookingFail,
             })
           )
         )

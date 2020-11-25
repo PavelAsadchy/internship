@@ -8,13 +8,13 @@ import {
 
 const bookingReducer = createReducer(
   INITIAL_BOOKING_STATE,
-  on(BookingActions.BOOKING_LOAD_ACTION, (state) => ({
+  on(BookingActions.BOOKINGS_LOAD_ACTION, (state) => ({
     ...state,
     loading: true,
     loaded: false,
     errorMessage: null,
   })),
-  on(BookingActions.BOOKING_LOAD_SUCCESS_ACTION, (state, { bookingList }) => {
+  on(BookingActions.BOOKINGS_LOAD_SUCCESS_ACTION, (state, { bookingList }) => {
     return bookingAdapter.setAll(bookingList, {
       ...state,
       loading: false,
@@ -22,7 +22,7 @@ const bookingReducer = createReducer(
       errorMessage: null,
     });
   }),
-  on(BookingActions.BOOKING_LOAD_FAIL_ACTION, (state, { err }) => ({
+  on(BookingActions.BOOKINGS_LOAD_FAIL_ACTION, (state, { err }) => ({
     ...state,
     entities: {},
     loading: false,

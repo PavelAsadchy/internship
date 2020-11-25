@@ -13,6 +13,7 @@ import { AgmCoreModule } from '@agm/core';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { GlobalStoreModule } from './shared/stores/global-store.module';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],
@@ -30,6 +31,7 @@ import { GlobalStoreModule } from './shared/stores/global-store.module';
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     GlobalStoreModule,
+    StoreDevtoolsModule.instrument(),
   ],
   providers: [],
   bootstrap: [AppComponent],

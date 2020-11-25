@@ -128,13 +128,23 @@ export const SHOW_MESSAGE_VALUES: IShowMessageOnAction = {
     options: SNACKBAR_OPTIONS,
   },
   loadBookings: {
-    value: 'Loading bookings',
-    action: 'Ok',
+    value: 'Loading bookings list',
+    action: null,
     options: SNACKBAR_OPTIONS,
   },
   loadBookingsFail: {
     value: 'Fail to load bookings',
-    action: 'Ok',
+    action: null,
+    options: SNACKBAR_OPTIONS,
+  },
+  loadBooking: {
+    value: 'Getting selected booking',
+    action: null,
+    options: SNACKBAR_OPTIONS,
+  },
+  loadBookingFail: {
+    value: 'Fail to load selected booking',
+    action: null,
     options: SNACKBAR_OPTIONS,
   },
 };

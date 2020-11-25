@@ -15,19 +15,9 @@ export class BookingListService {
     this.http = new HttpClient(handler);
   }
 
-  createBooking(bookingOptions: IBookingOptions): Observable<IBookingOptions> {
-    return this.http
-      .post<IBookingOptions>(`${DATABASE_URL}.json`, bookingOptions)
-      .pipe(
-        map((response: any) => {
-          return { ...bookingOptions, id: response.name };
-        })
-      );
-  }
-
-  loadBooking(): Observable<any> {
-    return this.http.get<any>(`${DATABASE_URL}.json`).pipe(
-      map((savedBookings: any) => {
+  loadBookings(): Observable<IBookingOptions[]> {
+    return this.http.get<IBookingOptions[]>(`${DATABASE_URL}.json`).pipe(
+      map((savedBookings: IBookingOptions[]) => {
         return savedBookings
           ? Object.keys(savedBookings).map((key: string) => ({
               ...savedBookings[key],
@@ -36,6 +26,20 @@ export class BookingListService {
           : [];
       })
     );
+  }
+
+  getBookingById(bookingId: string): Observable<IBookingOptions> {
+    return this.http.get<IBookingOptions>(`${DATABASE_URL}/${bookingId}.json`);
+  }
+
+  createBooking(bookingOptions: IBookingOptions): Observable<IBookingOptions> {
+    return this.http
+      .post<IBookingOptions>(`${DATABASE_URL}.json`, bookingOptions)
+      .pipe(
+        map((response: any) => {
+          return { ...bookingOptions, id: response.name };
+        })
+      );
   }
 
   removeBooking(bookingOptions: IBookingOptions): Observable<void> {
