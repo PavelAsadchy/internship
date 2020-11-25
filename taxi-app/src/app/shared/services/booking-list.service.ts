@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpBackend, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -9,7 +9,11 @@ import { IBookingOptions } from '../models/booking-options.model';
   providedIn: 'root',
 })
 export class BookingListService {
-  constructor(private http: HttpClient) {}
+  private http: HttpClient;
+
+  constructor(handler: HttpBackend) {
+    this.http = new HttpClient(handler);
+  }
 
   createBooking(bookingOptions: IBookingOptions): Observable<IBookingOptions> {
     return this.http
