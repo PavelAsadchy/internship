@@ -179,4 +179,48 @@ export class BookingEffects {
       ),
     { dispatch: false }
   );
+
+  deleteBooking$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(BookingActions.ActionsType.UPDATE_BOOKING),
+      tap(() =>
+        this.store.dispatch(
+          SHOW_MESSAGE_ACTION({ message: SHOW_MESSAGE_VALUES.updateBooking })
+        )
+      ),
+      map(
+        (action: { booking: IBookingOptions; type: string }) => action.booking
+      ),
+      switchMap((booking: IBookingOptions) => {
+        return this.bookingListService.updateBooking(booking).pipe(
+          map((updatedBooking: IBookingOptions) => {
+            return BookingActions.BOOKING_UPDATE_SUCCESS_ACTION({
+              update: {
+                id: updatedBooking.id,
+                changes: updatedBooking,
+              },
+            });
+          }),
+          catchError((error) =>
+            of(BookingActions.BOOKING_UPDATE_FAIL_ACTION({ err: error }))
+          )
+        );
+      })
+    )
+  );
+
+  deleteBookingFail$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(BookingActions.ActionsType.UPDATE_BOOKING_FAIL),
+        tap(() =>
+          this.store.dispatch(
+            SHOW_MESSAGE_ACTION({
+              message: SHOW_MESSAGE_VALUES.updateBookingFail,
+            })
+          )
+        )
+      ),
+    { dispatch: false }
+  );
 }
