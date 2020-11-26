@@ -18,6 +18,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { Ng2TelInputModule } from 'ng2-tel-input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   imports: [
@@ -41,6 +43,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     Ng2TelInputModule,
     MatSnackBarModule,
     MatDialogModule,
+    MatTableModule,
+    MatPaginatorModule,
   ],
   exports: [
     CommonModule,
@@ -62,6 +66,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatCheckboxModule,
     Ng2TelInputModule,
     MatSnackBarModule,
+    MatTableModule,
+    MatPaginatorModule,
   ],
 })
 export class SharedModule {}

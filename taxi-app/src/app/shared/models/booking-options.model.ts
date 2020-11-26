@@ -11,8 +11,8 @@ interface IRadioSection extends IHeadings {
 
 export interface IVehicle {
   name: string;
-  img: string;
-  capacity: string;
+  img?: string;
+  capacity?: string;
 }
 
 export interface IChannel {
@@ -20,13 +20,13 @@ export interface IChannel {
 }
 
 export interface IPickUp extends IHeadings {
-  time: IRadioSection;
-  point: IRadioSection;
+  time?: IRadioSection;
+  point?: IRadioSection;
   address: string;
 }
 
 export interface IDropOff extends IHeadings {
-  point: IRadioSection;
+  point?: IRadioSection;
   address: string;
 }
 
@@ -63,14 +63,14 @@ export interface IPayment {
 export interface INotes extends IHeadings {}
 
 export interface IBookingOptions {
-  bookingChannel: IChannel;
+  bookingChannel?: IChannel;
   pickUp: IPickUp;
   dropOff: IDropOff;
   vehicle: IVehicleList;
   customerInformation: IClientInformation;
-  passengerInformation: IClientInformation;
-  payment: IPayment;
-  notes: INotes;
+  passengerInformation?: IClientInformation;
+  payment?: IPayment;
+  notes?: INotes;
   id?: string;
 }
 
