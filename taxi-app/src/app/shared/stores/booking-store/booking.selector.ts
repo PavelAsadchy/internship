@@ -1,6 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { bookingAdapter, IBookingState } from './booking.state';
-import * as fromBooking from './booking.state';
 
 export const FEATURE_KEY = 'booking';
 

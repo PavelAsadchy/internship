@@ -183,11 +183,6 @@ export class BookingEffects {
   deleteBooking$ = createEffect(() =>
     this.actions$.pipe(
       ofType(BookingActions.ActionsType.DELETE_BOOKING),
-      // tap(() =>
-      //   this.store.dispatch(
-      //     SHOW_MESSAGE_ACTION({ message: SHOW_MESSAGE_VALUES.updateBooking })
-      //   )
-      // ),
       map((action: { bookingId: string; type: string }) => action.bookingId),
       switchMap((id: string) => {
         return this.bookingListService.deleteBooking(id).pipe(

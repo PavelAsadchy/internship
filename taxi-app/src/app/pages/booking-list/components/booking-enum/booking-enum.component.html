@@ -3,3 +3,9 @@
 <button (click)="trigger()">trigger</button>
 
 <div>Is loading: {{ isLoading$ | async }}</div>
+
+<ul>
+    <li *ngFor="let booking of (bookingList$ | async)">
+        {{booking.bookingChannel.channel }}
+    </li>
+</ul>

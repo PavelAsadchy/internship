@@ -2,7 +2,6 @@ import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { IBookingOptions } from '../../models/booking-options.model';
 
 export interface IBookingState extends EntityState<IBookingOptions> {
-  // data: IBookingOptions[];
   selectedBookingId: string;
   loading: boolean;
   loaded: boolean;

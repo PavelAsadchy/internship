@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IBookingOptions } from 'src/app/shared/models/booking-options.model';
-import { BookingListService } from 'src/app/shared/services/booking-list.service';
 import { BOOKINGS_LOAD_ACTION } from 'src/app/shared/stores/booking-store/booking.actions';
 import {
   SELECT_BOOKING_LIST,
@@ -21,11 +20,7 @@ export class BookingEnumComponent implements OnInit {
   bookingList$: Observable<IBookingOptions[]>;
   isLoading$: Observable<boolean>;
 
-  constructor(
-    private store: Store<IBookingState>,
-    private bookingListService: BookingListService,
-    public dialog: MatDialog
-  ) {}
+  constructor(private store: Store<IBookingState>, public dialog: MatDialog) {}
 
   ngOnInit() {
     this.store.dispatch(BOOKINGS_LOAD_ACTION());
@@ -33,10 +28,6 @@ export class BookingEnumComponent implements OnInit {
     this.isLoading$ = this.store.pipe(select(SELECT_BOOKING_LOADING));
   }
   trigger(): void {
-    // this.store.dispatch(BOOKING_DELETE_CONFIRM_ACTION());
     this.dialog.open(DeleteBookingConfirmComponent);
-    // console.log(this.bookingList$);
-    // this.store.dispatch(BOOKINGS_LOAD_ACTION());
-    // this.bookingListService.loadBookings().subscribe((res) => console.log(res));
   }
 }
