@@ -92,12 +92,4 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
       this.bookingOptionsForm.controls[control].get(field).status === 'INVALID'
     );
   }
-
-  trigger() {
-    let formObj = this.bookingOptionsForm.getRawValue();
-    console.log(formObj);
-    this.bookingListService
-      .createBooking(formObj)
-      .subscribe((resp) => console.log(resp));
-  }
 }
