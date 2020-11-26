@@ -28,26 +28,45 @@ const bookingReducer = createReducer(
     loading: false,
     loaded: false,
     errorMessage: err,
+  })),
+
+  on(
+    BookingActions.BOOKING_LOAD_SUCCESS_ACTION,
+    (state, { selectedBooking }) => {
+      return bookingAdapter.addOne(selectedBooking, {
+        ...state,
+        selectedBookingId: selectedBooking.id,
+      });
+    }
+  ),
+  on(BookingActions.BOOKING_LOAD_FAIL_ACTION, (state, { err }) => ({
+    ...state,
+    errorMessage: err,
+  })),
+
+  on(BookingActions.BOOKING_CREATE_SUCCESS_ACTION, (state, { newBooking }) => {
+    return bookingAdapter.addOne(newBooking, state);
+  }),
+  on(BookingActions.BOOKING_CREATE_FAIL_ACTION, (state, { err }) => ({
+    ...state,
+    errorMessage: err,
+  })),
+
+  on(BookingActions.BOOKING_UPDATE_SUCCESS_ACTION, (state, { update }) => {
+    return bookingAdapter.updateOne(update, state);
+  }),
+  on(BookingActions.BOOKING_UPDATE_FAIL_ACTION, (state, { err }) => ({
+    ...state,
+    errorMessage: err,
+  })),
+
+  on(BookingActions.BOOKING_DELETE_SUCCESS_ACTION, (state, { bookingId }) => {
+    return bookingAdapter.removeOne(bookingId, state);
+  }),
+  on(BookingActions.BOOKING_DELETE_FAIL_ACTION, (state, { err }) => ({
+    ...state,
+    errorMessage: err,
   }))
-  // on(BookingActions.BOOKING_CREATE_ACTION, (state, { booking }) => ({
-  //   ...state,
-  //   loading: true,
-  //   loaded: false,
-  //   errorMessage: null,
-  // })),
-  // on(BookingActions.BOOKING_CREATE_SUCCESS_ACTION, (state, { booking }) => ({
-  //   ...state,
-  //   data: [...state.data, booking],
-  //   loading: false,
-  //   loaded: true,
-  //   errorMessage: null,
-  // })),
-  // on(BookingActions.BOOKING_CREATE_FAIL_ACTION, (state, { err }) => ({
-  //   ...state,
-  //   loading: false,
-  //   loaded: false,
-  //   errorMessage: err,
-  // }))
 );
 
 export function reducer(state: IBookingState | undefined, action: Action) {
