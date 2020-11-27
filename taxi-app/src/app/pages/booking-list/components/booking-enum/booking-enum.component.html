@@ -1,27 +1,8 @@
-<p>booking-enum works!</p>
-
 <button (click)="trigger()">trigger</button>
 
-<div>Is loading: {{ isLoading$ | async }}</div>
-
-<ul>
-    <li *ngFor="let booking of (bookingList$ | async)">
-        {{booking.bookingChannel.channel }}
-    </li>
-</ul>
-
-<table>
-    <tr *ngFor="let booking of (bookingList$ | async)">
-        <td>{{booking.bookingChannel.channel }}</td>
-    </tr>
-</table>
-
-<mat-form-field>
-    <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
-</mat-form-field>
 
 <div class="mat-elevation-z8">
+    <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
     <table mat-table [dataSource]="dataSource" matSort>
 
         <ng-container matColumnDef="vehicle">
@@ -48,7 +29,7 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
         <tr class="mat-row" *matNoDataRow>
-            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+            <!-- <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td> -->
         </tr>
     </table>
 

@@ -1,13 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { select, Store } from '@ngrx/store';
-import { merge, Observable } from 'rxjs';
-import { startWith } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { IBookingOptions } from 'src/app/shared/models/booking-options.model';
-import { BookingListService } from 'src/app/shared/services/booking-list.service';
 import { BOOKINGS_LOAD_ACTION } from 'src/app/shared/stores/booking-store/booking.actions';
 import {
   SELECT_BOOKING_LIST,
@@ -80,7 +78,7 @@ const NAMES: string[] = [
   templateUrl: './booking-enum.component.html',
   styleUrls: ['./booking-enum.component.scss'],
 })
-export class BookingEnumComponent implements OnInit {
+export class BookingEnumComponent implements OnInit, AfterViewInit {
   bookingList$: Observable<IBookingOptions[]>;
   isLoading$: Observable<boolean>;
 
@@ -90,11 +88,7 @@ export class BookingEnumComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(
-    private store: Store<IBookingState>,
-    public dialog: MatDialog,
-    private readonly bookingListService: BookingListService
-  ) {
+  constructor(private store: Store<IBookingState>, public dialog: MatDialog) {
     // Create 100 users
     // const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
     // Assign the data to the data source for the table to render
@@ -103,19 +97,17 @@ export class BookingEnumComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(BOOKINGS_LOAD_ACTION());
-    this.bookingList$ = this.store.pipe(select(SELECT_BOOKING_LIST));
-    this.isLoading$ = this.store.pipe(select(SELECT_BOOKING_LOADING));
-
-    this.bookingListService.loadBookings().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+    this.store.pipe(select(SELECT_BOOKING_LIST)).subscribe((bookings) => {
+      this.dataSource = new MatTableDataSource(bookings);
+      // this.dataSource.paginator = this.paginator;
+      // this.dataSource.sort = this.sort;
     });
+    this.isLoading$ = this.store.pipe(select(SELECT_BOOKING_LOADING));
   }
 
   ngAfterViewInit() {
-    // this.dataSource.paginator = this.paginator;
-    // this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
     // this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
   }
 

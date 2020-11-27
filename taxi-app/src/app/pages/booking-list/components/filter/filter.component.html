@@ -1,1 +1,44 @@
-<p>filter works!</p>
+<div class="filter">
+    <div class="filter__col">
+        <mat-form-field>
+            <mat-label>BookingID</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Booking" #bookingInput>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Price</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Price" #bookingInput>
+        </mat-form-field>
+    </div>
+    <div class="filter__col">
+        <mat-form-field>
+            <mat-label>Search</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Search" #bookingInput>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Statuses</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Statuses" #bookingInput>
+        </mat-form-field>
+    </div>
+    <div class="filter__col">
+        <mat-form-field>
+            <mat-label>From</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="From date" #bookingInput>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Channels</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Channels" #bookingInput>
+        </mat-form-field>
+    </div>
+    <div class="filter__col">
+        <mat-form-field>
+            <mat-label>To</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="To date" #bookingInput>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Vehicle type</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Vehicle type" #bookingInput>
+        </mat-form-field>
+    </div>
+
+</div>
+
