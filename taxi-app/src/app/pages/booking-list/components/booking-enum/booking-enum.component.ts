@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { BOOKING_DISPLAYED_COLUMNS } from 'src/app/shared/consts/consts';
 import { IBookingOptions } from 'src/app/shared/models/booking-options.model';
 import { BOOKINGS_LOAD_ACTION } from 'src/app/shared/stores/booking-store/booking.actions';
 import {
@@ -82,8 +83,7 @@ export class BookingEnumComponent implements OnInit, AfterViewInit {
   bookingList$: Observable<IBookingOptions[]>;
   isLoading$: Observable<boolean>;
 
-  // displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
-  displayedColumns: string[] = ['vehicle'];
+  displayedColumns = BOOKING_DISPLAYED_COLUMNS;
   dataSource: MatTableDataSource<IBookingOptions>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

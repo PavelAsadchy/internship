@@ -178,3 +178,18 @@ export const SHOW_MESSAGE_VALUES: IShowMessageOnAction = {
     options: SNACKBAR_OPTIONS,
   },
 };
+
+export const BOOKING_DISPLAYED_COLUMNS = [
+  'vehicle',
+  'bookRef',
+  'pickUpTime',
+  'extras',
+  'pax',
+  'pickUp',
+  'dropOff',
+  'passenger',
+  'customer',
+  'account',
+  'price',
+  'status',
+];

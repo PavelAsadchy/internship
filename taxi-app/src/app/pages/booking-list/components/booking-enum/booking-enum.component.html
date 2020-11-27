@@ -10,19 +10,59 @@
             <td mat-cell *matCellDef="let row"> {{ row.vehicle.items }} </td>
         </ng-container>
 
-        <ng-container matColumnDef="progress">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Progress </th>
-            <td mat-cell *matCellDef="let row"> {{row.progress}}% </td>
+        <ng-container matColumnDef="bookRef">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Book Ref. </th>
+            <td mat-cell *matCellDef="let row"> {{ row.vehicle.items }} </td>
         </ng-container>
 
-        <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-            <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+        <ng-container matColumnDef="pickUpTime">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Pickup Time </th>
+            <td mat-cell *matCellDef="let row"> {{ row.vehicle.items }} </td>
         </ng-container>
 
-        <ng-container matColumnDef="color">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Color </th>
-            <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.color}} </td>
+        <ng-container matColumnDef="extras">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Extras </th>
+            <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{ row.vehicle.items }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="pax">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Pax </th>
+            <td mat-cell *matCellDef="let row"> {{ row.vehicle.items }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="pickUp">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> PickUp </th>
+            <td mat-cell *matCellDef="let row"> {{ row.vehicle.items }}% </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dropOff">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> DropOff </th>
+            <td mat-cell *matCellDef="let row"> {{ row.vehicle.items }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="passenger">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Passenger </th>
+            <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{ row.vehicle.items }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="customer">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer </th>
+            <td mat-cell *matCellDef="let row"> {{ row.vehicle.items }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="account">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Account </th>
+            <td mat-cell *matCellDef="let row"> {{ row.vehicle.items }}% </td>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
+            <td mat-cell *matCellDef="let row"> {{ row.vehicle.items }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+            <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{ row.vehicle.items }} </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
