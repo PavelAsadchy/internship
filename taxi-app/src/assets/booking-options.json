@@ -54,52 +54,52 @@
         "items": [
             {
                 "name": "Cab",
-                "img": "assets/vehicles/vehicle.png",
+                "img": "assets/vehicles/cab.svg",
                 "capacity": "1-4"
             },
             {
                 "name": "Branded standart Cab",
-                "img": "assets/vehicles/vehicle.png",
+                "img": "assets/vehicles/branded-stand-cab.svg",
                 "capacity": "1-4"
             },
             {
                 "name": "Van",
-                "img": "assets/vehicles/vehicle.png",
+                "img": "assets/vehicles/van.svg",
                 "capacity": "5-8"
             },
             {
                 "name": "Executive Cab",
-                "img": "assets/vehicles/vehicle.png",
+                "img": "assets/vehicles/exec-cab.svg",
                 "capacity": "1-4"
             },
             {
                 "name": "Executive Van",
-                "img": "assets/vehicles/vehicle.png",
+                "img": "assets/vehicles/exec-van.svg",
                 "capacity": "5-8"
             },
             {
                 "name": "Luxury Executive",
-                "img": "assets/vehicles/vehicle.png",
+                "img": "assets/vehicles/luxury-exec.svg",
                 "capacity": "1-4"
             },
             {
                 "name": "Mini Bus",
-                "img": "assets/vehicles/vehicle.png",
+                "img": "assets/vehicles/mini-bus.svg",
                 "capacity": "9-14"
             },
             {
                 "name": "Restricted Mobility",
-                "img": "assets/vehicles/vehicle.png",
+                "img": "assets/vehicles/restr-mobility.svg",
                 "capacity": "1-4"
             },
             {
                 "name": "Vintage",
-                "img": "assets/vehicles/vehicle.png",
+                "img": "assets/vehicles/vintage.svg",
                 "capacity": "1-2"
             },
             {
                 "name": "Luxury Exec. Van",
-                "img": "assets/vehicles/vehicle.png",
+                "img": "assets/vehicles/luxury-exec-van.svg",
                 "capacity": "5-8"
             }
         ],
