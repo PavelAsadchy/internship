@@ -63,17 +63,70 @@ export enum DropOffPointOptions {
 }
 
 export enum VehicleOptions {
-  CAB = 'Cab',
-  BRANDED_STANDART_CAB = 'Branded standart Cab',
-  VAN = 'Van',
-  EXECUTIVE_CAB = 'Executive Cab',
-  EXECUTIVE_VAN = 'Executive Cab',
-  LUXURY_EXECUTIVE = 'Luxury Executive',
-  MINI_BUS = 'Mini Bus',
-  RESTRICTED_MOBILITY = 'Restricted Mobility',
-  VINTAGE = 'Vintage',
-  LUXURY_EXEV_VAN = 'Luxury Exec. Van',
+  CAB = 'CAB',
+  BRANDED_STANDART_CAB = 'BRANDED_STANDART_CAB',
+  VAN = 'VAN',
+  EXECUTIVE_CAB = 'EXECUTIVE_CAB',
+  EXECUTIVE_VAN = 'EXECUTIVE_VAN',
+  LUXURY_EXECUTIVE = 'LUXURY_EXECUTIVE',
+  MINI_BUS = 'MINI_BUS',
+  RESTRICTED_MOBILITY = 'RESTRICTED_MOBILITY',
+  VINTAGE = 'VINTAGE',
+  LUXURY_EXEC_VAN = 'LUXURY_EXEC_VAN',
 }
+
+export const VEHICLE_LIST = {
+  [VehicleOptions.CAB]: {
+    name: 'Cab',
+    img: 'assets/vehicles/cab.svg',
+    capacity: '1-4',
+  },
+  [VehicleOptions.BRANDED_STANDART_CAB]: {
+    name: 'Branded standart Cab',
+    img: 'assets/vehicles/branded-stand-cab.svg',
+    capacity: '1-4',
+  },
+  [VehicleOptions.VAN]: {
+    name: 'Van',
+    img: 'assets/vehicles/van.svg',
+    capacity: '5-8',
+  },
+  [VehicleOptions.EXECUTIVE_CAB]: {
+    name: 'Executive Cab',
+    img: 'assets/vehicles/exec-cab.svg',
+    capacity: '1-4',
+  },
+  [VehicleOptions.EXECUTIVE_VAN]: {
+    name: 'Executive Van',
+    img: 'assets/vehicles/exec-van.svg',
+    capacity: '5-8',
+  },
+  [VehicleOptions.LUXURY_EXECUTIVE]: {
+    name: 'Luxury Executive',
+    img: 'assets/vehicles/luxury-exec.svg',
+    capacity: '1-4',
+  },
+  [VehicleOptions.MINI_BUS]: {
+    name: 'Mini Bus',
+    img: 'assets/vehicles/mini-bus.svg',
+    capacity: '9-14',
+  },
+  [VehicleOptions.RESTRICTED_MOBILITY]: {
+    name: 'Restricted Mobility',
+    img: 'assets/vehicles/restr-mobility.svg',
+    capacity: '1-4',
+  },
+  [VehicleOptions.VINTAGE]: {
+    name: 'Vintage',
+    img: 'assets/vehicles/vintage.svg',
+    capacity: '1-2',
+  },
+  [VehicleOptions.LUXURY_EXEC_VAN]: {
+    name: 'Luxury Exec. Van',
+    img: 'assets/vehicles/luxury-exec-van.svg',
+    capacity: '5-8',
+  },
+};
 
 export enum PaymentChannels {
   IN_VEHICLE = 'In Vehicle',
