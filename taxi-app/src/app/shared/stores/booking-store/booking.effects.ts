@@ -40,21 +40,6 @@ export class BookingEffects {
     )
   );
 
-  loadBookingsFail$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(BookingActions.ActionsType.LOAD_BOOKINGS_FAIL),
-        tap(() =>
-          this.store.dispatch(
-            SHOW_MESSAGE_ACTION({
-              message: SHOW_MESSAGE_VALUES.loadBookingsFail,
-            })
-          )
-        )
-      ),
-    { dispatch: false }
-  );
-
   loadBooking$ = createEffect(() =>
     this.actions$.pipe(
       ofType(BookingActions.ActionsType.LOAD_BOOKING),
@@ -77,21 +62,6 @@ export class BookingEffects {
         );
       })
     )
-  );
-
-  loadBookingFail$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(BookingActions.ActionsType.LOAD_BOOKING_FAIL),
-        tap(() =>
-          this.store.dispatch(
-            SHOW_MESSAGE_ACTION({
-              message: SHOW_MESSAGE_VALUES.loadBookingFail,
-            })
-          )
-        )
-      ),
-    { dispatch: false }
   );
 
   createBooking$ = createEffect(() =>
@@ -121,21 +91,6 @@ export class BookingEffects {
     )
   );
 
-  createBookingFail$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(BookingActions.ActionsType.CREATE_BOOKING_FAIL),
-        tap(() =>
-          this.store.dispatch(
-            SHOW_MESSAGE_ACTION({
-              message: SHOW_MESSAGE_VALUES.createBookingFail,
-            })
-          )
-        )
-      ),
-    { dispatch: false }
-  );
-
   updateBooking$ = createEffect(() =>
     this.actions$.pipe(
       ofType(BookingActions.ActionsType.UPDATE_BOOKING),
@@ -163,21 +118,6 @@ export class BookingEffects {
         );
       })
     )
-  );
-
-  updateBookingFail$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(BookingActions.ActionsType.UPDATE_BOOKING_FAIL),
-        tap(() =>
-          this.store.dispatch(
-            SHOW_MESSAGE_ACTION({
-              message: SHOW_MESSAGE_VALUES.updateBookingFail,
-            })
-          )
-        )
-      ),
-    { dispatch: false }
   );
 
   deleteBooking$ = createEffect(() =>
@@ -214,17 +154,61 @@ export class BookingEffects {
     { dispatch: false }
   );
 
-  deleteBookingFail$ = createEffect(
+  bookingActionsFail$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(BookingActions.ActionsType.DELETE_BOOKING_FAIL),
-        tap(() =>
-          this.store.dispatch(
-            SHOW_MESSAGE_ACTION({
-              message: SHOW_MESSAGE_VALUES.deleteBookingFail,
-            })
-          )
-        )
+        ofType(
+          BookingActions.ActionsType.LOAD_BOOKINGS_FAIL,
+          BookingActions.ActionsType.LOAD_BOOKING_FAIL,
+          BookingActions.ActionsType.CREATE_BOOKING_FAIL,
+          BookingActions.ActionsType.UPDATE_BOOKING_FAIL,
+          BookingActions.ActionsType.DELETE_BOOKING_FAIL
+        ),
+        tap((action: { err: string; type: string }) => {
+          switch (action.type) {
+            case BookingActions.ActionsType.LOAD_BOOKINGS_FAIL:
+              this.store.dispatch(
+                SHOW_MESSAGE_ACTION({
+                  message: SHOW_MESSAGE_VALUES.loadBookingsFail,
+                })
+              );
+              break;
+            case BookingActions.ActionsType.LOAD_BOOKING_FAIL:
+              this.store.dispatch(
+                SHOW_MESSAGE_ACTION({
+                  message: SHOW_MESSAGE_VALUES.loadBookingFail,
+                })
+              );
+              break;
+            case BookingActions.ActionsType.CREATE_BOOKING_FAIL:
+              this.store.dispatch(
+                SHOW_MESSAGE_ACTION({
+                  message: SHOW_MESSAGE_VALUES.createBookingFail,
+                })
+              );
+              break;
+            case BookingActions.ActionsType.UPDATE_BOOKING_FAIL:
+              this.store.dispatch(
+                SHOW_MESSAGE_ACTION({
+                  message: SHOW_MESSAGE_VALUES.updateBookingFail,
+                })
+              );
+              break;
+            case BookingActions.ActionsType.DELETE_BOOKING_FAIL:
+              this.store.dispatch(
+                SHOW_MESSAGE_ACTION({
+                  message: SHOW_MESSAGE_VALUES.deleteBookingFail,
+                })
+              );
+              break;
+            default:
+              this.store.dispatch(
+                SHOW_MESSAGE_ACTION({
+                  message: SHOW_MESSAGE_VALUES.defaultBookingActionFail,
+                })
+              );
+          }
+        })
       ),
     { dispatch: false }
   );
