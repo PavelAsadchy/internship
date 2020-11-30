@@ -5,6 +5,7 @@ import { of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { SHOW_MESSAGE_VALUES } from '../../consts/consts';
 import { IBookingOptions } from '../../models/booking-options.model';
+import { IShowMessage } from '../../models/show-message.model';
 import { BookingListService } from '../../services/booking-list.service';
 import { SHOW_MESSAGE_ACTION } from '../message-store/message.actions';
 import * as BookingActions from './booking.actions';
@@ -32,8 +33,12 @@ export class BookingEffects {
               bookingList: bookings,
             });
           }),
-          catchError((error) =>
-            of(BookingActions.LOAD_BOOKINGS_FAIL_ACTION({ err: error }))
+          catchError(() =>
+            of(
+              BookingActions.LOAD_BOOKINGS_FAIL_ACTION({
+                message: SHOW_MESSAGE_VALUES.loadBookingsFail,
+              })
+            )
           )
         );
       })
@@ -56,8 +61,12 @@ export class BookingEffects {
               selectedBooking: booking,
             });
           }),
-          catchError((error) =>
-            of(BookingActions.LOAD_BOOKING_FAIL_ACTION({ err: error }))
+          catchError(() =>
+            of(
+              BookingActions.LOAD_BOOKING_FAIL_ACTION({
+                message: SHOW_MESSAGE_VALUES.loadBookingFail,
+              })
+            )
           )
         );
       })
@@ -83,8 +92,12 @@ export class BookingEffects {
               newBooking: booking,
             });
           }),
-          catchError((error) =>
-            of(BookingActions.CREATE_BOOKING_FAIL_ACTION({ err: error }))
+          catchError(() =>
+            of(
+              BookingActions.CREATE_BOOKING_FAIL_ACTION({
+                message: SHOW_MESSAGE_VALUES.createBookingFail,
+              })
+            )
           )
         );
       })
@@ -112,8 +125,12 @@ export class BookingEffects {
               },
             });
           }),
-          catchError((error) =>
-            of(BookingActions.UPDATE_BOOKING_FAIL_ACTION({ err: error }))
+          catchError(() =>
+            of(
+              BookingActions.UPDATE_BOOKING_FAIL_ACTION({
+                message: SHOW_MESSAGE_VALUES.updateBookingFail,
+              })
+            )
           )
         );
       })
@@ -131,8 +148,12 @@ export class BookingEffects {
               bookingId: id,
             });
           }),
-          catchError((error) =>
-            of(BookingActions.DELETE_BOOKING_FAIL_ACTION({ err: error }))
+          catchError(() =>
+            of(
+              BookingActions.DELETE_BOOKING_FAIL_ACTION({
+                message: SHOW_MESSAGE_VALUES.deleteBookingFail,
+              })
+            )
           )
         );
       })
@@ -164,51 +185,13 @@ export class BookingEffects {
           BookingActions.ActionsType.UPDATE_BOOKING_FAIL,
           BookingActions.ActionsType.DELETE_BOOKING_FAIL
         ),
-        tap((action: { err: string; type: string }) => {
-          switch (action.type) {
-            case BookingActions.ActionsType.LOAD_BOOKINGS_FAIL:
-              this.store.dispatch(
-                SHOW_MESSAGE_ACTION({
-                  message: SHOW_MESSAGE_VALUES.loadBookingsFail,
-                })
-              );
-              break;
-            case BookingActions.ActionsType.LOAD_BOOKING_FAIL:
-              this.store.dispatch(
-                SHOW_MESSAGE_ACTION({
-                  message: SHOW_MESSAGE_VALUES.loadBookingFail,
-                })
-              );
-              break;
-            case BookingActions.ActionsType.CREATE_BOOKING_FAIL:
-              this.store.dispatch(
-                SHOW_MESSAGE_ACTION({
-                  message: SHOW_MESSAGE_VALUES.createBookingFail,
-                })
-              );
-              break;
-            case BookingActions.ActionsType.UPDATE_BOOKING_FAIL:
-              this.store.dispatch(
-                SHOW_MESSAGE_ACTION({
-                  message: SHOW_MESSAGE_VALUES.updateBookingFail,
-                })
-              );
-              break;
-            case BookingActions.ActionsType.DELETE_BOOKING_FAIL:
-              this.store.dispatch(
-                SHOW_MESSAGE_ACTION({
-                  message: SHOW_MESSAGE_VALUES.deleteBookingFail,
-                })
-              );
-              break;
-            default:
-              this.store.dispatch(
-                SHOW_MESSAGE_ACTION({
-                  message: SHOW_MESSAGE_VALUES.defaultBookingActionFail,
-                })
-              );
-          }
-        })
+        tap((action: { message: IShowMessage; type: string }) =>
+          this.store.dispatch(
+            SHOW_MESSAGE_ACTION({
+              message: action.message,
+            })
+          )
+        )
       ),
     { dispatch: false }
   );

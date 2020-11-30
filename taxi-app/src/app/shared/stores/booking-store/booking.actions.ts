@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { IBookingOptions } from '../../models/booking-options.model';
 import { Update } from '@ngrx/entity';
+import { IShowMessage } from '../../models/show-message.model';
 
 export enum ActionsType {
   LOAD_BOOKINGS = '[BOOKING] Load Bookings',
@@ -29,7 +30,7 @@ export const LOAD_BOOKINGS_SUCCESS_ACTION = createAction(
 
 export const LOAD_BOOKINGS_FAIL_ACTION = createAction(
   ActionsType.LOAD_BOOKINGS_FAIL,
-  props<{ err: string }>()
+  props<{ message: IShowMessage }>()
 );
 
 export const LOAD_BOOKING_ACTION = createAction(
@@ -44,7 +45,7 @@ export const LOAD_BOOKING_SUCCESS_ACTION = createAction(
 
 export const LOAD_BOOKING_FAIL_ACTION = createAction(
   ActionsType.LOAD_BOOKING_FAIL,
-  props<{ err: string }>()
+  props<{ message: IShowMessage }>()
 );
 
 export const CREATE_BOOKING_ACTION = createAction(
@@ -59,7 +60,7 @@ export const CREATE_BOOKING_SUCCESS_ACTION = createAction(
 
 export const CREATE_BOOKING_FAIL_ACTION = createAction(
   ActionsType.CREATE_BOOKING_FAIL,
-  props<{ err: string }>()
+  props<{ message: IShowMessage }>()
 );
 
 export const UPDATE_BOOKING_ACTION = createAction(
@@ -74,7 +75,7 @@ export const UPDATE_BOOKING_SUCCESS_ACTION = createAction(
 
 export const UPDATE_BOOKING_FAIL_ACTION = createAction(
   ActionsType.UPDATE_BOOKING_FAIL,
-  props<{ err: string }>()
+  props<{ message: IShowMessage }>()
 );
 
 export const DELETE_BOOKING_ACTION = createAction(
@@ -89,5 +90,5 @@ export const DELETE_BOOKING_SUCCESS_ACTION = createAction(
 
 export const DELETE_BOOKING_FAIL_ACTION = createAction(
   ActionsType.DELETE_BOOKING_FAIL,
-  props<{ err: string }>()
+  props<{ message: IShowMessage }>()
 );
