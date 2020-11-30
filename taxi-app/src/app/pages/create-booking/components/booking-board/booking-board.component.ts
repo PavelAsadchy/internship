@@ -16,6 +16,11 @@ import { BookingOptionsService } from 'src/app/shared/services/booking-options.s
 import { CreateBookingCalculationService } from 'src/app/shared/services/create-booking-calculation.service';
 import { takeUntil } from 'rxjs/operators';
 import { BookingListService } from 'src/app/shared/services/booking-list.service';
+import { Store } from '@ngrx/store';
+import { IBookingState } from 'src/app/shared/stores/booking-store/booking.state';
+import { CREATE_BOOKING_ACTION } from 'src/app/shared/stores/booking-store/booking.actions';
+import { IBooking } from 'src/app/shared/models/booking.model';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-booking-board',
@@ -49,6 +54,7 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
 
   constructor(
     private fb: FormBuilder,
+    private store: Store<IBookingState>,
     private readonly bookingOptionsService: BookingOptionsService,
     private readonly createBookingCalculationService: CreateBookingCalculationService,
     private readonly bookingListService: BookingListService
@@ -76,7 +82,14 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
   }
 
   onBookingOptionsSubmit(): void {
-    this.createBookingCalculationService.formSubmit(this.bookingOptionsForm);
+    const formObj: IBooking = {
+      ...this.bookingOptionsForm.getRawValue(),
+      price: this.price,
+      pickUpTime: this.setPickUpTime(),
+    };
+    console.log(formObj);
+    // this.store.dispatch(CREATE_BOOKING_ACTION({ newBooking: formObj }));
+    // this.createBookingCalculationService.formSubmit(this.bookingOptionsForm);
   }
 
   checkFormValidity(): boolean {
@@ -90,6 +103,13 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
   checkFieldValidity(control: string, field: string): boolean {
     return (
       this.bookingOptionsForm.controls[control].get(field).status === 'INVALID'
+    );
+  }
+
+  setPickUpTime(): moment.Moment {
+    const timeProperty = this.bookingOptionsForm.get('pickUp.time').value;
+    return this.createBookingCalculationService.createPermissibleTimeLag(
+      timeProperty
     );
   }
 }

@@ -1,4 +1,5 @@
 <div class="booking-board" *ngIf="bookingOptions">
+    <button (click)="onBookingOptionsSubmit()">trigger</button>
     <form
         class="booking-board__form"
         [formGroup]="bookingOptionsForm"

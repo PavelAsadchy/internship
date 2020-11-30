@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+// import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import * as moment from 'moment';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -8,7 +9,7 @@ import { BehaviorSubject } from 'rxjs';
 export class CreateBookingCalculationService {
   price$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
-  constructor(private http: HttpClient) {}
+  // constructor(private http: HttpClient) {}
 
   createRandomCalculation(bookingOptions): void {
     if (!bookingOptions.vehicle.items) {
@@ -58,9 +59,23 @@ export class CreateBookingCalculationService {
     }
   }
 
-  randomPrice(min, max): number {
+  randomPrice(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min) + min);
   }
 
-  formSubmit(form): void {}
+  createPermissibleTimeLag(property) {
+    if (!property) return;
+
+    const now = moment();
+
+    switch (property) {
+      case 'NOW':
+        return now.add(10, 'minutes');
+
+      case 'LATER':
+        return now.add(30, 'minutes');
+    }
+  }
+
+  // formSubmit(form): void {}
 }
