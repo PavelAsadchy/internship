@@ -14,7 +14,6 @@ import { AUTH_REFRESH_TOKEN } from '../stores/auth-store/auth.actions';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-
   constructor(
     private readonly authService: AuthService,
     private store: Store
@@ -55,6 +54,6 @@ export class AuthInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     this.store.dispatch(AUTH_REFRESH_TOKEN());
-    return next.handle(this.addToken(request, this.authService.getJwtToken()))
+    return next.handle(this.addToken(request, this.authService.getJwtToken()));
   }
 }

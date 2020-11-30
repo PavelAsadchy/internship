@@ -17,6 +17,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { Ng2TelInputModule } from 'ng2-tel-input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatCheckboxModule,
     Ng2TelInputModule,
     MatSnackBarModule,
+    MatDialogModule,
   ],
   exports: [
     CommonModule,
@@ -60,6 +62,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatCheckboxModule,
     Ng2TelInputModule,
     MatSnackBarModule,
-  ]
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}
