@@ -28,12 +28,12 @@ export class BookingEffects {
       switchMap(() => {
         return this.bookingListService.loadBookings().pipe(
           map((bookings: IBookingOptions[]) => {
-            return BookingActions.BOOKINGS_LOAD_SUCCESS_ACTION({
+            return BookingActions.LOAD_BOOKINGS_SUCCESS_ACTION({
               bookingList: bookings,
             });
           }),
           catchError((error) =>
-            of(BookingActions.BOOKINGS_LOAD_FAIL_ACTION({ err: error }))
+            of(BookingActions.LOAD_BOOKINGS_FAIL_ACTION({ err: error }))
           )
         );
       })
@@ -67,12 +67,12 @@ export class BookingEffects {
       switchMap((bookingId: string) => {
         return this.bookingListService.getBookingById(bookingId).pipe(
           map((booking: IBookingOptions) => {
-            return BookingActions.BOOKING_LOAD_SUCCESS_ACTION({
+            return BookingActions.LOAD_BOOKING_SUCCESS_ACTION({
               selectedBooking: booking,
             });
           }),
           catchError((error) =>
-            of(BookingActions.BOOKING_LOAD_FAIL_ACTION({ err: error }))
+            of(BookingActions.LOAD_BOOKING_FAIL_ACTION({ err: error }))
           )
         );
       })
@@ -109,12 +109,12 @@ export class BookingEffects {
       switchMap((newBooking: IBookingOptions) => {
         return this.bookingListService.createBooking(newBooking).pipe(
           map((booking: IBookingOptions) => {
-            return BookingActions.BOOKING_CREATE_SUCCESS_ACTION({
+            return BookingActions.CREATE_BOOKING_SUCCESS_ACTION({
               newBooking: booking,
             });
           }),
           catchError((error) =>
-            of(BookingActions.BOOKING_CREATE_FAIL_ACTION({ err: error }))
+            of(BookingActions.CREATE_BOOKING_FAIL_ACTION({ err: error }))
           )
         );
       })
@@ -150,7 +150,7 @@ export class BookingEffects {
       switchMap((booking: IBookingOptions) => {
         return this.bookingListService.updateBooking(booking).pipe(
           map((updatedBooking: IBookingOptions) => {
-            return BookingActions.BOOKING_UPDATE_SUCCESS_ACTION({
+            return BookingActions.UPDATE_BOOKING_SUCCESS_ACTION({
               update: {
                 id: updatedBooking.id,
                 changes: updatedBooking,
@@ -158,7 +158,7 @@ export class BookingEffects {
             });
           }),
           catchError((error) =>
-            of(BookingActions.BOOKING_UPDATE_FAIL_ACTION({ err: error }))
+            of(BookingActions.UPDATE_BOOKING_FAIL_ACTION({ err: error }))
           )
         );
       })
@@ -187,12 +187,12 @@ export class BookingEffects {
       switchMap((id: string) => {
         return this.bookingListService.deleteBooking(id).pipe(
           map(() => {
-            return BookingActions.BOOKING_DELETE_SUCCESS_ACTION({
+            return BookingActions.DELETE_BOOKING_SUCCESS_ACTION({
               bookingId: id,
             });
           }),
           catchError((error) =>
-            of(BookingActions.BOOKING_DELETE_FAIL_ACTION({ err: error }))
+            of(BookingActions.DELETE_BOOKING_FAIL_ACTION({ err: error }))
           )
         );
       })

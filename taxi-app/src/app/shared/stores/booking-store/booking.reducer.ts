@@ -8,13 +8,13 @@ import {
 
 const bookingReducer = createReducer(
   INITIAL_BOOKING_STATE,
-  on(BookingActions.BOOKINGS_LOAD_ACTION, (state) => ({
+  on(BookingActions.LOAD_BOOKINGS_ACTION, (state) => ({
     ...state,
     loading: true,
     loaded: false,
     errorMessage: null,
   })),
-  on(BookingActions.BOOKINGS_LOAD_SUCCESS_ACTION, (state, { bookingList }) => {
+  on(BookingActions.LOAD_BOOKINGS_SUCCESS_ACTION, (state, { bookingList }) => {
     return bookingAdapter.setAll(bookingList, {
       ...state,
       loading: false,
@@ -22,7 +22,7 @@ const bookingReducer = createReducer(
       errorMessage: null,
     });
   }),
-  on(BookingActions.BOOKINGS_LOAD_FAIL_ACTION, (state, { err }) => ({
+  on(BookingActions.LOAD_BOOKINGS_FAIL_ACTION, (state, { err }) => ({
     ...state,
     entities: {},
     loading: false,
@@ -31,7 +31,7 @@ const bookingReducer = createReducer(
   })),
 
   on(
-    BookingActions.BOOKING_LOAD_SUCCESS_ACTION,
+    BookingActions.LOAD_BOOKING_SUCCESS_ACTION,
     (state, { selectedBooking }) => {
       return bookingAdapter.addOne(selectedBooking, {
         ...state,
@@ -39,31 +39,31 @@ const bookingReducer = createReducer(
       });
     }
   ),
-  on(BookingActions.BOOKING_LOAD_FAIL_ACTION, (state, { err }) => ({
+  on(BookingActions.LOAD_BOOKING_FAIL_ACTION, (state, { err }) => ({
     ...state,
     errorMessage: err,
   })),
 
-  on(BookingActions.BOOKING_CREATE_SUCCESS_ACTION, (state, { newBooking }) => {
+  on(BookingActions.CREATE_BOOKING_SUCCESS_ACTION, (state, { newBooking }) => {
     return bookingAdapter.addOne(newBooking, state);
   }),
-  on(BookingActions.BOOKING_CREATE_FAIL_ACTION, (state, { err }) => ({
+  on(BookingActions.CREATE_BOOKING_FAIL_ACTION, (state, { err }) => ({
     ...state,
     errorMessage: err,
   })),
 
-  on(BookingActions.BOOKING_UPDATE_SUCCESS_ACTION, (state, { update }) => {
+  on(BookingActions.UPDATE_BOOKING_SUCCESS_ACTION, (state, { update }) => {
     return bookingAdapter.updateOne(update, state);
   }),
-  on(BookingActions.BOOKING_UPDATE_FAIL_ACTION, (state, { err }) => ({
+  on(BookingActions.UPDATE_BOOKING_FAIL_ACTION, (state, { err }) => ({
     ...state,
     errorMessage: err,
   })),
 
-  on(BookingActions.BOOKING_DELETE_SUCCESS_ACTION, (state, { bookingId }) => {
+  on(BookingActions.DELETE_BOOKING_SUCCESS_ACTION, (state, { bookingId }) => {
     return bookingAdapter.removeOne(bookingId, state);
   }),
-  on(BookingActions.BOOKING_DELETE_FAIL_ACTION, (state, { err }) => ({
+  on(BookingActions.DELETE_BOOKING_FAIL_ACTION, (state, { err }) => ({
     ...state,
     errorMessage: err,
   }))
