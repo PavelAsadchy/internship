@@ -5,6 +5,7 @@ import { of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { SHOW_MESSAGE_VALUES } from '../../consts/consts';
 import { IBookingOptions } from '../../models/booking-options.model';
+import { IShowMessage } from '../../models/show-message.model';
 import { BookingListService } from '../../services/booking-list.service';
 import { SHOW_MESSAGE_ACTION } from '../message-store/message.actions';
 import * as BookingActions from './booking.actions';
@@ -28,31 +29,20 @@ export class BookingEffects {
       switchMap(() => {
         return this.bookingListService.loadBookings().pipe(
           map((bookings: IBookingOptions[]) => {
-            return BookingActions.BOOKINGS_LOAD_SUCCESS_ACTION({
+            return BookingActions.LOAD_BOOKINGS_SUCCESS_ACTION({
               bookingList: bookings,
             });
           }),
-          catchError((error) =>
-            of(BookingActions.BOOKINGS_LOAD_FAIL_ACTION({ err: error }))
+          catchError(() =>
+            of(
+              BookingActions.LOAD_BOOKINGS_FAIL_ACTION({
+                message: SHOW_MESSAGE_VALUES.loadBookingsFail,
+              })
+            )
           )
         );
       })
     )
-  );
-
-  loadBookingsFail$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(BookingActions.ActionsType.LOAD_BOOKINGS_FAIL),
-        tap(() =>
-          this.store.dispatch(
-            SHOW_MESSAGE_ACTION({
-              message: SHOW_MESSAGE_VALUES.loadBookingsFail,
-            })
-          )
-        )
-      ),
-    { dispatch: false }
   );
 
   loadBooking$ = createEffect(() =>
@@ -67,31 +57,20 @@ export class BookingEffects {
       switchMap((bookingId: string) => {
         return this.bookingListService.getBookingById(bookingId).pipe(
           map((booking: IBookingOptions) => {
-            return BookingActions.BOOKING_LOAD_SUCCESS_ACTION({
+            return BookingActions.LOAD_BOOKING_SUCCESS_ACTION({
               selectedBooking: booking,
             });
           }),
-          catchError((error) =>
-            of(BookingActions.BOOKING_LOAD_FAIL_ACTION({ err: error }))
+          catchError(() =>
+            of(
+              BookingActions.LOAD_BOOKING_FAIL_ACTION({
+                message: SHOW_MESSAGE_VALUES.loadBookingFail,
+              })
+            )
           )
         );
       })
     )
-  );
-
-  loadBookingFail$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(BookingActions.ActionsType.LOAD_BOOKING_FAIL),
-        tap(() =>
-          this.store.dispatch(
-            SHOW_MESSAGE_ACTION({
-              message: SHOW_MESSAGE_VALUES.loadBookingFail,
-            })
-          )
-        )
-      ),
-    { dispatch: false }
   );
 
   createBooking$ = createEffect(() =>
@@ -109,31 +88,20 @@ export class BookingEffects {
       switchMap((newBooking: IBookingOptions) => {
         return this.bookingListService.createBooking(newBooking).pipe(
           map((booking: IBookingOptions) => {
-            return BookingActions.BOOKING_CREATE_SUCCESS_ACTION({
+            return BookingActions.CREATE_BOOKING_SUCCESS_ACTION({
               newBooking: booking,
             });
           }),
-          catchError((error) =>
-            of(BookingActions.BOOKING_CREATE_FAIL_ACTION({ err: error }))
+          catchError(() =>
+            of(
+              BookingActions.CREATE_BOOKING_FAIL_ACTION({
+                message: SHOW_MESSAGE_VALUES.createBookingFail,
+              })
+            )
           )
         );
       })
     )
-  );
-
-  createBookingFail$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(BookingActions.ActionsType.CREATE_BOOKING_FAIL),
-        tap(() =>
-          this.store.dispatch(
-            SHOW_MESSAGE_ACTION({
-              message: SHOW_MESSAGE_VALUES.createBookingFail,
-            })
-          )
-        )
-      ),
-    { dispatch: false }
   );
 
   updateBooking$ = createEffect(() =>
@@ -150,34 +118,23 @@ export class BookingEffects {
       switchMap((booking: IBookingOptions) => {
         return this.bookingListService.updateBooking(booking).pipe(
           map((updatedBooking: IBookingOptions) => {
-            return BookingActions.BOOKING_UPDATE_SUCCESS_ACTION({
+            return BookingActions.UPDATE_BOOKING_SUCCESS_ACTION({
               update: {
                 id: updatedBooking.id,
                 changes: updatedBooking,
               },
             });
           }),
-          catchError((error) =>
-            of(BookingActions.BOOKING_UPDATE_FAIL_ACTION({ err: error }))
+          catchError(() =>
+            of(
+              BookingActions.UPDATE_BOOKING_FAIL_ACTION({
+                message: SHOW_MESSAGE_VALUES.updateBookingFail,
+              })
+            )
           )
         );
       })
     )
-  );
-
-  updateBookingFail$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(BookingActions.ActionsType.UPDATE_BOOKING_FAIL),
-        tap(() =>
-          this.store.dispatch(
-            SHOW_MESSAGE_ACTION({
-              message: SHOW_MESSAGE_VALUES.updateBookingFail,
-            })
-          )
-        )
-      ),
-    { dispatch: false }
   );
 
   deleteBooking$ = createEffect(() =>
@@ -187,12 +144,16 @@ export class BookingEffects {
       switchMap((id: string) => {
         return this.bookingListService.deleteBooking(id).pipe(
           map(() => {
-            return BookingActions.BOOKING_DELETE_SUCCESS_ACTION({
+            return BookingActions.DELETE_BOOKING_SUCCESS_ACTION({
               bookingId: id,
             });
           }),
-          catchError((error) =>
-            of(BookingActions.BOOKING_DELETE_FAIL_ACTION({ err: error }))
+          catchError(() =>
+            of(
+              BookingActions.DELETE_BOOKING_FAIL_ACTION({
+                message: SHOW_MESSAGE_VALUES.deleteBookingFail,
+              })
+            )
           )
         );
       })
@@ -214,14 +175,20 @@ export class BookingEffects {
     { dispatch: false }
   );
 
-  deleteBookingFail$ = createEffect(
+  bookingActionsFail$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(BookingActions.ActionsType.DELETE_BOOKING_FAIL),
-        tap(() =>
+        ofType(
+          BookingActions.ActionsType.LOAD_BOOKINGS_FAIL,
+          BookingActions.ActionsType.LOAD_BOOKING_FAIL,
+          BookingActions.ActionsType.CREATE_BOOKING_FAIL,
+          BookingActions.ActionsType.UPDATE_BOOKING_FAIL,
+          BookingActions.ActionsType.DELETE_BOOKING_FAIL
+        ),
+        tap((action: { message: IShowMessage; type: string }) =>
           this.store.dispatch(
             SHOW_MESSAGE_ACTION({
-              message: SHOW_MESSAGE_VALUES.deleteBookingFail,
+              message: action.message,
             })
           )
         )

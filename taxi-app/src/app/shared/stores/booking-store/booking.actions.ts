@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { IBookingOptions } from '../../models/booking-options.model';
 import { Update } from '@ngrx/entity';
+import { IShowMessage } from '../../models/show-message.model';
 
 export enum ActionsType {
   LOAD_BOOKINGS = '[BOOKING] Load Bookings',
@@ -20,74 +21,74 @@ export enum ActionsType {
   DELETE_BOOKING_FAIL = '[BOOKING] Delete Booking Fail',
 }
 
-export const BOOKINGS_LOAD_ACTION = createAction(ActionsType.LOAD_BOOKINGS);
+export const LOAD_BOOKINGS_ACTION = createAction(ActionsType.LOAD_BOOKINGS);
 
-export const BOOKINGS_LOAD_SUCCESS_ACTION = createAction(
+export const LOAD_BOOKINGS_SUCCESS_ACTION = createAction(
   ActionsType.LOAD_BOOKINGS_SUCCESS,
   props<{ bookingList: IBookingOptions[] }>()
 );
 
-export const BOOKINGS_LOAD_FAIL_ACTION = createAction(
+export const LOAD_BOOKINGS_FAIL_ACTION = createAction(
   ActionsType.LOAD_BOOKINGS_FAIL,
-  props<{ err: string }>()
+  props<{ message: IShowMessage }>()
 );
 
-export const BOOKING_LOAD_ACTION = createAction(
+export const LOAD_BOOKING_ACTION = createAction(
   ActionsType.LOAD_BOOKING,
   props<{ bookingId: string }>()
 );
 
-export const BOOKING_LOAD_SUCCESS_ACTION = createAction(
+export const LOAD_BOOKING_SUCCESS_ACTION = createAction(
   ActionsType.LOAD_BOOKING_SUCCESS,
   props<{ selectedBooking: IBookingOptions }>()
 );
 
-export const BOOKING_LOAD_FAIL_ACTION = createAction(
+export const LOAD_BOOKING_FAIL_ACTION = createAction(
   ActionsType.LOAD_BOOKING_FAIL,
-  props<{ err: string }>()
+  props<{ message: IShowMessage }>()
 );
 
-export const BOOKING_CREATE_ACTION = createAction(
+export const CREATE_BOOKING_ACTION = createAction(
   ActionsType.CREATE_BOOKING,
   props<{ newBooking: IBookingOptions }>()
 );
 
-export const BOOKING_CREATE_SUCCESS_ACTION = createAction(
+export const CREATE_BOOKING_SUCCESS_ACTION = createAction(
   ActionsType.CREATE_BOOKING_SUCCESS,
   props<{ newBooking: IBookingOptions }>()
 );
 
-export const BOOKING_CREATE_FAIL_ACTION = createAction(
+export const CREATE_BOOKING_FAIL_ACTION = createAction(
   ActionsType.CREATE_BOOKING_FAIL,
-  props<{ err: string }>()
+  props<{ message: IShowMessage }>()
 );
 
-export const BOOKING_UPDATE_ACTION = createAction(
+export const UPDATE_BOOKING_ACTION = createAction(
   ActionsType.UPDATE_BOOKING,
   props<{ booking: IBookingOptions }>()
 );
 
-export const BOOKING_UPDATE_SUCCESS_ACTION = createAction(
+export const UPDATE_BOOKING_SUCCESS_ACTION = createAction(
   ActionsType.UPDATE_BOOKING_SUCCESS,
   props<{ update: Update<IBookingOptions> }>()
 );
 
-export const BOOKING_UPDATE_FAIL_ACTION = createAction(
+export const UPDATE_BOOKING_FAIL_ACTION = createAction(
   ActionsType.UPDATE_BOOKING_FAIL,
-  props<{ err: string }>()
+  props<{ message: IShowMessage }>()
 );
 
-export const BOOKING_DELETE_ACTION = createAction(
+export const DELETE_BOOKING_ACTION = createAction(
   ActionsType.DELETE_BOOKING,
   props<{ bookingId: string }>()
 );
 
-export const BOOKING_DELETE_SUCCESS_ACTION = createAction(
+export const DELETE_BOOKING_SUCCESS_ACTION = createAction(
   ActionsType.DELETE_BOOKING_SUCCESS,
   props<{ bookingId: string }>()
 );
 
-export const BOOKING_DELETE_FAIL_ACTION = createAction(
+export const DELETE_BOOKING_FAIL_ACTION = createAction(
   ActionsType.DELETE_BOOKING_FAIL,
-  props<{ err: string }>()
+  props<{ message: IShowMessage }>()
 );

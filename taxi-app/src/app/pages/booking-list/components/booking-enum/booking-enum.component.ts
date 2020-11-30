@@ -7,7 +7,7 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { BOOKING_DISPLAYED_COLUMNS } from 'src/app/shared/consts/consts';
 import { IBookingOptions } from 'src/app/shared/models/booking-options.model';
-import { BOOKINGS_LOAD_ACTION } from 'src/app/shared/stores/booking-store/booking.actions';
+import { LOAD_BOOKINGS_ACTION } from 'src/app/shared/stores/booking-store/booking.actions';
 import {
   SELECT_BOOKING_LIST,
   SELECT_BOOKING_LOADING,
@@ -96,7 +96,7 @@ export class BookingEnumComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.store.dispatch(BOOKINGS_LOAD_ACTION());
+    this.store.dispatch(LOAD_BOOKINGS_ACTION());
     this.store.pipe(select(SELECT_BOOKING_LIST)).subscribe((bookings) => {
       this.dataSource = new MatTableDataSource(bookings);
       // this.dataSource.paginator = this.paginator;

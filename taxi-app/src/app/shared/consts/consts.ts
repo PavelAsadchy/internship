@@ -177,6 +177,11 @@ export const SHOW_MESSAGE_VALUES: IShowMessageOnAction = {
     action: null,
     options: SNACKBAR_OPTIONS,
   },
+  defaultBookingActionFail: {
+    value: 'Failed to complete',
+    action: null,
+    options: SNACKBAR_OPTIONS,
+  },
 };
 
 export const BOOKING_DISPLAYED_COLUMNS = [
