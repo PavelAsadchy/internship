@@ -12,12 +12,14 @@ import {
   VEHICLE_LIST,
 } from 'src/app/shared/consts/consts';
 import { IBookingOptions } from 'src/app/shared/models/booking-options.model';
+import { IBooking } from 'src/app/shared/models/booking.model';
 import { LOAD_BOOKINGS_ACTION } from 'src/app/shared/stores/booking-store/booking.actions';
 import {
   SELECT_BOOKING_LIST,
   SELECT_BOOKING_LOADING,
 } from 'src/app/shared/stores/booking-store/booking.selector';
 import { IBookingState } from 'src/app/shared/stores/booking-store/booking.state';
+import { BookingItemComponent } from '../booking-item/booking-item.component';
 import { DeleteBookingConfirmComponent } from '../delete-booking-confirm/delete-booking-confirm.component';
 
 // export interface UserData {
@@ -128,8 +130,12 @@ export class BookingEnumComponent implements OnInit, AfterViewInit {
     // }
   }
 
-  openDeleteConfirmation(bookingId: string) {
+  openDeleteConfirmation(bookingId: string): void {
     this.dialog.open(DeleteBookingConfirmComponent, { data: bookingId });
+  }
+
+  openBookingDetails(booking: IBooking): void {
+    this.dialog.open(BookingItemComponent, { data: booking });
   }
 
   trigger(): void {
