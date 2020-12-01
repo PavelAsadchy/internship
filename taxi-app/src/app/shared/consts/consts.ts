@@ -261,3 +261,44 @@ export const BOOKING_DISPLAYED_COLUMNS = [
   'price',
   'status',
 ];
+
+export enum PickUpUrgency {
+  ASAP,
+  MOBILE,
+  DELIVERY,
+  WALKIN,
+  CONCIERGE,
+  IN_15_MIN,
+  STANDART,
+}
+
+export const PICK_UP_URGENCY_COLORS = {
+  [PickUpUrgency.ASAP]: {
+    name: 'asap',
+    color: '#ffd900',
+  },
+  [PickUpUrgency.MOBILE]: {
+    name: 'mobile',
+    color: '#ff00ee',
+  },
+  [PickUpUrgency.DELIVERY]: {
+    name: 'mobile',
+    color: '#ff8c00',
+  },
+  [PickUpUrgency.WALKIN]: {
+    name: 'mobile',
+    color: '#ff8c00',
+  },
+  [PickUpUrgency.CONCIERGE]: {
+    name: 'mobile',
+    color: '#ff00ee',
+  },
+  [PickUpUrgency.IN_15_MIN]: {
+    name: 'in 15 min',
+    color: '#ff2f00',
+  },
+  [PickUpUrgency.STANDART]: {
+    name: 'in 15 min',
+    color: '#666666',
+  },
+};

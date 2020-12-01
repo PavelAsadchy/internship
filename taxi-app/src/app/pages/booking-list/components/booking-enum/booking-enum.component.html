@@ -28,7 +28,7 @@
 
         <ng-container matColumnDef="pickUpTime">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Pickup Time </th>
-            <td mat-cell *matCellDef="let row" [style.color]="row.color">
+            <td mat-cell *matCellDef="let row" appUrgentBackgroundColor>
                 <span class="booking-table__cell-text--small">{{ row.pickUpTime | date:'dd/M/yyyy' }}</span>
                 <div>
                     <span class="booking-table__cell-text--small booking-table__cell-text--bold">{{ row.pickUpTime | date:'h:mm' }}&nbsp;({{ row.pickUpTime | date:'h:mm' }})</span>
