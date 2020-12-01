@@ -6,5 +6,5 @@
 </mat-dialog-content>
 <mat-dialog-actions>
     <button mat-raised-button color="primary" [mat-dialog-close]="true">Cancel</button>
-    <button mat-raised-button color="warn">Delete</button>
+    <button mat-raised-button color="warn" (click)="onDeleteConfirm()">Delete</button>
 </mat-dialog-actions>

@@ -128,8 +128,8 @@ export class BookingEnumComponent implements OnInit, AfterViewInit {
     // }
   }
 
-  openDeleteConfirmation() {
-    this.dialog.open(DeleteBookingConfirmComponent);
+  openDeleteConfirmation(bookingId: string) {
+    this.dialog.open(DeleteBookingConfirmComponent, { data: bookingId });
   }
 
   trigger(): void {
