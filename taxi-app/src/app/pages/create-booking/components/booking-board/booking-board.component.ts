@@ -87,8 +87,9 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
       price: this.price,
       pickUpTime: this.setPickUpTime(),
     };
-    console.log(formObj);
-    // this.store.dispatch(CREATE_BOOKING_ACTION({ newBooking: formObj }));
+    // console.log(formObj);
+    this.store.dispatch(CREATE_BOOKING_ACTION({ newBooking: formObj }));
+    this.bookingOptionsForm.reset();
     // this.createBookingCalculationService.formSubmit(this.bookingOptionsForm);
   }
 
@@ -112,4 +113,8 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
       timeProperty
     );
   }
+
+  // trigger() {
+  //   this.bookingOptionsForm.reset();
+  // }
 }

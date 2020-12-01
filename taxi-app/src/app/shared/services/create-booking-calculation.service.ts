@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
 import { BehaviorSubject } from 'rxjs';
+import { VehicleOptions } from '../consts/consts';
 
 @Injectable({
   providedIn: 'root',
@@ -16,44 +17,44 @@ export class CreateBookingCalculationService {
       return;
     }
 
-    switch (bookingOptions.vehicle.items.name) {
-      case 'Cab':
+    switch (bookingOptions.vehicle.items) {
+      case VehicleOptions.CAB:
         this.price$.next(this.randomPrice(1, 10));
         break;
 
-      case 'Branded standart Cab':
+      case VehicleOptions.BRANDED_STANDART_CAB:
         this.price$.next(this.randomPrice(10, 20));
         break;
 
-      case 'Van':
+      case VehicleOptions.VAN:
         this.price$.next(this.randomPrice(20, 30));
         break;
 
-      case 'Executive Cab':
+      case VehicleOptions.EXECUTIVE_CAB:
         this.price$.next(this.randomPrice(30, 40));
         break;
 
-      case 'Executive Van':
+      case VehicleOptions.EXECUTIVE_VAN:
         this.price$.next(this.randomPrice(40, 50));
         break;
 
-      case 'Luxury Executive':
+      case VehicleOptions.LUXURY_EXECUTIVE:
         this.price$.next(this.randomPrice(50, 60));
         break;
 
-      case 'Mini Bus':
+      case VehicleOptions.MINI_BUS:
         this.price$.next(this.randomPrice(60, 70));
         break;
 
-      case 'Restricted Mobility':
+      case VehicleOptions.RESTRICTED_MOBILITY:
         this.price$.next(this.randomPrice(70, 80));
         break;
 
-      case 'Vintage':
+      case VehicleOptions.VINTAGE:
         this.price$.next(this.randomPrice(80, 90));
         break;
 
-      case 'Luxury Exec. Van':
+      case VehicleOptions.LUXURY_EXEC_VAN:
         this.price$.next(this.randomPrice(90, 100));
         break;
     }
@@ -63,17 +64,13 @@ export class CreateBookingCalculationService {
     return Math.floor(Math.random() * (max - min) + min);
   }
 
-  createPermissibleTimeLag(property) {
-    if (!property) return;
-
+  createPermissibleTimeLag(property: string): moment.Moment {
     const now = moment();
 
-    switch (property) {
-      case 'NOW':
-        return now.add(10, 'minutes');
-
-      case 'LATER':
-        return now.add(30, 'minutes');
+    if (property === 'NOW') {
+      return now.add(10, 'minutes');
+    } else {
+      return now.add(30, 'minutes');
     }
   }
 
