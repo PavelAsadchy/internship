@@ -76,6 +76,7 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatCheckboxModule,
     Ng2TelInputModule,
     MatSnackBarModule,
+    MatDialogModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
