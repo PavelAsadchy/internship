@@ -9,6 +9,7 @@ import {
   BOOKING_DISPLAYED_COLUMNS,
   DropOffPointOptions,
   PickUpPointOptions,
+  PICK_UP_URGENCY_COLORS,
   VEHICLE_LIST,
 } from 'src/app/shared/consts/consts';
 import { IBookingOptions } from 'src/app/shared/models/booking-options.model';
@@ -98,6 +99,7 @@ export class BookingEnumComponent implements OnInit, AfterViewInit {
   vehicleList = VEHICLE_LIST;
   pickUpPoint = PickUpPointOptions;
   dropOffPoint = DropOffPointOptions;
+  pickUpUrgency = PICK_UP_URGENCY_COLORS;
 
   constructor(private store: Store<IBookingState>, public dialog: MatDialog) {
     // Create 100 users
@@ -142,7 +144,7 @@ export class BookingEnumComponent implements OnInit, AfterViewInit {
     // this.dialog.open(DeleteBookingConfirmComponent);
 
     // console.log(this.dataSource.data);
-    console.log(this.pickUpPoint);
+    console.log(this.pickUpUrgency);
   }
 }
 

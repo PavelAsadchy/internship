@@ -87,6 +87,7 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
       price: this.price,
       bookingTime: moment(),
       pickUpTime: this.setPickUpTime(),
+      pickUpUrgency: this.createBookingCalculationService.setRandomPickUpUrgency(),
     };
     // console.log(formObj);
     this.store.dispatch(CREATE_BOOKING_ACTION({ newBooking: formObj }));
@@ -115,7 +116,7 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
     );
   }
 
-  // trigger() {
-  //   this.bookingOptionsForm.reset();
+  // trigger(prop) {
+  //   console.log(prop)
   // }
 }

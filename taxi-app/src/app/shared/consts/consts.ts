@@ -282,15 +282,15 @@ export const PICK_UP_URGENCY_COLORS = {
     color: '#ff00ee',
   },
   [PickUpUrgency.DELIVERY]: {
-    name: 'mobile',
+    name: 'delivery',
     color: '#ff8c00',
   },
   [PickUpUrgency.WALKIN]: {
-    name: 'mobile',
+    name: 'walkin',
     color: '#ff8c00',
   },
   [PickUpUrgency.CONCIERGE]: {
-    name: 'mobile',
+    name: 'concierge',
     color: '#ff00ee',
   },
   [PickUpUrgency.IN_15_MIN]: {
@@ -298,7 +298,7 @@ export const PICK_UP_URGENCY_COLORS = {
     color: '#ff2f00',
   },
   [PickUpUrgency.STANDART]: {
-    name: 'in 15 min',
+    name: 'standart',
     color: '#666666',
   },
 };

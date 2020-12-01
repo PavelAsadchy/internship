@@ -1,9 +1,14 @@
-import { Directive, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
+import { PICK_UP_URGENCY_COLORS } from '../consts/consts';
 
 @Directive({
   selector: '[appUrgentBackgroundColor]',
 })
 export class UrgentBackgroundColorDirective implements OnInit {
+
+  @Input()
+  pickUpUrgency: string;
+
   backgroundColor: string;
 
   constructor(private elementRef: ElementRef, private renderer2: Renderer2) {}
@@ -19,6 +24,6 @@ export class UrgentBackgroundColorDirective implements OnInit {
   }
 
   setBackgroundColor() {
-    this.backgroundColor = 'red';
+    this.backgroundColor = PICK_UP_URGENCY_COLORS[this.pickUpUrgency].color;
   }
 }

@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
 import { BehaviorSubject } from 'rxjs';
-import { VehicleOptions } from '../consts/consts';
+import { PickUpUrgency, PICK_UP_URGENCY_COLORS, VehicleOptions } from '../consts/consts';
 
 @Injectable({
   providedIn: 'root',
@@ -72,6 +72,11 @@ export class CreateBookingCalculationService {
     } else {
       return now.add(30, 'minutes');
     }
+  }
+
+  setRandomPickUpUrgency() {
+    const keys = Object.keys(PickUpUrgency);
+    return keys[Math.round(keys.length * Math.random())];
   }
 
   // formSubmit(form): void {}
