@@ -85,6 +85,7 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
     const formObj: IBooking = {
       ...this.bookingOptionsForm.getRawValue(),
       price: this.price,
+      bookingTime: moment(),
       pickUpTime: this.setPickUpTime(),
     };
     // console.log(formObj);

@@ -5,7 +5,12 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { BOOKING_DISPLAYED_COLUMNS } from 'src/app/shared/consts/consts';
+import {
+  BOOKING_DISPLAYED_COLUMNS,
+  DropOffPointOptions,
+  PickUpPointOptions,
+  VEHICLE_LIST,
+} from 'src/app/shared/consts/consts';
 import { IBookingOptions } from 'src/app/shared/models/booking-options.model';
 import { LOAD_BOOKINGS_ACTION } from 'src/app/shared/stores/booking-store/booking.actions';
 import {
@@ -88,6 +93,10 @@ export class BookingEnumComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
+  vehicleList = VEHICLE_LIST;
+  pickUpPoint = PickUpPointOptions;
+  dropOffPoint = DropOffPointOptions;
+
   constructor(private store: Store<IBookingState>, public dialog: MatDialog) {
     // Create 100 users
     // const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
@@ -119,9 +128,15 @@ export class BookingEnumComponent implements OnInit, AfterViewInit {
     // }
   }
 
+  openDeleteConfirmation() {
+    this.dialog.open(DeleteBookingConfirmComponent);
+  }
+
   trigger(): void {
     // this.dialog.open(DeleteBookingConfirmComponent);
-    console.log(this.dataSource.data);
+
+    // console.log(this.dataSource.data);
+    console.log(this.pickUpPoint);
   }
 }
 

@@ -1,8 +1,38 @@
-table {
+.booking-table {
   width: 100%;
+
+  &__col-data {
+    position: relative;
+    text-align: center;
+
+    & > img {
+      vertical-align: bottom;
+    }
+  }
+
+  &__cell-text {
+    position: absolute;
+    left: 24px;
+    top: 0;
+    z-index: 1;
+    vertical-align: top;
+  }
+
+  &__cell-text--small {
+    font-size: 0.6rem;
+  }
+
+  &__cell-text--bold {
+    font-weight: bold;
+  }
+
+  &__cell-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
-td,
 th {
   // width: 25%;
 }

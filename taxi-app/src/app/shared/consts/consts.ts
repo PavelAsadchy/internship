@@ -80,51 +80,61 @@ export const VEHICLE_LIST = {
     name: 'Cab',
     img: 'assets/vehicles/cab.svg',
     capacity: '1-4',
+    abbr: 'C',
   },
   [VehicleOptions.BRANDED_STANDART_CAB]: {
     name: 'Branded standart Cab',
     img: 'assets/vehicles/branded-stand-cab.svg',
     capacity: '1-4',
+    abbr: 'BSC',
   },
   [VehicleOptions.VAN]: {
     name: 'Van',
     img: 'assets/vehicles/van.svg',
     capacity: '5-8',
+    abbr: 'V',
   },
   [VehicleOptions.EXECUTIVE_CAB]: {
     name: 'Executive Cab',
     img: 'assets/vehicles/exec-cab.svg',
     capacity: '1-4',
+    abbr: 'EC',
   },
   [VehicleOptions.EXECUTIVE_VAN]: {
     name: 'Executive Van',
     img: 'assets/vehicles/exec-van.svg',
     capacity: '5-8',
+    abbr: 'EV',
   },
   [VehicleOptions.LUXURY_EXECUTIVE]: {
     name: 'Luxury Executive',
     img: 'assets/vehicles/luxury-exec.svg',
     capacity: '1-4',
+    abbr: 'LE',
   },
   [VehicleOptions.MINI_BUS]: {
     name: 'Mini Bus',
     img: 'assets/vehicles/mini-bus.svg',
     capacity: '9-14',
+    abbr: 'MB',
   },
   [VehicleOptions.RESTRICTED_MOBILITY]: {
     name: 'Restricted Mobility',
     img: 'assets/vehicles/restr-mobility.svg',
     capacity: '1-4',
+    abbr: 'RM',
   },
   [VehicleOptions.VINTAGE]: {
     name: 'Vintage',
     img: 'assets/vehicles/vintage.svg',
     capacity: '1-2',
+    abbr: 'VG',
   },
   [VehicleOptions.LUXURY_EXEC_VAN]: {
     name: 'Luxury Exec. Van',
     img: 'assets/vehicles/luxury-exec-van.svg',
     capacity: '5-8',
+    abbr: 'LEV',
   },
 };
 
@@ -239,15 +249,15 @@ export const SHOW_MESSAGE_VALUES: IShowMessageOnAction = {
 
 export const BOOKING_DISPLAYED_COLUMNS = [
   'vehicle',
-  'bookRef',
+  // 'bookRef',
   'pickUpTime',
   'extras',
-  'pax',
+  // 'pax',
   'pickUp',
   'dropOff',
   'passenger',
   'customer',
-  'account',
+  // 'account',
   'price',
   'status',
 ];

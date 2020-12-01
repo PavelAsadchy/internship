@@ -23,6 +23,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @NgModule({
   imports: [
@@ -51,6 +53,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatSortModule,
     MatProgressSpinnerModule,
     MatDividerModule,
+    MatMenuModule,
+    MatBadgeModule,
   ],
   exports: [
     CommonModule,
@@ -77,6 +81,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatSortModule,
     MatProgressSpinnerModule,
     MatDividerModule,
+    MatMenuModule,
+    MatBadgeModule,
   ],
 })
 export class SharedModule {}
