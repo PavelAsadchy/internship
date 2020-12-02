@@ -2,6 +2,8 @@
 @import "../../../../shared/UI/colors.scss";
 
 .booking-enum {
+  position: relative;
+
   &__urgency {
     display: flex;
     flex-wrap: wrap;
@@ -23,6 +25,19 @@
     height: 10px;
     margin-right: 2px;
     border: 1px solid $dark-xxl;
+  }
+
+  &__loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.15);
   }
 }
 

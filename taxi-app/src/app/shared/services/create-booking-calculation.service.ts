@@ -1,16 +1,13 @@
-// import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
 import { BehaviorSubject } from 'rxjs';
-import { PickUpUrgency, PICK_UP_URGENCY_COLORS, VehicleOptions } from '../consts/consts';
+import { PickUpUrgency, VehicleOptions } from '../consts/consts';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CreateBookingCalculationService {
   price$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
-
-  // constructor(private http: HttpClient) {}
 
   createRandomCalculation(bookingOptions): void {
     if (!bookingOptions.vehicle.items) {
@@ -78,6 +75,4 @@ export class CreateBookingCalculationService {
     const keys = Object.keys(PickUpUrgency);
     return keys[Math.round(keys.length * Math.random())];
   }
-
-  // formSubmit(form): void {}
 }

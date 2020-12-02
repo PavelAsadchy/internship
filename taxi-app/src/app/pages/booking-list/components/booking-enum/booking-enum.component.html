@@ -14,8 +14,10 @@
     </ul>
 
 
-<div class="mat-elevation-z8">
-    <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
+<div class="booking-enum mat-elevation-z8">
+    <div class="booking-enum__loading" *ngIf="isLoading$ | async">
+        <mat-progress-bar mode="indeterminate" *ngIf="isLoading$ | async"></mat-progress-bar>
+    </div>
     <table
         class="booking-enum__booking-table booking-table"
         mat-table [dataSource]="dataSource" matSort
@@ -42,9 +44,9 @@
         <ng-container matColumnDef="pickUpTime">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Pickup Time </th>
             <td mat-cell *matCellDef="let row" appUrgentBackgroundColor  [pickUpUrgency]="row.pickUpUrgency" style="text-align: center;">
-                <span class="booking-table__cell-text--small">{{ row.pickUpTime | date:'dd/M/yyyy' }}</span>
+                <span class="booking-table__cell-text--small">{{ row.bookingTime | date:'dd/M/yyyy' }}</span>
                 <div>
-                    <span class="booking-table__cell-text--small booking-table__cell-text--bold">{{ row.pickUpTime | date:'h:mm' }}&nbsp;({{ row.pickUpTime | date:'h:mm' }})</span>
+                    <span class="booking-table__cell-text--small booking-table__cell-text--bold">{{ row.bookingTime | date:'h:mm' }}&nbsp;({{ row.pickUpTime | date:'h:mm' }})</span>
                 </div>
             </td>
         </ng-container>

@@ -25,6 +25,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   imports: [
@@ -55,6 +56,7 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatDividerModule,
     MatMenuModule,
     MatBadgeModule,
+    MatProgressBarModule,
   ],
   exports: [
     CommonModule,
@@ -84,6 +86,7 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatDividerModule,
     MatMenuModule,
     MatBadgeModule,
+    MatProgressBarModule,
   ],
 })
 export class SharedModule {}

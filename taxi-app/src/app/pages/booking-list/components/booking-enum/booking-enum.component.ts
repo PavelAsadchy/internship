@@ -9,6 +9,7 @@ import {
   BOOKING_DISPLAYED_COLUMNS,
   DropOffPointOptions,
   PickUpPointOptions,
+  PickUpTimeOptions,
   PICK_UP_URGENCY_COLORS,
   VEHICLE_LIST,
 } from 'src/app/shared/consts/consts';
@@ -29,58 +30,58 @@ import { DeleteBookingConfirmComponent } from '../delete-booking-confirm/delete-
 //   progress: string;
 //   color: string;
 // }
-export interface UserData {
-  vehicle: string;
-  bookRef: string;
-  pickUpTime: string;
-  Extras: string;
-  Pax: string;
-  PickUp: string;
-  dropOff: string;
-  passenger: string;
-  customer: string;
-  account: string;
-  price: string;
-  status: string;
-}
-const COLORS: string[] = [
-  'maroon',
-  'red',
-  'orange',
-  'yellow',
-  'olive',
-  'green',
-  'purple',
-  'fuchsia',
-  'lime',
-  'teal',
-  'aqua',
-  'blue',
-  'navy',
-  'black',
-  'gray',
-];
-const NAMES: string[] = [
-  'Maia',
-  'Asher',
-  'Olivia',
-  'Atticus',
-  'Amelia',
-  'Jack',
-  'Charlotte',
-  'Theodore',
-  'Isla',
-  'Oliver',
-  'Isabella',
-  'Jasper',
-  'Cora',
-  'Levi',
-  'Violet',
-  'Arthur',
-  'Mia',
-  'Thomas',
-  'Elizabeth',
-];
+// export interface UserData {
+//   vehicle: string;
+//   bookRef: string;
+//   pickUpTime: string;
+//   Extras: string;
+//   Pax: string;
+//   PickUp: string;
+//   dropOff: string;
+//   passenger: string;
+//   customer: string;
+//   account: string;
+//   price: string;
+//   status: string;
+// }
+// const COLORS: string[] = [
+//   'maroon',
+//   'red',
+//   'orange',
+//   'yellow',
+//   'olive',
+//   'green',
+//   'purple',
+//   'fuchsia',
+//   'lime',
+//   'teal',
+//   'aqua',
+//   'blue',
+//   'navy',
+//   'black',
+//   'gray',
+// ];
+// const NAMES: string[] = [
+//   'Maia',
+//   'Asher',
+//   'Olivia',
+//   'Atticus',
+//   'Amelia',
+//   'Jack',
+//   'Charlotte',
+//   'Theodore',
+//   'Isla',
+//   'Oliver',
+//   'Isabella',
+//   'Jasper',
+//   'Cora',
+//   'Levi',
+//   'Violet',
+//   'Arthur',
+//   'Mia',
+//   'Thomas',
+//   'Elizabeth',
+// ];
 
 @Component({
   selector: 'app-booking-enum',
@@ -88,7 +89,7 @@ const NAMES: string[] = [
   styleUrls: ['./booking-enum.component.scss'],
 })
 export class BookingEnumComponent implements OnInit, AfterViewInit {
-  bookingList$: Observable<IBookingOptions[]>;
+  // bookingList$: Observable<IBookingOptions[]>;
   isLoading$: Observable<boolean>;
 
   displayedColumns = BOOKING_DISPLAYED_COLUMNS;
@@ -140,11 +141,10 @@ export class BookingEnumComponent implements OnInit, AfterViewInit {
     this.dialog.open(BookingItemComponent, { data: booking });
   }
 
-  trigger(smth): void {
+  trigger(): void {
     // this.dialog.open(DeleteBookingConfirmComponent);
-
     // console.log(this.dataSource.data);
-    console.log(smth);
+    // console.log(PickUpTimeOptions[PickUpTimeOptions.NOW]);
   }
 }
 
