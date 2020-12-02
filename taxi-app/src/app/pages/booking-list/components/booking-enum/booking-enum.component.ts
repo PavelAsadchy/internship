@@ -23,6 +23,8 @@ import {
 import { IBookingState } from 'src/app/shared/stores/booking-store/booking.state';
 import { BookingItemComponent } from '../booking-item/booking-item.component';
 import { DeleteBookingConfirmComponent } from '../delete-booking-confirm/delete-booking-confirm.component';
+import { AngularFireDatabase } from '@angular/fire/database';
+// import { AngularFirestore } from '@angular/fire/firestore';
 
 // export interface UserData {
 //   id: string;
@@ -92,6 +94,8 @@ export class BookingEnumComponent implements OnInit, AfterViewInit {
   // bookingList$: Observable<IBookingOptions[]>;
   isLoading$: Observable<boolean>;
 
+  testData: Observable<any[]>;
+
   displayedColumns = BOOKING_DISPLAYED_COLUMNS;
   dataSource: MatTableDataSource<IBookingOptions>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -102,7 +106,19 @@ export class BookingEnumComponent implements OnInit, AfterViewInit {
   dropOffPoint = DropOffPointOptions;
   pickUpUrgency = PICK_UP_URGENCY_COLORS;
 
-  constructor(private store: Store<IBookingState>, public dialog: MatDialog) {
+  constructor(
+    private store: Store<IBookingState>,
+    public dialog: MatDialog,
+    private db: AngularFireDatabase
+  ) // private firestore: AngularFirestore
+  {
+    // this.firestore
+    //   .collection('booking-list')
+    //   .snapshotChanges()
+    //   .subscribe((res) => console.log(res));
+    db.list('booking-list')
+      .valueChanges()
+      .subscribe((res) => console.log(res));
     // Create 100 users
     // const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
     // Assign the data to the data source for the table to render
@@ -142,6 +158,11 @@ export class BookingEnumComponent implements OnInit, AfterViewInit {
   }
 
   trigger(): void {
+    console.log(this.testData);
+    // this.firestore
+    //   .collection('booking-list')
+    //   .add({ test: 'test' })
+    //   .then((res) => console.log(res));
     // this.dialog.open(DeleteBookingConfirmComponent);
     // console.log(this.dataSource.data);
     // console.log(PickUpTimeOptions[PickUpTimeOptions.NOW]);
