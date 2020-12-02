@@ -1,23 +1,22 @@
 <!-- <button (click)="trigger()">trigger</button> -->
-    <ul class="booking-enum__urgency">
-        <li
-            *ngFor="let pickUpUrgencyOption of pickUpUrgency | keyvalue"
-            class="booking-enum__urgency-item"
-        >
-            <div
-                class="booking-enum__urgency-sqr"
-                [ngClass]="pickUpUrgencyOption.value.class"
-            >
-            </div>
-            {{ pickUpUrgencyOption.value.name }}
-        </li>
-    </ul>
 
 
 <div class="booking-enum mat-elevation-z8">
     <div class="booking-enum__loading" *ngIf="isLoading$ | async">
         <mat-progress-bar mode="indeterminate" *ngIf="isLoading$ | async"></mat-progress-bar>
     </div>
+
+    <ul class="booking-enum__urgency">
+        <li *ngFor="let pickUpUrgencyOption of pickUpUrgency | keyvalue" class="booking-enum__urgency-item">
+            <div class="booking-enum__urgency-sqr" [ngClass]="pickUpUrgencyOption.value.class">
+            </div>
+            {{ pickUpUrgencyOption.value.name }}
+        </li>
+    </ul>
+
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
     <table
         class="booking-enum__booking-table booking-table"
         mat-table [dataSource]="dataSource" matSort
@@ -155,5 +154,4 @@
         </tr>
     </table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 </div>

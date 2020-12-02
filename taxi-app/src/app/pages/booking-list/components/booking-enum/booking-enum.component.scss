@@ -5,10 +5,13 @@
   position: relative;
 
   &__urgency {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+
     display: flex;
     flex-wrap: wrap;
     list-style: none;
-    margin-bottom: 40px;
   }
 
   &__urgency-item {
@@ -49,7 +52,7 @@
     text-align: center;
 
     & > img {
-      vertical-align: bottom;
+      vertical-align: middle;
     }
   }
 
@@ -62,7 +65,7 @@
   }
 
   &__cell-text--small {
-    font-size: 0.6rem;
+    font-size: 0.8rem;
   }
 
   &__cell-text--bold {

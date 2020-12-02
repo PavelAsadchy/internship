@@ -42,3 +42,26 @@
 
 </div>
 
+<div class="filter__footer">
+<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>more_vert</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+    <button mat-menu-item>
+        <mat-icon>cancel</mat-icon>
+        <span>Reset filter</span>
+    </button>
+    <button mat-menu-item>
+        <mat-icon>close</mat-icon>
+        <span>Remove date range limit</span>
+    </button>
+    <button mat-menu-item>
+        <mat-icon>search</mat-icon>
+        <span>Get all bookings</span>
+    </button>
+</mat-menu>
+<button mat-button color="action-btn">
+    Search
+    <mat-icon>search</mat-icon>
+</button>
+</div>
