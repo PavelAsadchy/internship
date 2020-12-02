@@ -140,11 +140,11 @@ export class BookingEnumComponent implements OnInit, AfterViewInit {
     this.dialog.open(BookingItemComponent, { data: booking });
   }
 
-  trigger(): void {
+  trigger(smth): void {
     // this.dialog.open(DeleteBookingConfirmComponent);
 
     // console.log(this.dataSource.data);
-    console.log(this.pickUpUrgency);
+    console.log(smth);
   }
 }
 

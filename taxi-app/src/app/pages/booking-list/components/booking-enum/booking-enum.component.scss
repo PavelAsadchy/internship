@@ -1,8 +1,28 @@
+@import "../../../../shared/UI/pickup-bg-colors.scss";
+@import "../../../../shared/UI/colors.scss";
+
 .booking-enum {
+  &__urgency {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin-bottom: 40px;
+  }
+
+  &__urgency-item {
+    display: flex;
+    align-items: center;
+
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+  }
 
   &__urgency-sqr {
     width: 10px;
     height: 10px;
+    margin-right: 2px;
+    border: 1px solid $dark-xxl;
   }
 }
 
@@ -39,6 +59,34 @@
     justify-content: space-between;
     align-items: center;
   }
+}
+
+.asap {
+  background-color: $color-asap;
+}
+
+.mobile {
+  background-color: $color-mobile;
+}
+
+.delivery {
+  background-color: $color-delivery;
+}
+
+.walkin {
+  background-color: $color-walkin;
+}
+
+.concierge {
+  background-color: $color-concierge;
+}
+
+.in-15-min {
+  background-color: $color-in-15-min;
+}
+
+.standart {
+  background-color: $color-standart;
 }
 
 th {

@@ -263,42 +263,49 @@ export const BOOKING_DISPLAYED_COLUMNS = [
 ];
 
 export enum PickUpUrgency {
-  ASAP,
-  MOBILE,
-  DELIVERY,
-  WALKIN,
-  CONCIERGE,
-  IN_15_MIN,
-  STANDART,
+  ASAP = 'ASAP',
+  MOBILE = 'MOBILE',
+  DELIVERY = 'DELIVERY',
+  WALKIN = 'WALKIN',
+  CONCIERGE = 'CONCIERGE',
+  IN_15_MIN = 'IN_15_MIN',
+  STANDART = 'STANDART',
 }
 
 export const PICK_UP_URGENCY_COLORS = {
   [PickUpUrgency.ASAP]: {
     name: 'asap',
+    class: 'asap',
     color: '#ffd900',
   },
   [PickUpUrgency.MOBILE]: {
     name: 'mobile',
+    class: 'mobile',
     color: '#ff00ee',
   },
   [PickUpUrgency.DELIVERY]: {
     name: 'delivery',
+    class: 'delivery',
     color: '#ff8c00',
   },
   [PickUpUrgency.WALKIN]: {
     name: 'walkin',
+    class: 'walkin',
     color: '#ff8c00',
   },
   [PickUpUrgency.CONCIERGE]: {
     name: 'concierge',
+    class: 'concierge',
     color: '#ff00ee',
   },
   [PickUpUrgency.IN_15_MIN]: {
     name: 'in 15 min',
+    class: 'in-15-min',
     color: '#ff2f00',
   },
   [PickUpUrgency.STANDART]: {
     name: 'standart',
+    class: 'standart',
     color: '#666666',
   },
 };

@@ -1,17 +1,20 @@
-<button (click)="trigger()">trigger</button>
-
-
-<div class="booking-enum mat-elevation-z8">
+<!-- <button (click)="trigger()">trigger</button> -->
     <ul class="booking-enum__urgency">
-        <li *ngFor="let pickUpUrgencyOption of pickUpUrgency | keyvalue">
+        <li
+            *ngFor="let pickUpUrgencyOption of pickUpUrgency | keyvalue"
+            class="booking-enum__urgency-item"
+        >
             <div
                 class="booking-enum__urgency-sqr"
+                [ngClass]="pickUpUrgencyOption.value.class"
             >
-            {{pickUpUrgencyOption.value.color}}
             </div>
             {{ pickUpUrgencyOption.value.name }}
         </li>
     </ul>
+
+
+<div class="mat-elevation-z8">
     <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
     <table
         class="booking-enum__booking-table booking-table"
@@ -38,7 +41,7 @@
 
         <ng-container matColumnDef="pickUpTime">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Pickup Time </th>
-            <td mat-cell *matCellDef="let row" appUrgentBackgroundColor  [pickUpUrgency]="row.pickUpUrgency">
+            <td mat-cell *matCellDef="let row" appUrgentBackgroundColor  [pickUpUrgency]="row.pickUpUrgency" style="text-align: center;">
                 <span class="booking-table__cell-text--small">{{ row.pickUpTime | date:'dd/M/yyyy' }}</span>
                 <div>
                     <span class="booking-table__cell-text--small booking-table__cell-text--bold">{{ row.pickUpTime | date:'h:mm' }}&nbsp;({{ row.pickUpTime | date:'h:mm' }})</span>
@@ -88,7 +91,7 @@
                 <a href="tel:{{ row.passengerInformation.phone }}" *ngIf="row.passengerInformation.phone">
                     <mat-icon>local_phone</mat-icon>
                 </a>
-                <span>{{ row.passengerInformation.name }}</span>
+                {{ row.passengerInformation.name }}
             </td>
         </ng-container>
 
@@ -98,7 +101,7 @@
                 <a href="tel:{{ row.customerInformation.phone }}">
                     <mat-icon>local_phone</mat-icon>
                 </a>
-                <span>{{ row.customerInformation.name }}</span>
+                {{ row.customerInformation.name }}
             </td>
         </ng-container>
 
