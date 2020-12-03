@@ -309,3 +309,10 @@ export const PICK_UP_URGENCY_COLORS = {
     color: '#666666',
   },
 };
+
+export enum BookingStatusOptions {
+  RESERVED = 'Reserved',
+  DISPATCHED = 'Dispatched',
+  TRIP_STARTED = 'Trip started',
+  TRIP_ENDED = 'Trip ended',
+}

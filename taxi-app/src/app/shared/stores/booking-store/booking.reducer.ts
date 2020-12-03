@@ -30,6 +30,33 @@ const bookingReducer = createReducer(
     errorMessage: message.value,
   })),
 
+  on(BookingActions.LOAD_BOOKINGS_BY_ORDER_ACTION, (state) => ({
+    ...state,
+    loading: true,
+    loaded: false,
+    errorMessage: null,
+  })),
+  on(
+    BookingActions.LOAD_BOOKINGS_BY_ORDER_SUCCESS_ACTION,
+    (state, { bookingList }) => {
+      return bookingAdapter.setAll(bookingList, {
+        ...state,
+        loading: false,
+        loaded: true,
+        errorMessage: null,
+      });
+    }
+  ),
+  on(
+    BookingActions.LOAD_BOOKINGS_BY_ORDER_FAIL_ACTION,
+    (state, { message }) => ({
+      ...state,
+      loading: false,
+      loaded: false,
+      errorMessage: message.value,
+    })
+  ),
+
   on(
     BookingActions.LOAD_BOOKING_SUCCESS_ACTION,
     (state, { selectedBooking }) => {

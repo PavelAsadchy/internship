@@ -21,6 +21,7 @@ import { IBookingState } from 'src/app/shared/stores/booking-store/booking.state
 import { CREATE_BOOKING_ACTION } from 'src/app/shared/stores/booking-store/booking.actions';
 import { IBooking } from 'src/app/shared/models/booking.model';
 import * as moment from 'moment';
+import { BookingStatusOptions } from 'src/app/shared/consts/consts';
 
 @Component({
   selector: 'app-booking-board',
@@ -83,11 +84,44 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
 
   onBookingOptionsSubmit(): void {
     const formObj: IBooking = {
-      ...this.bookingOptionsForm.getRawValue(),
+      bookingChannel: this.bookingOptionsForm.get('bookingChannel.channel')
+        .value,
+      pickUpAddress: this.bookingOptionsForm.get('pickUp.address').value,
+      pickUpPoint: this.bookingOptionsForm.get('pickUp.point').value,
+      pickUpUrgencyFlag: this.bookingOptionsForm.get('pickUp.time').value,
+      dropOffAddress: this.bookingOptionsForm.get('dropOff.address').value,
+      dropOffPoint: this.bookingOptionsForm.get('dropOff.point').value,
+      vehicle: this.bookingOptionsForm.get('vehicle.items').value,
+      customerEmail: this.bookingOptionsForm.get('customerInformation.email')
+        .value,
+      customerName: this.bookingOptionsForm.get('customerInformation.name')
+        .value,
+      customerPhone: this.bookingOptionsForm.get('customerInformation.phone')
+        .value,
+      passengerName: this.bookingOptionsForm.get('passengerInformation.name')
+        .value,
+      passengerPhone: this.bookingOptionsForm.get('customerInformation.phone')
+        .value,
+      paymentChannel: this.bookingOptionsForm.get(
+        'payment.paymentOptions.channel'
+      ).value,
+      paymentBasicOptions: this.bookingOptionsForm.get(
+        'payment.checkBasicOptions'
+      ).value,
+      paymentExtraOptions: this.bookingOptionsForm.get(
+        'payment.checkExtraOptions'
+      ).value,
+      notesToDispatcher: this.bookingOptionsForm.get('notes.toDispatcher')
+        .value,
+      notesToDriver: this.bookingOptionsForm.get('notes.toDriver').value,
+      // ...this.bookingOptionsForm.getRawValue(),
       price: this.price,
       bookingTime: moment(),
-      pickUpTime: this.setPickUpTime(),
+      pickUpTime: this.createBookingCalculationService.setPickUpTime(
+        this.bookingOptionsForm.get('pickUp.time').value
+      ),
       pickUpUrgency: this.createBookingCalculationService.setRandomPickUpUrgency(),
+      status: this.createBookingCalculationService.setRandomStatus(),
     };
     // console.log(formObj);
     this.store.dispatch(CREATE_BOOKING_ACTION({ newBooking: formObj }));
@@ -109,14 +143,7 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
     );
   }
 
-  setPickUpTime(): moment.Moment {
-    const timeProperty = this.bookingOptionsForm.get('pickUp.time').value;
-    return this.createBookingCalculationService.createPermissibleTimeLag(
-      timeProperty
-    );
-  }
-
-  // trigger(prop) {
-  //   console.log(prop)
+  // trigger() {
+  //   console.log(Object.keys(BookingStatusOptions));
   // }
 }

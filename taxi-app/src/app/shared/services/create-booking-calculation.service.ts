@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
 import { BehaviorSubject } from 'rxjs';
-import { PickUpUrgency, VehicleOptions } from '../consts/consts';
+import {
+  BookingStatusOptions,
+  PickUpUrgency,
+  VehicleOptions,
+} from '../consts/consts';
 
 @Injectable({
   providedIn: 'root',
@@ -61,6 +65,10 @@ export class CreateBookingCalculationService {
     return Math.floor(Math.random() * (max - min) + min);
   }
 
+  setPickUpTime(urgencyFlag: string): moment.Moment {
+    return this.createPermissibleTimeLag(urgencyFlag);
+  }
+
   createPermissibleTimeLag(property: string): moment.Moment {
     const now = moment();
 
@@ -74,5 +82,11 @@ export class CreateBookingCalculationService {
   setRandomPickUpUrgency() {
     const keys = Object.keys(PickUpUrgency);
     return keys[Math.round(keys.length * Math.random())];
+  }
+
+  setRandomStatus(): string {
+    return Object.keys(BookingStatusOptions)[
+      Math.round(Math.random() * (Object.keys(BookingStatusOptions).length - 1))
+    ];
   }
 }

@@ -15,8 +15,6 @@ import { StoreModule } from '@ngrx/store';
 import { GlobalStoreModule } from './shared/stores/global-store.module';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-// import { AngularFirestore } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 
 @NgModule({
@@ -37,11 +35,8 @@ import { environment } from 'src/environments/environment';
     GlobalStoreModule,
     StoreDevtoolsModule.instrument(),
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule,
   ],
-  providers: [
-    // AngularFirestore
-  ],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

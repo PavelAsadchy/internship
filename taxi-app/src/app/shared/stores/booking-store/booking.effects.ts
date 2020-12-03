@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { SHOW_MESSAGE_VALUES } from '../../consts/consts';
-import { IBookingOptions } from '../../models/booking-options.model';
+import { IBooking } from '../../models/booking.model';
 import { IShowMessage } from '../../models/show-message.model';
 import { BookingListService } from '../../services/booking-list.service';
 import { SHOW_MESSAGE_ACTION } from '../message-store/message.actions';
@@ -28,7 +28,7 @@ export class BookingEffects {
       ),
       switchMap(() => {
         return this.bookingListService.loadBookings().pipe(
-          map((bookings: IBookingOptions[]) => {
+          map((bookings: IBooking[]) => {
             return BookingActions.LOAD_BOOKINGS_SUCCESS_ACTION({
               bookingList: bookings,
             });
@@ -45,6 +45,30 @@ export class BookingEffects {
     )
   );
 
+  loadBookingsByOrder$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(BookingActions.ActionsType.LOAD_BOOKINGS_BY_ORDER),
+      switchMap((action: { sort: string; order: string; type: string }) => {
+        return this.bookingListService
+          .loadBookingsByOrder(action.sort, action.order)
+          .pipe(
+            map((bookings: IBooking[]) => {
+              return BookingActions.LOAD_BOOKINGS_BY_ORDER_SUCCESS_ACTION({
+                bookingList: bookings,
+              });
+            }),
+            catchError(() =>
+              of(
+                BookingActions.LOAD_BOOKINGS_BY_ORDER_FAIL_ACTION({
+                  message: SHOW_MESSAGE_VALUES.loadBookingsFail,
+                })
+              )
+            )
+          );
+      })
+    )
+  );
+
   loadBooking$ = createEffect(() =>
     this.actions$.pipe(
       ofType(BookingActions.ActionsType.LOAD_BOOKING),
@@ -56,7 +80,7 @@ export class BookingEffects {
       map((action: { bookingId: string; type: string }) => action.bookingId),
       switchMap((bookingId: string) => {
         return this.bookingListService.getBookingById(bookingId).pipe(
-          map((booking: IBookingOptions) => {
+          map((booking: IBooking) => {
             return BookingActions.LOAD_BOOKING_SUCCESS_ACTION({
               selectedBooking: booking,
             });
@@ -82,12 +106,11 @@ export class BookingEffects {
         )
       ),
       map(
-        (action: { newBooking: IBookingOptions; type: string }) =>
-          action.newBooking
+        (action: { newBooking: IBooking; type: string }) => action.newBooking
       ),
-      switchMap((newBooking: IBookingOptions) => {
+      switchMap((newBooking: IBooking) => {
         return this.bookingListService.createBooking(newBooking).pipe(
-          map((booking: IBookingOptions) => {
+          map((booking: IBooking) => {
             return BookingActions.CREATE_BOOKING_SUCCESS_ACTION({
               newBooking: booking,
             });
@@ -112,12 +135,10 @@ export class BookingEffects {
           SHOW_MESSAGE_ACTION({ message: SHOW_MESSAGE_VALUES.updateBooking })
         )
       ),
-      map(
-        (action: { booking: IBookingOptions; type: string }) => action.booking
-      ),
-      switchMap((booking: IBookingOptions) => {
+      map((action: { booking: IBooking; type: string }) => action.booking),
+      switchMap((booking: IBooking) => {
         return this.bookingListService.updateBooking(booking).pipe(
-          map((updatedBooking: IBookingOptions) => {
+          map((updatedBooking: IBooking) => {
             return BookingActions.UPDATE_BOOKING_SUCCESS_ACTION({
               update: {
                 id: updatedBooking.id,

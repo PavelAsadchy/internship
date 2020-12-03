@@ -1,14 +1,14 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import { IBookingOptions } from '../../models/booking-options.model';
+import { IBooking } from '../../models/booking.model';
 
-export interface IBookingState extends EntityState<IBookingOptions> {
+export interface IBookingState extends EntityState<IBooking> {
   selectedBookingId: string;
   loading: boolean;
   loaded: boolean;
   errorMessage: string;
 }
 
-export const bookingAdapter: EntityAdapter<IBookingOptions> = createEntityAdapter<IBookingOptions>();
+export const bookingAdapter: EntityAdapter<IBooking> = createEntityAdapter<IBooking>();
 
 export const DEFAULT_BOOKING: IBookingState = {
   ids: [],

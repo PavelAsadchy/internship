@@ -1,12 +1,15 @@
 import { createAction, props } from '@ngrx/store';
-import { IBookingOptions } from '../../models/booking-options.model';
 import { Update } from '@ngrx/entity';
 import { IShowMessage } from '../../models/show-message.model';
+import { IBooking } from '../../models/booking.model';
 
 export enum ActionsType {
   LOAD_BOOKINGS = '[BOOKING] Load Bookings',
   LOAD_BOOKINGS_SUCCESS = '[BOOKING] Load Bookings Success',
   LOAD_BOOKINGS_FAIL = '[BOOKING] Load Bookings Fail',
+  LOAD_BOOKINGS_BY_ORDER = '[BOOKING] Load Bookings By Order',
+  LOAD_BOOKINGS_BY_ORDER_SUCCESS = '[BOOKING] Load Bookings By Order Success',
+  LOAD_BOOKINGS_BY_ORDER_FAIL = '[BOOKING] Load Bookings By Order Fail',
   LOAD_BOOKING = '[BOOKING] Load Booking',
   LOAD_BOOKING_SUCCESS = '[BOOKING] Load Booking Success',
   LOAD_BOOKING_FAIL = '[BOOKING] Load Booking Fail',
@@ -25,11 +28,26 @@ export const LOAD_BOOKINGS_ACTION = createAction(ActionsType.LOAD_BOOKINGS);
 
 export const LOAD_BOOKINGS_SUCCESS_ACTION = createAction(
   ActionsType.LOAD_BOOKINGS_SUCCESS,
-  props<{ bookingList: IBookingOptions[] }>()
+  props<{ bookingList: IBooking[] }>()
 );
 
 export const LOAD_BOOKINGS_FAIL_ACTION = createAction(
   ActionsType.LOAD_BOOKINGS_FAIL,
+  props<{ message: IShowMessage }>()
+);
+
+export const LOAD_BOOKINGS_BY_ORDER_ACTION = createAction(
+  ActionsType.LOAD_BOOKINGS_BY_ORDER,
+  props<{ sort: string; order: string }>()
+);
+
+export const LOAD_BOOKINGS_BY_ORDER_SUCCESS_ACTION = createAction(
+  ActionsType.LOAD_BOOKINGS_BY_ORDER_SUCCESS,
+  props<{ bookingList: IBooking[] }>()
+);
+
+export const LOAD_BOOKINGS_BY_ORDER_FAIL_ACTION = createAction(
+  ActionsType.LOAD_BOOKINGS_BY_ORDER_FAIL,
   props<{ message: IShowMessage }>()
 );
 
@@ -40,7 +58,7 @@ export const LOAD_BOOKING_ACTION = createAction(
 
 export const LOAD_BOOKING_SUCCESS_ACTION = createAction(
   ActionsType.LOAD_BOOKING_SUCCESS,
-  props<{ selectedBooking: IBookingOptions }>()
+  props<{ selectedBooking: IBooking }>()
 );
 
 export const LOAD_BOOKING_FAIL_ACTION = createAction(
@@ -50,12 +68,12 @@ export const LOAD_BOOKING_FAIL_ACTION = createAction(
 
 export const CREATE_BOOKING_ACTION = createAction(
   ActionsType.CREATE_BOOKING,
-  props<{ newBooking: IBookingOptions }>()
+  props<{ newBooking: IBooking }>()
 );
 
 export const CREATE_BOOKING_SUCCESS_ACTION = createAction(
   ActionsType.CREATE_BOOKING_SUCCESS,
-  props<{ newBooking: IBookingOptions }>()
+  props<{ newBooking: IBooking }>()
 );
 
 export const CREATE_BOOKING_FAIL_ACTION = createAction(
@@ -65,12 +83,12 @@ export const CREATE_BOOKING_FAIL_ACTION = createAction(
 
 export const UPDATE_BOOKING_ACTION = createAction(
   ActionsType.UPDATE_BOOKING,
-  props<{ booking: IBookingOptions }>()
+  props<{ booking: IBooking }>()
 );
 
 export const UPDATE_BOOKING_SUCCESS_ACTION = createAction(
   ActionsType.UPDATE_BOOKING_SUCCESS,
-  props<{ update: Update<IBookingOptions> }>()
+  props<{ update: Update<IBooking> }>()
 );
 
 export const UPDATE_BOOKING_FAIL_ACTION = createAction(
