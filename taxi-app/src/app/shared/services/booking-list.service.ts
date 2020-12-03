@@ -74,13 +74,6 @@ export class BookingListService {
     }
   }
 
-  filterBookings(): Observable<IBooking[]> {
-    return this.db
-      .list('booking-list', (ref) => ref.orderByChild('price').equalTo(55))
-      .valueChanges()
-      .pipe(map(this.addIdField));
-  }
-
   addIdField(bookings: IBooking[]): IBooking[] {
     return Object.keys(bookings).map((key: string) => ({
       ...bookings[key],
@@ -95,5 +88,18 @@ export class BookingListService {
         id: key,
       }))
       .reverse();
+  }
+
+  filterBookings(): Observable<IBooking[]> {
+    return this.db
+      .list<IBooking>('booking-list')
+      .valueChanges()
+      .pipe(
+        map((bookings: IBooking[]) => {
+          return bookings.filter(
+            (item: IBooking) => item.price > 60 && item.customerName === 'Peter'
+          );
+        })
+      );
   }
 }
