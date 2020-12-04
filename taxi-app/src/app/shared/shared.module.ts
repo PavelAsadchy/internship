@@ -26,6 +26,17 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import {
+  MatDatetimepickerModule,
+  MatNativeDatetimeModule,
+  // MatMomentDatetimeModule,
+} from '@mat-datetimepicker/core';
+import {
+  MatMomentDateModule,
+  // MatMomentDatetimeModule,
+} from '@angular/material-moment-adapter';
 
 @NgModule({
   imports: [
@@ -57,6 +68,10 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatMenuModule,
     MatBadgeModule,
     MatProgressBarModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatDatetimepickerModule,
+    MatMomentDateModule,
   ],
   exports: [
     CommonModule,
@@ -87,6 +102,11 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatMenuModule,
     MatBadgeModule,
     MatProgressBarModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatDatetimepickerModule,
+    MatNativeDatetimeModule,
+    MatMomentDateModule,
   ],
 })
 export class SharedModule {}

@@ -316,3 +316,15 @@ export enum BookingStatusOptions {
   TRIP_STARTED = 'Trip started',
   TRIP_ENDED = 'Trip ended',
 }
+
+export const MY_DP_FORMAT = {
+  parse: {
+    dateInput: ['l', 'LL'],
+  },
+  display: {
+    dateInput: 'DD/MM/YYYY',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};

@@ -1,46 +1,67 @@
-<div class="filter">
+<form
+    class="filter"
+    [formGroup]="filterForm"
+    (ngSubmit)="onFilterSubmit()"
+>
     <div class="filter__col">
         <mat-form-field>
             <mat-label>BookingID</mat-label>
-            <input matInput (keyup)="applyFilter($event)" placeholder="Booking" #bookingInput>
+            <input matInput placeholder="Booking" formControlName="bookingId" #bookingIdInput>
         </mat-form-field>
         <mat-form-field>
             <mat-label>Price</mat-label>
-            <input matInput (keyup)="applyFilter($event)" placeholder="Price" #bookingInput>
+            <input matInput placeholder="Price" formControlName="price" #priceInput>
+            <mat-hint>i.e. 10 or 10-20 (range)</mat-hint>
         </mat-form-field>
     </div>
     <div class="filter__col">
         <mat-form-field>
             <mat-label>Search</mat-label>
-            <input matInput (keyup)="applyFilter($event)" placeholder="Search" #bookingInput>
+            <input matInput placeholder="Search" formControlName="search" #searchInput>
         </mat-form-field>
         <mat-form-field>
             <mat-label>Statuses</mat-label>
-            <input matInput (keyup)="applyFilter($event)" placeholder="Statuses" #bookingInput>
+            <mat-select formControlName="statuses" multiple>
+                <mat-option *ngFor="let status of statuses | keyvalue" [value]="status.key">
+                    {{ status.value }}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
     </div>
     <div class="filter__col">
         <mat-form-field>
             <mat-label>From</mat-label>
-            <input matInput (keyup)="applyFilter($event)" placeholder="From date" #bookingInput>
+            <input matInput [matDatetimepicker]="dp1" formControlName="dateFrom">
+            <mat-datetimepicker-toggle matSuffix [for]="dp1"></mat-datetimepicker-toggle>
+            <mat-datetimepicker #dp1 type="datetime" openOnFocus="true" timeInterval="5"></mat-datetimepicker>
         </mat-form-field>
         <mat-form-field>
             <mat-label>Channels</mat-label>
-            <input matInput (keyup)="applyFilter($event)" placeholder="Channels" #bookingInput>
+            <mat-select formControlName="channels" multiple>
+                <mat-option *ngFor="let channel of channels | keyvalue" [value]="channel.key">
+                    {{ channel.value }}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
     </div>
     <div class="filter__col">
         <mat-form-field>
             <mat-label>To</mat-label>
-            <input matInput (keyup)="applyFilter($event)" placeholder="To date" #bookingInput>
+            <input matInput [matDatetimepicker]="dp2" formControlName="dateTo">
+            <mat-datetimepicker-toggle matSuffix [for]="dp2"></mat-datetimepicker-toggle>
+            <mat-datetimepicker #dp2 type="datetime" openOnFocus="true" timeInterval="5"></mat-datetimepicker>
         </mat-form-field>
         <mat-form-field>
             <mat-label>Vehicle type</mat-label>
-            <input matInput (keyup)="applyFilter($event)" placeholder="Vehicle type" #bookingInput>
+            <mat-select formControlName="vehicle" multiple>
+                <mat-option *ngFor="let vehicle of vehicles | keyvalue" [value]="vehicle.key">
+                    {{ vehicle.value.name }}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
     </div>
 
-</div>
+</form>
 
 <div class="filter__footer">
 <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
@@ -65,3 +86,5 @@
     <mat-icon>search</mat-icon>
 </button>
 </div>
+
+<button (click)="trigger()">trigger</button>
