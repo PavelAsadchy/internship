@@ -15,6 +15,7 @@ export interface IBooking {
   passengerName: string;
   passengerPhone: string;
   paymentChannel: string;
+  paymentType: string;
   paymentBasicOptions: string[];
   paymentExtraOptions: string[];
   notesToDispatcher: string;

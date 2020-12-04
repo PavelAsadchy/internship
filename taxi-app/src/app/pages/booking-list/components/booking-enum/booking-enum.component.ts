@@ -18,6 +18,7 @@ import { IBooking } from 'src/app/shared/models/booking.model';
 import {
   LOAD_BOOKINGS_ACTION,
   LOAD_BOOKINGS_BY_ORDER_ACTION,
+  LOAD_BOOKING_ACTION,
 } from 'src/app/shared/stores/booking-store/booking.actions';
 import {
   SELECT_BOOKING_LIST,
@@ -68,6 +69,7 @@ export class BookingEnumComponent implements OnInit {
   }
 
   openBookingEdit(booking: IBooking): void {
+    this.store.dispatch(LOAD_BOOKING_ACTION({ bookingId: booking.id }));
     this.router.navigate(['/board', 'booking-list', booking.id]);
   }
 

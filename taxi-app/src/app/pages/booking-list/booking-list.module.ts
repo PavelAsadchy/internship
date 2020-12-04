@@ -6,6 +6,7 @@ import { BookingEnumComponent } from './components/booking-enum/booking-enum.com
 import { DeleteBookingConfirmComponent } from './components/delete-booking-confirm/delete-booking-confirm.component';
 import { UrgentBackgroundColorDirective } from 'src/app/shared/directives/urgent-background-color.directive';
 import { BookingEditComponent } from './components/booking-edit/booking-edit.component';
+import { CreateBookingModule } from '../create-booking/create-booking.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { BookingEditComponent } from './components/booking-edit/booking-edit.com
     UrgentBackgroundColorDirective,
     BookingEditComponent,
   ],
-  imports: [SharedModule],
+  imports: [SharedModule, CreateBookingModule],
   exports: [BookingListComponent],
 })
 export class BookingListModule {}

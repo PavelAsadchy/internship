@@ -15,19 +15,17 @@ import {
 import { BookingOptionsService } from 'src/app/shared/services/booking-options.service';
 import { CreateBookingCalculationService } from 'src/app/shared/services/create-booking-calculation.service';
 import { takeUntil } from 'rxjs/operators';
-import { BookingListService } from 'src/app/shared/services/booking-list.service';
 import { Store } from '@ngrx/store';
 import { IBookingState } from 'src/app/shared/stores/booking-store/booking.state';
 import { CREATE_BOOKING_ACTION } from 'src/app/shared/stores/booking-store/booking.actions';
 import { IBooking } from 'src/app/shared/models/booking.model';
 import * as moment from 'moment';
-import { BookingStatusOptions } from 'src/app/shared/consts/consts';
 
 @Component({
   selector: 'app-booking-board',
   templateUrl: './booking-board.component.html',
   styleUrls: ['./booking-board.component.scss'],
-  providers: [CreateBookingCalculationService, BookingListService],
+  providers: [CreateBookingCalculationService],
 })
 export class BookingBoardComponent implements OnInit, OnDestroy {
   bookingOptions: IBookingOptions;
@@ -57,8 +55,7 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private store: Store<IBookingState>,
     private readonly bookingOptionsService: BookingOptionsService,
-    private readonly createBookingCalculationService: CreateBookingCalculationService,
-    private readonly bookingListService: BookingListService
+    private readonly createBookingCalculationService: CreateBookingCalculationService
   ) {}
 
   ngOnInit(): void {
@@ -105,6 +102,8 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
       paymentChannel: this.bookingOptionsForm.get(
         'payment.paymentOptions.channel'
       ).value,
+      paymentType: this.bookingOptionsForm.get('payment.paymentOptions.type')
+        .value,
       paymentBasicOptions: this.bookingOptionsForm.get(
         'payment.checkBasicOptions'
       ).value,
@@ -114,7 +113,6 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
       notesToDispatcher: this.bookingOptionsForm.get('notes.toDispatcher')
         .value,
       notesToDriver: this.bookingOptionsForm.get('notes.toDriver').value,
-      // ...this.bookingOptionsForm.getRawValue(),
       price: this.price,
       bookingTime: moment(),
       pickUpTime: this.createBookingCalculationService.setPickUpTime(
@@ -123,10 +121,9 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
       pickUpUrgency: this.createBookingCalculationService.setRandomPickUpUrgency(),
       status: this.createBookingCalculationService.setRandomStatus(),
     };
-    // console.log(formObj);
+
     this.store.dispatch(CREATE_BOOKING_ACTION({ newBooking: formObj }));
     this.bookingOptionsForm.reset();
-    // this.createBookingCalculationService.formSubmit(this.bookingOptionsForm);
   }
 
   checkFormValidity(): boolean {
@@ -142,8 +139,4 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
       this.bookingOptionsForm.controls[control].get(field).status === 'INVALID'
     );
   }
-
-  // trigger() {
-  //   console.log(Object.keys(BookingStatusOptions));
-  // }
 }

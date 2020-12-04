@@ -15,8 +15,6 @@ import { PassengerInformationComponent } from './components/passenger-informatio
 import { VehicleItemComponent } from './components/vehicle-item/vehicle-item.component';
 import { BookingOptionsService } from '../../shared/services/booking-options.service';
 
-
-
 @NgModule({
   declarations: [
     CreateBookingComponent,
@@ -32,15 +30,19 @@ import { BookingOptionsService } from '../../shared/services/booking-options.ser
     PassengerInformationComponent,
     VehicleItemComponent,
   ],
-  imports: [
-    SharedModule,
-    AgmCoreModule,
-  ],
-  providers: [
-    BookingOptionsService
-  ],
+  imports: [SharedModule, AgmCoreModule],
+  providers: [BookingOptionsService],
   exports: [
-    CreateBookingComponent
-  ]
+    CreateBookingComponent,
+    BookingChannelComponent,
+    PickUpComponent,
+    DropOffComponent,
+    VehicleComponent,
+    CustomerInformationComponent,
+    PaymentComponent,
+    NotesComponent,
+    PassengerInformationComponent,
+    VehicleItemComponent,
+  ],
 })
-export class CreateBookingModule { }
+export class CreateBookingModule {}
