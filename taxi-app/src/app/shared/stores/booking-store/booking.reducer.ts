@@ -57,6 +57,30 @@ const bookingReducer = createReducer(
     })
   ),
 
+  on(BookingActions.LOAD_BOOKINGS_BY_FILTER_ACTION, (state) => ({
+    ...state,
+    loading: true,
+    loaded: false,
+    errorMessage: null,
+  })),
+  on(
+    BookingActions.LOAD_BOOKINGS_BY_FILTER_SUCCESS_ACTION,
+    (state, { filteredBookings }) => {
+      return bookingAdapter.setAll(filteredBookings, {
+        ...state,
+        loading: false,
+        loaded: true,
+        errorMessage: null,
+      });
+    }
+  ),
+  on(BookingActions.LOAD_BOOKINGS_FAIL_ACTION, (state, { message }) => ({
+    ...state,
+    loading: false,
+    loaded: false,
+    errorMessage: message.value,
+  })),
+
   on(
     BookingActions.LOAD_BOOKING_SUCCESS_ACTION,
     (state, { selectedBooking }) => {

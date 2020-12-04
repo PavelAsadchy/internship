@@ -76,15 +76,13 @@
         <mat-icon>close</mat-icon>
         <span>Remove date range limit</span>
     </button>
-    <button mat-menu-item>
+    <button mat-menu-item (click)="onLoadAllBookings()">
         <mat-icon>search</mat-icon>
         <span>Get all bookings</span>
     </button>
 </mat-menu>
-<button mat-button color="action-btn">
+<button mat-button color="action-btn" (click)="onFilterSubmit()">
     Search
     <mat-icon>search</mat-icon>
 </button>
 </div>
-
-<button (click)="trigger()">trigger</button>

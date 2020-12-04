@@ -2,6 +2,7 @@ import { createAction, props } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
 import { IShowMessage } from '../../models/show-message.model';
 import { IBooking } from '../../models/booking.model';
+import { IFilterParams } from '../../models/filter-params.model';
 
 export enum ActionsType {
   LOAD_BOOKINGS = '[BOOKING] Load Bookings',
@@ -10,6 +11,9 @@ export enum ActionsType {
   LOAD_BOOKINGS_BY_ORDER = '[BOOKING] Load Bookings By Order',
   LOAD_BOOKINGS_BY_ORDER_SUCCESS = '[BOOKING] Load Bookings By Order Success',
   LOAD_BOOKINGS_BY_ORDER_FAIL = '[BOOKING] Load Bookings By Order Fail',
+  LOAD_BOOKINGS_BY_FILTER = '[BOOKING] Load Bookings By Filter',
+  LOAD_BOOKINGS_BY_FILTER_SUCCESS = '[BOOKING] Load Bookings By Filter Success',
+  LOAD_BOOKINGS_BY_FILTER_FAIL = '[BOOKING] Load Bookings By Filter Fail',
   LOAD_BOOKING = '[BOOKING] Load Booking',
   LOAD_BOOKING_SUCCESS = '[BOOKING] Load Booking Success',
   LOAD_BOOKING_FAIL = '[BOOKING] Load Booking Fail',
@@ -48,6 +52,21 @@ export const LOAD_BOOKINGS_BY_ORDER_SUCCESS_ACTION = createAction(
 
 export const LOAD_BOOKINGS_BY_ORDER_FAIL_ACTION = createAction(
   ActionsType.LOAD_BOOKINGS_BY_ORDER_FAIL,
+  props<{ message: IShowMessage }>()
+);
+
+export const LOAD_BOOKINGS_BY_FILTER_ACTION = createAction(
+  ActionsType.LOAD_BOOKINGS_BY_FILTER,
+  props<{ filterParams: IFilterParams }>()
+);
+
+export const LOAD_BOOKINGS_BY_FILTER_SUCCESS_ACTION = createAction(
+  ActionsType.LOAD_BOOKINGS_BY_FILTER_SUCCESS,
+  props<{ filteredBookings: IBooking[] }>()
+);
+
+export const LOAD_BOOKINGS_BY_FILTER_FAIL_ACTION = createAction(
+  ActionsType.LOAD_BOOKINGS_BY_FILTER_FAIL,
   props<{ message: IShowMessage }>()
 );
 

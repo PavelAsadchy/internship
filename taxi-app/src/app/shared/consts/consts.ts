@@ -245,6 +245,16 @@ export const SHOW_MESSAGE_VALUES: IShowMessageOnAction = {
     action: null,
     options: SNACKBAR_OPTIONS,
   },
+  loadBookingsByFilter: {
+    value: 'Loading filtered bookings',
+    action: null,
+    options: SNACKBAR_OPTIONS,
+  },
+  loadBookingsByFilterFail: {
+    value: 'Failed to apply filter',
+    action: null,
+    options: SNACKBAR_OPTIONS,
+  },
 };
 
 export const BOOKING_DISPLAYED_COLUMNS = [

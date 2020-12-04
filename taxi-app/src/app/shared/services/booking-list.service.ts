@@ -6,7 +6,6 @@ import { Moment } from 'moment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DATABASE_URL } from '../consts/consts';
-import { IBookingOptions } from '../models/booking-options.model';
 import { IBooking } from '../models/booking.model';
 import { IFilterParams } from '../models/filter-params.model';
 
@@ -99,7 +98,7 @@ export class BookingListService {
       .valueChanges()
       .pipe(
         map((bookings: IBooking[]) => {
-          return bookings.filter((item: IBooking) => {
+          const filteredBookingList = bookings.filter((item: IBooking) => {
             return (
               this.doPriceFilter(filterParams.price, item.price) &&
               this.doSelectFilter(filterParams.statuses, item.status) &&
@@ -115,6 +114,12 @@ export class BookingListService {
               )
             );
           });
+          return filteredBookingList
+            ? Object.keys(filteredBookingList).map((key: string) => ({
+                ...filteredBookingList[key],
+                id: key,
+              }))
+            : [];
         })
       );
   }

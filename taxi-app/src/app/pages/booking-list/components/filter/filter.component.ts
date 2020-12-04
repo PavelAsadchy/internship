@@ -1,63 +1,27 @@
 import { Component, LOCALE_ID } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import {
-  DateAdapter,
-  MAT_DATE_FORMATS,
-  MAT_DATE_LOCALE,
-} from '@angular/material/core';
-import {
-  MAT_MOMENT_DATE_FORMATS,
-  MomentDateAdapter,
-} from '@angular/material-moment-adapter';
+import { FormBuilder } from '@angular/forms';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 import {
   BookingChannelOptions,
   BookingStatusOptions,
-  MY_DP_FORMAT,
   VEHICLE_LIST,
 } from 'src/app/shared/consts/consts';
-import { MAT_DATETIME_FORMATS } from '@mat-datetimepicker/core';
-import { BookingListService } from 'src/app/shared/services/booking-list.service';
 import * as moment from 'moment';
 import { IFilterParams } from 'src/app/shared/models/filter-params.model';
+import { Store } from '@ngrx/store';
+import { IBookingState } from 'src/app/shared/stores/booking-store/booking.state';
+import {
+  LOAD_BOOKINGS_ACTION,
+  LOAD_BOOKINGS_BY_FILTER_ACTION,
+} from 'src/app/shared/stores/booking-store/booking.actions';
 
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss'],
   providers: [
-    // {
-    //   provide: MAT_DATETIME_FORMATS,
-    //   useValue: {
-    //     parse: {
-    //       dateInput: 'L',
-    //       monthInput: 'MMMM',
-    //       timeInput: 'LT',
-    //       datetimeInput: 'L LT',
-    //     },
-    //     display: {
-    //       dateInput: 'L',
-    //       monthInput: 'MMMM',
-    //       datetimeInput: 'L LT',
-    //       timeInput: 'LT',
-    //       monthYearLabel: 'MMM YYYY',
-    //       dateA11yLabel: 'LL',
-    //       monthYearA11yLabel: 'MMMM YYYY',
-    //       popupHeaderDateLabel: 'ddd, DD MMM',
-    //     },
-    //   },
-    // },
     { provide: LOCALE_ID, useValue: 'en-EN' },
     { provide: MAT_DATE_LOCALE, useValue: 'en-EN' },
-    // {
-    //   provide: DateAdapter,
-    //   useClass: MomentDateAdapter,
-    //   deps: [MAT_DATE_LOCALE],
-    // },
-    // {
-    //   provide: MAT_DATE_FORMATS,
-    //   // useValue: MAT_MOMENT_DATE_FORMATS
-    //   useValue: MY_DP_FORMAT,
-    // },
   ],
 })
 export class FilterComponent {
@@ -76,23 +40,9 @@ export class FilterComponent {
     vehicle: [''],
   });
 
-  constructor(
-    private fb: FormBuilder,
-    private bookingListService: BookingListService
-  ) {}
+  constructor(private fb: FormBuilder, private store: Store<IBookingState>) {}
 
-  onFilterSubmit() {}
-
-  onFilterFormReset() {
-    this.filterForm.reset();
-  }
-
-  onDatesLimitReset() {
-    this.filterForm.get('dateFrom').reset();
-    this.filterForm.get('dateTo').reset();
-  }
-
-  trigger() {
+  onFilterSubmit() {
     const filterParams: IFilterParams = {
       bookingId: this.filterForm.get('bookingId').value,
       price: +this.filterForm.get('price').value,
@@ -103,8 +53,20 @@ export class FilterComponent {
       dateTo: moment(this.filterForm.get('dateTo').value),
       vehicle: this.filterForm.get('vehicle').value,
     };
-    this.bookingListService
-      .filterBookings(filterParams)
-      .subscribe((res) => console.log(res));
+    console.log('smth');
+    this.store.dispatch(LOAD_BOOKINGS_BY_FILTER_ACTION({ filterParams }));
+  }
+
+  onFilterFormReset() {
+    this.filterForm.reset();
+  }
+
+  onDatesLimitReset() {
+    this.filterForm.get('dateFrom').reset();
+    this.filterForm.get('dateTo').reset();
+  }
+
+  onLoadAllBookings() {
+    this.store.dispatch(LOAD_BOOKINGS_ACTION());
   }
 }
