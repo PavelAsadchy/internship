@@ -1,5 +1,5 @@
-import { Component, ElementRef, LOCALE_ID, ViewChild } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { Component, LOCALE_ID } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import {
   DateAdapter,
   MAT_DATE_FORMATS,
@@ -16,6 +16,9 @@ import {
   VEHICLE_LIST,
 } from 'src/app/shared/consts/consts';
 import { MAT_DATETIME_FORMATS } from '@mat-datetimepicker/core';
+import { BookingListService } from 'src/app/shared/services/booking-list.service';
+import * as moment from 'moment';
+import { IFilterParams } from 'src/app/shared/models/filter-params.model';
 
 @Component({
   selector: 'app-filter',
@@ -58,15 +61,6 @@ import { MAT_DATETIME_FORMATS } from '@mat-datetimepicker/core';
   ],
 })
 export class FilterComponent {
-  // @ViewChild('bookingIdInput') bookingIdInput: ElementRef;
-  // @ViewChild('priceInput') priceInput: ElementRef;
-  // @ViewChild('searchInput') searchInput: ElementRef;
-  // @ViewChild('statusesInput') statusesInput: ElementRef;
-  // @ViewChild('dateFromInput') dateFromInput: ElementRef;
-  // @ViewChild('channelsInput') channelsInput: ElementRef;
-  // @ViewChild('dateToInput') dateToInput: ElementRef;
-  // @ViewChild('vehicleInput') vehicleInput: ElementRef;
-
   statuses = BookingStatusOptions;
   channels = BookingChannelOptions;
   vehicles = VEHICLE_LIST;
@@ -82,11 +76,35 @@ export class FilterComponent {
     vehicle: [''],
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private bookingListService: BookingListService
+  ) {}
 
   onFilterSubmit() {}
 
+  onFilterFormReset() {
+    this.filterForm.reset();
+  }
+
+  onDatesLimitReset() {
+    this.filterForm.get('dateFrom').reset();
+    this.filterForm.get('dateTo').reset();
+  }
+
   trigger() {
-    console.log(this.filterForm.get('dateFrom').value);
+    const filterParams: IFilterParams = {
+      bookingId: this.filterForm.get('bookingId').value,
+      price: +this.filterForm.get('price').value,
+      search: this.filterForm.get('search').value,
+      statuses: this.filterForm.get('statuses').value,
+      dateFrom: moment(this.filterForm.get('dateFrom').value),
+      channels: this.filterForm.get('channels').value,
+      dateTo: moment(this.filterForm.get('dateTo').value),
+      vehicle: this.filterForm.get('vehicle').value,
+    };
+    this.bookingListService
+      .filterBookings(filterParams)
+      .subscribe((res) => console.log(res));
   }
 }

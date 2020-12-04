@@ -10,7 +10,7 @@
         </mat-form-field>
         <mat-form-field>
             <mat-label>Price</mat-label>
-            <input matInput placeholder="Price" formControlName="price" #priceInput>
+            <input matInput placeholder="Price" formControlName="price" type="number" #priceInput>
             <mat-hint>i.e. 10 or 10-20 (range)</mat-hint>
         </mat-form-field>
     </div>
@@ -68,11 +68,11 @@
     <mat-icon>more_vert</mat-icon>
 </button>
 <mat-menu #menu="matMenu">
-    <button mat-menu-item>
+    <button mat-menu-item (click)="onFilterFormReset()">
         <mat-icon>cancel</mat-icon>
         <span>Reset filter</span>
     </button>
-    <button mat-menu-item>
+    <button mat-menu-item (click)="onDatesLimitReset()">
         <mat-icon>close</mat-icon>
         <span>Remove date range limit</span>
     </button>

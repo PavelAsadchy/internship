@@ -1,11 +1,14 @@
 import { HttpBackend, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
+import * as moment from 'moment';
+import { Moment } from 'moment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DATABASE_URL } from '../consts/consts';
 import { IBookingOptions } from '../models/booking-options.model';
 import { IBooking } from '../models/booking.model';
+import { IFilterParams } from '../models/filter-params.model';
 
 @Injectable({
   providedIn: 'root',
@@ -90,16 +93,45 @@ export class BookingListService {
       .reverse();
   }
 
-  filterBookings(): Observable<IBooking[]> {
+  filterBookings(filterParams: IFilterParams): Observable<IBooking[]> {
     return this.db
       .list<IBooking>('booking-list')
       .valueChanges()
       .pipe(
         map((bookings: IBooking[]) => {
-          return bookings.filter(
-            (item: IBooking) => item.price > 60 && item.customerName === 'Peter'
-          );
+          return bookings.filter((item: IBooking) => {
+            return (
+              this.doPriceFilter(filterParams.price, item.price) &&
+              this.doSelectFilter(filterParams.statuses, item.status) &&
+              this.doSelectFilter(filterParams.channels, item.bookingChannel) &&
+              this.doSelectFilter(filterParams.vehicle, item.vehicle) &&
+              this.doIsAfterFilter(
+                filterParams.dateFrom,
+                moment(item.bookingTime)
+              ) &&
+              this.doIsBeforeFilter(
+                filterParams.dateTo,
+                moment(item.bookingTime)
+              )
+            );
+          });
         })
       );
+  }
+
+  doPriceFilter(minPrice: number, item: number): boolean {
+    return minPrice ? item > minPrice : true;
+  }
+
+  doSelectFilter(selectedParams: string[], item: string): boolean {
+    return selectedParams ? selectedParams.includes(item) : true;
+  }
+
+  doIsAfterFilter(dateFrom: Moment, item: Moment) {
+    return dateFrom.isValid() ? item.isAfter(dateFrom) : true;
+  }
+
+  doIsBeforeFilter(dateTo: Moment, item: Moment) {
+    return dateTo.isValid() ? item.isBefore(dateTo) : true;
   }
 }

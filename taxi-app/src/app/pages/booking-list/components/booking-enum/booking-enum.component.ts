@@ -92,9 +92,9 @@ export class BookingEnumComponent implements OnInit {
 
   trigger(): void {
     // console.log(this.inputTest.nativeElement.value);
-    this.bookingListService
-      .filterBookings()
-      .subscribe((res) => console.log(res));
+    // this.bookingListService
+    //   .filterBookings()
+    //   .subscribe((res) => console.log(res));
   }
 
   doSort(e: { active: string; direction: string }) {
