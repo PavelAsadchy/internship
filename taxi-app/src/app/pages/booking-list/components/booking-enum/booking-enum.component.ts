@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import {
@@ -46,7 +47,11 @@ export class BookingEnumComponent implements OnInit {
   pickUpUrgency = PICK_UP_URGENCY_COLORS;
   status = BookingStatusOptions;
 
-  constructor(private store: Store<IBookingState>, public dialog: MatDialog) {}
+  constructor(
+    private store: Store<IBookingState>,
+    public dialog: MatDialog,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.store.dispatch(LOAD_BOOKINGS_ACTION());
@@ -58,12 +63,16 @@ export class BookingEnumComponent implements OnInit {
     this.isLoading$ = this.store.pipe(select(SELECT_BOOKING_LOADING));
   }
 
-  openDeleteConfirmation(bookingId: string): void {
-    this.dialog.open(DeleteBookingConfirmComponent, { data: bookingId });
-  }
-
   openBookingDetails(booking: IBooking): void {
     this.dialog.open(BookingItemComponent, { data: booking });
+  }
+
+  openBookingEdit(booking: IBooking): void {
+    this.router.navigate(['/board', 'booking-list', booking.id]);
+  }
+
+  openDeleteConfirmation(bookingId: string): void {
+    this.dialog.open(DeleteBookingConfirmComponent, { data: bookingId });
   }
 
   doSort(e: { active: string; direction: string }) {
