@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import * as moment from 'moment';
 import { combineLatest, Observable, Subject } from 'rxjs';
@@ -55,7 +56,8 @@ export class BookingEditComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private store: Store<IBookingState>,
     private readonly bookingOptionsService: BookingOptionsService,
-    private readonly createBookingCalculationService: CreateBookingCalculationService
+    private readonly createBookingCalculationService: CreateBookingCalculationService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -79,6 +81,7 @@ export class BookingEditComponent implements OnInit, OnDestroy {
 
     booking$.subscribe((currentBooking: IBooking) => {
       if (currentBooking) {
+        this.price = currentBooking.price;
         this.bookingOptionsForm.patchValue({
           bookingChannel: {
             channel: currentBooking.bookingChannel,
@@ -170,11 +173,15 @@ export class BookingEditComponent implements OnInit, OnDestroy {
     };
 
     this.store.dispatch(UPDATE_BOOKING_ACTION({ booking: formObj }));
-    this.bookingOptionsForm.reset();
+    this.router.navigate(['board/', 'booking-list']);
+  }
+
+  onReturnWithoutChanges() {
+    this.router.navigate(['board/', 'booking-list']);
   }
 
   checkFormValidity(): boolean {
-    return !this.bookingOptionsForm.valid;
+    return !this.price;
   }
 
   checkConrolValidity(control: string): boolean {

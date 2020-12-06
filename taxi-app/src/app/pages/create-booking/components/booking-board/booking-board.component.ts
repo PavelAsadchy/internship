@@ -124,6 +124,12 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
 
     this.store.dispatch(CREATE_BOOKING_ACTION({ newBooking: formObj }));
     this.bookingOptionsForm.reset();
+    this.scroll('top');
+  }
+
+  scroll(target: string): void {
+    const top = document.getElementById(target);
+    top.scrollIntoView();
   }
 
   checkFormValidity(): boolean {

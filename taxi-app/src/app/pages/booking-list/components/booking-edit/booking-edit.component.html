@@ -67,12 +67,26 @@
 
         <div class="booking-board__component booking-board__component--right">
             <button mat-raised-button color="primary" class="booking-board__submit"
-                [disabled]="bookingOptionsForm.invalid">
-                summary
+                [disabled]="bookingOptionsForm.invalid"
+                *ngIf="!bookingOptionsForm.pristine"
+            >
+                submit changes
                 <mat-icon>keyboard_arrow_right</mat-icon>
             </button>
         </div>
     </form>
+    <div class="booking-board__component booking-board__component--right">
+        <button
+            mat-raised-button
+            color="primary"
+            class="booking-board__submit"
+            *ngIf="bookingOptionsForm.pristine"
+            (click)="onReturnWithoutChanges()"
+        >
+            return without changes
+            <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+    </div>
     <div class="booking-board__footer">
         <div class="booking-board__price">
             <span>Price calculated</span>
