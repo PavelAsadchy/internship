@@ -19,7 +19,6 @@ export class UrgentBackgroundColorDirective implements OnInit {
       'background',
       `${this.backgroundColor}`
     );
-    // this.elementRef.nativeElement.style.backgroundColor = 'red';
   }
 
   setBackgroundColor() {
