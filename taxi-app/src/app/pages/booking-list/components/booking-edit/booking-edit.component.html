@@ -67,8 +67,7 @@
 
         <div class="booking-board__component booking-board__component--right">
             <button mat-raised-button color="primary" class="booking-board__submit"
-                [disabled]="bookingOptionsForm.invalid"
-                *ngIf="!bookingOptionsForm.pristine"
+                [disabled]="bookingOptionsForm.invalid || bookingOptionsForm.pristine"
             >
                 submit changes
                 <mat-icon>keyboard_arrow_right</mat-icon>
@@ -80,7 +79,6 @@
             mat-raised-button
             color="primary"
             class="booking-board__submit"
-            *ngIf="bookingOptionsForm.pristine"
             (click)="onReturnWithoutChanges()"
         >
             return without changes
@@ -99,3 +97,5 @@
         </div>
     </div>
 </div>
+
+<button (click)="trigger()">trigger</button>

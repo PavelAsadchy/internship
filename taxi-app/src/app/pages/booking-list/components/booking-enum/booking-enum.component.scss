@@ -8,6 +8,7 @@
     position: absolute;
     top: 24px;
     left: 24px;
+    max-width: 40%;
 
     display: flex;
     flex-wrap: wrap;
@@ -19,7 +20,7 @@
     align-items: center;
 
     &:not(:last-child) {
-      margin-right: 20px;
+      margin-right: 10px;
     }
   }
 
@@ -70,6 +71,11 @@
 
   &__cell-text--bold {
     font-weight: bold;
+  }
+
+  &__link-wrapper {
+    display: flex;
+    align-items: center;
   }
 
   &__cell-wrapper {

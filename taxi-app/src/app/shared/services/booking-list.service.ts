@@ -33,7 +33,11 @@ export class BookingListService {
   }
 
   getBookingById(bookingId: string): Observable<IBooking> {
-    return this.http.get<IBooking>(`${DATABASE_URL}/${bookingId}.json`);
+    return this.http.get<IBooking>(`${DATABASE_URL}/${bookingId}.json`).pipe(
+      map((selectedBooking: IBooking) => {
+        return { ...selectedBooking, id: bookingId };
+      })
+    );
   }
 
   createBooking(newBookingOptions: IBooking): Observable<IBooking> {
@@ -47,7 +51,7 @@ export class BookingListService {
   }
 
   updateBooking(bookingOptions: IBooking): Observable<IBooking> {
-    return this.http.put<IBooking>(
+    return this.http.patch<IBooking>(
       `${DATABASE_URL}/${bookingOptions.id}.json`,
       bookingOptions
     );

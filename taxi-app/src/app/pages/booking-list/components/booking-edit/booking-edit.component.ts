@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import * as moment from 'moment';
@@ -33,6 +33,8 @@ export class BookingEditComponent implements OnInit, OnDestroy {
 
   price: number;
 
+  id: string;
+
   isSliderChecked = false;
 
   bookingOptionsForm = this.fb.group({
@@ -61,18 +63,18 @@ export class BookingEditComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    combineLatest([
-      this.bookingOptionsService.loadBookingOptions(),
-      this.createBookingCalculationService.price$,
-    ])
+    this.bookingOptionsService
+      .loadBookingOptions()
       .pipe(takeUntil(this.sub))
-      .subscribe(([data, price]: [IBookingOptions, number]) => {
+      .subscribe((data: IBookingOptions) => {
         this.bookingOptions = data;
-        this.price = price;
       });
 
     this.bookingOptionsForm.valueChanges.subscribe((status) => {
       this.createBookingCalculationService.createRandomCalculation(status);
+      this.createBookingCalculationService.price$
+        .pipe(takeUntil(this.sub))
+        .subscribe((newPrice) => (this.price = newPrice));
     });
 
     const booking$: Observable<IBooking> = this.store.select(
@@ -82,6 +84,7 @@ export class BookingEditComponent implements OnInit, OnDestroy {
     booking$.subscribe((currentBooking: IBooking) => {
       if (currentBooking) {
         this.price = currentBooking.price;
+        this.id = currentBooking.id;
         this.bookingOptionsForm.patchValue({
           bookingChannel: {
             channel: currentBooking.bookingChannel,
@@ -130,7 +133,7 @@ export class BookingEditComponent implements OnInit, OnDestroy {
   }
 
   onBookingEditSubmit(): void {
-    const formObj: IBooking = {
+    const updatedBooking: IBooking = {
       bookingChannel: this.bookingOptionsForm.get('bookingChannel.channel')
         .value,
       pickUpAddress: this.bookingOptionsForm.get('pickUp.address').value,
@@ -170,9 +173,10 @@ export class BookingEditComponent implements OnInit, OnDestroy {
       ),
       pickUpUrgency: this.createBookingCalculationService.setRandomPickUpUrgency(),
       status: this.createBookingCalculationService.setRandomStatus(),
+      id: this.id,
     };
 
-    this.store.dispatch(UPDATE_BOOKING_ACTION({ booking: formObj }));
+    this.store.dispatch(UPDATE_BOOKING_ACTION({ booking: updatedBooking }));
     this.router.navigate(['board/', 'booking-list']);
   }
 
@@ -192,5 +196,9 @@ export class BookingEditComponent implements OnInit, OnDestroy {
     return (
       this.bookingOptionsForm.controls[control].get(field).status === 'INVALID'
     );
+  }
+
+  trigger() {
+    console.log(this.bookingOptionsForm.get('payment.checkExtraOptions').value);
   }
 }

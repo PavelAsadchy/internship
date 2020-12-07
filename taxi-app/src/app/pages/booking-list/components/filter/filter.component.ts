@@ -113,8 +113,4 @@ export class FilterComponent {
   onLoadAllBookings(): void {
     this.store.dispatch(LOAD_BOOKINGS_ACTION());
   }
-
-  trigger() {
-    console.log(this.filterForm);
-  }
 }
