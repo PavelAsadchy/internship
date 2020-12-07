@@ -1,7 +1,6 @@
-import { KeyValue } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { BookingChannelOptions } from 'src/app/shared/consts/consts';
+import { BookingChannelOptions } from 'src/app/shared/consts/booking-options.consts';
 import { IChannel } from 'src/app/shared/models/booking-options.model';
 
 @Component({
@@ -22,5 +21,4 @@ export class BookingChannelComponent {
   originalOrder(): number {
     return 0;
   }
-
 }

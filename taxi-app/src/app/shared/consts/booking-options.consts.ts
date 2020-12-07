@@ -1,16 +1,3 @@
-import { IShowMessageOnAction } from '../models/show-message.model';
-import { ISnackbarOptions } from '../models/show-message.model';
-
-export const AUTH_URL = 'http://localhost:8080';
-
-export const USER_NAME = 'USER_NAME';
-export const JWT_TOKEN = 'JWT_TOKEN';
-export const REFRESH_TOKEN = 'REFRESH_TOKEN';
-
-export const LOCATION_API_URL = 'https://ipapi.co/json/';
-export const DATABASE_URL =
-  'https://taxi-app-294611.firebaseio.com/booking-list';
-
 export enum BookingOptionsType {
   BOOKING_CHANNEL = 'BOOKING_CHANNEL',
   PICK_UP_TIME = 'PICK_UP_TIME',
@@ -168,110 +155,6 @@ export enum PaymentExtraOptions {
   FEMALE_DRIVER = 'Female Driver',
 }
 
-export const SNACKBAR_OPTIONS: ISnackbarOptions = {
-  duration: 3000,
-  horizontalPosition: 'center',
-  verticalPosition: 'top',
-};
-
-export const SHOW_MESSAGE_VALUES: IShowMessageOnAction = {
-  loginSuccess: {
-    value: 'Welcome',
-    action: 'Ok',
-    options: SNACKBAR_OPTIONS,
-  },
-  loginFailure: {
-    value: 'Wrong data, please try again',
-    action: 'Ok',
-    options: SNACKBAR_OPTIONS,
-  },
-  logout: {
-    value: 'Come back later',
-    action: 'Ok',
-    options: SNACKBAR_OPTIONS,
-  },
-  loadBookings: {
-    value: 'Loading bookings list',
-    action: null,
-    options: SNACKBAR_OPTIONS,
-  },
-  loadBookingsFail: {
-    value: 'Failed to load bookings',
-    action: null,
-    options: SNACKBAR_OPTIONS,
-  },
-  loadBooking: {
-    value: 'Getting selected booking',
-    action: null,
-    options: SNACKBAR_OPTIONS,
-  },
-  loadBookingFail: {
-    value: 'Failed to load selected booking',
-    action: null,
-    options: SNACKBAR_OPTIONS,
-  },
-  createBooking: {
-    value: 'Saving new booking',
-    action: null,
-    options: SNACKBAR_OPTIONS,
-  },
-  createBookingFail: {
-    value: 'Failed to save new booking',
-    action: null,
-    options: SNACKBAR_OPTIONS,
-  },
-  updateBooking: {
-    value: 'Updating new options',
-    action: null,
-    options: SNACKBAR_OPTIONS,
-  },
-  updateBookingFail: {
-    value: 'Failed to update new options',
-    action: null,
-    options: SNACKBAR_OPTIONS,
-  },
-  deleteBookingSuccess: {
-    value: 'Booking was deleted',
-    action: null,
-    options: SNACKBAR_OPTIONS,
-  },
-  deleteBookingFail: {
-    value: 'Failed to delete the booking',
-    action: null,
-    options: SNACKBAR_OPTIONS,
-  },
-  defaultBookingActionFail: {
-    value: 'Failed to complete',
-    action: null,
-    options: SNACKBAR_OPTIONS,
-  },
-  loadBookingsByFilter: {
-    value: 'Loading filtered bookings',
-    action: null,
-    options: SNACKBAR_OPTIONS,
-  },
-  loadBookingsByFilterFail: {
-    value: 'Failed to apply filter',
-    action: null,
-    options: SNACKBAR_OPTIONS,
-  },
-};
-
-export const BOOKING_DISPLAYED_COLUMNS = [
-  'vehicle',
-  // 'bookRef',
-  'pickUpTime',
-  'extras',
-  // 'pax',
-  'pickUp',
-  'dropOff',
-  'passenger',
-  'customer',
-  // 'account',
-  'price',
-  'status',
-];
-
 export enum PickUpUrgency {
   ASAP = 'ASAP',
   MOBILE = 'MOBILE',
@@ -301,12 +184,12 @@ export const PICK_UP_URGENCY_COLORS = {
   [PickUpUrgency.WALKIN]: {
     name: 'walkin',
     class: 'walkin',
-    color: '#ff8c00',
+    color: '#3080ff',
   },
   [PickUpUrgency.CONCIERGE]: {
     name: 'concierge',
     class: 'concierge',
-    color: '#ff00ee',
+    color: '#64dd17',
   },
   [PickUpUrgency.IN_15_MIN]: {
     name: 'in 15 min',
@@ -326,6 +209,18 @@ export enum BookingStatusOptions {
   TRIP_STARTED = 'Trip started',
   TRIP_ENDED = 'Trip ended',
 }
+
+export const BOOKING_DISPLAYED_COLUMNS = [
+  'vehicle',
+  'pickUpTime',
+  'extras',
+  'pickUp',
+  'dropOff',
+  'passenger',
+  'customer',
+  'price',
+  'status',
+];
 
 export const MY_DP_FORMAT = {
   parse: {

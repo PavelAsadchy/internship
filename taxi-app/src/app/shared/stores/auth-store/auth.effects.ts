@@ -10,7 +10,7 @@ import { of } from 'rxjs';
 import { IUser } from '../../models/user.model';
 import { Store } from '@ngrx/store';
 import { SHOW_MESSAGE_ACTION } from '../message-store/message.actions';
-import { SHOW_MESSAGE_VALUES } from '../../consts/consts';
+import { SHOW_MESSAGE_VALUES } from '../../consts/store.consts';
 
 @Injectable()
 export class AuthEffects {

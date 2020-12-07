@@ -1,11 +1,10 @@
 import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
-import { PICK_UP_URGENCY_COLORS } from '../consts/consts';
+import { PICK_UP_URGENCY_COLORS } from '../consts/booking-options.consts';
 
 @Directive({
   selector: '[appUrgentBackgroundColor]',
 })
 export class UrgentBackgroundColorDirective implements OnInit {
-
   @Input()
   pickUpUrgency: string;
 

@@ -87,40 +87,40 @@ export class BookingEditComponent implements OnInit, OnDestroy {
         this.id = currentBooking.id;
         this.bookingOptionsForm.patchValue({
           bookingChannel: {
-            channel: currentBooking.bookingChannel,
+            channel: currentBooking.bookingChannel || null,
           },
           pickUp: {
-            time: currentBooking.pickUpUrgencyFlag,
-            point: currentBooking.pickUpPoint,
-            address: currentBooking.pickUpAddress,
+            time: currentBooking.pickUpUrgencyFlag || null,
+            point: currentBooking.pickUpPoint || null,
+            address: currentBooking.pickUpAddress || '',
           },
           dropOff: {
-            point: currentBooking.dropOffPoint,
-            address: currentBooking.dropOffAddress,
+            point: currentBooking.dropOffPoint || null,
+            address: currentBooking.dropOffAddress || '',
           },
           vehicle: {
-            items: currentBooking.vehicle,
+            items: currentBooking.vehicle || null,
           },
           customerInformation: {
-            phone: currentBooking.customerPhone,
-            email: currentBooking.customerEmail,
-            name: currentBooking.customerName,
+            phone: currentBooking.customerPhone || '',
+            email: currentBooking.customerEmail || '',
+            name: currentBooking.customerName || '',
           },
           passengerInformation: {
-            phone: currentBooking.passengerPhone,
-            name: currentBooking.passengerName,
+            phone: currentBooking.passengerPhone || '',
+            name: currentBooking.passengerName || '',
           },
           payment: {
             paymentOptions: {
-              channel: currentBooking.paymentChannel,
-              type: currentBooking.paymentType,
+              channel: currentBooking.paymentChannel || null,
+              type: currentBooking.paymentType || null,
             },
-            checkBasicOptions: currentBooking.paymentBasicOptions,
-            checkExtraOptions: currentBooking.paymentExtraOptions,
+            checkBasicOptions: currentBooking.paymentBasicOptions || [],
+            checkExtraOptions: currentBooking.paymentExtraOptions || [],
           },
           notes: {
-            toDriver: currentBooking.notesToDriver,
-            toDispatcher: currentBooking.notesToDispatcher,
+            toDriver: currentBooking.notesToDriver || '',
+            toDispatcher: currentBooking.notesToDispatcher || '',
           },
         });
       }

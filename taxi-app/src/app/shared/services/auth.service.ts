@@ -6,7 +6,7 @@ import {
   JWT_TOKEN,
   REFRESH_TOKEN,
   USER_NAME,
-} from '../consts/consts';
+} from '../consts/app.consts';
 import { ILoggedInUser } from '../models/loggedInUser.model';
 import { ITokens } from '../models/tokens.model';
 import { IUser } from '../models/user.model';

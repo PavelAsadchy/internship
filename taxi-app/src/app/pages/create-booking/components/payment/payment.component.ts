@@ -7,7 +7,7 @@ import {
   PaymentChannels,
   PaymentExtraOptions,
   PaymentTypes,
-} from 'src/app/shared/consts/consts';
+} from 'src/app/shared/consts/booking-options.consts';
 import { IPayment } from 'src/app/shared/models/booking-options.model';
 
 @Component({

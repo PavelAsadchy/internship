@@ -13,7 +13,7 @@ import {
   PickUpPointOptions,
   PICK_UP_URGENCY_COLORS,
   VEHICLE_LIST,
-} from 'src/app/shared/consts/consts';
+} from 'src/app/shared/consts/booking-options.consts';
 import { IBooking } from 'src/app/shared/models/booking.model';
 import {
   LOAD_BOOKINGS_ACTION,

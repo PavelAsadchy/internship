@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { SHOW_MESSAGE_VALUES } from '../../consts/consts';
+import { SHOW_MESSAGE_VALUES } from '../../consts/store.consts';
 import { IBooking } from '../../models/booking.model';
 import { IFilterParams } from '../../models/filter-params.model';
 import { IShowMessage } from '../../models/show-message.model';

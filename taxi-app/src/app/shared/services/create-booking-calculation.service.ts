@@ -5,7 +5,7 @@ import {
   BookingStatusOptions,
   PickUpUrgency,
   VehicleOptions,
-} from '../consts/consts';
+} from '../consts/booking-options.consts';
 
 @Injectable({
   providedIn: 'root',

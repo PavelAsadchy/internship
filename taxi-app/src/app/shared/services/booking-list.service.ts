@@ -5,7 +5,7 @@ import * as moment from 'moment';
 import { Moment } from 'moment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { DATABASE_URL } from '../consts/consts';
+import { DATABASE_URL } from '../consts/app.consts';
 import { IBooking } from '../models/booking.model';
 import { IFilterParams } from '../models/filter-params.model';
 

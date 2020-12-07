@@ -5,7 +5,7 @@ import {
   BookingChannelOptions,
   BookingStatusOptions,
   VEHICLE_LIST,
-} from 'src/app/shared/consts/consts';
+} from 'src/app/shared/consts/booking-options.consts';
 import * as moment from 'moment';
 import { IFilterParams } from 'src/app/shared/models/filter-params.model';
 import { Store } from '@ngrx/store';
