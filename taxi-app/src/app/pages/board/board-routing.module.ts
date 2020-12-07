@@ -5,6 +5,7 @@ import { BoardComponent } from './board.component';
 import { BookingListComponent } from 'src/app/pages/booking-list/container/booking-list.component';
 import { MenuMainComponent } from './components/menu-main/menu-main.component';
 import { BookingEditComponent } from '../booking-list/components/booking-edit/booking-edit.component';
+import { BookingEditGuard } from 'src/app/shared/guards/booking-edit.guard';
 
 const routes: Routes = [
   {
@@ -26,6 +27,7 @@ const routes: Routes = [
       {
         path: 'booking-list/:id',
         component: BookingEditComponent,
+        canActivate: [BookingEditGuard],
       },
     ],
   },
