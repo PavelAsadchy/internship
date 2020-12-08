@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import * as moment from 'moment';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { ACTIVATED_ROUTE_PARAMS } from 'src/app/shared/consts/app.consts';
 import {
   BookingChannel,
   CustomerInformation,
@@ -19,7 +20,10 @@ import {
 import { IBooking } from 'src/app/shared/models/booking.model';
 import { BookingOptionsService } from 'src/app/shared/services/booking-options.service';
 import { CreateBookingCalculationService } from 'src/app/shared/services/create-booking-calculation.service';
-import { UPDATE_BOOKING_ACTION } from 'src/app/shared/stores/booking-store/booking.actions';
+import {
+  LOAD_BOOKING_ACTION,
+  UPDATE_BOOKING_ACTION,
+} from 'src/app/shared/stores/booking-store/booking.actions';
 import { SELECT_CURRENT_BOOKING } from 'src/app/shared/stores/booking-store/booking.selector';
 import { IBookingState } from 'src/app/shared/stores/booking-store/booking.state';
 
@@ -59,10 +63,17 @@ export class BookingEditComponent implements OnInit, OnDestroy {
     private store: Store<IBookingState>,
     private readonly bookingOptionsService: BookingOptionsService,
     private readonly createBookingCalculationService: CreateBookingCalculationService,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    this.store.dispatch(
+      LOAD_BOOKING_ACTION({
+        bookingId: this.activatedRoute.snapshot.params[ACTIVATED_ROUTE_PARAMS],
+      })
+    );
+
     this.bookingOptionsService
       .loadBookingOptions()
       .pipe(takeUntil(this.sub))

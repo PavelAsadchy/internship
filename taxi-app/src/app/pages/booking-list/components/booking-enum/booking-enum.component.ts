@@ -69,7 +69,6 @@ export class BookingEnumComponent implements OnInit {
   }
 
   openBookingEdit(booking: IBooking): void {
-    this.store.dispatch(LOAD_BOOKING_ACTION({ bookingId: booking.id }));
     this.router.navigate(['board', 'booking', 'update', booking.id]);
   }
 
