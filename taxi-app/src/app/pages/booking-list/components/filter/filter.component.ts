@@ -50,55 +50,21 @@ export class FilterComponent {
       statuses: this.filterForm.get('statuses').value,
       dateFrom: moment(this.filterForm.get('dateFrom').value),
       channels: this.filterForm.get('channels').value,
-      dateTo: moment(this.filterForm.get('dateTo').value) || moment(new Date()),
+      dateTo: moment(this.filterForm.get('dateTo').value).isValid()
+        ? moment(this.filterForm.get('dateTo').value)
+        : moment(),
       vehicle: this.filterForm.get('vehicle').value,
     };
     this.store.dispatch(LOAD_BOOKINGS_BY_FILTER_ACTION({ filterParams }));
   }
 
-  onDateSetup(dateLag: number, param: string): void {
-    const today = new Date();
-    switch (param) {
-      case 'month':
-        this.filterForm.patchValue({
-          dateFrom: new Date(
-            today.getFullYear(),
-            today.getMonth() - dateLag,
-            today.getDate()
-          ),
-        });
-        break;
-
-      case 'day':
-        this.filterForm.patchValue({
-          dateFrom: new Date(
-            today.getFullYear(),
-            today.getMonth(),
-            today.getDate() - dateLag
-          ),
-        });
-        break;
-
-      case 'hour':
-        this.filterForm.patchValue({
-          dateFrom: new Date(
-            today.getFullYear(),
-            today.getMonth(),
-            today.getDate(),
-            today.getHours() - dateLag
-          ),
-        });
-        break;
-
-      case 'current':
-        this.filterForm.patchValue({
-          dateTo: today,
-        });
-        break;
-
-      default:
-        break;
-    }
+  onDateSetup(
+    dateLag: number,
+    param: moment.unitOfTime.DurationConstructor
+  ): void {
+    this.filterForm.patchValue({
+      dateFrom: moment().subtract(dateLag, param).toDate(),
+    });
   }
 
   onFilterFormReset(): void {
