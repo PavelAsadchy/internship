@@ -1,3 +1,5 @@
+import { IBooking } from '../models/booking.model';
+
 export enum BookingOptionsType {
   BOOKING_CHANNEL = 'BOOKING_CHANNEL',
   PICK_UP_TIME = 'PICK_UP_TIME',
@@ -232,4 +234,25 @@ export const MY_DP_FORMAT = {
     dateA11yLabel: 'LL',
     monthYearA11yLabel: 'MMMM YYYY',
   },
+};
+
+export const DEFAULT_BOOKING_PARAMS: IBooking = {
+  bookingChannel: BookingChannelOptions.CALL,
+  pickUpAddress: '',
+  pickUpPoint: PickUpPointOptions.ADRESS,
+  pickUpUrgencyFlag: PickUpTimeOptions.NOW,
+  dropOffAddress: '',
+  dropOffPoint: DropOffPointOptions.ADRESS,
+  vehicle: VehicleOptions.CAB,
+  customerEmail: '',
+  customerName: '',
+  customerPhone: '',
+  passengerName: '',
+  passengerPhone: '',
+  paymentChannel: PaymentChannels.IN_VEHICLE,
+  paymentType: PaymentTypes.CASH,
+  paymentBasicOptions: [],
+  paymentExtraOptions: [],
+  notesToDispatcher: '',
+  notesToDriver: '',
 };

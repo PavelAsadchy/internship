@@ -5,7 +5,7 @@ export interface IBooking {
   pickUpAddress: string;
   pickUpPoint: string;
   pickUpUrgencyFlag: string;
-  pickUpUrgency: string;
+  pickUpUrgency?: string;
   dropOffAddress: string;
   dropOffPoint: string;
   vehicle: string;
@@ -20,9 +20,9 @@ export interface IBooking {
   paymentExtraOptions: string[];
   notesToDispatcher: string;
   notesToDriver: string;
-  price: number;
-  pickUpTime: moment.Moment;
-  bookingTime: moment.Moment;
-  status: string;
+  price?: number;
+  pickUpTime?: moment.Moment;
+  bookingTime?: moment.Moment;
+  status?: string;
   id?: string;
 }

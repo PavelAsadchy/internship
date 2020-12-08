@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { combineLatest, Subject } from 'rxjs';
 import {
@@ -28,6 +28,9 @@ import * as moment from 'moment';
   providers: [CreateBookingCalculationService],
 })
 export class BookingBoardComponent implements OnInit, OnDestroy {
+  @Input()
+  bookingParams: IBooking;
+
   bookingOptions: IBookingOptions;
 
   price: number;
