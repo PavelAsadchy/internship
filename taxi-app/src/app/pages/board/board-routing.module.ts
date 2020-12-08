@@ -5,7 +5,6 @@ import { BoardComponent } from './container/board.component';
 import { BookingListComponent } from 'src/app/pages/booking-list/container/booking-list.component';
 import { MenuMainComponent } from './components/menu-main/menu-main.component';
 import { BookingEditComponent } from '../booking-edit/booking-edit.component';
-import { BookingEditGuard } from 'src/app/shared/guards/booking-edit.guard';
 
 const routes: Routes = [
   {
@@ -17,17 +16,26 @@ const routes: Routes = [
         component: MenuMainComponent,
       },
       {
-        path: 'create-booking',
-        component: CreateBookingComponent,
+        path: 'booking',
+        redirectTo: 'booking/create',
+        pathMatch: 'full',
       },
       {
-        path: 'booking-list',
-        component: BookingListComponent,
-      },
-      {
-        path: 'booking-list/:id',
-        component: BookingEditComponent,
-        canActivate: [BookingEditGuard],
+        path: 'booking',
+        children: [
+          {
+            path: 'create',
+            component: CreateBookingComponent,
+          },
+          {
+            path: 'list',
+            component: BookingListComponent,
+          },
+          {
+            path: 'update/:id',
+            component: BookingEditComponent,
+          },
+        ],
       },
     ],
   },

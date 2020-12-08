@@ -23,7 +23,7 @@ export class BookingEditGuard implements CanActivate {
     | boolean
     | UrlTree {
     if (!this.router.navigated) {
-      this.router.navigate(['board', 'booking-list']);
+      this.router.navigate(['board', 'booking', 'list']);
     }
     return true;
   }

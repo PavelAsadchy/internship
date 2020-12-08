@@ -22,13 +22,13 @@ export class BoardComponent implements OnInit {
       'Create Booking',
       'Add a new booking entry',
       'book',
-      'create-booking'
+      '/booking/create'
     ),
     new IMenuItem(
       'Booking List',
       'View a list of bookings',
       'library_books',
-      'booking-list'
+      '/booking/list'
     ),
     new IMenuItem('item3', 'description', 'account_box', 'board'),
     new IMenuItem('item4', 'description', 'account_box', 'board'),

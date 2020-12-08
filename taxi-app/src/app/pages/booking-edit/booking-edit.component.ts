@@ -177,11 +177,11 @@ export class BookingEditComponent implements OnInit, OnDestroy {
     };
 
     this.store.dispatch(UPDATE_BOOKING_ACTION({ booking: updatedBooking }));
-    this.router.navigate(['board/', 'booking-list']);
+    this.router.navigate(['board', 'booking', 'list']);
   }
 
   onReturnWithoutChanges() {
-    this.router.navigate(['board/', 'booking-list']);
+    this.router.navigate(['board', 'booking', 'list']);
   }
 
   checkFormValidity(): boolean {
