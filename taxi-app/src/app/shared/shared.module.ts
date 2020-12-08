@@ -32,9 +32,7 @@ import {
   MatDatetimepickerModule,
   MatNativeDatetimeModule,
 } from '@mat-datetimepicker/core';
-import {
-  MatMomentDateModule,
-} from '@angular/material-moment-adapter';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 @NgModule({
   imports: [

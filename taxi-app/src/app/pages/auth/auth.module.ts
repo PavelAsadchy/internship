@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { AuthComponent } from './auth.component';
+import { AuthComponent } from './container/auth.component';
 import { LoginComponent } from './components/login/login.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -13,21 +13,16 @@ import { AuthInterceptor } from 'src/app/shared/interceptors/auth.interceptor';
     AuthComponent,
     LoginComponent,
     WelcomeComponent,
-    RegisterComponent
+    RegisterComponent,
   ],
-  imports: [
-    SharedModule,
-    AuthRoutingModule
-  ],
+  imports: [SharedModule, AuthRoutingModule],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi: true
-    }
+      multi: true,
+    },
   ],
-  exports: [
-    AuthComponent
-  ]
+  exports: [AuthComponent],
 })
-export class AuthModule { }
+export class AuthModule {}

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { BoardRoutingModule } from './board-routing.module';
-import { BoardComponent } from './board.component';
+import { BoardComponent } from './container/board.component';
 import { MenuSideComponent } from './components/menu-side/menu-side.component';
 import { MenuMainComponent } from './components/menu-main/menu-main.component';
 import { CreateBookingModule } from 'src/app/pages/create-booking/create-booking.module';

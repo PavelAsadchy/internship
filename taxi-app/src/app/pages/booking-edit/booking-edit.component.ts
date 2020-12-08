@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import * as moment from 'moment';
-import { combineLatest, Observable, Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import {
   BookingChannel,
@@ -20,10 +20,7 @@ import { IBooking } from 'src/app/shared/models/booking.model';
 import { BookingOptionsService } from 'src/app/shared/services/booking-options.service';
 import { CreateBookingCalculationService } from 'src/app/shared/services/create-booking-calculation.service';
 import { UPDATE_BOOKING_ACTION } from 'src/app/shared/stores/booking-store/booking.actions';
-import {
-  SELECT_CURRENT_BOOKING,
-  SELECT_CURRENT_BOOKING_ID,
-} from 'src/app/shared/stores/booking-store/booking.selector';
+import { SELECT_CURRENT_BOOKING } from 'src/app/shared/stores/booking-store/booking.selector';
 import { IBookingState } from 'src/app/shared/stores/booking-store/booking.state';
 
 @Component({
