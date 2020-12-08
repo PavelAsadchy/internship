@@ -60,7 +60,7 @@
         <mat-form-field>
             <mat-label>Vehicle type</mat-label>
             <mat-select formControlName="vehicle" multiple>
-                <mat-option *ngFor="let vehicle of vehicles | keyvalue" [value]="vehicle.key">
+                <mat-option *ngFor="let vehicle of vehicleOptions.items | keyvalue" [value]="vehicle.key">
                     {{ vehicle.value.name }}
                 </mat-option>
             </mat-select>

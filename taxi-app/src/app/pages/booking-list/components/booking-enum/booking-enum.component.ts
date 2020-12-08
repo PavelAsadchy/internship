@@ -10,9 +10,11 @@ import {
   BookingStatusOptions,
   BOOKING_DISPLAYED_COLUMNS,
   DropOffPointOptions,
+  DROP_OFF_OPTIONS,
   PickUpPointOptions,
+  PICK_UP_OPTIONS,
   PICK_UP_URGENCY_COLORS,
-  VEHICLE_LIST,
+  VEHICLE_OPTIONS,
 } from 'src/app/shared/consts/booking-options.consts';
 import { IBooking } from 'src/app/shared/models/booking.model';
 import {
@@ -42,9 +44,9 @@ export class BookingEnumComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  vehicleList = VEHICLE_LIST;
-  pickUpPoint = PickUpPointOptions;
-  dropOffPoint = DropOffPointOptions;
+  vehicleOptions = VEHICLE_OPTIONS;
+  pickUpOptions = PICK_UP_OPTIONS;
+  dropOffOptions = DROP_OFF_OPTIONS;
   pickUpUrgency = PICK_UP_URGENCY_COLORS;
   status = BookingStatusOptions;
 

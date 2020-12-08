@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import {
   PickUpPointOptions,
   PickUpTimeOptions,
+  PICK_UP_OPTIONS,
 } from 'src/app/shared/consts/booking-options.consts';
 import { IPickUp } from 'src/app/shared/models/booking-options.model';
 
@@ -19,9 +20,9 @@ export class PickUpComponent {
   @Input()
   pickUp: IPickUp;
 
-  pickUpTimeOptions = PickUpTimeOptions;
+  pickUpOptions = PICK_UP_OPTIONS;
 
-  pickUpPointOptions = PickUpPointOptions;
+  // pickUpPointOptions = PickUpPointOptions;
 
   originalOrder(): number {
     return 0;

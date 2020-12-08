@@ -22,139 +22,279 @@ export enum BookingOptionsType {
 }
 
 export enum BookingChannelOptions {
-  CALL = 'Call',
-  EMAIL = 'Email',
-  WALKING_ROCCO = 'Walking Rocco',
-  CONCIERGE = 'Concierge',
-  GOODS_DELIVERY = 'Goods Delivery',
-  MOBILE_APP = 'Mobile App',
-  BOT = 'Bot',
+  CALL,
+  EMAIL,
+  WALKING_ROCCO,
+  CONCIERGE,
+  GOODS_DELIVERY,
+  MOBILE_APP,
+  BOT,
+}
+
+export const BOOKING_CHANNEL_OPTIONS = {
+  channel: {
+    [BookingChannelOptions[BookingChannelOptions.CALL]]: {
+      name: 'Call',
+    },
+    [BookingChannelOptions[BookingChannelOptions.EMAIL]]: {
+      name: 'Email',
+    },
+    [BookingChannelOptions[BookingChannelOptions.WALKING_ROCCO]]: {
+      name: 'Walking Rocco',
+    },
+    [BookingChannelOptions[BookingChannelOptions.CONCIERGE]]: {
+      name: 'Concierge',
+    },
+    [BookingChannelOptions[BookingChannelOptions.GOODS_DELIVERY]]: {
+      name: 'Goods Delivery',
+    },
+    [BookingChannelOptions[BookingChannelOptions.MOBILE_APP]]: {
+      name: 'Mobile App',
+    },
+    [BookingChannelOptions[BookingChannelOptions.BOT]]: {
+      name: 'Bot',
+    },  
+  }
 }
 
 export enum PickUpTimeOptions {
-  NOW = 'Now',
-  LATER = 'Later',
+  NOW,
+  LATER,
 }
 
 export enum PickUpPointOptions {
-  ADRESS = 'Adress',
-  AIRPORT = 'Airport',
-  ROCCO = 'Rocco',
-  HEAD_OFFICE = 'Head Office',
+  ADDRESS,
+  AIRPORT,
+  ROCCO,
+  HEAD_OFFICE,
+}
+
+export const PICK_UP_OPTIONS = {
+  time: {
+    [PickUpTimeOptions[PickUpTimeOptions.NOW]]: {
+      name: 'Now'
+    },
+    [PickUpTimeOptions[PickUpTimeOptions.LATER]]: {
+      name: 'Later'
+    },
+  },
+  point: {
+    [PickUpPointOptions[PickUpPointOptions.ADDRESS]]: {
+      name: 'Adress'
+    },
+    [PickUpPointOptions[PickUpPointOptions.AIRPORT]]: {
+      name: 'Airport'
+    },
+    [PickUpPointOptions[PickUpPointOptions.ROCCO]]: {
+      name: 'Rocco'
+    },
+    [PickUpPointOptions[PickUpPointOptions.HEAD_OFFICE]]: {
+      name: 'Head Office'
+    },
+  },
 }
 
 export enum DropOffPointOptions {
-  ADRESS = 'Adress',
-  AIRPORT = 'Airport',
-  ROCCO = 'Rocco',
-  HEAD_OFFICE = 'Head Office',
-  INDEGINITI = 'Indefinite',
+  ADDRESS,
+  AIRPORT,
+  ROCCO,
+  HEAD_OFFICE,
+  INDEFINITE,
+}
+
+export const DROP_OFF_OPTIONS = {
+  point: {
+    [DropOffPointOptions[DropOffPointOptions.ADDRESS]]: {
+      name: 'Address'
+    },
+    [DropOffPointOptions[DropOffPointOptions.AIRPORT]]: {
+      name: 'Airport'
+    },
+    [DropOffPointOptions[DropOffPointOptions.ROCCO]]: {
+      name: 'Rocco'
+    },
+    [DropOffPointOptions[DropOffPointOptions.HEAD_OFFICE]]: {
+      name: 'Head Office'
+    },
+    [DropOffPointOptions[DropOffPointOptions.INDEFINITE]]: {
+      name: 'Indefinite'
+    },
+  },
 }
 
 export enum VehicleOptions {
-  CAB = 'CAB',
-  BRANDED_STANDART_CAB = 'BRANDED_STANDART_CAB',
-  VAN = 'VAN',
-  EXECUTIVE_CAB = 'EXECUTIVE_CAB',
-  EXECUTIVE_VAN = 'EXECUTIVE_VAN',
-  LUXURY_EXECUTIVE = 'LUXURY_EXECUTIVE',
-  MINI_BUS = 'MINI_BUS',
-  RESTRICTED_MOBILITY = 'RESTRICTED_MOBILITY',
-  VINTAGE = 'VINTAGE',
-  LUXURY_EXEC_VAN = 'LUXURY_EXEC_VAN',
+  CAB,
+  BRANDED_STANDART_CAB,
+  VAN,
+  EXECUTIVE_CAB,
+  EXECUTIVE_VAN,
+  LUXURY_EXECUTIVE,
+  MINI_BUS,
+  RESTRICTED_MOBILITY,
+  VINTAGE,
+  LUXURY_EXEC_VAN,
 }
 
-export const VEHICLE_LIST = {
-  [VehicleOptions.CAB]: {
-    name: 'Cab',
-    img: 'assets/vehicles/cab.svg',
-    capacity: '1-4',
-    abbr: 'C',
-  },
-  [VehicleOptions.BRANDED_STANDART_CAB]: {
-    name: 'Branded standart Cab',
-    img: 'assets/vehicles/branded-stand-cab.svg',
-    capacity: '1-4',
-    abbr: 'BSC',
-  },
-  [VehicleOptions.VAN]: {
-    name: 'Van',
-    img: 'assets/vehicles/van.svg',
-    capacity: '5-8',
-    abbr: 'V',
-  },
-  [VehicleOptions.EXECUTIVE_CAB]: {
-    name: 'Executive Cab',
-    img: 'assets/vehicles/exec-cab.svg',
-    capacity: '1-4',
-    abbr: 'EC',
-  },
-  [VehicleOptions.EXECUTIVE_VAN]: {
-    name: 'Executive Van',
-    img: 'assets/vehicles/exec-van.svg',
-    capacity: '5-8',
-    abbr: 'EV',
-  },
-  [VehicleOptions.LUXURY_EXECUTIVE]: {
-    name: 'Luxury Executive',
-    img: 'assets/vehicles/luxury-exec.svg',
-    capacity: '1-4',
-    abbr: 'LE',
-  },
-  [VehicleOptions.MINI_BUS]: {
-    name: 'Mini Bus',
-    img: 'assets/vehicles/mini-bus.svg',
-    capacity: '9-14',
-    abbr: 'MB',
-  },
-  [VehicleOptions.RESTRICTED_MOBILITY]: {
-    name: 'Restricted Mobility',
-    img: 'assets/vehicles/restr-mobility.svg',
-    capacity: '1-4',
-    abbr: 'RM',
-  },
-  [VehicleOptions.VINTAGE]: {
-    name: 'Vintage',
-    img: 'assets/vehicles/vintage.svg',
-    capacity: '1-2',
-    abbr: 'VG',
-  },
-  [VehicleOptions.LUXURY_EXEC_VAN]: {
-    name: 'Luxury Exec. Van',
-    img: 'assets/vehicles/luxury-exec-van.svg',
-    capacity: '5-8',
-    abbr: 'LEV',
+export const VEHICLE_OPTIONS = {
+  items: {
+    [VehicleOptions[VehicleOptions.CAB]]: {
+      name: 'Cab',
+      img: 'assets/vehicles/cab.svg',
+      capacity: '1-4',
+      abbr: 'C',
+    },
+    [VehicleOptions[VehicleOptions.BRANDED_STANDART_CAB]]: {
+      name: 'Branded standart Cab',
+      img: 'assets/vehicles/branded-stand-cab.svg',
+      capacity: '1-4',
+      abbr: 'BSC',
+    },
+    [VehicleOptions[VehicleOptions.VAN]]: {
+      name: 'Van',
+      img: 'assets/vehicles/van.svg',
+      capacity: '5-8',
+      abbr: 'V',
+    },
+    [VehicleOptions[VehicleOptions.EXECUTIVE_CAB]]: {
+      name: 'Executive Cab',
+      img: 'assets/vehicles/exec-cab.svg',
+      capacity: '1-4',
+      abbr: 'EC',
+    },
+    [VehicleOptions[VehicleOptions.EXECUTIVE_VAN]]: {
+      name: 'Executive Van',
+      img: 'assets/vehicles/exec-van.svg',
+      capacity: '5-8',
+      abbr: 'EV',
+    },
+    [VehicleOptions[VehicleOptions.LUXURY_EXECUTIVE]]: {
+      name: 'Luxury Executive',
+      img: 'assets/vehicles/luxury-exec.svg',
+      capacity: '1-4',
+      abbr: 'LE',
+    },
+    [VehicleOptions[VehicleOptions.MINI_BUS]]: {
+      name: 'Mini Bus',
+      img: 'assets/vehicles/mini-bus.svg',
+      capacity: '9-14',
+      abbr: 'MB',
+    },
+    [VehicleOptions[VehicleOptions.RESTRICTED_MOBILITY]]: {
+      name: 'Restricted Mobility',
+      img: 'assets/vehicles/restr-mobility.svg',
+      capacity: '1-4',
+      abbr: 'RM',
+    },
+    [VehicleOptions[VehicleOptions.VINTAGE]]: {
+      name: 'Vintage',
+      img: 'assets/vehicles/vintage.svg',
+      capacity: '1-2',
+      abbr: 'VG',
+    },
+    [VehicleOptions[VehicleOptions.LUXURY_EXEC_VAN]]: {
+      name: 'Luxury Exec. Van',
+      img: 'assets/vehicles/luxury-exec-van.svg',
+      capacity: '5-8',
+      abbr: 'LEV',
+    },  
   },
 };
 
 export enum PaymentChannels {
-  IN_VEHICLE = 'In Vehicle',
-  OVER_THE_COUNTER = 'Over The Counter',
-  INVOICE = 'Invoice',
+  IN_VEHICLE,
+  OVER_THE_COUNTER,
+  INVOICE,
 }
 
 export enum PaymentTypes {
-  CASH = 'Cash',
+  CASH,
 }
 
 export enum PaymentBasicOptions {
-  WILLING_TO_SHARE = 'Willing to share',
+  WILLING_TO_SHARE,
 }
 
 export enum PaymentExtraOptions {
-  BABY_SEAT = 'Baby seat (+€5)',
-  IMMEDIATE_RETURN = 'Immediate Return (Extra Fee)',
-  NO_LUGGAGE = 'No Luggage',
-  EXTRA_LUGGAGE = 'Extra Luggage',
-  STATION_WAGON = 'Station Wagon',
-  PET_ONBOARD = 'Pet Onboard',
-  RECEIPT = 'Receipt',
-  RESTRICTED_MOBILITY = 'Restricted Mobility',
-  STEP_STOOL = 'Step Stool',
-  ARRIVAL_PACK = 'Arrival Pack',
-  KEYS_FROM_OFFICE = 'Keys From Office',
-  MALE_DRIVER = 'Male Driver',
-  FEMALE_DRIVER = 'Female Driver',
+  BABY_SEAT,
+  IMMEDIATE_RETURN,
+  NO_LUGGAGE,
+  EXTRA_LUGGAGE,
+  STATION_WAGON,
+  PET_ONBOARD,
+  RECEIPT,
+  RESTRICTED_MOBILITY,
+  STEP_STOOL,
+  ARRIVAL_PACK,
+  KEYS_FROM_OFFICE,
+  MALE_DRIVER,
+  FEMALE_DRIVER,
+}
+
+export const PAYMENT_OPTIONS = {
+  paymentOptions: {
+    channels: {
+      [PaymentChannels[PaymentChannels.IN_VEHICLE]]: {
+        name: 'In Vehicle'
+      },
+      [PaymentChannels[PaymentChannels.OVER_THE_COUNTER]]: {
+        name: 'Over The Counter'
+      },
+      [PaymentChannels[PaymentChannels.INVOICE]]: {
+        name: 'Invoice'
+      },
+    },
+    types: {
+      [PaymentTypes[PaymentTypes.CASH]]: {
+        name: 'Cash'
+      },
+    },
+  },
+  checkBasicOptions: {
+    [PaymentBasicOptions[PaymentBasicOptions.WILLING_TO_SHARE]]: {
+      name: 'Willing to share'
+    },
+  },
+  checkExtraOptions: {
+    [PaymentExtraOptions[PaymentExtraOptions.BABY_SEAT]]: {
+      name: 'Baby seat (+€5)'
+    },
+    [PaymentExtraOptions[PaymentExtraOptions.IMMEDIATE_RETURN]]: {
+      name: 'Immediate Return (Extra Fee)'
+    },
+    [PaymentExtraOptions[PaymentExtraOptions.NO_LUGGAGE]]: {
+      name: 'No Luggage'
+    },
+    [PaymentExtraOptions[PaymentExtraOptions.EXTRA_LUGGAGE]]: {
+      name: 'Extra Luggage'
+    },
+    [PaymentExtraOptions[PaymentExtraOptions.STATION_WAGON]]: {
+      name: 'Station Wagon'
+    },
+    [PaymentExtraOptions[PaymentExtraOptions.PET_ONBOARD]]: {
+      name: 'Pet Onboard'
+    },
+    [PaymentExtraOptions[PaymentExtraOptions.RECEIPT]]: {
+      name: 'Receipt'
+    },
+    [PaymentExtraOptions[PaymentExtraOptions.RESTRICTED_MOBILITY]]: {
+      name: 'Restricted Mobility'
+    },
+    [PaymentExtraOptions[PaymentExtraOptions.STEP_STOOL]]: {
+      name: 'Step Stool'
+    },
+    [PaymentExtraOptions[PaymentExtraOptions.ARRIVAL_PACK]]: {
+      name: 'Arrival Pack'
+    },
+    [PaymentExtraOptions[PaymentExtraOptions.KEYS_FROM_OFFICE]]: {
+      name: 'Keys From Office'
+    },
+    [PaymentExtraOptions[PaymentExtraOptions.MALE_DRIVER]]: {
+      name: 'Male Driver'
+    },
+    [PaymentExtraOptions[PaymentExtraOptions.FEMALE_DRIVER]]: {
+      name: 'Female Driver'
+    },
+  },
 }
 
 export enum PickUpUrgency {
@@ -237,20 +377,20 @@ export const MY_DP_FORMAT = {
 };
 
 export const DEFAULT_BOOKING_PARAMS: IBooking = {
-  bookingChannel: BookingChannelOptions.CALL,
+  bookingChannel: BookingChannelOptions[BookingChannelOptions.CALL],
   pickUpAddress: '',
-  pickUpPoint: PickUpPointOptions.ADRESS,
-  pickUpUrgencyFlag: PickUpTimeOptions.NOW,
+  pickUpPoint: PickUpPointOptions[PickUpPointOptions.ADDRESS],
+  pickUpUrgencyFlag: PickUpTimeOptions[PickUpTimeOptions.NOW],
   dropOffAddress: '',
-  dropOffPoint: DropOffPointOptions.ADRESS,
-  vehicle: VehicleOptions.CAB,
+  dropOffPoint: DropOffPointOptions[DropOffPointOptions.ADDRESS],
+  vehicle: null,
   customerEmail: '',
   customerName: '',
   customerPhone: '',
   passengerName: '',
   passengerPhone: '',
-  paymentChannel: PaymentChannels.IN_VEHICLE,
-  paymentType: PaymentTypes.CASH,
+  paymentChannel: PaymentChannels[PaymentChannels.IN_VEHICLE],
+  paymentType: PaymentTypes[PaymentTypes.CASH],
   paymentBasicOptions: [],
   paymentExtraOptions: [],
   notesToDispatcher: '',

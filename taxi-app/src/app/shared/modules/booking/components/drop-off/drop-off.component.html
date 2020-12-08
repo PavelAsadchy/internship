@@ -9,10 +9,10 @@
         >
             <mat-radio-button
                 class="drop-off__radio-btn"
-                *ngFor="let point of dropOffPointOptions | keyvalue: originalOrder"
+                *ngFor="let point of dropOffOptions.point | keyvalue: originalOrder"
                 [value]="point.key"
             >
-                {{ point.value }}
+                {{ point.value.name }}
             </mat-radio-button>
         </mat-radio-group>
         <mat-form-field #addressInput >

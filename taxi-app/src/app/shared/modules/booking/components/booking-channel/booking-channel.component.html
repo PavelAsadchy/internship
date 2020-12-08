@@ -5,7 +5,7 @@
     >
         {{ bookingChannel.channel.label }}
     </label>
-    <div *ngIf="bookingChannel?.channel?.options">
+    <div>
         <mat-radio-group
             color="primary"
             aria-labelledby="booking-channel-label"
@@ -13,10 +13,10 @@
         >
             <mat-radio-button
                 class="booking-channel__radio-btn"
-                *ngFor="let bookingChannel of bookingChannelOptions | keyvalue: originalOrder"
+                *ngFor="let bookingChannel of bookingChannelOptions.channel | keyvalue: originalOrder"
                 [value]="bookingChannel.key"
             >
-                {{ bookingChannel.value }}
+                {{ bookingChannel.value.name }}
             </mat-radio-button>
         </mat-radio-group>
     </div>

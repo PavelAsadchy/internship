@@ -7,6 +7,7 @@ import {
   PaymentChannels,
   PaymentExtraOptions,
   PaymentTypes,
+  PAYMENT_OPTIONS,
 } from 'src/app/shared/consts/booking-options.consts';
 import { IPayment } from 'src/app/shared/models/booking-options.model';
 
@@ -23,13 +24,7 @@ export class PaymentComponent {
   @Input()
   payment: IPayment;
 
-  paymentChannels = PaymentChannels;
-
-  paymentTypes = PaymentTypes;
-
-  paymentBasicOptions = PaymentBasicOptions;
-
-  paymentExtraoptions = PaymentExtraOptions;
+  paymentOptions = PAYMENT_OPTIONS;
 
   onBasicOptionsChange(
     event: MatCheckboxChange,

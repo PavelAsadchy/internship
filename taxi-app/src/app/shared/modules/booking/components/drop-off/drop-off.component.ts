@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { DropOffPointOptions } from 'src/app/shared/consts/booking-options.consts';
+import { DropOffPointOptions, DROP_OFF_OPTIONS } from 'src/app/shared/consts/booking-options.consts';
 import { IDropOff } from 'src/app/shared/models/booking-options.model';
 
 @Component({
@@ -16,7 +16,7 @@ export class DropOffComponent {
   @Input()
   dropOff: IDropOff;
 
-  dropOffPointOptions = DropOffPointOptions;
+  dropOffOptions = DROP_OFF_OPTIONS;
 
   originalOrder(): number {
     return 0;

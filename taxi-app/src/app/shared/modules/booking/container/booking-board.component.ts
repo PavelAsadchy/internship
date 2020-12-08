@@ -75,7 +75,46 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
     this.bookingOptionsForm.valueChanges.subscribe((status) => {
       this.createBookingCalculationService.createRandomCalculation(status);
     });
-  }
+
+    this.bookingOptionsForm.patchValue({
+      bookingChannel: {
+        channel: this.bookingParams.bookingChannel,
+      },
+      pickUp: {
+        time: this.bookingParams.pickUpUrgencyFlag,
+        point: this.bookingParams.pickUpPoint,
+        address: this.bookingParams.pickUpAddress
+      },
+      dropOff: {
+        point: this.bookingParams.dropOffPoint,
+        address: this.bookingParams.dropOffAddress,
+      },
+      vehicle: {
+        items: this.bookingParams.vehicle,
+      },
+      customerInformation: {
+        phone: this.bookingParams.customerPhone,
+        email: this.bookingParams.customerEmail,
+        name: this.bookingParams.customerName,
+      },
+      passengerInformation: {
+        phone: this.bookingParams.passengerPhone,
+        name: this.bookingParams.passengerName,
+      },
+      payment: {
+        paymentOptions: {
+          channel: this.bookingParams.paymentChannel,
+          type: this.bookingParams.paymentType,
+        },
+        checkBasicOptions: this.bookingParams.paymentBasicOptions,
+        checkExtraOptions: this.bookingParams.paymentExtraOptions,
+      },
+      notes: {
+        toDriver: this.bookingParams.notesToDriver,
+        toDispatcher: this.bookingParams.notesToDispatcher,
+      },
+    })
+   }
 
   ngOnDestroy(): void {
     this.sub.next();
@@ -147,5 +186,10 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
     return (
       this.bookingOptionsForm.controls[control].get(field).status === 'INVALID'
     );
+  }
+
+  trigger() {
+    console.log(this.bookingOptionsForm.value)
+    console.log(this.bookingParams.vehicle)
   }
 }

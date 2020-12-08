@@ -4,7 +4,7 @@
     </caption>
     <div class="vehicle__wrapper" *ngIf="vehicle?.items">
         <label        
-            *ngFor="let vehicleItem of vehicleList | keyvalue: originalOrder"
+            *ngFor="let vehicleItem of vehicleOptions.items | keyvalue: originalOrder"
         >
             <input
                 type="radio"

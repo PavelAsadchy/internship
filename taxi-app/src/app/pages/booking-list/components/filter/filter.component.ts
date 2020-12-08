@@ -4,7 +4,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import {
   BookingChannelOptions,
   BookingStatusOptions,
-  VEHICLE_LIST,
+  VEHICLE_OPTIONS,
 } from 'src/app/shared/consts/booking-options.consts';
 import * as moment from 'moment';
 import { IFilterParams } from 'src/app/shared/models/filter-params.model';
@@ -27,7 +27,7 @@ import {
 export class FilterComponent {
   statuses = BookingStatusOptions;
   channels = BookingChannelOptions;
-  vehicles = VEHICLE_LIST;
+  vehicleOptions = VEHICLE_OPTIONS;
 
   filterForm = this.fb.group({
     bookingId: [''],

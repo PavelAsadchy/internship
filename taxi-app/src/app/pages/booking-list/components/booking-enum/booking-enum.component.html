@@ -23,12 +23,12 @@
             <td
                 class="booking-table__col-data"
                 mat-cell *matCellDef="let row"
-                title="{{ vehicleList[row.vehicle].name }}"
+                title="{{ vehicleOptions.items[row.vehicle].name }}"
             >
                 <span class="booking-table__cell-text booking-table__cell-text--small booking-table__cell-text--bold">
-                    {{ vehicleList[row.vehicle].abbr }}
+                    {{ vehicleOptions.items[row.vehicle].abbr }}
                 </span>
-                <img src="{{ vehicleList[row.vehicle].img }}" width="30" height="30">
+                <img src="{{ vehicleOptions.items[row.vehicle].img }}" width="30" height="30">
             </td>
         </ng-container>
 
@@ -64,13 +64,13 @@
         <ng-container matColumnDef="pickUp">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> PickUp </th>
             <td mat-cell *matCellDef="let row">
-                {{ pickUpPoint[row.pickUpPoint] }}
+                {{ pickUpOptions.point[row.pickUpPoint].name }}
             </td>
         </ng-container>
 
         <ng-container matColumnDef="dropOff">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> DropOff </th>
-            <td mat-cell *matCellDef="let row"> {{ dropOffPoint[row.dropOffPoint] }} </td>
+            <td mat-cell *matCellDef="let row"> {{ dropOffOptions.point[row.dropOffPoint].name }} </td>
         </ng-container>
 
         <ng-container matColumnDef="passenger">
