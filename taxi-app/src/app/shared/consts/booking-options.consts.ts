@@ -53,9 +53,9 @@ export const BOOKING_CHANNEL_OPTIONS = {
     },
     [BookingChannelOptions[BookingChannelOptions.BOT]]: {
       name: 'Bot',
-    },  
-  }
-}
+    },
+  },
+};
 
 export enum PickUpTimeOptions {
   NOW,
@@ -72,27 +72,27 @@ export enum PickUpPointOptions {
 export const PICK_UP_OPTIONS = {
   time: {
     [PickUpTimeOptions[PickUpTimeOptions.NOW]]: {
-      name: 'Now'
+      name: 'Now',
     },
     [PickUpTimeOptions[PickUpTimeOptions.LATER]]: {
-      name: 'Later'
+      name: 'Later',
     },
   },
   point: {
     [PickUpPointOptions[PickUpPointOptions.ADDRESS]]: {
-      name: 'Adress'
+      name: 'Adress',
     },
     [PickUpPointOptions[PickUpPointOptions.AIRPORT]]: {
-      name: 'Airport'
+      name: 'Airport',
     },
     [PickUpPointOptions[PickUpPointOptions.ROCCO]]: {
-      name: 'Rocco'
+      name: 'Rocco',
     },
     [PickUpPointOptions[PickUpPointOptions.HEAD_OFFICE]]: {
-      name: 'Head Office'
+      name: 'Head Office',
     },
   },
-}
+};
 
 export enum DropOffPointOptions {
   ADDRESS,
@@ -105,22 +105,22 @@ export enum DropOffPointOptions {
 export const DROP_OFF_OPTIONS = {
   point: {
     [DropOffPointOptions[DropOffPointOptions.ADDRESS]]: {
-      name: 'Address'
+      name: 'Address',
     },
     [DropOffPointOptions[DropOffPointOptions.AIRPORT]]: {
-      name: 'Airport'
+      name: 'Airport',
     },
     [DropOffPointOptions[DropOffPointOptions.ROCCO]]: {
-      name: 'Rocco'
+      name: 'Rocco',
     },
     [DropOffPointOptions[DropOffPointOptions.HEAD_OFFICE]]: {
-      name: 'Head Office'
+      name: 'Head Office',
     },
     [DropOffPointOptions[DropOffPointOptions.INDEFINITE]]: {
-      name: 'Indefinite'
+      name: 'Indefinite',
     },
   },
-}
+};
 
 export enum VehicleOptions {
   CAB,
@@ -196,7 +196,7 @@ export const VEHICLE_OPTIONS = {
       img: 'assets/vehicles/luxury-exec-van.svg',
       capacity: '5-8',
       abbr: 'LEV',
-    },  
+    },
   },
 };
 
@@ -234,68 +234,158 @@ export const PAYMENT_OPTIONS = {
   paymentOptions: {
     channels: {
       [PaymentChannels[PaymentChannels.IN_VEHICLE]]: {
-        name: 'In Vehicle'
+        name: 'In Vehicle',
       },
       [PaymentChannels[PaymentChannels.OVER_THE_COUNTER]]: {
-        name: 'Over The Counter'
+        name: 'Over The Counter',
       },
       [PaymentChannels[PaymentChannels.INVOICE]]: {
-        name: 'Invoice'
+        name: 'Invoice',
       },
     },
     types: {
       [PaymentTypes[PaymentTypes.CASH]]: {
-        name: 'Cash'
+        name: 'Cash',
       },
     },
   },
-  checkBasicOptions: {
-    [PaymentBasicOptions[PaymentBasicOptions.WILLING_TO_SHARE]]: {
-      name: 'Willing to share'
-    },
+};
+
+// export const CHECK_BASIC_OPTIONS = [
+//   {
+//     [PaymentBasicOptions[PaymentBasicOptions.WILLING_TO_SHARE]]: {
+//       name: 'Willing to share',
+//     },
+//   },
+// ];
+
+// export const CHECK_EXTRA_OPTIONS = [
+//   {
+//     [PaymentExtraOptions[PaymentExtraOptions.BABY_SEAT]]: {
+//       name: 'Baby seat (+€5)',
+//     },
+//   },
+//   {
+//     [PaymentExtraOptions[PaymentExtraOptions.IMMEDIATE_RETURN]]: {
+//       name: 'Immediate Return (Extra Fee)',
+//     },
+//   },
+//   {
+//     [PaymentExtraOptions[PaymentExtraOptions.NO_LUGGAGE]]: {
+//       name: 'No Luggage',
+//     },
+//   },
+//   {
+//     [PaymentExtraOptions[PaymentExtraOptions.EXTRA_LUGGAGE]]: {
+//       name: 'Extra Luggage',
+//     },
+//   },
+//   {
+//     [PaymentExtraOptions[PaymentExtraOptions.STATION_WAGON]]: {
+//       name: 'Station Wagon',
+//     },
+//   },
+//   {
+//     [PaymentExtraOptions[PaymentExtraOptions.PET_ONBOARD]]: {
+//       name: 'Pet Onboard',
+//     },
+//   },
+//   {
+//     [PaymentExtraOptions[PaymentExtraOptions.RECEIPT]]: { name: 'Receipt' },
+//   },
+//   {
+//     [PaymentExtraOptions[PaymentExtraOptions.RESTRICTED_MOBILITY]]: {
+//       name: 'Restricted Mobility',
+//     },
+//   },
+//   {
+//     [PaymentExtraOptions[PaymentExtraOptions.STEP_STOOL]]: {
+//       name: 'Step Stool',
+//     },
+//   },
+//   {
+//     [PaymentExtraOptions[PaymentExtraOptions.ARRIVAL_PACK]]: {
+//       name: 'Arrival Pack',
+//     },
+//   },
+//   {
+//     [PaymentExtraOptions[PaymentExtraOptions.KEYS_FROM_OFFICE]]: {
+//       name: 'Keys From Office',
+//     },
+//   },
+//   {
+//     [PaymentExtraOptions[PaymentExtraOptions.MALE_DRIVER]]: {
+//       name: 'Male Driver',
+//     },
+//   },
+//   {
+//     [PaymentExtraOptions[PaymentExtraOptions.FEMALE_DRIVER]]: {
+//       name: 'Female Driver',
+//     },
+//   },
+// ];
+
+export const CHECK_BASIC_OPTIONS = [
+  {
+    name: 'Willing to share',
+    value: PaymentBasicOptions[PaymentBasicOptions.WILLING_TO_SHARE],
   },
-  checkExtraOptions: {
-    [PaymentExtraOptions[PaymentExtraOptions.BABY_SEAT]]: {
-      name: 'Baby seat (+€5)'
-    },
-    [PaymentExtraOptions[PaymentExtraOptions.IMMEDIATE_RETURN]]: {
-      name: 'Immediate Return (Extra Fee)'
-    },
-    [PaymentExtraOptions[PaymentExtraOptions.NO_LUGGAGE]]: {
-      name: 'No Luggage'
-    },
-    [PaymentExtraOptions[PaymentExtraOptions.EXTRA_LUGGAGE]]: {
-      name: 'Extra Luggage'
-    },
-    [PaymentExtraOptions[PaymentExtraOptions.STATION_WAGON]]: {
-      name: 'Station Wagon'
-    },
-    [PaymentExtraOptions[PaymentExtraOptions.PET_ONBOARD]]: {
-      name: 'Pet Onboard'
-    },
-    [PaymentExtraOptions[PaymentExtraOptions.RECEIPT]]: {
-      name: 'Receipt'
-    },
-    [PaymentExtraOptions[PaymentExtraOptions.RESTRICTED_MOBILITY]]: {
-      name: 'Restricted Mobility'
-    },
-    [PaymentExtraOptions[PaymentExtraOptions.STEP_STOOL]]: {
-      name: 'Step Stool'
-    },
-    [PaymentExtraOptions[PaymentExtraOptions.ARRIVAL_PACK]]: {
-      name: 'Arrival Pack'
-    },
-    [PaymentExtraOptions[PaymentExtraOptions.KEYS_FROM_OFFICE]]: {
-      name: 'Keys From Office'
-    },
-    [PaymentExtraOptions[PaymentExtraOptions.MALE_DRIVER]]: {
-      name: 'Male Driver'
-    },
-    [PaymentExtraOptions[PaymentExtraOptions.FEMALE_DRIVER]]: {
-      name: 'Female Driver'
-    },
+];
+
+export const CHECK_EXTRA_OPTIONS = [
+  {
+    name: 'Baby seat (+€5)',
+    value: PaymentExtraOptions[PaymentExtraOptions.BABY_SEAT],
   },
-}
+  {
+    name: 'Immediate Return (Extra Fee)',
+    value: PaymentExtraOptions[PaymentExtraOptions.IMMEDIATE_RETURN],
+  },
+  {
+    name: 'No Luggage',
+    value: PaymentExtraOptions[PaymentExtraOptions.NO_LUGGAGE],
+  },
+  {
+    name: 'Extra Luggage',
+    value: PaymentExtraOptions[PaymentExtraOptions.EXTRA_LUGGAGE],
+  },
+  {
+    name: 'Station Wagon',
+    value: PaymentExtraOptions[PaymentExtraOptions.STATION_WAGON],
+  },
+  {
+    name: 'Pet Onboard',
+    value: PaymentExtraOptions[PaymentExtraOptions.PET_ONBOARD],
+  },
+  {
+    name: 'Receipt',
+    value: PaymentExtraOptions[PaymentExtraOptions.RECEIPT],
+  },
+  {
+    name: 'Restricted Mobility',
+    value: PaymentExtraOptions[PaymentExtraOptions.RESTRICTED_MOBILITY],
+  },
+  {
+    name: 'Step Stool',
+    value: PaymentExtraOptions[PaymentExtraOptions.STEP_STOOL],
+  },
+  {
+    name: 'Arrival Pack',
+    value: PaymentExtraOptions[PaymentExtraOptions.ARRIVAL_PACK],
+  },
+  {
+    name: 'Keys From Office',
+    value: PaymentExtraOptions[PaymentExtraOptions.KEYS_FROM_OFFICE],
+  },
+  {
+    name: 'Male Driver',
+    value: PaymentExtraOptions[PaymentExtraOptions.MALE_DRIVER],
+  },
+  {
+    name: 'Female Driver',
+    value: PaymentExtraOptions[PaymentExtraOptions.FEMALE_DRIVER],
+  },
+];
 
 export enum PickUpUrgency {
   ASAP = 'ASAP',
@@ -391,8 +481,8 @@ export const DEFAULT_BOOKING_PARAMS: IBooking = {
   passengerPhone: '',
   paymentChannel: PaymentChannels[PaymentChannels.IN_VEHICLE],
   paymentType: PaymentTypes[PaymentTypes.CASH],
-  paymentBasicOptions: [],
-  paymentExtraOptions: [],
+  paymentBasicOptions: CHECK_BASIC_OPTIONS,
+  paymentExtraOptions: CHECK_EXTRA_OPTIONS,
   notesToDispatcher: '',
   notesToDriver: '',
 };

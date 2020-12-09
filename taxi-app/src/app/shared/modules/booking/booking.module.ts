@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { BookingOptionsService } from '../../services/booking-options.service';
 import { SharedModule } from '../../shared.module';
 import { BookingChannelComponent } from './components/booking-channel/booking-channel.component';
 import { CustomerInformationComponent } from './components/customer-information/customer-information.component';
@@ -27,7 +26,7 @@ import { BookingBoardComponent } from './container/booking-board.component';
     VehicleItemComponent,
   ],
   imports: [SharedModule],
-  providers: [BookingOptionsService],
+  providers: [],
   exports: [
     BookingBoardComponent,
     BookingChannelComponent,

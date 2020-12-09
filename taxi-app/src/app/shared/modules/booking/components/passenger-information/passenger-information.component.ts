@@ -1,7 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { IClientInformation } from 'src/app/shared/models/booking-options.model';
 
 @Component({
   selector: 'app-passenger-information',
@@ -42,9 +41,6 @@ import { IClientInformation } from 'src/app/shared/models/booking-options.model'
 export class PassengerInformationComponent {
   @Input()
   parentGroup: FormGroup;
-
-  // @Input()
-  // passengerInformation: IClientInformation;
 
   telOptions = {
     initialCountry: 'by',

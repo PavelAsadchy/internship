@@ -1,15 +1,17 @@
 import { KeyValue } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import {
-  PaymentBasicOptions,
-  PaymentChannels,
-  PaymentExtraOptions,
-  PaymentTypes,
+  CHECK_BASIC_OPTIONS,
+  CHECK_EXTRA_OPTIONS,
   PAYMENT_OPTIONS,
 } from 'src/app/shared/consts/booking-options.consts';
-import { IPayment } from 'src/app/shared/models/booking-options.model';
 
 @Component({
   selector: 'app-payment',
@@ -17,40 +19,51 @@ import { IPayment } from 'src/app/shared/models/booking-options.model';
   styleUrls: ['./payment.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PaymentComponent {
+export class PaymentComponent implements OnInit {
   @Input()
   parentGroup: FormGroup;
 
-  // @Input()
-  // payment: IPayment;
-
   paymentOptions = PAYMENT_OPTIONS;
+  checkBasicOptions = CHECK_BASIC_OPTIONS;
+  checkExtraOptions = CHECK_EXTRA_OPTIONS;
 
-  onBasicOptionsChange(
+  updateChkbxArray(
+    chkbx: KeyValue<string, string>,
     event: MatCheckboxChange,
-    option: KeyValue<string, string>
+    key: string
   ): void {
-    const checkArray: FormArray = this.parentGroup.get(
-      'checkBasicOptions'
-    ) as FormArray;
-    this.setNewValue(checkArray, event, option);
+    const checkArray: FormArray = this.parentGroup.get(key) as FormArray;
+    this.setNewValue(checkArray, event, chkbx);
   }
 
-  onExtraOptionsChange(
-    event: MatCheckboxChange,
-    option: KeyValue<string, string>
-  ): void {
-    const checkArray: FormArray = this.parentGroup.get(
-      'checkExtraOptions'
-    ) as FormArray;
-    this.setNewValue(checkArray, event, option);
-  }
+  ngOnInit() {}
+
+  // onBasicOptionsChange(
+  //   event: MatCheckboxChange,
+  //   option: KeyValue<string, string>
+  // ): void {
+  //   const checkArray: FormArray = this.parentGroup.get(
+  //     'checkBasicOptions'
+  //   ) as FormArray;
+  //   this.setNewValue(checkArray, event, option);
+  // }
+
+  // onExtraOptionsChange(
+  //   event: MatCheckboxChange,
+  //   option: KeyValue<string, string>
+  // ): void {
+  //   const checkArray: FormArray = this.parentGroup.get(
+  //     'checkExtraOptions'
+  //   ) as FormArray;
+  //   this.setNewValue(checkArray, event, option);
+  // }
 
   setNewValue(
     checkArray: FormArray,
     event: MatCheckboxChange,
     option: KeyValue<string, string>
   ): void {
+    console.log(option);
     if (event.checked) {
       checkArray.push(new FormControl(option.key));
     } else {
@@ -63,5 +76,9 @@ export class PaymentComponent {
 
   originalOrder(): number {
     return 0;
+  }
+
+  trigger() {
+    console.log(this.parentGroup.get('checkExtraOptions'));
   }
 }

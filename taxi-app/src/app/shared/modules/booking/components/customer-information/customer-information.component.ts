@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { IClientInformation } from 'src/app/shared/models/booking-options.model';
 
 @Component({
   selector: 'app-customer-information',
@@ -11,9 +10,6 @@ import { IClientInformation } from 'src/app/shared/models/booking-options.model'
 export class CustomerInformationComponent {
   @Input()
   parentGroup: FormGroup;
-
-  // @Input()
-  // customerInformation: IClientInformation;
 
   telOptions = {
     initialCountry: 'by',

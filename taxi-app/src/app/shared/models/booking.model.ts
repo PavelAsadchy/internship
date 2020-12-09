@@ -1,5 +1,3 @@
-import { IBookingOptions } from './booking-options.model';
-
 export interface IBooking {
   bookingChannel: string;
   pickUpAddress: string;

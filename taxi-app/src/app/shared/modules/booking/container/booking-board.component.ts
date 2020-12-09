@@ -1,18 +1,16 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { combineLatest, Subject } from 'rxjs';
+import { FormArray, FormBuilder, FormControl } from '@angular/forms';
+import { Subject } from 'rxjs';
 import {
   BookingChannel,
   CustomerInformation,
   DropOff,
-  IBookingOptions,
   Notes,
   PassengerInformation,
   PaymentOptions,
   PickUp,
   Vehicle,
 } from 'src/app/shared/models/booking-options.model';
-import { BookingOptionsService } from 'src/app/shared/services/booking-options.service';
 import { CreateBookingCalculationService } from 'src/app/shared/services/create-booking-calculation.service';
 import { takeUntil } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
@@ -30,8 +28,6 @@ import * as moment from 'moment';
 export class BookingBoardComponent implements OnInit, OnDestroy {
   @Input()
   bookingParams: IBooking;
-
-  bookingOptions: IBookingOptions;
 
   price: number;
 
@@ -57,18 +53,13 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private store: Store<IBookingState>,
-    private readonly bookingOptionsService: BookingOptionsService,
     private readonly createBookingCalculationService: CreateBookingCalculationService
   ) {}
 
   ngOnInit(): void {
-    combineLatest([
-      this.bookingOptionsService.loadBookingOptions(),
-      this.createBookingCalculationService.price$,
-    ])
+    this.createBookingCalculationService.price$
       .pipe(takeUntil(this.sub))
-      .subscribe(([data, price]: [IBookingOptions, number]) => {
-        this.bookingOptions = data;
+      .subscribe((price: number) => {
         this.price = price;
       });
 
@@ -185,13 +176,25 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
           channel: this.bookingParams.paymentChannel || null,
           type: this.bookingParams.paymentType || null,
         },
-        checkBasicOptions: this.bookingParams.paymentBasicOptions || [],
-        checkExtraOptions: this.bookingParams.paymentExtraOptions || [],
+        // checkBasicOptions: this.bookingParams.paymentBasicOptions || [],
+        // checkExtraOptions: this.bookingParams.paymentExtraOptions || [],
       },
       notes: {
         toDriver: this.bookingParams.notesToDriver || '',
         toDispatcher: this.bookingParams.notesToDispatcher || '',
       },
+    });
+    this.bookingParams.paymentBasicOptions.forEach((option) => {
+      const checkBasicOptions = this.bookingOptionsForm.get(
+        'payment.checkBasicOptions'
+      ) as FormArray;
+      checkBasicOptions.push(new FormControl(false));
+    });
+    this.bookingParams.paymentExtraOptions.forEach((option) => {
+      const checkExtraOptions = this.bookingOptionsForm.get(
+        'payment.checkExtraOptions'
+      ) as FormArray;
+      checkExtraOptions.push(new FormControl(false));
     });
   }
 }

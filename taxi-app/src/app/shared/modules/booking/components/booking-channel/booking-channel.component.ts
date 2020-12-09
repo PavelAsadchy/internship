@@ -1,10 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import {
-  BookingChannelOptions,
-  BOOKING_CHANNEL_OPTIONS,
-} from 'src/app/shared/consts/booking-options.consts';
-import { IChannel } from 'src/app/shared/models/booking-options.model';
+import { BOOKING_CHANNEL_OPTIONS } from 'src/app/shared/consts/booking-options.consts';
 
 @Component({
   selector: 'app-booking-channel',
@@ -15,9 +11,6 @@ import { IChannel } from 'src/app/shared/models/booking-options.model';
 export class BookingChannelComponent {
   @Input()
   parentGroup: FormGroup;
-
-  // @Input()
-  // bookingChannel: IChannel;
 
   bookingChannelOptions = BOOKING_CHANNEL_OPTIONS;
 
