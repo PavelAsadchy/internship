@@ -5,7 +5,6 @@ import { BookingListComponent } from './container/booking-list.component';
 import { BookingEnumComponent } from './components/booking-enum/booking-enum.component';
 import { DeleteBookingConfirmComponent } from './components/delete-booking-confirm/delete-booking-confirm.component';
 import { UrgentBackgroundColorDirective } from 'src/app/shared/directives/urgent-background-color.directive';
-import { BookingEditComponent } from '../booking-edit/booking-edit.component';
 import { CreateBookingModule } from '../create-booking/create-booking.module';
 import { BookingModule } from 'src/app/shared/modules/booking/booking.module';
 
@@ -17,7 +16,6 @@ import { BookingModule } from 'src/app/shared/modules/booking/booking.module';
     BookingEnumComponent,
     DeleteBookingConfirmComponent,
     UrgentBackgroundColorDirective,
-    BookingEditComponent,
   ],
   imports: [SharedModule, CreateBookingModule, BookingModule],
   exports: [BookingListComponent],

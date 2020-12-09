@@ -6,6 +6,7 @@ import {
   PickUpUrgency,
   VehicleOptions,
 } from '../consts/booking-options.consts';
+import { IBooking } from '../models/booking.model';
 
 @Injectable({
   providedIn: 'root',
@@ -19,43 +20,43 @@ export class CreateBookingCalculationService {
     }
 
     switch (bookingOptions.vehicle.items) {
-      case VehicleOptions.CAB:
+      case VehicleOptions[VehicleOptions.CAB]:
         this.price$.next(this.randomPrice(1, 10));
         break;
 
-      case VehicleOptions.BRANDED_STANDART_CAB:
+      case VehicleOptions[VehicleOptions.BRANDED_STANDART_CAB]:
         this.price$.next(this.randomPrice(10, 20));
         break;
 
-      case VehicleOptions.VAN:
+      case VehicleOptions[VehicleOptions.VAN]:
         this.price$.next(this.randomPrice(20, 30));
         break;
 
-      case VehicleOptions.EXECUTIVE_CAB:
+      case VehicleOptions[VehicleOptions.EXECUTIVE_CAB]:
         this.price$.next(this.randomPrice(30, 40));
         break;
 
-      case VehicleOptions.EXECUTIVE_VAN:
+      case VehicleOptions[VehicleOptions.EXECUTIVE_VAN]:
         this.price$.next(this.randomPrice(40, 50));
         break;
 
-      case VehicleOptions.LUXURY_EXECUTIVE:
+      case VehicleOptions[VehicleOptions.LUXURY_EXECUTIVE]:
         this.price$.next(this.randomPrice(50, 60));
         break;
 
-      case VehicleOptions.MINI_BUS:
+      case VehicleOptions[VehicleOptions.MINI_BUS]:
         this.price$.next(this.randomPrice(60, 70));
         break;
 
-      case VehicleOptions.RESTRICTED_MOBILITY:
+      case VehicleOptions[VehicleOptions.RESTRICTED_MOBILITY]:
         this.price$.next(this.randomPrice(70, 80));
         break;
 
-      case VehicleOptions.VINTAGE:
+      case VehicleOptions[VehicleOptions.VINTAGE]:
         this.price$.next(this.randomPrice(80, 90));
         break;
 
-      case VehicleOptions.LUXURY_EXEC_VAN:
+      case VehicleOptions[VehicleOptions.LUXURY_EXEC_VAN]:
         this.price$.next(this.randomPrice(90, 100));
         break;
     }

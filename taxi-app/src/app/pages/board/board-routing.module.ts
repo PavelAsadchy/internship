@@ -4,7 +4,7 @@ import { CreateBookingComponent } from 'src/app/pages/create-booking/container/c
 import { BoardComponent } from './container/board.component';
 import { BookingListComponent } from 'src/app/pages/booking-list/container/booking-list.component';
 import { MenuMainComponent } from './components/menu-main/menu-main.component';
-import { BookingEditComponent } from '../booking-edit/booking-edit.component';
+import { BookingEditComponent } from '../booking-edit/container/booking-edit.component';
 
 const routes: Routes = [
   {

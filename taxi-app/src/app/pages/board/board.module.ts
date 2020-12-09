@@ -6,6 +6,7 @@ import { MenuSideComponent } from './components/menu-side/menu-side.component';
 import { MenuMainComponent } from './components/menu-main/menu-main.component';
 import { CreateBookingModule } from 'src/app/pages/create-booking/create-booking.module';
 import { BookingListModule } from '../booking-list/booking-list.module';
+import { BookingEditModule } from '../booking-edit/booking-edit.module';
 
 @NgModule({
   declarations: [BoardComponent, MenuSideComponent, MenuMainComponent],
@@ -14,6 +15,7 @@ import { BookingListModule } from '../booking-list/booking-list.module';
     BoardRoutingModule,
     CreateBookingModule,
     BookingListModule,
+    BookingEditModule,
   ],
   exports: [BoardComponent],
 })

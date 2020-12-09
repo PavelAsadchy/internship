@@ -1,4 +1,4 @@
-<div class="booking-board" *ngIf="bookingOptions">
+<!-- <div class="booking-board" *ngIf="bookingOptions">
     <form class="booking-board__form" [formGroup]="bookingOptionsForm" (ngSubmit)="onBookingEditSubmit()">
         <div class="booking-board__component">
             <app-booking-channel [parentGroup]="bookingOptionsForm.get('bookingChannel')"
@@ -96,4 +96,14 @@
             </span>
         </div>
     </div>
+</div> -->
+<div class="booking-edit">
+    <as-split unit="percent" direction="horizontal" #split="asSplit">
+        <as-split-area [size]=50>
+            <app-booking-board [bookingParams]="editBookingParams"></app-booking-board>
+        </as-split-area>
+        <as-split-area [size]=50>
+            <app-map></app-map>
+        </as-split-area>
+    </as-split>
 </div>
