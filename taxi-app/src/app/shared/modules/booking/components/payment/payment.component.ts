@@ -21,8 +21,8 @@ export class PaymentComponent {
   @Input()
   parentGroup: FormGroup;
 
-  @Input()
-  payment: IPayment;
+  // @Input()
+  // payment: IPayment;
 
   paymentOptions = PAYMENT_OPTIONS;
 

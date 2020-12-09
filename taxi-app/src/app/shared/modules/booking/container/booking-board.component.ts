@@ -151,7 +151,7 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
   }
 
   trigger() {
-    console.log(this.bookingOptionsForm.value);
+    console.log(this.isSliderChecked);
   }
 
   patchValueToForm(): void {

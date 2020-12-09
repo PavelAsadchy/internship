@@ -5,13 +5,12 @@
                 class="payment-options__label"
                 id="payment-options-channel"
             >
-                {{ payment.paymentOptions.channel.label }}
+                Payment channel
             </label>
             <mat-radio-group
                 color="primary"
                 aria-labelledby="payment-options-channel"
                 formControlName="channel"
-                *ngIf="payment?.paymentOptions?.channel?.options"
             >
                 <mat-radio-button
                     class="payment-options__radio-btn"
@@ -27,13 +26,12 @@
                 class="payment-options__label"
                 id="payment-options-type"
             >
-                {{ payment.paymentOptions.type.label }}
+                Payment type
             </label>
             <mat-radio-group
                 color="primary"
                 aria-labelledby="payment-options-type"
                 formControlName="type"
-                *ngIf="payment?.paymentOptions?.type?.options"
             >
                 <mat-radio-button
                     class="payment-options__radio-btn"
@@ -48,13 +46,12 @@
     <section
         class="payment-options"
         formGroupName="checkBasicOptions"
-        *ngIf="payment?.checkBasicOptions?.options"
     >
         <label
             class="payment-options__label"
             id="payment-options-options"
         >
-            {{ payment.checkBasicOptions.label }}
+            Payment Options
         </label>
         <mat-checkbox
             class="payment-options__checkbox"
@@ -69,13 +66,12 @@
     <section
         class="payment-options"
         formGroupName="checkExtraOptions"
-        *ngIf="payment?.checkExtraOptions?.options"
     >
         <label
             class="payment-options__label"
             id="payment-options-extras"
         >
-            {{ payment.checkExtraOptions.label }}
+            Extras
         </label>
         <div class="payment-options__checkbox-wrapper">
             <mat-checkbox
@@ -89,7 +85,8 @@
             </mat-checkbox>
         </div>
         <p class="payment-options__note">
-            {{ payment.checkExtraOptions.note }}
+            When you check an extra option, the price is re-calculated because<br>
+            some options could increase it's value
         </p>
     </section>
 </form>

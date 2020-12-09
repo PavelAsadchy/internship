@@ -17,8 +17,8 @@ export class PickUpComponent {
   @Input()
   parentGroup: FormGroup;
 
-  @Input()
-  pickUp: IPickUp;
+  // @Input()
+  // pickUp: IPickUp;
 
   pickUpOptions = PICK_UP_OPTIONS;
 

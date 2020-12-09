@@ -1,8 +1,8 @@
 <div class="vehicle" [formGroup]="parentGroup">
     <caption>
-        {{ vehicle.caption }}
+        Vehicle
     </caption>
-    <div class="vehicle__wrapper" *ngIf="vehicle?.items">
+    <div class="vehicle__wrapper">
         <label        
             *ngFor="let vehicleItem of vehicleOptions.items | keyvalue: originalOrder"
         >
@@ -14,7 +14,6 @@
             <div class="vehicle__unit">
                 <app-vehicle-item 
                     [vehicleItem]="vehicleItem.value"
-                    (clickedVehicle)="onVehicleSelect($event)"
                 >
                 </app-vehicle-item>
             </div>

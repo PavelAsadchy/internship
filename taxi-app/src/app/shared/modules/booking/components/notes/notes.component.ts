@@ -11,6 +11,6 @@ export class NotesComponent {
   @Input()
   parentGroup: FormGroup;
 
-  @Input()
-  notes: INotes;
+  // @Input()
+  // notes: INotes;
 }

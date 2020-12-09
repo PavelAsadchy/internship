@@ -3,38 +3,36 @@
         class="pick-up__label"
         id="pick-up-label"
     >
-        {{ pickUp.time.label }}
+        Pick Up Client
     </label>
     <div>
         <mat-radio-group
             color="primary"
             aria-labelledby="pick-up-label"
             formControlName="time"
-            *ngIf="pickUp?.time?.options"
         >
             <mat-radio-button
                 class="pick-up__radio-btn"
-                *ngFor="let pickUp of pickUpOptions.time | keyvalue: originalOrder"
-                [value]="pickUp.key"
+                *ngFor="let pickUpTime of pickUpOptions.time | keyvalue: originalOrder"
+                [value]="pickUpTime.key"
             >
-                {{ pickUp.value.name }}
+                {{ pickUpTime.value.name }}
             </mat-radio-button>
         </mat-radio-group>
         <div class="pick-up__point">
             <caption>
-                {{ pickUp.caption }}
+                Pick Up
             </caption>
             <mat-radio-group
                 color="primary"
                 formControlName="point"
-                *ngIf="pickUp?.point?.options"
             >
                 <mat-radio-button
                     class="pick-up__radio-btn"
-                    *ngFor="let point of pickUpOptions.point | keyvalue: originalOrder"
-                    [value]="point.key"
+                    *ngFor="let pickUpPoint of pickUpOptions.point | keyvalue: originalOrder"
+                    [value]="pickUpPoint.key"
                 >
-                    {{ point.value.name }}
+                    {{ pickUpPoint.value.name }}
                 </mat-radio-button>
             </mat-radio-group>
             <mat-form-field #addressInput>

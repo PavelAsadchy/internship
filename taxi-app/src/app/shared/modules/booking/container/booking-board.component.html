@@ -8,35 +8,30 @@
         <div class="booking-board__component">
             <app-booking-channel
                 [parentGroup]="bookingOptionsForm.get('bookingChannel')"
-                [bookingChannel]="bookingOptions.bookingChannel"
             >
             </app-booking-channel>
         </div>
         <div class="booking-board__component">
             <app-pick-up
                 [parentGroup]="bookingOptionsForm.get('pickUp')"
-                [pickUp]="bookingOptions.pickUp"
             >
             </app-pick-up>
         </div>
         <div class="booking-board__component">
             <app-drop-off
                 [parentGroup]="bookingOptionsForm.get('dropOff')"
-                [dropOff]="bookingOptions.dropOff"
             >
             </app-drop-off>
         </div>
         <div class="booking-board__component">
             <app-vehicle
                 [parentGroup]="bookingOptionsForm.get('vehicle')"
-                [vehicle]="bookingOptions.vehicle"
             >
             </app-vehicle>
         </div>
         <div class="booking-board__component">
             <app-customer-information
                 [parentGroup]="bookingOptionsForm.get('customerInformation')"
-                [customerInformation]="bookingOptions.customerInformation"
             >
             </app-customer-information>
         </div>
@@ -52,21 +47,18 @@
             <app-passenger-information
                 *ngIf="isSliderChecked"
                 [parentGroup]="bookingOptionsForm.get('passengerInformation')"
-                [passengerInformation]="bookingOptions.passengerInformation"
             >
             </app-passenger-information>
         </div>
         <div class="booking-board__component">
             <app-payment
                 [parentGroup]="bookingOptionsForm.get('payment')"
-                [payment]="bookingOptions.payment"
             >
             </app-payment>
         </div>
         <div class="booking-board__component">
             <app-notes
                 [parentGroup]="bookingOptionsForm.get('notes')"
-                [notes]="bookingOptions.notes"
             >
             </app-notes>
         </div>

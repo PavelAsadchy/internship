@@ -13,8 +13,8 @@ export class VehicleComponent {
   @Input()
   parentGroup: FormGroup;
 
-  @Input()
-  vehicle: IVehicleList;
+  // @Input()
+  // vehicle: IVehicleList;
 
   vehicleOptions = VEHICLE_OPTIONS;
 

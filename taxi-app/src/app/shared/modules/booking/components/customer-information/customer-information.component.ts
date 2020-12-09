@@ -12,8 +12,8 @@ export class CustomerInformationComponent {
   @Input()
   parentGroup: FormGroup;
 
-  @Input()
-  customerInformation: IClientInformation;
+  // @Input()
+  // customerInformation: IClientInformation;
 
   telOptions = {
     initialCountry: 'by',
