@@ -1,21 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Actions, ofType } from '@ngrx/effects';
+import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { ACTIVATED_ROUTE_PARAMS } from 'src/app/shared/consts/app.consts';
 import { IBooking } from 'src/app/shared/models/booking.model';
-import { BookingOptionsService } from 'src/app/shared/services/booking-options.service';
-import { CreateBookingCalculationService } from 'src/app/shared/services/create-booking-calculation.service';
-import {
-  LOAD_BOOKING_ACTION,
-  UPDATE_BOOKING_ACTION,
-} from 'src/app/shared/stores/booking-store/booking.actions';
+import { LOAD_BOOKING_ACTION } from 'src/app/shared/stores/booking-store/booking.actions';
 import { SELECT_CURRENT_BOOKING } from 'src/app/shared/stores/booking-store/booking.selector';
 import { IBookingState } from 'src/app/shared/stores/booking-store/booking.state';
-import * as BookingActions from 'src/app/shared/stores/booking-store/booking.actions';
 
 @Component({
   selector: 'app-booking-edit',
@@ -29,22 +20,23 @@ export class BookingEditComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store<IBookingState>,
-    private activatedRoute: ActivatedRoute,
-    private actions$: Actions
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.store.dispatch(
-      LOAD_BOOKING_ACTION({
-        bookingId: this.activatedRoute.snapshot.params[ACTIVATED_ROUTE_PARAMS],
-      })
-    );
-
-    this.store
-      .select(SELECT_CURRENT_BOOKING)
-      .subscribe((currentBooking: IBooking) => {
-        this.editBookingParams = currentBooking;
-        console.log(this.editBookingParams);
+    this.activatedRoute.params
+      .pipe(takeUntil(this.sub))
+      .subscribe((routeParams: { id: string }) => {
+        this.store.dispatch(
+          LOAD_BOOKING_ACTION({
+            bookingId: routeParams.id,
+          })
+        );
+        this.store
+          .select(SELECT_CURRENT_BOOKING)
+          .subscribe((currentBooking: IBooking) => {
+            this.editBookingParams = currentBooking;
+          });
       });
   }
 

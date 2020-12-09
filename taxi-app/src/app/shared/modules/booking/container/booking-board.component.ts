@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { combineLatest, Observable, Subject } from 'rxjs';
+import { combineLatest, Subject } from 'rxjs';
 import {
   BookingChannel,
   CustomerInformation,
@@ -20,7 +20,6 @@ import { IBookingState } from 'src/app/shared/stores/booking-store/booking.state
 import { CREATE_BOOKING_ACTION } from 'src/app/shared/stores/booking-store/booking.actions';
 import { IBooking } from 'src/app/shared/models/booking.model';
 import * as moment from 'moment';
-import { SELECT_CURRENT_BOOKING } from 'src/app/shared/stores/booking-store/booking.selector';
 
 @Component({
   selector: 'app-booking-board',
@@ -63,15 +62,6 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    // const selectedBooking$: Observable<IBooking> = this.store.select(
-    //   SELECT_CURRENT_BOOKING
-    // );
-    // selectedBooking$.subscribe((currentBooking: IBooking) => {
-    //   if (currentBooking) {
-    //     this.bookingParams = currentBooking;
-    //   }
-    // });
-
     combineLatest([
       this.bookingOptionsService.loadBookingOptions(),
       this.createBookingCalculationService.price$,
@@ -85,10 +75,6 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
     this.bookingOptionsForm.valueChanges.subscribe((status) => {
       this.createBookingCalculationService.createRandomCalculation(status);
     });
-
-    // this.bookingParams.subscribe((booking: IBooking) => {
-    //   this.patchValueToForm(booking);
-    // });
 
     this.patchValueToForm();
   }
@@ -142,7 +128,6 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
     };
 
     this.store.dispatch(CREATE_BOOKING_ACTION({ newBooking: formObj }));
-    // this.patchValueToForm();
     this.scroll('top');
   }
 
@@ -167,7 +152,6 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
 
   trigger() {
     console.log(this.bookingOptionsForm.value);
-    // console.log(this.bookingParams.vehicle);
   }
 
   patchValueToForm(): void {
