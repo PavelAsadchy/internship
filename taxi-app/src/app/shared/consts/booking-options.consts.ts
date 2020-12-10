@@ -80,7 +80,7 @@ export const PICK_UP_OPTIONS = {
   },
   point: {
     [PickUpPointOptions[PickUpPointOptions.ADDRESS]]: {
-      name: 'Adress',
+      name: 'Address',
     },
     [PickUpPointOptions[PickUpPointOptions.AIRPORT]]: {
       name: 'Airport',

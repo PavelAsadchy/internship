@@ -1,4 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -17,12 +24,14 @@ import {
   VEHICLE_OPTIONS,
 } from 'src/app/shared/consts/booking-options.consts';
 import { IBooking } from 'src/app/shared/models/booking.model';
+import { ISort, ISortParams } from 'src/app/shared/models/query-params.model';
 import { PopupComponent } from 'src/app/shared/modules/popup/container/popup.component';
 import {
   DELETE_BOOKING_ACTION,
   LOAD_BOOKINGS_ACTION,
   LOAD_BOOKINGS_BY_ORDER_ACTION,
   LOAD_BOOKING_ACTION,
+  REFRESH_QUERY_PARAMS_ACTION,
 } from 'src/app/shared/stores/booking-store/booking.actions';
 import {
   SELECT_BOOKING_LIST,
@@ -36,7 +45,7 @@ import { BookingItemComponent } from '../booking-item/booking-item.component';
   templateUrl: './booking-enum.component.html',
   styleUrls: ['./booking-enum.component.scss'],
 })
-export class BookingEnumComponent implements OnInit {
+export class BookingEnumComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = BOOKING_DISPLAYED_COLUMNS;
   dataSource: MatTableDataSource<IBooking>;
 
@@ -51,6 +60,9 @@ export class BookingEnumComponent implements OnInit {
   pickUpUrgency = PICK_UP_URGENCY_COLORS;
   status = BookingStatusOptions;
 
+  @Output()
+  refreshSort = new EventEmitter<ISort>();
+
   constructor(
     private store: Store<IBookingState>,
     public dialog: MatDialog,
@@ -64,7 +76,14 @@ export class BookingEnumComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
+
     this.isLoading$ = this.store.pipe(select(SELECT_BOOKING_LOADING));
+  }
+
+  ngAfterViewInit() {
+    this.sort.sortChange.subscribe((event: ISortParams) => {
+      this.refreshSort.emit({ sorting: event });
+    });
   }
 
   openBookingDetails(booking: IBooking): void {
@@ -91,4 +110,16 @@ export class BookingEnumComponent implements OnInit {
       LOAD_BOOKINGS_BY_ORDER_ACTION({ sort: e.active, order: e.direction })
     );
   }
+
+  // refreshQueryParams() {
+  //   console.log(this.sort.direction);
+  //   this.sort.sortChange.subscribe((res) => console.log('res'));
+  // }
+
+  // trigger() {
+  //   console.log(this.sort.direction);
+  //   this.sort.sortChange.subscribe((event: ISortEvent) =>
+  //     this.refreshSort.emit(event)
+  //   );
+  // }
 }

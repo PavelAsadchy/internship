@@ -117,7 +117,12 @@ const bookingReducer = createReducer(
   on(BookingActions.DELETE_BOOKING_FAIL_ACTION, (state, { message }) => ({
     ...state,
     errorMessage: message.value,
-  }))
+  })),
+
+  on(BookingActions.REFRESH_QUERY_PARAMS_ACTION, (state, { sort }) => {
+    console.log(Object.values(state.entities));
+    return state;
+  })
 );
 
 export function reducer(state: IBookingState | undefined, action: Action) {

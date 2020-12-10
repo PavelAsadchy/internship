@@ -5,7 +5,7 @@ import { of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { SHOW_MESSAGE_VALUES } from '../../consts/store.consts';
 import { IBooking } from '../../models/booking.model';
-import { IFilterParams } from '../../models/filter-params.model';
+import { IFilterParams } from '../../models/query-params.model';
 import { IShowMessage } from '../../models/show-message.model';
 import { BookingListService } from '../../services/booking-list.service';
 import { SHOW_MESSAGE_ACTION } from '../message-store/message.actions';

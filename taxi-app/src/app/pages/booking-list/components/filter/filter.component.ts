@@ -1,4 +1,4 @@
-import { Component, LOCALE_ID } from '@angular/core';
+import { Component, EventEmitter, LOCALE_ID, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import {
@@ -7,7 +7,10 @@ import {
   VEHICLE_OPTIONS,
 } from 'src/app/shared/consts/booking-options.consts';
 import * as moment from 'moment';
-import { IFilterParams } from 'src/app/shared/models/filter-params.model';
+import {
+  IFilter,
+  IFilterParams,
+} from 'src/app/shared/models/query-params.model';
 import { Store } from '@ngrx/store';
 import { IBookingState } from 'src/app/shared/stores/booking-store/booking.state';
 import {
@@ -40,6 +43,9 @@ export class FilterComponent {
     vehicle: [''],
   });
 
+  @Output()
+  refreshFilter = new EventEmitter<IFilter>();
+
   constructor(private fb: FormBuilder, private store: Store<IBookingState>) {}
 
   onFilterSubmit() {
@@ -55,7 +61,8 @@ export class FilterComponent {
         : moment(),
       vehicle: this.filterForm.get('vehicle').value,
     };
-    this.store.dispatch(LOAD_BOOKINGS_BY_FILTER_ACTION({ filterParams }));
+    this.refreshFilter.emit({ filter: filterParams });
+    // this.store.dispatch(LOAD_BOOKINGS_BY_FILTER_ACTION({ filterParams }));
   }
 
   onDateSetup(
