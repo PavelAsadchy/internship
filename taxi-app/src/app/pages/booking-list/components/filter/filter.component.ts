@@ -10,6 +10,7 @@ import * as moment from 'moment';
 import {
   IFilter,
   IFilterParams,
+  IRefreshQueryEvent,
 } from 'src/app/shared/models/query-params.model';
 import { Store } from '@ngrx/store';
 import { IBookingState } from 'src/app/shared/stores/booking-store/booking.state';
@@ -44,12 +45,12 @@ export class FilterComponent {
   });
 
   @Output()
-  refreshFilter = new EventEmitter<IFilter>();
+  refreshFilter = new EventEmitter<IRefreshQueryEvent>();
 
   constructor(private fb: FormBuilder, private store: Store<IBookingState>) {}
 
   onFilterSubmit() {
-    const filterParams: IFilterParams = {
+    const params: IFilterParams = {
       bookingId: this.filterForm.get('bookingId').value,
       price: +this.filterForm.get('price').value,
       search: this.filterForm.get('search').value,
@@ -61,7 +62,7 @@ export class FilterComponent {
         : moment(),
       vehicle: this.filterForm.get('vehicle').value,
     };
-    this.refreshFilter.emit({ filter: filterParams });
+    this.refreshFilter.emit({ type: 'filter', params });
     // this.store.dispatch(LOAD_BOOKINGS_BY_FILTER_ACTION({ filterParams }));
   }
 

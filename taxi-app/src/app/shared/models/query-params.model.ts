@@ -21,15 +21,22 @@ export interface IFilterParams {
   vehicle: string[];
 }
 
+export interface IRefreshQueryEvent {
+  type: string;
+  params: ISortParams | IFilterParams;
+}
+
 export interface ISort {
+  type: string;
   sorting: ISortParams;
 }
 
 export interface IFilter {
+
   filter: IFilterParams;
 }
 
 export interface IQueryParams {
-  sorting?: ISortParams;
-  filter?: IFilterParams;
+  sort: ISortParams;
+  filter: IFilterParams;
 }

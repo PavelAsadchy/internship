@@ -119,7 +119,7 @@ const bookingReducer = createReducer(
     errorMessage: message.value,
   })),
 
-  on(BookingActions.REFRESH_QUERY_PARAMS_ACTION, (state, { sort }) => {
+  on(BookingActions.REFRESH_QUERY_PARAMS_ACTION, (state, { params }) => {
     console.log(Object.values(state.entities));
     return state;
   })

@@ -2,6 +2,7 @@ import {
   AfterViewInit,
   Component,
   EventEmitter,
+  Input,
   OnInit,
   Output,
   ViewChild,
@@ -23,8 +24,9 @@ import {
   PICK_UP_URGENCY_COLORS,
   VEHICLE_OPTIONS,
 } from 'src/app/shared/consts/booking-options.consts';
+import { DELETE_BOOKING_CONFIRM, OPEN_BOOKING_DETAILS } from 'src/app/shared/consts/popup.consts';
 import { IBooking } from 'src/app/shared/models/booking.model';
-import { ISort, ISortParams } from 'src/app/shared/models/query-params.model';
+import { ISort, ISortParams, IRefreshQueryEvent } from 'src/app/shared/models/query-params.model';
 import { PopupComponent } from 'src/app/shared/modules/popup/container/popup.component';
 import {
   DELETE_BOOKING_ACTION,
@@ -38,7 +40,6 @@ import {
   SELECT_BOOKING_LOADING,
 } from 'src/app/shared/stores/booking-store/booking.selector';
 import { IBookingState } from 'src/app/shared/stores/booking-store/booking.state';
-import { BookingItemComponent } from '../booking-item/booking-item.component';
 
 @Component({
   selector: 'app-booking-enum',
@@ -46,10 +47,12 @@ import { BookingItemComponent } from '../booking-item/booking-item.component';
   styleUrls: ['./booking-enum.component.scss'],
 })
 export class BookingEnumComponent implements OnInit, AfterViewInit {
+  @Input() isLoading$: Observable<boolean>
+
   displayedColumns: string[] = BOOKING_DISPLAYED_COLUMNS;
   dataSource: MatTableDataSource<IBooking>;
 
-  isLoading$: Observable<boolean>;
+  // isLoading$: Observable<boolean>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -61,7 +64,7 @@ export class BookingEnumComponent implements OnInit, AfterViewInit {
   status = BookingStatusOptions;
 
   @Output()
-  refreshSort = new EventEmitter<ISort>();
+  refreshSort = new EventEmitter<IRefreshQueryEvent>();
 
   constructor(
     private store: Store<IBookingState>,
@@ -77,17 +80,19 @@ export class BookingEnumComponent implements OnInit, AfterViewInit {
       this.dataSource.sort = this.sort;
     });
 
-    this.isLoading$ = this.store.pipe(select(SELECT_BOOKING_LOADING));
+    // this.isLoading$ = this.store.pipe(select(SELECT_BOOKING_LOADING));
   }
 
   ngAfterViewInit() {
-    this.sort.sortChange.subscribe((event: ISortParams) => {
-      this.refreshSort.emit({ sorting: event });
+    this.sort.sortChange.subscribe((params: ISortParams) => {
+      this.refreshSort.emit({ type: 'sort', params });
     });
   }
 
   openBookingDetails(booking: IBooking): void {
-    this.dialog.open(BookingItemComponent, { data: booking });
+    this.dialog.open(PopupComponent, {
+      data: { ...OPEN_BOOKING_DETAILS, payload: booking },
+    });
   }
 
   openBookingEdit(booking: IBooking): void {
@@ -96,7 +101,7 @@ export class BookingEnumComponent implements OnInit, AfterViewInit {
 
   openDeleteConfirmation(bookingId: string): void {
     const dialogRef = this.dialog.open(PopupComponent, {
-      data: bookingId,
+      data: DELETE_BOOKING_CONFIRM,
     });
 
     dialogRef.afterClosed().subscribe((isDeletingConfirmed) => {

@@ -2,7 +2,7 @@ import { createAction, props } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
 import { IShowMessage } from '../../models/show-message.model';
 import { IBooking } from '../../models/booking.model';
-import { IFilterParams, ISortParams } from '../../models/query-params.model';
+import { IFilterParams, IQueryParams, ISortParams } from '../../models/query-params.model';
 
 export enum ActionsType {
   LOAD_BOOKINGS = '[BOOKING] Load Bookings',
@@ -133,6 +133,6 @@ export const DELETE_BOOKING_FAIL_ACTION = createAction(
 
 export const REFRESH_QUERY_PARAMS_ACTION = createAction(
   ActionsType.REFRESH_QUERY_PARAMS,
-  props<{ sort: ISortParams }>()
+  props<{ params: IQueryParams }>()
   // props<{ sort: ISortParams; filter: IFilterParams }>()
 );

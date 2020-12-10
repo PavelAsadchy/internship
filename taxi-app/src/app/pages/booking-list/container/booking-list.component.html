@@ -3,7 +3,11 @@
 </div>
 <mat-divider></mat-divider>
 <div>
-    <app-booking-enum (refreshSort)="refreshQueryParams($event)"></app-booking-enum>
+    <app-booking-enum
+        (refreshSort)="refreshQueryParams($event)"
+        [isLoading$]="isLoading$"
+    >
+    </app-booking-enum>
 </div>
 
 <button (click)="trigger()">trigger</button>
