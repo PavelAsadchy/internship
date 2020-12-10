@@ -17,7 +17,9 @@ import {
   VEHICLE_OPTIONS,
 } from 'src/app/shared/consts/booking-options.consts';
 import { IBooking } from 'src/app/shared/models/booking.model';
+import { PopupComponent } from 'src/app/shared/modules/popup/container/popup.component';
 import {
+  DELETE_BOOKING_ACTION,
   LOAD_BOOKINGS_ACTION,
   LOAD_BOOKINGS_BY_ORDER_ACTION,
   LOAD_BOOKING_ACTION,
@@ -28,7 +30,6 @@ import {
 } from 'src/app/shared/stores/booking-store/booking.selector';
 import { IBookingState } from 'src/app/shared/stores/booking-store/booking.state';
 import { BookingItemComponent } from '../booking-item/booking-item.component';
-import { DeleteBookingConfirmComponent } from '../delete-booking-confirm/delete-booking-confirm.component';
 
 @Component({
   selector: 'app-booking-enum',
@@ -75,7 +76,14 @@ export class BookingEnumComponent implements OnInit {
   }
 
   openDeleteConfirmation(bookingId: string): void {
-    this.dialog.open(DeleteBookingConfirmComponent, { data: bookingId });
+    const dialogRef = this.dialog.open(PopupComponent, {
+      data: bookingId,
+    });
+
+    dialogRef.afterClosed().subscribe((isDeletingConfirmed) => {
+      if (isDeletingConfirmed)
+        this.store.dispatch(DELETE_BOOKING_ACTION({ bookingId }));
+    });
   }
 
   doSort(e: { active: string; direction: string }) {

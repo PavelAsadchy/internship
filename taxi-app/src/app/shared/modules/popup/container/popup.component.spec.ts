@@ -1,20 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DeleteBookingConfirmComponent } from './delete-booking-confirm.component';
+import { PopupComponent } from './popup.component';
 
 describe('DeleteBookingConfirmComponent', () => {
-  let component: DeleteBookingConfirmComponent;
-  let fixture: ComponentFixture<DeleteBookingConfirmComponent>;
+  let component: PopupComponent;
+  let fixture: ComponentFixture<PopupComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DeleteBookingConfirmComponent ]
-    })
-    .compileComponents();
+      declarations: [PopupComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DeleteBookingConfirmComponent);
+    fixture = TestBed.createComponent(PopupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
