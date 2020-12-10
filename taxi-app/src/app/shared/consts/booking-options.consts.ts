@@ -251,80 +251,6 @@ export const PAYMENT_OPTIONS = {
   },
 };
 
-// export const CHECK_BASIC_OPTIONS = [
-//   {
-//     [PaymentBasicOptions[PaymentBasicOptions.WILLING_TO_SHARE]]: {
-//       name: 'Willing to share',
-//     },
-//   },
-// ];
-
-// export const CHECK_EXTRA_OPTIONS = [
-//   {
-//     [PaymentExtraOptions[PaymentExtraOptions.BABY_SEAT]]: {
-//       name: 'Baby seat (+€5)',
-//     },
-//   },
-//   {
-//     [PaymentExtraOptions[PaymentExtraOptions.IMMEDIATE_RETURN]]: {
-//       name: 'Immediate Return (Extra Fee)',
-//     },
-//   },
-//   {
-//     [PaymentExtraOptions[PaymentExtraOptions.NO_LUGGAGE]]: {
-//       name: 'No Luggage',
-//     },
-//   },
-//   {
-//     [PaymentExtraOptions[PaymentExtraOptions.EXTRA_LUGGAGE]]: {
-//       name: 'Extra Luggage',
-//     },
-//   },
-//   {
-//     [PaymentExtraOptions[PaymentExtraOptions.STATION_WAGON]]: {
-//       name: 'Station Wagon',
-//     },
-//   },
-//   {
-//     [PaymentExtraOptions[PaymentExtraOptions.PET_ONBOARD]]: {
-//       name: 'Pet Onboard',
-//     },
-//   },
-//   {
-//     [PaymentExtraOptions[PaymentExtraOptions.RECEIPT]]: { name: 'Receipt' },
-//   },
-//   {
-//     [PaymentExtraOptions[PaymentExtraOptions.RESTRICTED_MOBILITY]]: {
-//       name: 'Restricted Mobility',
-//     },
-//   },
-//   {
-//     [PaymentExtraOptions[PaymentExtraOptions.STEP_STOOL]]: {
-//       name: 'Step Stool',
-//     },
-//   },
-//   {
-//     [PaymentExtraOptions[PaymentExtraOptions.ARRIVAL_PACK]]: {
-//       name: 'Arrival Pack',
-//     },
-//   },
-//   {
-//     [PaymentExtraOptions[PaymentExtraOptions.KEYS_FROM_OFFICE]]: {
-//       name: 'Keys From Office',
-//     },
-//   },
-//   {
-//     [PaymentExtraOptions[PaymentExtraOptions.MALE_DRIVER]]: {
-//       name: 'Male Driver',
-//     },
-//   },
-//   {
-//     [PaymentExtraOptions[PaymentExtraOptions.FEMALE_DRIVER]]: {
-//       name: 'Female Driver',
-//     },
-//   },
-// ];
-
 export const CHECK_BASIC_OPTIONS = [
   {
     name: 'Willing to share',
@@ -481,8 +407,8 @@ export const DEFAULT_BOOKING_PARAMS: IBooking = {
   passengerPhone: '',
   paymentChannel: PaymentChannels[PaymentChannels.IN_VEHICLE],
   paymentType: PaymentTypes[PaymentTypes.CASH],
-  paymentBasicOptions: CHECK_BASIC_OPTIONS,
-  paymentExtraOptions: CHECK_EXTRA_OPTIONS,
+  paymentBasicOptions: [],
+  paymentExtraOptions: [],
   notesToDispatcher: '',
   notesToDriver: '',
 };

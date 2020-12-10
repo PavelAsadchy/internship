@@ -18,6 +18,10 @@ import { IBookingState } from 'src/app/shared/stores/booking-store/booking.state
 import { CREATE_BOOKING_ACTION } from 'src/app/shared/stores/booking-store/booking.actions';
 import { IBooking } from 'src/app/shared/models/booking.model';
 import * as moment from 'moment';
+import {
+  CHECK_BASIC_OPTIONS,
+  CHECK_EXTRA_OPTIONS,
+} from 'src/app/shared/consts/booking-options.consts';
 
 @Component({
   selector: 'app-booking-board',
@@ -100,12 +104,16 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
       ).value,
       paymentType: this.bookingOptionsForm.get('payment.paymentOptions.type')
         .value,
-      paymentBasicOptions: this.bookingOptionsForm.get(
-        'payment.checkBasicOptions'
-      ).value,
-      paymentExtraOptions: this.bookingOptionsForm.get(
-        'payment.checkExtraOptions'
-      ).value,
+      paymentBasicOptions: this.checkBasicOptions.value
+        .map((isChecked: boolean, i: number) =>
+          isChecked ? CHECK_BASIC_OPTIONS[i].value : null
+        )
+        .filter(Boolean),
+      paymentExtraOptions: this.checkExtraOptions.value
+        .map((isChecked: boolean, i: number) =>
+          isChecked ? CHECK_EXTRA_OPTIONS[i].value : null
+        )
+        .filter(Boolean),
       notesToDispatcher: this.bookingOptionsForm.get('notes.toDispatcher')
         .value,
       notesToDriver: this.bookingOptionsForm.get('notes.toDriver').value,
@@ -119,6 +127,7 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
     };
 
     this.store.dispatch(CREATE_BOOKING_ACTION({ newBooking: formObj }));
+    this.bookingOptionsForm.reset();
     this.scroll('top');
   }
 
@@ -139,10 +148,6 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
     return (
       this.bookingOptionsForm.controls[control].get(field).status === 'INVALID'
     );
-  }
-
-  trigger() {
-    console.log(this.isSliderChecked);
   }
 
   patchValueToForm(): void {
@@ -176,25 +181,41 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
           channel: this.bookingParams.paymentChannel || null,
           type: this.bookingParams.paymentType || null,
         },
-        // checkBasicOptions: this.bookingParams.paymentBasicOptions || [],
-        // checkExtraOptions: this.bookingParams.paymentExtraOptions || [],
       },
       notes: {
         toDriver: this.bookingParams.notesToDriver || '',
         toDispatcher: this.bookingParams.notesToDispatcher || '',
       },
     });
-    this.bookingParams.paymentBasicOptions.forEach((option) => {
-      const checkBasicOptions = this.bookingOptionsForm.get(
-        'payment.checkBasicOptions'
-      ) as FormArray;
-      checkBasicOptions.push(new FormControl(false));
+    CHECK_BASIC_OPTIONS.forEach((option) => {
+      this.checkBasicOptions.push(
+        new FormControl(
+          this.bookingParams.paymentBasicOptions
+            ? this.bookingParams.paymentBasicOptions.includes(option.value)
+            : false
+        )
+      );
     });
-    this.bookingParams.paymentExtraOptions.forEach((option) => {
-      const checkExtraOptions = this.bookingOptionsForm.get(
-        'payment.checkExtraOptions'
-      ) as FormArray;
-      checkExtraOptions.push(new FormControl(false));
+    CHECK_EXTRA_OPTIONS.forEach((option) => {
+      this.checkExtraOptions.push(
+        new FormControl(
+          this.bookingParams.paymentExtraOptions
+            ? this.bookingParams.paymentExtraOptions.includes(option.value)
+            : false
+        )
+      );
     });
+  }
+
+  get checkBasicOptions() {
+    return this.bookingOptionsForm.get(
+      'payment.checkBasicOptions'
+    ) as FormArray;
+  }
+
+  get checkExtraOptions() {
+    return this.bookingOptionsForm.get(
+      'payment.checkExtraOptions'
+    ) as FormArray;
   }
 }

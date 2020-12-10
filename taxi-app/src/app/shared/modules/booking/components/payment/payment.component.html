@@ -58,7 +58,6 @@
             color="primary"
             aria-labelledby="payment-options-options"
             *ngFor="let paymentBasicOption of checkBasicOptions; let i = index"
-            (change)="updateChkbxArray(paymentBasicOption, $event, 'checkBasicOptions')"
             [formControlName]="i"
         >
             {{ paymentBasicOption.name }}
@@ -80,24 +79,15 @@
                 color="primary"
                 aria-labelledby="payment-options-extras"
                 *ngFor="let paymentExtraOption of checkExtraOptions; let i = index"
-                (change)="updateChkbxArray(paymentBasicOption, $event, 'checkBasicOptions')"
                 [formControlName]="i"
+
             >
                 {{ paymentExtraOption.name }}
             </mat-checkbox>
         </div>
-        <!-- <div formArrayName="checkExtraOptions" *ngFor="let paymentExtraOption of paymentOptions.checkExtraOptions | keyvalue: originalOrder; let i = index">
-            <mat-checkbox class="payment-options__checkbox" color="primary" aria-labelledby="payment-options-extras"
-                
-                (change)="onExtraOptionsChange($event, paymentExtraOption)" [formControlName]="i">
-                {{ paymentExtraOption.value.name }}
-            </mat-checkbox>
-        </div> -->
         <p class="payment-options__note">
             When you check an extra option, the price is re-calculated because<br>
             some options could increase it's value
         </p>
     </section>
 </form>
-
-<button (click)="trigger()">trigger</button>
