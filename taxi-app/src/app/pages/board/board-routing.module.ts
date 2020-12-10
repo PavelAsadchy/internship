@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CreateBookingComponent } from 'src/app/pages/create-booking/container/create-booking.component';
+import { BookingCreateComponent } from 'src/app/pages/booking-create/container/booking-create.component';
 import { BoardComponent } from './container/board.component';
 import { BookingListComponent } from 'src/app/pages/booking-list/container/booking-list.component';
 import { MenuMainComponent } from './components/menu-main/menu-main.component';
@@ -25,7 +25,7 @@ const routes: Routes = [
         children: [
           {
             path: 'create',
-            component: CreateBookingComponent,
+            component: BookingCreateComponent,
           },
           {
             path: 'list',

@@ -3,10 +3,10 @@ import { DEFAULT_BOOKING_PARAMS } from 'src/app/shared/consts/booking-options.co
 import { IBooking } from 'src/app/shared/models/booking.model';
 
 @Component({
-  selector: 'app-create-booking',
-  templateUrl: './create-booking.component.html',
-  styleUrls: ['./create-booking.component.scss'],
+  selector: 'app-booking-create',
+  templateUrl: './booking-create.component.html',
+  styleUrls: ['./booking-create.component.scss'],
 })
-export class CreateBookingComponent {
+export class BookingCreateComponent {
   defaultBookingParams: IBooking = DEFAULT_BOOKING_PARAMS;
 }

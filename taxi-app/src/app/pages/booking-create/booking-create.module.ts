@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
-import { CreateBookingComponent } from './container/create-booking.component';
+import { BookingCreateComponent } from './container/booking-create.component';
 import { BookingModule } from 'src/app/shared/modules/booking/booking.module';
 import { MapModule } from 'src/app/shared/modules/map/map.module';
 
 @NgModule({
-  declarations: [CreateBookingComponent],
+  declarations: [BookingCreateComponent],
   imports: [SharedModule, BookingModule, MapModule],
   providers: [],
-  exports: [CreateBookingComponent],
+  exports: [BookingCreateComponent],
 })
-export class CreateBookingModule {}
+export class BookingCreateModule {}

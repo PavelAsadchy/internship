@@ -4,7 +4,7 @@ import { BoardRoutingModule } from './board-routing.module';
 import { BoardComponent } from './container/board.component';
 import { MenuSideComponent } from './components/menu-side/menu-side.component';
 import { MenuMainComponent } from './components/menu-main/menu-main.component';
-import { CreateBookingModule } from 'src/app/pages/create-booking/create-booking.module';
+import { BookingCreateModule } from 'src/app/pages/booking-create/booking-create.module';
 import { BookingListModule } from '../booking-list/booking-list.module';
 import { BookingEditModule } from '../booking-edit/booking-edit.module';
 
@@ -13,7 +13,7 @@ import { BookingEditModule } from '../booking-edit/booking-edit.module';
   imports: [
     SharedModule,
     BoardRoutingModule,
-    CreateBookingModule,
+    BookingCreateModule,
     BookingListModule,
     BookingEditModule,
   ],
