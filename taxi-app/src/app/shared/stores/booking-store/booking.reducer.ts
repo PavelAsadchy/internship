@@ -73,24 +73,6 @@ const bookingReducer = createReducer(
     loading: true,
     loaded: false,
     errorMessage: null,
-  })),
-  on(
-    BookingActions.REFRESH_QUERY_PARAMS_SUCCESS_ACTION,
-    (state, { refreshedBookings }) => {
-      return bookingAdapter.setAll(refreshedBookings, {
-        ...state,
-        loading: false,
-        loaded: true,
-        errorMessage: null,
-      });
-    }
-  ),
-  on(BookingActions.REFRESH_QUERY_PARAMS_FAIL_ACTION, (state, { message }) => ({
-    ...state,
-    entities: {},
-    loading: false,
-    loaded: false,
-    errorMessage: message.value,
   }))
 );
 

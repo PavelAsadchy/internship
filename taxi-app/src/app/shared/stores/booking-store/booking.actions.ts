@@ -21,8 +21,6 @@ export enum ActionsType {
   DELETE_BOOKING_SUCCESS = '[BOOKING] Delete Booking Success',
   DELETE_BOOKING_FAIL = '[BOOKING] Delete Booking Fail',
   REFRESH_QUERY_PARAMS = '[BOOKING] Refresh Query Params',
-  REFRESH_QUERY_PARAMS_SUCCESS = '[BOOKING] Refresh Query Params Success',
-  REFRESH_QUERY_PARAMS_FAIL = '[BOOKING] Refresh Query Params Fail',
 }
 
 export const LOAD_BOOKINGS_ACTION = createAction(ActionsType.LOAD_BOOKINGS);
@@ -100,14 +98,4 @@ export const DELETE_BOOKING_FAIL_ACTION = createAction(
 export const REFRESH_QUERY_PARAMS_ACTION = createAction(
   ActionsType.REFRESH_QUERY_PARAMS,
   props<{ params: IQueryParams }>()
-);
-
-export const REFRESH_QUERY_PARAMS_SUCCESS_ACTION = createAction(
-  ActionsType.REFRESH_QUERY_PARAMS_SUCCESS,
-  props<{ refreshedBookings: IBooking[] }>()
-);
-
-export const REFRESH_QUERY_PARAMS_FAIL_ACTION = createAction(
-  ActionsType.REFRESH_QUERY_PARAMS_FAIL,
-  props<{ message: IShowMessage }>()
 );
