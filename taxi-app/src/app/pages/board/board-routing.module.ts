@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BookingCreateComponent } from 'src/app/pages/booking-create/container/booking-create.component';
 import { BoardComponent } from './container/board.component';
-import { BookingListComponent } from 'src/app/pages/booking-list/container/booking-list.component';
 import { MenuMainComponent } from './components/menu-main/menu-main.component';
 import { BookingEditComponent } from '../booking-edit/container/booking-edit.component';
+import { BookingListComponent } from '../booking-list/container/booking-list.component';
 
 const routes: Routes = [
   {

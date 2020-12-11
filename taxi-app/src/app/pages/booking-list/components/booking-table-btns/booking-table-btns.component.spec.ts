@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BookingEnumComponent } from './booking-enum.component';
+import { BookingTableBtnsComponent } from './booking-table-btns.component';
 
-describe('BookingEnumComponent', () => {
-  let component: BookingEnumComponent;
-  let fixture: ComponentFixture<BookingEnumComponent>;
+describe('BookingTableBtnsComponent', () => {
+  let component: BookingTableBtnsComponent;
+  let fixture: ComponentFixture<BookingTableBtnsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BookingEnumComponent ]
+      declarations: [ BookingTableBtnsComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BookingEnumComponent);
+    fixture = TestBed.createComponent(BookingTableBtnsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -2,18 +2,12 @@ import { createAction, props } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
 import { IShowMessage } from '../../models/show-message.model';
 import { IBooking } from '../../models/booking.model';
-import { IFilterParams, IQueryParams, ISortParams } from '../../models/query-params.model';
+import { IQueryParams } from '../../models/query-params.model';
 
 export enum ActionsType {
   LOAD_BOOKINGS = '[BOOKING] Load Bookings',
   LOAD_BOOKINGS_SUCCESS = '[BOOKING] Load Bookings Success',
   LOAD_BOOKINGS_FAIL = '[BOOKING] Load Bookings Fail',
-  LOAD_BOOKINGS_BY_ORDER = '[BOOKING] Load Bookings By Order',
-  LOAD_BOOKINGS_BY_ORDER_SUCCESS = '[BOOKING] Load Bookings By Order Success',
-  LOAD_BOOKINGS_BY_ORDER_FAIL = '[BOOKING] Load Bookings By Order Fail',
-  LOAD_BOOKINGS_BY_FILTER = '[BOOKING] Load Bookings By Filter',
-  LOAD_BOOKINGS_BY_FILTER_SUCCESS = '[BOOKING] Load Bookings By Filter Success',
-  LOAD_BOOKINGS_BY_FILTER_FAIL = '[BOOKING] Load Bookings By Filter Fail',
   LOAD_BOOKING = '[BOOKING] Load Booking',
   LOAD_BOOKING_SUCCESS = '[BOOKING] Load Booking Success',
   LOAD_BOOKING_FAIL = '[BOOKING] Load Booking Fail',
@@ -26,7 +20,9 @@ export enum ActionsType {
   DELETE_BOOKING = '[BOOKING] Delete Booking',
   DELETE_BOOKING_SUCCESS = '[BOOKING] Delete Booking Success',
   DELETE_BOOKING_FAIL = '[BOOKING] Delete Booking Fail',
-  REFRESH_QUERY_PARAMS = '[BBOKING] Refresh Query Params',
+  REFRESH_QUERY_PARAMS = '[BOOKING] Refresh Query Params',
+  REFRESH_QUERY_PARAMS_SUCCESS = '[BOOKING] Refresh Query Params Success',
+  REFRESH_QUERY_PARAMS_FAIL = '[BOOKING] Refresh Query Params Fail',
 }
 
 export const LOAD_BOOKINGS_ACTION = createAction(ActionsType.LOAD_BOOKINGS);
@@ -38,36 +34,6 @@ export const LOAD_BOOKINGS_SUCCESS_ACTION = createAction(
 
 export const LOAD_BOOKINGS_FAIL_ACTION = createAction(
   ActionsType.LOAD_BOOKINGS_FAIL,
-  props<{ message: IShowMessage }>()
-);
-
-export const LOAD_BOOKINGS_BY_ORDER_ACTION = createAction(
-  ActionsType.LOAD_BOOKINGS_BY_ORDER,
-  props<{ sort: string; order: string }>()
-);
-
-export const LOAD_BOOKINGS_BY_ORDER_SUCCESS_ACTION = createAction(
-  ActionsType.LOAD_BOOKINGS_BY_ORDER_SUCCESS,
-  props<{ bookingList: IBooking[] }>()
-);
-
-export const LOAD_BOOKINGS_BY_ORDER_FAIL_ACTION = createAction(
-  ActionsType.LOAD_BOOKINGS_BY_ORDER_FAIL,
-  props<{ message: IShowMessage }>()
-);
-
-export const LOAD_BOOKINGS_BY_FILTER_ACTION = createAction(
-  ActionsType.LOAD_BOOKINGS_BY_FILTER,
-  props<{ filterParams: IFilterParams }>()
-);
-
-export const LOAD_BOOKINGS_BY_FILTER_SUCCESS_ACTION = createAction(
-  ActionsType.LOAD_BOOKINGS_BY_FILTER_SUCCESS,
-  props<{ filteredBookings: IBooking[] }>()
-);
-
-export const LOAD_BOOKINGS_BY_FILTER_FAIL_ACTION = createAction(
-  ActionsType.LOAD_BOOKINGS_BY_FILTER_FAIL,
   props<{ message: IShowMessage }>()
 );
 
@@ -134,5 +100,14 @@ export const DELETE_BOOKING_FAIL_ACTION = createAction(
 export const REFRESH_QUERY_PARAMS_ACTION = createAction(
   ActionsType.REFRESH_QUERY_PARAMS,
   props<{ params: IQueryParams }>()
-  // props<{ sort: ISortParams; filter: IFilterParams }>()
+);
+
+export const REFRESH_QUERY_PARAMS_SUCCESS_ACTION = createAction(
+  ActionsType.REFRESH_QUERY_PARAMS_SUCCESS,
+  props<{ refreshedBookings: IBooking[] }>()
+);
+
+export const REFRESH_QUERY_PARAMS_FAIL_ACTION = createAction(
+  ActionsType.REFRESH_QUERY_PARAMS_FAIL,
+  props<{ message: IShowMessage }>()
 );

@@ -30,57 +30,6 @@ const bookingReducer = createReducer(
     errorMessage: message.value,
   })),
 
-  on(BookingActions.LOAD_BOOKINGS_BY_ORDER_ACTION, (state) => ({
-    ...state,
-    loading: true,
-    loaded: false,
-    errorMessage: null,
-  })),
-  on(
-    BookingActions.LOAD_BOOKINGS_BY_ORDER_SUCCESS_ACTION,
-    (state, { bookingList }) => {
-      return bookingAdapter.setAll(bookingList, {
-        ...state,
-        loading: false,
-        loaded: true,
-        errorMessage: null,
-      });
-    }
-  ),
-  on(
-    BookingActions.LOAD_BOOKINGS_BY_ORDER_FAIL_ACTION,
-    (state, { message }) => ({
-      ...state,
-      loading: false,
-      loaded: false,
-      errorMessage: message.value,
-    })
-  ),
-
-  on(BookingActions.LOAD_BOOKINGS_BY_FILTER_ACTION, (state) => ({
-    ...state,
-    loading: true,
-    loaded: false,
-    errorMessage: null,
-  })),
-  on(
-    BookingActions.LOAD_BOOKINGS_BY_FILTER_SUCCESS_ACTION,
-    (state, { filteredBookings }) => {
-      return bookingAdapter.setAll(filteredBookings, {
-        ...state,
-        loading: false,
-        loaded: true,
-        errorMessage: null,
-      });
-    }
-  ),
-  on(BookingActions.LOAD_BOOKINGS_FAIL_ACTION, (state, { message }) => ({
-    ...state,
-    loading: false,
-    loaded: false,
-    errorMessage: message.value,
-  })),
-
   on(
     BookingActions.LOAD_BOOKING_SUCCESS_ACTION,
     (state, { selectedBooking }) => {
@@ -119,10 +68,30 @@ const bookingReducer = createReducer(
     errorMessage: message.value,
   })),
 
-  on(BookingActions.REFRESH_QUERY_PARAMS_ACTION, (state, { params }) => {
-    console.log(Object.values(state.entities));
-    return state;
-  })
+  on(BookingActions.REFRESH_QUERY_PARAMS_ACTION, (state) => ({
+    ...state,
+    loading: true,
+    loaded: false,
+    errorMessage: null,
+  })),
+  on(
+    BookingActions.REFRESH_QUERY_PARAMS_SUCCESS_ACTION,
+    (state, { refreshedBookings }) => {
+      return bookingAdapter.setAll(refreshedBookings, {
+        ...state,
+        loading: false,
+        loaded: true,
+        errorMessage: null,
+      });
+    }
+  ),
+  on(BookingActions.REFRESH_QUERY_PARAMS_FAIL_ACTION, (state, { message }) => ({
+    ...state,
+    entities: {},
+    loading: false,
+    loaded: false,
+    errorMessage: message.value,
+  }))
 );
 
 export function reducer(state: IBookingState | undefined, action: Action) {

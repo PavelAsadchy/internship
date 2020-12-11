@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DATABASE_URL } from '../consts/app.consts';
 import { IBooking } from '../models/booking.model';
-import { IFilterParams } from '../models/query-params.model';
+import { IQueryParams } from '../models/query-params.model';
 
 @Injectable({
   providedIn: 'root',
@@ -30,6 +30,30 @@ export class BookingListService {
           : [];
       })
     );
+  }
+
+  loadBookingsByParams(queryParams: IQueryParams): Observable<IBooking[]> {
+    if (!queryParams.sort) {
+      return this.db
+        .list<IBooking>('booking-list')
+        .valueChanges()
+        .pipe(
+          map((bookings: IBooking[]) => {
+            return this.doFilter(bookings, queryParams);
+          })
+        );
+    } else {
+      return this.db
+        .list<IBooking>('booking-list', (ref) =>
+          ref.orderByChild(queryParams.sort)
+        )
+        .valueChanges()
+        .pipe(
+          map((bookings: IBooking[]) => {
+            return this.doFilter(bookings, queryParams);
+          })
+        );
+    }
   }
 
   getBookingById(bookingId: string): Observable<IBooking> {
@@ -61,71 +85,39 @@ export class BookingListService {
     return this.http.delete<void>(`${DATABASE_URL}/${bookingId}.json`);
   }
 
-  loadBookingsByOrder(sort: string, order: string): Observable<IBooking[]> {
-    if (sort && order === 'asc') {
-      return this.db
-        .list('booking-list', (ref) => ref.orderByChild(sort))
-        .valueChanges()
-        .pipe(map(this.addIdField));
-    } else if (sort && order === 'desc') {
-      return this.db
-        .list('booking-list', (ref) => ref.orderByChild(sort))
-        .valueChanges()
-        .pipe(map(this.addIdFieldAndReverse));
-    } else {
-      return this.db
-        .list('booking-list')
-        .valueChanges()
-        .pipe(map(this.addIdField));
-    }
-  }
-
-  addIdField(bookings: IBooking[]): IBooking[] {
-    return Object.keys(bookings).map((key: string) => ({
-      ...bookings[key],
-      id: key,
-    }));
-  }
-
-  addIdFieldAndReverse(bookings: IBooking[]): IBooking[] {
-    return Object.keys(bookings)
-      .map((key: string) => ({
-        ...bookings[key],
-        id: key,
-      }))
-      .reverse();
-  }
-
-  filterBookings(filterParams: IFilterParams): Observable<IBooking[]> {
-    return this.db
-      .list<IBooking>('booking-list')
-      .valueChanges()
-      .pipe(
-        map((bookings: IBooking[]) => {
-          const filteredBookingList = bookings.filter((item: IBooking) => {
-            return (
-              this.doPriceFilter(filterParams.price, item.price) &&
-              this.doSelectFilter(filterParams.statuses, item.status) &&
-              this.doSelectFilter(filterParams.channels, item.bookingChannel) &&
-              this.doSelectFilter(filterParams.vehicle, item.vehicle) &&
-              this.doIsAfterFilter(
-                filterParams.dateFrom,
-                moment(item.bookingTime)
-              ) &&
-              this.doIsBeforeFilter(
-                filterParams.dateTo,
-                moment(item.bookingTime)
-              )
-            );
-          });
-          return filteredBookingList
-            ? Object.keys(filteredBookingList).map((key: string) => ({
-                ...filteredBookingList[key],
-                id: key,
-              }))
-            : [];
-        })
-      );
+  doFilter(data: IBooking[], queryParams: IQueryParams): IBooking[] {
+    const filteredBookingList = data
+      .filter((item: IBooking) => {
+        return (
+          this.doPriceFilter(queryParams.price, item.price) &&
+          this.doSelectFilter(queryParams.statuses, item.status) &&
+          this.doSelectFilter(queryParams.channels, item.bookingChannel) &&
+          this.doSelectFilter(queryParams.vehicle, item.vehicle) &&
+          this.doIsAfterFilter(
+            queryParams.dateFrom,
+            moment(item.bookingTime)
+          ) &&
+          this.doIsBeforeFilter(queryParams.dateTo, moment(item.bookingTime))
+        );
+      })
+      .map((bookings: IBooking) => {
+        return bookings;
+      });
+    if (filteredBookingList) {
+      if (queryParams.sort && queryParams.direction === 'desc') {
+        return Object.keys(filteredBookingList)
+          .map((key: string) => ({
+            ...filteredBookingList[key],
+            id: key,
+          }))
+          .reverse();
+      } else {
+        return Object.keys(filteredBookingList).map((key: string) => ({
+          ...filteredBookingList[key],
+          id: key,
+        }));
+      }
+    } else return [];
   }
 
   doPriceFilter(minPrice: number, item: number): boolean {

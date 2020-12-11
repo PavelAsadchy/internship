@@ -6,7 +6,6 @@ import {
   PickUpUrgency,
   VehicleOptions,
 } from '../consts/booking-options.consts';
-import { IBooking } from '../models/booking.model';
 
 @Injectable({
   providedIn: 'root',

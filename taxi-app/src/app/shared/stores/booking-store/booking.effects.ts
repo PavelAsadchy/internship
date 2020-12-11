@@ -5,7 +5,7 @@ import { of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { SHOW_MESSAGE_VALUES } from '../../consts/store.consts';
 import { IBooking } from '../../models/booking.model';
-import { IFilterParams } from '../../models/query-params.model';
+import { IQueryParams } from '../../models/query-params.model';
 import { IShowMessage } from '../../models/show-message.model';
 import { BookingListService } from '../../services/booking-list.service';
 import { SHOW_MESSAGE_ACTION } from '../message-store/message.actions';
@@ -46,51 +46,20 @@ export class BookingEffects {
     )
   );
 
-  loadBookingsByOrder$ = createEffect(() =>
+  refreshBookings$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(BookingActions.ActionsType.LOAD_BOOKINGS_BY_ORDER),
-      switchMap((action: { sort: string; order: string; type: string }) => {
-        return this.bookingListService
-          .loadBookingsByOrder(action.sort, action.order)
-          .pipe(
-            map((bookings: IBooking[]) => {
-              return BookingActions.LOAD_BOOKINGS_BY_ORDER_SUCCESS_ACTION({
-                bookingList: bookings,
-              });
-            }),
-            catchError(() =>
-              of(
-                BookingActions.LOAD_BOOKINGS_BY_ORDER_FAIL_ACTION({
-                  message: SHOW_MESSAGE_VALUES.loadBookingsFail,
-                })
-              )
-            )
-          );
-      })
-    )
-  );
-
-  loadBookingsByFilter$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(BookingActions.ActionsType.LOAD_BOOKINGS_BY_FILTER),
-      tap(() =>
-        this.store.dispatch(
-          SHOW_MESSAGE_ACTION({
-            message: SHOW_MESSAGE_VALUES.loadBookingsByFilter,
-          })
-        )
-      ),
-      switchMap((action: { filterParams: IFilterParams; type: string }) => {
-        return this.bookingListService.filterBookings(action.filterParams).pipe(
-          map((filteredBookingList: IBooking[]) => {
-            return BookingActions.LOAD_BOOKINGS_BY_FILTER_SUCCESS_ACTION({
-              filteredBookings: filteredBookingList,
+      ofType(BookingActions.ActionsType.REFRESH_QUERY_PARAMS),
+      switchMap((action: { params: IQueryParams; type: string }) => {
+        return this.bookingListService.loadBookingsByParams(action.params).pipe(
+          map((bookings: IBooking[]) => {
+            return BookingActions.LOAD_BOOKINGS_SUCCESS_ACTION({
+              bookingList: bookings,
             });
           }),
           catchError(() =>
             of(
-              BookingActions.LOAD_BOOKINGS_BY_FILTER_FAIL_ACTION({
-                message: SHOW_MESSAGE_VALUES.loadBookingsByFilterFail,
+              BookingActions.LOAD_BOOKINGS_FAIL_ACTION({
+                message: SHOW_MESSAGE_VALUES.loadBookingsFail,
               })
             )
           )
@@ -231,8 +200,6 @@ export class BookingEffects {
       this.actions$.pipe(
         ofType(
           BookingActions.ActionsType.LOAD_BOOKINGS_FAIL,
-          BookingActions.ActionsType.LOAD_BOOKINGS_BY_ORDER_FAIL,
-          BookingActions.ActionsType.LOAD_BOOKINGS_BY_FILTER_FAIL,
           BookingActions.ActionsType.LOAD_BOOKING_FAIL,
           BookingActions.ActionsType.CREATE_BOOKING_FAIL,
           BookingActions.ActionsType.UPDATE_BOOKING_FAIL,

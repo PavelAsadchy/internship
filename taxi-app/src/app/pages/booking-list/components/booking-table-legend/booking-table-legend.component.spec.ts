@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FilterComponent } from './filter.component';
+import { BookingTableLegendComponent } from './booking-table-legend.component';
 
-describe('FilterComponent', () => {
-  let component: FilterComponent;
-  let fixture: ComponentFixture<FilterComponent>;
+describe('BookingTableLegendComponent', () => {
+  let component: BookingTableLegendComponent;
+  let fixture: ComponentFixture<BookingTableLegendComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FilterComponent ]
+      declarations: [ BookingTableLegendComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FilterComponent);
+    fixture = TestBed.createComponent(BookingTableLegendComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

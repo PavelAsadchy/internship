@@ -30,6 +30,4 @@ export interface IShowMessageOnAction {
   deleteBookingSuccess: IShowMessage;
   deleteBookingFail: IShowMessage;
   defaultBookingActionFail: IShowMessage;
-  loadBookingsByFilter: IShowMessage;
-  loadBookingsByFilterFail: IShowMessage;
 }

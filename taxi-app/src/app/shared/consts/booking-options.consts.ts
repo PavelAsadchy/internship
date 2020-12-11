@@ -380,18 +380,6 @@ export const BOOKING_DISPLAYED_COLUMNS = [
   'status',
 ];
 
-export const MY_DP_FORMAT = {
-  parse: {
-    dateInput: ['l', 'LL'],
-  },
-  display: {
-    dateInput: 'DD/MM/YYYY',
-    monthYearLabel: 'MMM YYYY',
-    dateA11yLabel: 'LL',
-    monthYearA11yLabel: 'MMMM YYYY',
-  },
-};
-
 export const DEFAULT_BOOKING_PARAMS: IBooking = {
   bookingChannel: BookingChannelOptions[BookingChannelOptions.CALL],
   pickUpAddress: '',

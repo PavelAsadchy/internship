@@ -1,13 +1,211 @@
-<div>
-    <app-filter (refreshFilter)="refreshQueryParams($event)"></app-filter>
-</div>
-<mat-divider></mat-divider>
-<div>
-    <app-booking-enum
-        (refreshSort)="refreshQueryParams($event)"
-        [isLoading$]="isLoading$"
-    >
-    </app-booking-enum>
+<form class="filter" [formGroup]="filterForm" (ngSubmit)="onSearchSubmit()">
+    <div class="filter__col">
+        <mat-form-field>
+            <mat-label>BookingID</mat-label>
+            <input matInput placeholder="Booking" formControlName="bookingId" #bookingIdInput>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Price</mat-label>
+            <input matInput placeholder="Price" formControlName="price" type="number" #priceInput>
+            <mat-hint>i.e. 10 or 10-20 (range)</mat-hint>
+        </mat-form-field>
+    </div>
+    <div class="filter__col">
+        <mat-form-field>
+            <mat-label>Search</mat-label>
+            <input matInput placeholder="Search" formControlName="search" #searchInput>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Statuses</mat-label>
+            <mat-select formControlName="statuses" multiple>
+                <mat-option *ngFor="let status of statuses | keyvalue" [value]="status.key">
+                    {{ status.value }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="filter__col">
+        <mat-form-field>
+            <mat-label>From</mat-label>
+            <input matInput [matDatetimepicker]="dp1" formControlName="dateFrom">
+            <mat-datetimepicker-toggle matSuffix [for]="dp1"></mat-datetimepicker-toggle>
+            <mat-datetimepicker #dp1 type="datetime" openOnFocus="true" timeInterval="5"></mat-datetimepicker>
+            <mat-hint>Last
+                <span class="filter__date-setup" (click)="onDateSetup(1, 'months')">month</span>&nbsp;|&nbsp;
+                <span class="filter__date-setup" (click)="onDateSetup(1, 'weeks')">week</span>&nbsp;|&nbsp;
+                <span class="filter__date-setup" (click)="onDateSetup(3, 'days')">3 days</span>&nbsp;|&nbsp;
+                <span class="filter__date-setup" (click)="onDateSetup(24, 'hours')">24h</span>
+            </mat-hint>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Channels</mat-label>
+            <mat-select formControlName="channels" multiple>
+                <mat-option *ngFor="let channel of channels | keyvalue" [value]="channel.key">
+                    {{ channel.value }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="filter__col">
+        <mat-form-field>
+            <mat-label>To</mat-label>
+            <input matInput [matDatetimepicker]="dp2" formControlName="dateTo">
+            <mat-datetimepicker-toggle matSuffix [for]="dp2"></mat-datetimepicker-toggle>
+            <mat-datetimepicker #dp2 type="datetime" openOnFocus="true" timeInterval="5"></mat-datetimepicker>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Vehicle type</mat-label>
+            <mat-select formControlName="vehicle" multiple>
+                <mat-option *ngFor="let vehicle of vehicleOptions.items | keyvalue" [value]="vehicle.key">
+                    {{ vehicle.value.name }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</form>
+
+<div class="filter__footer">
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="onFilterFormReset()">
+            <mat-icon>cancel</mat-icon>
+            <span>Reset filter</span>
+        </button>
+        <button mat-menu-item (click)="onDatesLimitReset()">
+            <mat-icon>close</mat-icon>
+            <span>Remove date range limit</span>
+        </button>
+        <button mat-menu-item (click)="onLoadAllBookings()">
+            <mat-icon>search</mat-icon>
+            <span>Get all bookings</span>
+        </button>
+    </mat-menu>
+    <button mat-button color="action-btn" (click)="onSearchSubmit()">
+        Search
+        <mat-icon>search</mat-icon>
+    </button>
 </div>
 
-<button (click)="trigger()">trigger</button>
+<mat-divider></mat-divider>
+
+<div class="booking-enum mat-elevation-z8">
+    <div class="booking-enum__loading" *ngIf="isLoading$ | async">
+        <mat-progress-bar mode="indeterminate" *ngIf="isLoading$ | async"></mat-progress-bar>
+    </div>
+
+    <div class="booking-enum__urgency">
+        <app-booking-table-legend></app-booking-table-legend>
+    </div>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+
+    <table
+        class="booking-enum__booking-table booking-table"
+        mat-table [dataSource]="dataSource" matSort (matSortChange)="doSort()"
+    >
+        <ng-container matColumnDef="vehicle">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Vehicle </th>
+            <td
+                class="booking-table__col-data"
+                mat-cell *matCellDef="let row"
+                title="{{ vehicleOptions.items[row.vehicle].name }}"
+            >
+                <span class="booking-table__cell-text booking-table__cell-text--small booking-table__cell-text--bold">
+                    {{ vehicleOptions.items[row.vehicle].abbr }}
+                </span>
+                <img src="{{ vehicleOptions.items[row.vehicle].img }}" width="30" height="30">
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="pickUpTime">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Pickup Time </th>
+            <td mat-cell *matCellDef="let row" appUrgentBackgroundColor  [pickUpUrgency]="row.pickUpUrgency" style="text-align: center;">
+                <span class="booking-table__cell-text--small">{{ row.bookingTime | date:'dd/M/yyyy' }}</span>
+                <div>
+                    <span class="booking-table__cell-text--small booking-table__cell-text--bold">{{ row.bookingTime | date:'h:mm' }}&nbsp;({{ row.pickUpTime | date:'h:mm' }})</span>
+                </div>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="extras">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Extras </th>
+            <td mat-cell *matCellDef="let row">
+                <button
+                    mat-icon-button
+                    [matMenuTriggerFor]="notes"
+                    matBadge="N"
+                    [matBadgeHidden]="(row.notesToDispatcher || row.notesToDriver) ? false : true"
+                    [disabled]="(row.notesToDispatcher || row.notesToDriver) ? false : true"
+                >
+                    <mat-icon>notes</mat-icon>
+                </button>
+                <mat-menu #notes>
+                    <span>To dispatcher:<br>{{ row.notesToDispatcher }}</span><br>
+                    <span>To driver:<br>{{ row.notesToDriver }}</span>
+                </mat-menu>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="pickUp">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> PickUp </th>
+            <td mat-cell *matCellDef="let row">
+                {{ pickUpOptions.point[row.pickUpPoint].name }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dropOff">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> DropOff </th>
+            <td mat-cell *matCellDef="let row"> {{ dropOffOptions.point[row.dropOffPoint].name }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="passenger">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Passenger </th>
+            <td mat-cell *matCellDef="let row">
+                <a href="tel:{{ row.passengerPhone }}" *ngIf="row.passengerPhone">
+                    <mat-icon>local_phone</mat-icon>
+                </a>
+                {{ row.passengerName }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="customer">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer </th>
+            <td mat-cell *matCellDef="let row">
+                <div class="booking-table__link-wrapper">
+                    <a href="tel:{{ row.customerPhone }}">
+                        <mat-icon>local_phone</mat-icon>
+                    </a>
+                    {{ row.customerName }}
+                </div>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
+            <td mat-cell *matCellDef="let row">
+                {{ row.price | currency }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+            <td mat-cell *matCellDef="let row">
+                <div class="booking-table__cell-wrapper">
+                    {{ statuses[row.status] }}
+                    <div class="booking-table__btn-wrapper">
+                        <app-booking-table-btns [row]="row"></app-booking-table-btns>
+                    </div>
+                </div>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="9">No data loaded</td>
+        </tr>
+    </table>
+</div>
