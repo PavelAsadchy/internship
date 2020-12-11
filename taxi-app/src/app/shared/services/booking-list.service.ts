@@ -129,10 +129,16 @@ export class BookingListService {
   }
 
   doIsAfterFilter(dateFrom: Moment, item: Moment) {
-    return dateFrom.isValid() ? item.isAfter(dateFrom) : true;
+    return dateFrom.isValid()
+      ? item.isAfter(dateFrom)
+      : item.isAfter(this.dateMonthAgo());
   }
 
   doIsBeforeFilter(dateTo: Moment, item: Moment) {
     return dateTo.isValid() ? item.isBefore(dateTo) : true;
+  }
+
+  dateMonthAgo(): Moment {
+    return moment().subtract(1, 'months');
   }
 }
