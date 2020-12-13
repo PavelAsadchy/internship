@@ -193,7 +193,7 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
             <td mat-cell *matCellDef="let row">
                 <div class="table__cell-wrapper">
-                    {{ statuses[row.status] }}
+                    {{ statusOptions[row.status].name }}
                     <div class="table__btn-wrapper">
                         <app-booking-table-btns [row]="row"></app-booking-table-btns>
                     </div>
