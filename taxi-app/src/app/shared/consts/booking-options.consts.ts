@@ -362,10 +362,25 @@ export const PICK_UP_URGENCY_COLORS = {
 };
 
 export enum BookingStatusOptions {
-  RESERVED = 'Reserved',
-  DISPATCHED = 'Dispatched',
-  TRIP_STARTED = 'Trip started',
-  TRIP_ENDED = 'Trip ended',
+  RESERVED,
+  DISPATCHED,
+  TRIP_STARTED,
+  TRIP_ENDED,
+}
+
+export const BOOKING_STATUS_OPTIONS = {
+  [BookingStatusOptions[BookingStatusOptions.RESERVED]]: {
+    name: 'Reserved',
+  },
+  [BookingStatusOptions[BookingStatusOptions.DISPATCHED]]: {
+    name: 'Dispatched',
+  },
+  [BookingStatusOptions[BookingStatusOptions.TRIP_STARTED]]: {
+    name: 'Trip started',
+  },
+  [BookingStatusOptions[BookingStatusOptions.TRIP_ENDED]]: {
+    name: 'Trip ended',
+  },
 }
 
 export const BOOKING_DISPLAYED_COLUMNS = [

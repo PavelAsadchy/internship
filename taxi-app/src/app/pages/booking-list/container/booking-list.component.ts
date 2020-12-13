@@ -7,9 +7,9 @@ import { select, Store } from '@ngrx/store';
 import * as moment from 'moment';
 import { Observable } from 'rxjs';
 import {
-  BookingChannelOptions,
-  BookingStatusOptions,
+  BOOKING_CHANNEL_OPTIONS,
   BOOKING_DISPLAYED_COLUMNS,
+  BOOKING_STATUS_OPTIONS,
   DROP_OFF_OPTIONS,
   PICK_UP_OPTIONS,
   VEHICLE_OPTIONS,
@@ -43,8 +43,8 @@ export class BookingListComponent implements OnInit {
   vehicleOptions = VEHICLE_OPTIONS;
   pickUpOptions = PICK_UP_OPTIONS;
   dropOffOptions = DROP_OFF_OPTIONS;
-  statuses = BookingStatusOptions;
-  channels = BookingChannelOptions;
+  statusOptions = BOOKING_STATUS_OPTIONS;
+  channelOptions = BOOKING_CHANNEL_OPTIONS;
 
   filterForm = this.fb.group({
     bookingId: [''],
@@ -68,13 +68,7 @@ export class BookingListComponent implements OnInit {
     this.isLoading$ = this.store.pipe(select(SELECT_BOOKING_LOADING));
   }
 
-  doSort() {
-    this.store.dispatch(
-      REFRESH_QUERY_PARAMS_ACTION({ params: this.currentQueryParams })
-    );
-  }
-
-  onSearchSubmit() {
+  refreshQueryParams() {
     this.store.dispatch(
       REFRESH_QUERY_PARAMS_ACTION({ params: this.currentQueryParams })
     );

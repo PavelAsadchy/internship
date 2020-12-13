@@ -1,4 +1,4 @@
-<form class="booking-list__filter filter" [formGroup]="filterForm" (ngSubmit)="onSearchSubmit()">
+<form class="booking-list__filter filter" [formGroup]="filterForm" (ngSubmit)="refreshQueryParams()">
     <div class="filter__col">
         <mat-form-field>
             <mat-label>BookingID</mat-label>
@@ -18,8 +18,8 @@
         <mat-form-field>
             <mat-label>Statuses</mat-label>
             <mat-select formControlName="statuses" multiple>
-                <mat-option *ngFor="let status of statuses | keyvalue" [value]="status.key">
-                    {{ status.value }}
+                <mat-option *ngFor="let status of statusOptions | keyvalue" [value]="status.key">
+                    {{ status.value.name }}
                 </mat-option>
             </mat-select>
         </mat-form-field>
@@ -40,8 +40,8 @@
         <mat-form-field>
             <mat-label>Channels</mat-label>
             <mat-select formControlName="channels" multiple>
-                <mat-option *ngFor="let channel of channels | keyvalue" [value]="channel.key">
-                    {{ channel.value }}
+                <mat-option *ngFor="let channel of channelOptions.channel | keyvalue" [value]="channel.key">
+                    {{ channel.value.name }}
                 </mat-option>
             </mat-select>
         </mat-form-field>
@@ -82,7 +82,7 @@
             <span>Get all bookings</span>
         </button>
     </mat-menu>
-    <button mat-button color="action-btn" (click)="onSearchSubmit()">
+    <button mat-button color="action-btn" (click)="refreshQueryParams()">
         Search
         <mat-icon>search</mat-icon>
     </button>
@@ -103,7 +103,7 @@
 
     <table
         class="booking-list__table table"
-        mat-table [dataSource]="dataSource" matSort (matSortChange)="doSort()"
+        mat-table [dataSource]="dataSource" matSort (matSortChange)="refreshQueryParams()"
     >
         <ng-container matColumnDef="vehicle">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Vehicle </th>
