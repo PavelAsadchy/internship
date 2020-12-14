@@ -21,6 +21,7 @@ export enum ActionsType {
   DELETE_BOOKING_SUCCESS = '[BOOKING] Delete Booking Success',
   DELETE_BOOKING_FAIL = '[BOOKING] Delete Booking Fail',
   REFRESH_QUERY_PARAMS = '[BOOKING] Refresh Query Params',
+  CLEAR_BOOKINGS = '[BOOKING] Clear Bookings',
 }
 
 export const LOAD_BOOKINGS_ACTION = createAction(ActionsType.LOAD_BOOKINGS);
@@ -99,3 +100,5 @@ export const REFRESH_QUERY_PARAMS_ACTION = createAction(
   ActionsType.REFRESH_QUERY_PARAMS,
   props<{ params: IQueryParams }>()
 );
+
+export const CLEAR_BOOKINGS_ACTION = createAction(ActionsType.CLEAR_BOOKINGS);

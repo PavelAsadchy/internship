@@ -1,6 +1,5 @@
 import { HttpBackend, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/database';
 import * as moment from 'moment';
 import { Moment } from 'moment';
 import { Observable } from 'rxjs';
@@ -15,7 +14,7 @@ import { IQueryParams } from '../models/query-params.model';
 export class BookingListService {
   private http: HttpClient;
 
-  constructor(private handler: HttpBackend, private db: AngularFireDatabase) {
+  constructor(private handler: HttpBackend) {
     this.http = new HttpClient(handler);
   }
 
@@ -32,28 +31,30 @@ export class BookingListService {
     );
   }
 
-  loadBookingsByParams(queryParams: IQueryParams): Observable<IBooking[]> {
-    if (!queryParams.sort) {
-      return this.db
-        .list<IBooking>('booking-list')
-        .valueChanges()
-        .pipe(
-          map((bookings: IBooking[]) => {
-            return this.doFilter(bookings, queryParams);
+  refreshBookingParams(queryParams: IQueryParams): Observable<IBooking[]> {
+    return this.http.get<IBooking[]>(`${DATABASE_URL}.json`).pipe(
+      map((savedBookingsById) => {
+        if (!savedBookingsById) return [];
+        const savedBookingsWithId = Object.keys(savedBookingsById).map(
+          (key: string) => ({
+            ...savedBookingsById[key],
+            id: key,
           })
         );
-    } else {
-      return this.db
-        .list<IBooking>('booking-list', (ref) =>
-          ref.orderByChild(queryParams.sort)
-        )
-        .valueChanges()
-        .pipe(
-          map((bookings: IBooking[]) => {
-            return this.doFilter(bookings, queryParams);
-          })
+        const filteredBookingList = this.doFilter(
+          savedBookingsWithId,
+          queryParams
         );
-    }
+
+        const sortedBookingList = this.doSort(
+          filteredBookingList,
+          queryParams.sort,
+          queryParams.direction
+        );
+
+        return sortedBookingList;
+      })
+    );
   }
 
   getBookingById(bookingId: string): Observable<IBooking> {
@@ -86,38 +87,25 @@ export class BookingListService {
   }
 
   doFilter(data: IBooking[], queryParams: IQueryParams): IBooking[] {
-    const filteredBookingList = data
-      .filter((item: IBooking) => {
-        return (
-          this.doPriceFilter(queryParams.price, item.price) &&
-          this.doSelectFilter(queryParams.statuses, item.status) &&
-          this.doSelectFilter(queryParams.channels, item.bookingChannel) &&
-          this.doSelectFilter(queryParams.vehicle, item.vehicle) &&
-          this.doIsAfterFilter(
-            queryParams.dateFrom,
-            moment(item.bookingTime)
-          ) &&
-          this.doIsBeforeFilter(queryParams.dateTo, moment(item.bookingTime))
-        );
-      })
-      .map((bookings: IBooking) => {
-        return bookings;
-      });
-    if (filteredBookingList) {
-      if (queryParams.sort && queryParams.direction === 'desc') {
-        return Object.keys(filteredBookingList)
-          .map((key: string) => ({
-            ...filteredBookingList[key],
-            id: key,
-          }))
-          .reverse();
-      } else {
-        return Object.keys(filteredBookingList).map((key: string) => ({
-          ...filteredBookingList[key],
-          id: key,
-        }));
-      }
-    } else return [];
+    const filteredBookingList = data.filter((item: IBooking) => {
+      return (
+        this.doPriceFilter(queryParams.price, item.price) &&
+        this.doSelectFilter(queryParams.statuses, item.status) &&
+        this.doSelectFilter(queryParams.channels, item.bookingChannel) &&
+        this.doSelectFilter(queryParams.vehicle, item.vehicle) &&
+        this.doIsAfterFilter(queryParams.dateFrom, moment(item.bookingTime)) &&
+        this.doIsBeforeFilter(queryParams.dateTo, moment(item.bookingTime))
+      );
+    });
+
+    return filteredBookingList;
+  }
+
+  doSort(data: IBooking[], sort: string, direction: string): IBooking[] {
+    if (!sort) return data;
+    if (sort && direction === 'asc') {
+      return data.sort((a: IBooking, b: IBooking) => a[sort] - b[sort]);
+    } else return data.sort((a: IBooking, b: IBooking) => b[sort] - a[sort]);
   }
 
   doPriceFilter(minPrice: number, item: number): boolean {

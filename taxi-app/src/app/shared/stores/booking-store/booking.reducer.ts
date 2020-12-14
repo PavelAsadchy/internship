@@ -73,7 +73,14 @@ const bookingReducer = createReducer(
     loading: true,
     loaded: false,
     errorMessage: null,
-  }))
+  })),
+
+  on(BookingActions.CLEAR_BOOKINGS_ACTION, (state) => {
+    return bookingAdapter.removeAll({
+      ...state,
+      selectedBookingId: null,
+    });
+  })
 );
 
 export function reducer(state: IBookingState | undefined, action: Action) {

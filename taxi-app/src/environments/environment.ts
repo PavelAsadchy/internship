@@ -4,15 +4,6 @@
 
 export const environment = {
   production: false,
-  firebaseConfig: {
-    apiKey: 'AIzaSyAFYEI6Mv2SthzLCRsN_jTogm5aWJ8Ajt8',
-    authDomain: 'taxi-app-294611.firebaseapp.com',
-    databaseURL: 'https://taxi-app-294611.firebaseio.com',
-    projectId: 'taxi-app-294611',
-    storageBucket: 'taxi-app-294611.appspot.com',
-    messagingSenderId: '652569432683',
-    appId: '1:652569432683:web:6c50f124e0318de16cd72e',
-  },
 };
 
 /*

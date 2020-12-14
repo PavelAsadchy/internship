@@ -14,8 +14,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { GlobalStoreModule } from './shared/stores/global-store.module';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { AngularFireModule } from '@angular/fire';
-import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],
@@ -34,7 +32,6 @@ import { environment } from 'src/environments/environment';
     EffectsModule.forRoot([]),
     GlobalStoreModule,
     StoreDevtoolsModule.instrument(),
-    AngularFireModule.initializeApp(environment.firebaseConfig),
   ],
   providers: [],
   bootstrap: [AppComponent],

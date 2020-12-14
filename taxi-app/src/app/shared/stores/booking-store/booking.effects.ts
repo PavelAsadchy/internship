@@ -55,7 +55,7 @@ export class BookingEffects {
         )
       ),
       switchMap((action: { params: IQueryParams; type: string }) => {
-        return this.bookingListService.loadBookingsByParams(action.params).pipe(
+        return this.bookingListService.refreshBookingParams(action.params).pipe(
           map((bookings: IBooking[]) => {
             return BookingActions.LOAD_BOOKINGS_SUCCESS_ACTION({
               bookingList: bookings,

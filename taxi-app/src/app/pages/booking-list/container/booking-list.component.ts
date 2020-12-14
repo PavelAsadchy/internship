@@ -17,6 +17,7 @@ import {
 import { IBooking } from 'src/app/shared/models/booking.model';
 import { IQueryParams } from 'src/app/shared/models/query-params.model';
 import {
+  CLEAR_BOOKINGS_ACTION,
   LOAD_BOOKINGS_ACTION,
   REFRESH_QUERY_PARAMS_ACTION,
 } from 'src/app/shared/stores/booking-store/booking.actions';
@@ -60,6 +61,7 @@ export class BookingListComponent implements OnInit {
   constructor(private fb: FormBuilder, private store: Store<IBookingState>) {}
 
   ngOnInit() {
+    this.store.dispatch(CLEAR_BOOKINGS_ACTION());
     this.store.pipe(select(SELECT_BOOKING_LIST)).subscribe((bookings) => {
       this.dataSource = new MatTableDataSource(bookings);
       this.dataSource.paginator = this.paginator;
