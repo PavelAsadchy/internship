@@ -30,12 +30,20 @@ const bookingReducer = createReducer(
     errorMessage: message.value,
   })),
 
+  on(BookingActions.LOAD_BOOKING_ACTION, (state) => ({
+    ...state,
+    loading: true,
+    loaded: false,
+    errorMessage: null,
+  })),
   on(
     BookingActions.LOAD_BOOKING_SUCCESS_ACTION,
     (state, { selectedBooking }) => {
       return bookingAdapter.addOne(selectedBooking, {
         ...state,
         selectedBookingId: selectedBooking.id,
+        loading: false,
+        loaded: true,
       });
     }
   ),

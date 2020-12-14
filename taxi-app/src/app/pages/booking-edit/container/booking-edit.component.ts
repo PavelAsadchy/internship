@@ -1,11 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { IBooking } from 'src/app/shared/models/booking.model';
 import { LOAD_BOOKING_ACTION } from 'src/app/shared/stores/booking-store/booking.actions';
-import { SELECT_CURRENT_BOOKING } from 'src/app/shared/stores/booking-store/booking.selector';
+import {
+  SELECT_BOOKING_LOADING,
+  SELECT_CURRENT_BOOKING,
+} from 'src/app/shared/stores/booking-store/booking.selector';
 import { IBookingState } from 'src/app/shared/stores/booking-store/booking.state';
 
 @Component({
@@ -15,6 +18,7 @@ import { IBookingState } from 'src/app/shared/stores/booking-store/booking.state
 })
 export class BookingEditComponent implements OnInit, OnDestroy {
   editBookingParams: IBooking;
+  isLoading$: Observable<boolean>;
 
   private sub: Subject<void> = new Subject<void>();
 
@@ -38,6 +42,7 @@ export class BookingEditComponent implements OnInit, OnDestroy {
             this.editBookingParams = currentBooking;
           });
       });
+    this.isLoading$ = this.store.select(SELECT_BOOKING_LOADING);
   }
 
   ngOnDestroy(): void {
