@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import {
@@ -15,13 +15,13 @@ import { CreateBookingCalculationService } from 'src/app/shared/services/create-
 import { takeUntil } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { IBookingState } from 'src/app/shared/stores/booking-store/booking.state';
-import { CREATE_BOOKING_ACTION } from 'src/app/shared/stores/booking-store/booking.actions';
 import { IBooking } from 'src/app/shared/models/booking.model';
 import * as moment from 'moment';
 import {
   CHECK_BASIC_OPTIONS,
   CHECK_EXTRA_OPTIONS,
 } from 'src/app/shared/consts/booking-options.consts';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-booking-board',
@@ -32,6 +32,9 @@ import {
 export class BookingBoardComponent implements OnInit, OnDestroy {
   @Input()
   bookingParams: IBooking;
+
+  @Output()
+  onFormSubmit: EventEmitter<IBooking> = new EventEmitter<IBooking>();
 
   price: number;
 
@@ -126,7 +129,8 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
       status: this.createBookingCalculationService.setRandomStatus(),
     };
 
-    this.store.dispatch(CREATE_BOOKING_ACTION({ newBooking: formObj }));
+    this.onFormSubmit.emit(formObj);
+
     this.patchValueToForm();
     this.scroll('top');
   }

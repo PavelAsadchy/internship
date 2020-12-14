@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import * as moment from 'moment';
 import { BehaviorSubject } from 'rxjs';
 import {
-  BookingStatusOptions,
+  BOOKING_STATUS_OPTIONS,
   PickUpUrgency,
   VehicleOptions,
 } from '../consts/booking-options.consts';
@@ -85,8 +85,10 @@ export class CreateBookingCalculationService {
   }
 
   setRandomStatus(): string {
-    return Object.keys(BookingStatusOptions)[
-      Math.round(Math.random() * (Object.keys(BookingStatusOptions).length - 1))
+    return Object.keys(BOOKING_STATUS_OPTIONS)[
+      Math.round(
+        Math.random() * (Object.keys(BOOKING_STATUS_OPTIONS).length - 1)
+      )
     ];
   }
 }

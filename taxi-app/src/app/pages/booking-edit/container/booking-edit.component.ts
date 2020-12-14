@@ -4,7 +4,10 @@ import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { IBooking } from 'src/app/shared/models/booking.model';
-import { LOAD_BOOKING_ACTION } from 'src/app/shared/stores/booking-store/booking.actions';
+import {
+  LOAD_BOOKING_ACTION,
+  UPDATE_BOOKING_ACTION,
+} from 'src/app/shared/stores/booking-store/booking.actions';
 import {
   SELECT_BOOKING_LOADING,
   SELECT_CURRENT_BOOKING,
@@ -48,5 +51,13 @@ export class BookingEditComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.sub.next();
     this.sub.complete();
+  }
+
+  bookingEditHandler(editedBooking: IBooking) {
+    this.store.dispatch(
+      UPDATE_BOOKING_ACTION({
+        booking: { ...editedBooking, id: this.editBookingParams.id },
+      })
+    );
   }
 }
