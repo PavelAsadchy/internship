@@ -381,16 +381,16 @@ export const BOOKING_STATUS_OPTIONS = {
   [BookingStatusOptions[BookingStatusOptions.TRIP_ENDED]]: {
     name: 'Trip ended',
   },
-}
+};
 
 export const BOOKING_DISPLAYED_COLUMNS = [
   'vehicle',
   'pickUpTime',
   'extras',
-  'pickUp',
-  'dropOff',
-  'passenger',
-  'customer',
+  'pickUpPoint',
+  'dropOffPoint',
+  'passengerName',
+  'customerName',
   'price',
   'status',
 ];

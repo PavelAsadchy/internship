@@ -148,19 +148,19 @@
             </td>
         </ng-container>
 
-        <ng-container matColumnDef="pickUp">
+        <ng-container matColumnDef="pickUpPoint">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> PickUp </th>
             <td mat-cell *matCellDef="let row">
                 {{ pickUpOptions.point[row.pickUpPoint].name }}
             </td>
         </ng-container>
 
-        <ng-container matColumnDef="dropOff">
+        <ng-container matColumnDef="dropOffPoint">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> DropOff </th>
             <td mat-cell *matCellDef="let row"> {{ dropOffOptions.point[row.dropOffPoint].name }} </td>
         </ng-container>
 
-        <ng-container matColumnDef="passenger">
+        <ng-container matColumnDef="passengerName">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Passenger </th>
             <td mat-cell *matCellDef="let row">
                 <a href="tel:{{ row.passengerPhone }}" *ngIf="row.passengerPhone">
@@ -170,7 +170,7 @@
             </td>
         </ng-container>
 
-        <ng-container matColumnDef="customer">
+        <ng-container matColumnDef="customerName">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer </th>
             <td mat-cell *matCellDef="let row">
                 <div class="table__link-wrapper">
