@@ -126,15 +126,15 @@
             <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="onFilterFormReset()">
+            <button mat-menu-item (click)="onResetFilter()">
                 <mat-icon>cancel</mat-icon>
                 <span>Reset filter</span>
             </button>
-            <button mat-menu-item (click)="onDatesLimitReset()">
+            <button mat-menu-item (click)="onRemoveDateRangeLimit()">
                 <mat-icon>close</mat-icon>
                 <span>Remove date range limit</span>
             </button>
-            <button mat-menu-item (click)="onLoadAllBookings()">
+            <button mat-menu-item (click)="onGetAllBookings()">
                 <mat-icon>search</mat-icon>
                 <span>Get all bookings</span>
             </button>

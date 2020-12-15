@@ -121,10 +121,10 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
         .value,
       notesToDriver: this.bookingOptionsForm.get('notes.toDriver').value,
       price: this.price,
-      bookingTime: moment(),
-      pickUpTime: this.createBookingCalculationService.setPickUpTime(
-        this.bookingOptionsForm.get('pickUp.time').value
-      ),
+      bookingTime: moment().format(),
+      pickUpTime: this.createBookingCalculationService
+        .setPickUpTime(this.bookingOptionsForm.get('pickUp.time').value)
+        .format(),
       pickUpUrgency: this.createBookingCalculationService.setRandomPickUpUrgency(),
       status: this.createBookingCalculationService.setRandomStatus(),
     };

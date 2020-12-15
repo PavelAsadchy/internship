@@ -19,8 +19,8 @@ export interface IBooking {
   notesToDispatcher: string;
   notesToDriver: string;
   price?: number;
-  pickUpTime?: moment.Moment;
-  bookingTime?: moment.Moment;
+  pickUpTime?: string;
+  bookingTime?: string;
   status?: string;
   id?: string;
 }

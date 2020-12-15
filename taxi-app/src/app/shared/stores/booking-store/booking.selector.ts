@@ -37,3 +37,8 @@ export const SELECT_CURRENT_BOOKING = createSelector(
   SELECT_CURRENT_BOOKING_ID,
   (state: IBookingState) => state.entities[state.selectedBookingId]
 );
+
+export const SELECT_QUERY_PARAMS = createSelector(
+  SELECT_BOOKING_LIST_FEATURE,
+  (state: IBookingState) => state.bookingQueryParams
+);

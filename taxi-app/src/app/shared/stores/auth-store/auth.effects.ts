@@ -5,7 +5,7 @@ import { AuthService } from '../../services/auth.service';
 import * as AuthActions from './auth.actions';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { ITokens } from '../../models/tokens.model';
-import { ILoggedInUser } from '../../models/loggedInUser.model';
+import { ILoggedInUser } from '../../models/user-logged.model';
 import { of } from 'rxjs';
 import { IUser } from '../../models/user.model';
 import { Store } from '@ngrx/store';

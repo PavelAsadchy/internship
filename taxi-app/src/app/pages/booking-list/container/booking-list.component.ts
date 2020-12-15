@@ -16,7 +16,7 @@ export class BookingListComponent implements OnInit {
   constructor(private store: Store<IBookingState>) {}
 
   ngOnInit() {
-    this.store.dispatch(CLEAR_BOOKINGS_ACTION());
+    // this.store.dispatch(CLEAR_BOOKINGS_ACTION());
   }
 
   // refreshQueryParams() {

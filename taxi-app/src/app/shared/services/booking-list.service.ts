@@ -5,8 +5,14 @@ import { Moment } from 'moment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DATABASE_URL } from '../consts/app.consts';
+import { IServerResponse } from '../models/server-response.model';
 import { IBooking } from '../models/booking.model';
-import { IQueryParams } from '../models/query-params.model';
+import {
+  IFilterParams,
+  IPaginateParams,
+  IQueryParams,
+  ISortParams,
+} from '../models/query-params.model';
 
 @Injectable({
   providedIn: 'root',
@@ -18,44 +24,55 @@ export class BookingListService {
     this.http = new HttpClient(handler);
   }
 
-  loadBookings(): Observable<IBooking[]> {
+  loadBookings(): Observable<IServerResponse> {
     return this.http.get<IBooking[]>(`${DATABASE_URL}.json`).pipe(
       map((savedBookings: IBooking[]) => {
-        return savedBookings
-          ? Object.keys(savedBookings).map((key: string) => ({
-              ...savedBookings[key],
-              id: key,
-            }))
-          : [];
+        if (savedBookings) {
+          const bookings = Object.keys(savedBookings).map((key: string) => ({
+            ...savedBookings[key],
+            id: key,
+          }));
+          return { bookings, totalLength: bookings.length };
+        } else return { bookings: [], totalLength: 0 };
       })
     );
   }
 
-  // refreshBookingParams(queryParams: IQueryParams): Observable<IBooking[]> {
-  //   return this.http.get<IBooking[]>(`${DATABASE_URL}.json`).pipe(
-  //     map((savedBookingsById) => {
-  //       if (!savedBookingsById) return [];
-  //       const savedBookingsWithId = Object.keys(savedBookingsById).map(
-  //         (key: string) => ({
-  //           ...savedBookingsById[key],
-  //           id: key,
-  //         })
-  //       );
-  //       const filteredBookingList = this.doFilter(
-  //         savedBookingsWithId,
-  //         queryParams
-  //       );
+  loadBookingsByQuery(queryParams: IQueryParams): Observable<IServerResponse> {
+    return this.http.get<IBooking[]>(`${DATABASE_URL}.json`).pipe(
+      map((savedBookingsById) => {
+        if (!savedBookingsById) return { bookings: [], totalLength: 0 };
+        const savedBookingsWithId = Object.keys(savedBookingsById).map(
+          (key: string) => ({
+            ...savedBookingsById[key],
+            id: key,
+          })
+        );
 
-  //       const sortedBookingList = this.doSort(
-  //         filteredBookingList,
-  //         queryParams.sort,
-  //         queryParams.direction
-  //       );
+        const filteredBookingList = this.doFilter(
+          savedBookingsWithId,
+          queryParams.filter
+        );
 
-  //       return sortedBookingList;
-  //     })
-  //   );
-  // }
+        const sortedBookingList = this.doSort(
+          filteredBookingList,
+          queryParams.sort
+        );
+
+        const totalLength = sortedBookingList.length;
+
+        const paginatedBookingList = this.doPaginate(
+          sortedBookingList,
+          queryParams.paginate
+        );
+
+        return {
+          bookings: paginatedBookingList,
+          totalLength,
+        };
+      })
+    );
+  }
 
   getBookingById(bookingId: string): Observable<IBooking> {
     return this.http.get<IBooking>(`${DATABASE_URL}/${bookingId}.json`).pipe(
@@ -86,26 +103,40 @@ export class BookingListService {
     return this.http.delete<void>(`${DATABASE_URL}/${bookingId}.json`);
   }
 
-  // doFilter(data: IBooking[], queryParams: IQueryParams): IBooking[] {
-  //   const filteredBookingList = data.filter((item: IBooking) => {
-  //     return (
-  //       this.doPriceFilter(queryParams.price, item.price) &&
-  //       this.doSelectFilter(queryParams.statuses, item.status) &&
-  //       this.doSelectFilter(queryParams.channels, item.bookingChannel) &&
-  //       this.doSelectFilter(queryParams.vehicle, item.vehicle) &&
-  //       this.doIsAfterFilter(queryParams.dateFrom, moment(item.bookingTime)) &&
-  //       this.doIsBeforeFilter(queryParams.dateTo, moment(item.bookingTime))
-  //     );
-  //   });
+  doFilter(data: IBooking[], queryParams: IFilterParams): IBooking[] {
+    const filteredBookingList = data.filter((item: IBooking) => {
+      return (
+        this.doPriceFilter(queryParams.price, item.price) &&
+        this.doSelectFilter(queryParams.statuses, item.status) &&
+        this.doSelectFilter(queryParams.channels, item.bookingChannel) &&
+        this.doSelectFilter(queryParams.vehicle, item.vehicle) &&
+        this.doIsAfterFilter(queryParams.dateFrom, item.bookingTime) &&
+        this.doIsBeforeFilter(queryParams.dateTo, item.bookingTime)
+      );
+    });
 
-  //   return filteredBookingList;
-  // }
+    return filteredBookingList;
+  }
 
-  doSort(data: IBooking[], sort: string, direction: string): IBooking[] {
-    if (!sort) return data;
-    if (sort && direction === 'asc') {
-      return data.sort((a: IBooking, b: IBooking) => a[sort] - b[sort]);
-    } else return data.sort((a: IBooking, b: IBooking) => b[sort] - a[sort]);
+  doSort(data: IBooking[], queryParams: ISortParams): IBooking[] {
+    if (!queryParams.field) return data;
+    if (queryParams.field && queryParams.direction === 'asc') {
+      return data.sort(
+        (a: IBooking, b: IBooking) =>
+          a[queryParams.field] - b[queryParams.field]
+      );
+    } else
+      return data.sort(
+        (a: IBooking, b: IBooking) =>
+          b[queryParams.field] - a[queryParams.field]
+      );
+  }
+
+  doPaginate(data: IBooking[], queryParams: IPaginateParams): IBooking[] {
+    return data.slice(
+      queryParams.pageIndex * queryParams.pageSize,
+      queryParams.pageSize * (queryParams.pageIndex + 1)
+    );
   }
 
   doPriceFilter(minPrice: number, item: number): boolean {
@@ -116,14 +147,14 @@ export class BookingListService {
     return selectedParams ? selectedParams.includes(item) : true;
   }
 
-  doIsAfterFilter(dateFrom: Moment, item: Moment) {
-    return dateFrom.isValid()
-      ? item.isAfter(dateFrom)
-      : item.isAfter(this.dateMonthAgo());
+  doIsAfterFilter(dateFrom: string, item: string) {
+    return moment(dateFrom).isValid()
+      ? moment(item).isAfter(dateFrom)
+      : moment(item).isAfter(this.dateMonthAgo());
   }
 
-  doIsBeforeFilter(dateTo: Moment, item: Moment) {
-    return dateTo.isValid() ? item.isBefore(dateTo) : true;
+  doIsBeforeFilter(dateTo: string, item: string) {
+    return moment(dateTo).isValid() ? moment(item).isBefore(dateTo) : true;
   }
 
   dateMonthAgo(): Moment {
