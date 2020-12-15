@@ -46,32 +46,32 @@ export class BookingEffects {
     )
   );
 
-  refreshBookings$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(BookingActions.ActionsType.REFRESH_QUERY_PARAMS),
-      tap(() =>
-        this.store.dispatch(
-          SHOW_MESSAGE_ACTION({ message: SHOW_MESSAGE_VALUES.loadBookings })
-        )
-      ),
-      switchMap((action: { params: IQueryParams; type: string }) => {
-        return this.bookingListService.refreshBookingParams(action.params).pipe(
-          map((bookings: IBooking[]) => {
-            return BookingActions.LOAD_BOOKINGS_SUCCESS_ACTION({
-              bookingList: bookings,
-            });
-          }),
-          catchError(() =>
-            of(
-              BookingActions.LOAD_BOOKINGS_FAIL_ACTION({
-                message: SHOW_MESSAGE_VALUES.loadBookingsFail,
-              })
-            )
-          )
-        );
-      })
-    )
-  );
+  // refreshBookings$ = createEffect(() =>
+  //   this.actions$.pipe(
+  //     ofType(BookingActions.ActionsType.REFRESH_QUERY_PARAMS),
+  //     tap(() =>
+  //       this.store.dispatch(
+  //         SHOW_MESSAGE_ACTION({ message: SHOW_MESSAGE_VALUES.loadBookings })
+  //       )
+  //     ),
+  //     switchMap((action: { params: IQueryParams; type: string }) => {
+  //       return this.bookingListService.refreshBookingParams(action.params).pipe(
+  //         map((bookings: IBooking[]) => {
+  //           return BookingActions.LOAD_BOOKINGS_SUCCESS_ACTION({
+  //             bookingList: bookings,
+  //           });
+  //         }),
+  //         catchError(() =>
+  //           of(
+  //             BookingActions.LOAD_BOOKINGS_FAIL_ACTION({
+  //               message: SHOW_MESSAGE_VALUES.loadBookingsFail,
+  //             })
+  //           )
+  //         )
+  //       );
+  //     })
+  //   )
+  // );
 
   loadBooking$ = createEffect(() =>
     this.actions$.pipe(

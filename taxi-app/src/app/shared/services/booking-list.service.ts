@@ -31,31 +31,31 @@ export class BookingListService {
     );
   }
 
-  refreshBookingParams(queryParams: IQueryParams): Observable<IBooking[]> {
-    return this.http.get<IBooking[]>(`${DATABASE_URL}.json`).pipe(
-      map((savedBookingsById) => {
-        if (!savedBookingsById) return [];
-        const savedBookingsWithId = Object.keys(savedBookingsById).map(
-          (key: string) => ({
-            ...savedBookingsById[key],
-            id: key,
-          })
-        );
-        const filteredBookingList = this.doFilter(
-          savedBookingsWithId,
-          queryParams
-        );
+  // refreshBookingParams(queryParams: IQueryParams): Observable<IBooking[]> {
+  //   return this.http.get<IBooking[]>(`${DATABASE_URL}.json`).pipe(
+  //     map((savedBookingsById) => {
+  //       if (!savedBookingsById) return [];
+  //       const savedBookingsWithId = Object.keys(savedBookingsById).map(
+  //         (key: string) => ({
+  //           ...savedBookingsById[key],
+  //           id: key,
+  //         })
+  //       );
+  //       const filteredBookingList = this.doFilter(
+  //         savedBookingsWithId,
+  //         queryParams
+  //       );
 
-        const sortedBookingList = this.doSort(
-          filteredBookingList,
-          queryParams.sort,
-          queryParams.direction
-        );
+  //       const sortedBookingList = this.doSort(
+  //         filteredBookingList,
+  //         queryParams.sort,
+  //         queryParams.direction
+  //       );
 
-        return sortedBookingList;
-      })
-    );
-  }
+  //       return sortedBookingList;
+  //     })
+  //   );
+  // }
 
   getBookingById(bookingId: string): Observable<IBooking> {
     return this.http.get<IBooking>(`${DATABASE_URL}/${bookingId}.json`).pipe(
@@ -86,20 +86,20 @@ export class BookingListService {
     return this.http.delete<void>(`${DATABASE_URL}/${bookingId}.json`);
   }
 
-  doFilter(data: IBooking[], queryParams: IQueryParams): IBooking[] {
-    const filteredBookingList = data.filter((item: IBooking) => {
-      return (
-        this.doPriceFilter(queryParams.price, item.price) &&
-        this.doSelectFilter(queryParams.statuses, item.status) &&
-        this.doSelectFilter(queryParams.channels, item.bookingChannel) &&
-        this.doSelectFilter(queryParams.vehicle, item.vehicle) &&
-        this.doIsAfterFilter(queryParams.dateFrom, moment(item.bookingTime)) &&
-        this.doIsBeforeFilter(queryParams.dateTo, moment(item.bookingTime))
-      );
-    });
+  // doFilter(data: IBooking[], queryParams: IQueryParams): IBooking[] {
+  //   const filteredBookingList = data.filter((item: IBooking) => {
+  //     return (
+  //       this.doPriceFilter(queryParams.price, item.price) &&
+  //       this.doSelectFilter(queryParams.statuses, item.status) &&
+  //       this.doSelectFilter(queryParams.channels, item.bookingChannel) &&
+  //       this.doSelectFilter(queryParams.vehicle, item.vehicle) &&
+  //       this.doIsAfterFilter(queryParams.dateFrom, moment(item.bookingTime)) &&
+  //       this.doIsBeforeFilter(queryParams.dateTo, moment(item.bookingTime))
+  //     );
+  //   });
 
-    return filteredBookingList;
-  }
+  //   return filteredBookingList;
+  // }
 
   doSort(data: IBooking[], sort: string, direction: string): IBooking[] {
     if (!sort) return data;

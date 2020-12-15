@@ -7,6 +7,8 @@ import { BookingModule } from 'src/app/shared/modules/booking/booking.module';
 import { PopupModule } from 'src/app/shared/modules/popup/popup.module';
 import { BookingTableLegendComponent } from './components/booking-table-legend/booking-table-legend.component';
 import { BookingTableBtnsComponent } from './components/booking-table-btns/booking-table-btns.component';
+import { BookingTableComponent } from './components/booking-table/booking-table.component';
+import { BookingFilterComponent } from './components/booking-filter/booking-filter.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +16,8 @@ import { BookingTableBtnsComponent } from './components/booking-table-btns/booki
     UrgentBackgroundColorDirective,
     BookingTableLegendComponent,
     BookingTableBtnsComponent,
+    BookingTableComponent,
+    BookingFilterComponent,
   ],
   imports: [SharedModule, BookingCreateModule, BookingModule, PopupModule],
   exports: [BookingListComponent],

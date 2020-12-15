@@ -76,11 +76,12 @@ const bookingReducer = createReducer(
     errorMessage: message.value,
   })),
 
-  on(BookingActions.REFRESH_QUERY_PARAMS_ACTION, (state) => ({
+  on(BookingActions.REFRESH_QUERY_PARAMS_ACTION, (state, { params }) => ({
     ...state,
-    loading: true,
-    loaded: false,
-    errorMessage: null,
+    bookingQueryParams: {
+      ...state.bookingQueryParams,
+      ...params,
+    },
   })),
 
   on(BookingActions.CLEAR_BOOKINGS_ACTION, (state) => {

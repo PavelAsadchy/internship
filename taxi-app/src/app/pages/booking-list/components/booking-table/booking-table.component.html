@@ -1,0 +1,117 @@
+<div class="booking-list__enum mat-elevation-z8">
+    <div class="booking-enum__loading" *ngIf="isLoading$ | async">
+        <mat-progress-bar mode="indeterminate" *ngIf="isLoading$ | async"></mat-progress-bar>
+    </div>
+
+    <div class="booking-list__urgency">
+        <app-booking-table-legend></app-booking-table-legend>
+    </div>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+
+    <table
+        class="booking-list__table table"
+        mat-table
+        [dataSource]="dataSource"
+        matSort
+        (matSortChange)="refreshQueryParams()"
+    >
+        <ng-container matColumnDef="vehicle">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Vehicle </th>
+            <td class="table__col-data" mat-cell *matCellDef="let row"
+                title="{{ vehicleOptions.items[row.vehicle].name }}">
+                <span class="table__cell-text table__cell-text--small table__cell-text--bold">
+                    {{ vehicleOptions.items[row.vehicle].abbr }}
+                </span>
+                <img src="{{ vehicleOptions.items[row.vehicle].img }}" width="30" height="30">
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="pickUpTime">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Pickup Time </th>
+            <td mat-cell *matCellDef="let row" appUrgentBackgroundColor [pickUpUrgency]="row.pickUpUrgency"
+                style="text-align: center;">
+                <span class="table__cell-text--small">{{ row.bookingTime | date:'dd/M/yyyy' }}</span>
+                <div>
+                    <span class="table__cell-text--small table__cell-text--bold">{{ row.bookingTime | date:'h:mm'
+                        }}&nbsp;({{ row.pickUpTime | date:'h:mm' }})</span>
+                </div>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="extras">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Extras </th>
+            <td mat-cell *matCellDef="let row">
+                <button mat-icon-button [matMenuTriggerFor]="notes" matBadge="N"
+                    [matBadgeHidden]="(row.notesToDispatcher || row.notesToDriver) ? false : true"
+                    [disabled]="(row.notesToDispatcher || row.notesToDriver) ? false : true">
+                    <mat-icon>notes</mat-icon>
+                </button>
+                <mat-menu #notes>
+                    <span>To dispatcher:<br>{{ row.notesToDispatcher }}</span><br>
+                    <span>To driver:<br>{{ row.notesToDriver }}</span>
+                </mat-menu>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="pickUpPoint">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> PickUp </th>
+            <td mat-cell *matCellDef="let row">
+                {{ pickUpOptions.point[row.pickUpPoint].name }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dropOffPoint">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> DropOff </th>
+            <td mat-cell *matCellDef="let row"> {{ dropOffOptions.point[row.dropOffPoint].name }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="passengerName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Passenger </th>
+            <td mat-cell *matCellDef="let row">
+                <a href="tel:{{ row.passengerPhone }}" *ngIf="row.passengerPhone">
+                    <mat-icon>local_phone</mat-icon>
+                </a>
+                {{ row.passengerName }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="customerName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer </th>
+            <td mat-cell *matCellDef="let row">
+                <div class="table__link-wrapper">
+                    <a href="tel:{{ row.customerPhone }}">
+                        <mat-icon>local_phone</mat-icon>
+                    </a>
+                    {{ row.customerName }}
+                </div>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
+            <td mat-cell *matCellDef="let row">
+                {{ row.price | currency }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+            <td mat-cell *matCellDef="let row">
+                <div class="table__cell-wrapper">
+                    {{ statusOptions[row.status].name }}
+                    <div class="table__btn-wrapper">
+                        <app-booking-table-btns [row]="row"></app-booking-table-btns>
+                    </div>
+                </div>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="9">No data loaded</td>
+        </tr>
+    </table>
+</div>

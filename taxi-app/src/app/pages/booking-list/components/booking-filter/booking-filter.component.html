@@ -1,0 +1,147 @@
+<form
+    [formGroup]="filterForm"
+    (ngSubmit)="onFilterFormSubmit()"
+>
+    <div class="booking-filter">
+        <div class="booking-filter__col">
+            <mat-form-field>
+                <mat-label>BookingID</mat-label>
+                <input
+                    matInput
+                    placeholder="Booking"
+                    formControlName="bookingId"
+                    #bookingIdInput
+                >
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Price</mat-label>
+                <input
+                    matInput
+                    placeholder="Price"
+                    formControlName="price"
+                    type="number"
+                    #priceInput
+                >
+                <mat-hint>i.e. 10 or 10-20 (range)</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="booking-filter__col">
+            <mat-form-field>
+                <mat-label>Search</mat-label>
+                <input
+                    matInput
+                    placeholder="Search"
+                    formControlName="search"
+                    #searchInput
+                >
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Statuses</mat-label>
+                <mat-select formControlName="statuses" multiple>
+                    <mat-option
+                        *ngFor="let status of statusOptions | keyvalue"
+                        [value]="status.key"
+                    >
+                        {{ status.value.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="booking-filter__col">
+            <mat-form-field>
+                <mat-label>From</mat-label>
+                <input
+                    matInput
+                    [matDatetimepicker]="dp1"
+                    formControlName="dateFrom"
+                >
+                <mat-datetimepicker-toggle matSuffix [for]="dp1"></mat-datetimepicker-toggle>
+                <mat-datetimepicker #dp1 type="datetime" openOnFocus="true" timeInterval="5"></mat-datetimepicker>
+                <mat-hint>
+                    Last
+                    <span
+                        class="booking-filter__date-setup"
+                        (click)="onDateSetup(1, 'months')"
+                    >
+                        month
+                    </span>&nbsp;|&nbsp;
+                    <span
+                        class="booking-filter__date-setup"
+                        (click)="onDateSetup(1, 'weeks')"
+                    >
+                        week
+                    </span>&nbsp;|&nbsp;
+                    <span
+                        class="booking-filter__date-setup"
+                        (click)="onDateSetup(3, 'days')"
+                    >
+                        3 days
+                    </span>&nbsp;|&nbsp;
+                    <span
+                        class="booking-filter__date-setup"
+                        (click)="onDateSetup(24, 'hours')"
+                    >
+                        24h
+                    </span>
+                </mat-hint>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Channels</mat-label>
+                <mat-select formControlName="channels" multiple>
+                    <mat-option
+                        *ngFor="let channel of channelOptions.channel | keyvalue"
+                        [value]="channel.key"
+                    >
+                        {{ channel.value.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="booking-filter__col">
+            <mat-form-field>
+                <mat-label>To</mat-label>
+                <input
+                    matInput
+                    [matDatetimepicker]="dp2"
+                    formControlName="dateTo"
+                >
+                <mat-datetimepicker-toggle matSuffix [for]="dp2"></mat-datetimepicker-toggle>
+                <mat-datetimepicker #dp2 type="datetime" openOnFocus="true" timeInterval="5"></mat-datetimepicker>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Vehicle type</mat-label>
+                <mat-select formControlName="vehicle" multiple>
+                    <mat-option
+                        *ngFor="let vehicle of vehicleOptions.items | keyvalue"
+                        [value]="vehicle.key"
+                    >
+                        {{ vehicle.value.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="booking-filter__actions">
+        <button mat-icon-button [matMenuTriggerFor]="menu" type="button">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="onFilterFormReset()">
+                <mat-icon>cancel</mat-icon>
+                <span>Reset filter</span>
+            </button>
+            <button mat-menu-item (click)="onDatesLimitReset()">
+                <mat-icon>close</mat-icon>
+                <span>Remove date range limit</span>
+            </button>
+            <button mat-menu-item (click)="onLoadAllBookings()">
+                <mat-icon>search</mat-icon>
+                <span>Get all bookings</span>
+            </button>
+        </mat-menu>
+        <button mat-button color="action-btn" type="submit">
+            Search
+            <mat-icon>search</mat-icon>
+        </button>
+    </div>
+</form>

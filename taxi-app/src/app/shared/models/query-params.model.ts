@@ -1,14 +1,28 @@
 import { Moment } from 'moment';
 
-export interface IQueryParams {
+export interface IFilterParams {
   bookingId: string;
   price: number;
   search: string;
   statuses: string[];
-  dateFrom: Moment;
+  dateFrom: string;
   channels: string[];
-  dateTo: Moment;
+  dateTo: string;
   vehicle: string[];
-  sort: string;
+}
+
+export interface ISortParams {
+  field: string;
   direction: string;
+}
+
+export interface IPaginateParams {
+  pageIndex: number;
+  pageSize: number;
+}
+
+export interface IQueryParams {
+  filter: IFilterParams;
+  sort: ISortParams;
+  paginate: IPaginateParams;
 }
