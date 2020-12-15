@@ -42,3 +42,8 @@ export const SELECT_QUERY_PARAMS = createSelector(
   SELECT_BOOKING_LIST_FEATURE,
   (state: IBookingState) => state.bookingQueryParams
 );
+
+export const SELECT_BOOKING_LIST_LENGTH = createSelector(
+  SELECT_BOOKING_LIST_FEATURE,
+  (state: IBookingState) => state.totalLength
+);

@@ -1,20 +1,26 @@
 <div class="booking-list__enum mat-elevation-z8">
-    <div class="booking-enum__loading" *ngIf="isLoading$ | async">
-        <mat-progress-bar mode="indeterminate" *ngIf="isLoading$ | async"></mat-progress-bar>
+    <div class="booking-list__loading" *ngIf="isLoading$ | async">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     </div>
 
     <div class="booking-list__urgency">
         <app-booking-table-legend></app-booking-table-legend>
     </div>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+    <mat-paginator
+        [length]="totalLength"
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        showFirstLastButtons
+        (page)="onPaginatorChange($event)"
+    >
+    </mat-paginator>
 
     <table
         class="booking-list__table table"
         mat-table
         [dataSource]="dataSource"
         matSort
-        (matSortChange)="refreshQueryParams()"
+        (matSortChange)="onSortChange($event)"
     >
         <ng-container matColumnDef="vehicle">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Vehicle </th>

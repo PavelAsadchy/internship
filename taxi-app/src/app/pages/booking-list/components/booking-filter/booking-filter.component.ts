@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import * as moment from 'moment';
@@ -30,7 +30,7 @@ import {
   templateUrl: './booking-filter.component.html',
   styleUrls: ['./booking-filter.component.scss'],
 })
-export class BookingFilterComponent implements OnInit {
+export class BookingFilterComponent implements OnInit, AfterViewInit {
   vehicleOptions = VEHICLE_OPTIONS;
   statusOptions = BOOKING_STATUS_OPTIONS;
   channelOptions = BOOKING_CHANNEL_OPTIONS;
@@ -76,7 +76,9 @@ export class BookingFilterComponent implements OnInit {
         (bookingQueryParams: IQueryParams) =>
           (this.queryParams = bookingQueryParams)
       );
+  }
 
+  ngAfterViewInit() {
     this.filterForm.valueChanges
       .pipe(startWith(DEFAULT_QUERY_PARAMS))
       .subscribe(() => {
@@ -115,6 +117,7 @@ export class BookingFilterComponent implements OnInit {
   }
 
   onGetAllBookings(): void {
+    this.filterForm.reset();
     this.store.dispatch(LOAD_BOOKINGS_ACTION());
   }
 }

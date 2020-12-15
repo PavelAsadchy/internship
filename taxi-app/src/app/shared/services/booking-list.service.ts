@@ -121,10 +121,9 @@ export class BookingListService {
   doSort(data: IBooking[], queryParams: ISortParams): IBooking[] {
     if (!queryParams.field) return data;
     if (queryParams.field && queryParams.direction === 'asc') {
-      return data.sort(
-        (a: IBooking, b: IBooking) =>
-          a[queryParams.field] - b[queryParams.field]
-      );
+      return data.sort((a: IBooking, b: IBooking) => {
+        return a[queryParams.field] - b[queryParams.field];
+      });
     } else
       return data.sort(
         (a: IBooking, b: IBooking) =>
