@@ -8,7 +8,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import {
   BOOKING_DISPLAYED_COLUMNS,
   BOOKING_STATUS_OPTIONS,
@@ -17,13 +16,11 @@ import {
   VEHICLE_OPTIONS,
 } from 'src/app/shared/consts/booking-options.consts';
 import { IBooking } from 'src/app/shared/models/booking.model';
-import { IQueryParams } from 'src/app/shared/models/query-params.model';
 import { REFRESH_QUERY_PARAMS_ACTION } from 'src/app/shared/stores/booking-store/booking.actions';
 import {
   SELECT_BOOKING_LIST,
   SELECT_BOOKING_LIST_LENGTH,
   SELECT_BOOKING_LOADING,
-  SELECT_QUERY_PARAMS,
 } from 'src/app/shared/stores/booking-store/booking.selector';
 import { IBookingState } from 'src/app/shared/stores/booking-store/booking.state';
 
@@ -38,7 +35,6 @@ export class BookingTableComponent implements OnInit {
   dataSource: Observable<IBooking[]>;
   isLoading$: Observable<boolean>;
   totalLength: Observable<number>;
-  pageIndex: Observable<number>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -53,9 +49,6 @@ export class BookingTableComponent implements OnInit {
   ngOnInit(): void {
     this.dataSource = this.store.select(SELECT_BOOKING_LIST);
     this.totalLength = this.store.select(SELECT_BOOKING_LIST_LENGTH);
-    this.pageIndex = this.store
-      .select(SELECT_QUERY_PARAMS)
-      .pipe(map((queryParams: IQueryParams) => queryParams.paginate.pageIndex));
     this.isLoading$ = this.store.select(SELECT_BOOKING_LOADING);
   }
 

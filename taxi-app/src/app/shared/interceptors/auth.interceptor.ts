@@ -11,12 +11,13 @@ import { AuthService } from '../services/auth.service';
 import { catchError, retry } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { AUTH_REFRESH_TOKEN } from '../stores/auth-store/auth.actions';
+import { IAuthState } from '../stores/auth-store/auth.state';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   constructor(
     private readonly authService: AuthService,
-    private store: Store
+    private store: Store<IAuthState>
   ) {}
 
   intercept(

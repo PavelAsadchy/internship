@@ -11,12 +11,13 @@ import { IShowMessage } from '../../models/show-message.model';
 import { BookingListService } from '../../services/booking-list.service';
 import { SHOW_MESSAGE_ACTION } from '../message-store/message.actions';
 import * as BookingActions from './booking.actions';
+import { IMessageState } from '../message-store/message.state';
 
 @Injectable()
 export class BookingEffects {
   constructor(
     private actions$: Actions,
-    private store: Store,
+    private store: Store<IMessageState>,
     private readonly bookingListService: BookingListService
   ) {}
 

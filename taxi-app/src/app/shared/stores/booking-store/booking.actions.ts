@@ -13,6 +13,7 @@ export enum ActionsType {
   LOAD_BOOKING = '[BOOKING] Load Booking',
   LOAD_BOOKING_SUCCESS = '[BOOKING] Load Booking Success',
   LOAD_BOOKING_FAIL = '[BOOKING] Load Booking Fail',
+  CLEAR_SELECTED_BOOKING = '[BOOKING] Clear Selected Booking',
   CREATE_BOOKING = '[BOOKING] Create Booking',
   CREATE_BOOKING_SUCCESS = '[BOOKING] Create Booking Success',
   CREATE_BOOKING_FAIL = '[BOOKING] Create Booking Fail',
@@ -57,6 +58,10 @@ export const LOAD_BOOKING_SUCCESS_ACTION = createAction(
 export const LOAD_BOOKING_FAIL_ACTION = createAction(
   ActionsType.LOAD_BOOKING_FAIL,
   props<{ message: IShowMessage }>()
+);
+
+export const CLEAR_SELECTED_BOOKING_ACTION = createAction(
+  ActionsType.CLEAR_SELECTED_BOOKING
 );
 
 export const CREATE_BOOKING_ACTION = createAction(

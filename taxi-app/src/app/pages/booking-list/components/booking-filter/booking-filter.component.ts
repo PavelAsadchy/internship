@@ -10,9 +10,7 @@ import {
 import { IFilterParams } from 'src/app/shared/models/query-params.model';
 import { REFRESH_QUERY_PARAMS_ACTION } from 'src/app/shared/stores/booking-store/booking.actions';
 import {
-  DEFAULT_PAGINATE_PARAMS,
   DEFAULT_QUERY_PARAMS,
-  DEFAULT_SORT_PARAMS,
   IBookingState,
 } from 'src/app/shared/stores/booking-store/booking.state';
 
@@ -64,8 +62,6 @@ export class BookingFilterComponent {
       REFRESH_QUERY_PARAMS_ACTION({
         params: {
           filter: this.filterParams,
-          sort: DEFAULT_SORT_PARAMS,
-          paginate: DEFAULT_PAGINATE_PARAMS,
         },
       })
     );

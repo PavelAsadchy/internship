@@ -122,10 +122,19 @@ export class BookingListService {
   }
 
   doPaginate(data: IBooking[], queryParams: IPaginateParams): IBooking[] {
-    return data.slice(
+    const paginatedData = data.slice(
       queryParams.pageIndex * queryParams.pageSize,
       queryParams.pageSize * (queryParams.pageIndex + 1)
     );
+
+    if (paginatedData.length) {
+      return paginatedData;
+    } else {
+      return this.doPaginate(data, {
+        pageIndex: queryParams.pageIndex - 1,
+        pageSize: queryParams.pageSize,
+      });
+    }
   }
 
   doPriceFilter(minPrice: number, item: number): boolean {

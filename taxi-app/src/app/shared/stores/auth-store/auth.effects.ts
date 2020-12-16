@@ -11,6 +11,7 @@ import { IUser } from '../../models/user.model';
 import { Store } from '@ngrx/store';
 import { SHOW_MESSAGE_ACTION } from '../message-store/message.actions';
 import { SHOW_MESSAGE_VALUES } from '../../consts/store.consts';
+import { IMessageState } from '../message-store/message.state';
 
 @Injectable()
 export class AuthEffects {
@@ -18,7 +19,7 @@ export class AuthEffects {
     private actions$: Actions,
     private readonly authService: AuthService,
     private router: Router,
-    private store: Store
+    private store: Store<IMessageState>
   ) {}
 
   login$ = createEffect(() =>

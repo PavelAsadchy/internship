@@ -8,7 +8,7 @@ import {
 } from '../../models/query-params.model';
 
 export interface IBookingState extends EntityState<IBooking> {
-  selectedBookingId: string;
+  selectedBooking: IBooking;
   bookingQueryParams: IQueryParams;
   totalLength: number;
   loading: boolean;
@@ -48,7 +48,7 @@ export const DEFAULT_QUERY_PARAMS: IQueryParams = {
 export const DEFAULT_BOOKING: IBookingState = {
   ids: [],
   entities: {},
-  selectedBookingId: null,
+  selectedBooking: null,
   bookingQueryParams: DEFAULT_QUERY_PARAMS,
   totalLength: null,
   loading: false,

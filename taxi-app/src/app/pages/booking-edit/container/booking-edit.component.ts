@@ -5,6 +5,7 @@ import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { IBooking } from 'src/app/shared/models/booking.model';
 import {
+  CLEAR_SELECTED_BOOKING_ACTION,
   LOAD_BOOKING_ACTION,
   UPDATE_BOOKING_ACTION,
 } from 'src/app/shared/stores/booking-store/booking.actions';
@@ -49,6 +50,7 @@ export class BookingEditComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.store.dispatch(CLEAR_SELECTED_BOOKING_ACTION());
     this.sub.next();
     this.sub.complete();
   }

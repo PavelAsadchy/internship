@@ -51,18 +51,20 @@ const bookingReducer = createReducer(
   })),
   on(
     BookingActions.LOAD_BOOKING_SUCCESS_ACTION,
-    (state, { selectedBooking }) => {
-      return bookingAdapter.addOne(selectedBooking, {
-        ...state,
-        selectedBookingId: selectedBooking.id,
-        loading: false,
-        loaded: true,
-      });
-    }
+    (state, { selectedBooking }) => ({
+      ...state,
+      selectedBooking,
+      loading: false,
+      loaded: true,
+    })
   ),
   on(BookingActions.LOAD_BOOKING_FAIL_ACTION, (state, { message }) => ({
     ...state,
     errorMessage: message.value,
+  })),
+  on(BookingActions.CLEAR_SELECTED_BOOKING_ACTION, (state) => ({
+    ...state,
+    selectedBooking: null,
   })),
 
   on(BookingActions.CREATE_BOOKING_SUCCESS_ACTION, (state, { newBooking }) => {
