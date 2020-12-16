@@ -13,8 +13,6 @@ import {
 } from 'src/app/shared/models/booking-options.model';
 import { CreateBookingCalculationService } from 'src/app/shared/services/create-booking-calculation.service';
 import { takeUntil } from 'rxjs/operators';
-import { Store } from '@ngrx/store';
-import { IBookingState } from 'src/app/shared/stores/booking-store/booking.state';
 import { IBooking } from 'src/app/shared/models/booking.model';
 import * as moment from 'moment';
 import {
@@ -59,7 +57,6 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
 
   constructor(
     private fb: FormBuilder,
-    private store: Store<IBookingState>,
     private readonly createBookingCalculationService: CreateBookingCalculationService
   ) {}
 

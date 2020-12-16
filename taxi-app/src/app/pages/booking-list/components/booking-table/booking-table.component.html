@@ -11,7 +11,7 @@
         [length]="totalLength"
         [pageSizeOptions]="[5, 10, 25, 100]"
         showFirstLastButtons
-        (page)="onPaginatorChange($event)"
+        (page)="onQueryParamsChange()"
     >
     </mat-paginator>
 
@@ -20,7 +20,7 @@
         mat-table
         [dataSource]="dataSource"
         matSort
-        (matSortChange)="onSortChange($event)"
+        (matSortChange)="onQueryParamsChange()"
     >
         <ng-container matColumnDef="vehicle">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Vehicle </th>

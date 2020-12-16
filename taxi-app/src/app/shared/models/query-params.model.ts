@@ -1,5 +1,3 @@
-import { Moment } from 'moment';
-
 export interface IFilterParams {
   bookingId: string;
   price: number;

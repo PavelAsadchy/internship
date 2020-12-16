@@ -122,13 +122,16 @@ export class BookingListService {
     if (!queryParams.field) return data;
     if (queryParams.field && queryParams.direction === 'asc') {
       return data.sort((a: IBooking, b: IBooking) => {
-        return a[queryParams.field] - b[queryParams.field];
+        if (a[queryParams.field] > b[queryParams.field]) return 1;
+        if (a[queryParams.field] < b[queryParams.field]) return -1;
+        return 0;
       });
     } else
-      return data.sort(
-        (a: IBooking, b: IBooking) =>
-          b[queryParams.field] - a[queryParams.field]
-      );
+      return data.sort((a: IBooking, b: IBooking) => {
+        if (a[queryParams.field] > b[queryParams.field]) return -1;
+        if (a[queryParams.field] < b[queryParams.field]) return 1;
+        return 0;
+      });
   }
 
   doPaginate(data: IBooking[], queryParams: IPaginateParams): IBooking[] {

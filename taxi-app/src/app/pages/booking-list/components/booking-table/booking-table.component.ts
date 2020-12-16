@@ -2,9 +2,8 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { select, Store } from '@ngrx/store';
-import { merge, Observable, of } from 'rxjs';
-import { startWith, switchMap, tap } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { Observable, of } from 'rxjs';
 import {
   BOOKING_DISPLAYED_COLUMNS,
   BOOKING_STATUS_OPTIONS,
@@ -24,10 +23,7 @@ import {
   SELECT_BOOKING_LOADING,
   SELECT_QUERY_PARAMS,
 } from 'src/app/shared/stores/booking-store/booking.selector';
-import {
-  DEFAULT_FILTER_PARAMS,
-  IBookingState,
-} from 'src/app/shared/stores/booking-store/booking.state';
+import { IBookingState } from 'src/app/shared/stores/booking-store/booking.state';
 
 @Component({
   selector: 'app-booking-table',
@@ -62,8 +58,6 @@ export class BookingTableComponent implements OnInit, AfterViewInit {
 
     this.store.select(SELECT_BOOKING_LIST).subscribe((bookings: IBooking[]) => {
       this.dataSource = new MatTableDataSource(bookings);
-      // this.dataSource.paginator = this.paginator;
-      // this.dataSource.sort = this.sort;
     });
 
     this.store
@@ -75,44 +69,31 @@ export class BookingTableComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
+  }
 
-    merge(this.sort.sortChange, this.paginator.page)
-      .pipe(
-        startWith({}),
-        switchMap(() => {
-          return of(
-            this.store.dispatch(
-              REFRESH_QUERY_PARAMS_ACTION({
-                params: {
-                  filter: this.queryParams.filter,
-                  sort: {
-                    field: this.sort.active,
-                    direction: this.sort.direction,
-                  },
-                  paginate: {
-                    pageIndex: this.paginator.pageIndex,
-                    pageSize: this.paginator.pageSize,
-                  },
-                },
-              })
-            )
-          );
+  onQueryParamsChange() {
+    of(
+      this.store.dispatch(
+        REFRESH_QUERY_PARAMS_ACTION({
+          params: {
+            filter: this.queryParams.filter,
+            sort: {
+              field: this.sort.active,
+              direction: this.sort.direction,
+            },
+            paginate: {
+              pageIndex: this.paginator.pageIndex,
+              pageSize: this.paginator.pageSize,
+            },
+          },
         })
       )
-      .subscribe(() =>
-        this.store.dispatch(
-          LOAD_BOOKINGS_BY_QUERY({
-            params: this.queryParams,
-          })
-        )
-      );
-  }
-
-  onPaginatorChange(e) {
-    this.store.dispatch(LOAD_BOOKINGS_BY_QUERY({ params: this.queryParams }));
-  }
-
-  onSortChange(e) {
-    console.log(e);
+    ).subscribe(() =>
+      this.store.dispatch(
+        LOAD_BOOKINGS_BY_QUERY({
+          params: this.queryParams,
+        })
+      )
+    );
   }
 }
