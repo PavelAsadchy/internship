@@ -1,23 +1,14 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import * as moment from 'moment';
-import { startWith } from 'rxjs/operators';
 import {
   VEHICLE_OPTIONS,
   BOOKING_STATUS_OPTIONS,
   BOOKING_CHANNEL_OPTIONS,
 } from 'src/app/shared/consts/booking-options.consts';
-import {
-  IFilterParams,
-  IQueryParams,
-} from 'src/app/shared/models/query-params.model';
-import {
-  LOAD_BOOKINGS_ACTION,
-  LOAD_BOOKINGS_BY_QUERY,
-  REFRESH_QUERY_PARAMS_ACTION,
-} from 'src/app/shared/stores/booking-store/booking.actions';
-import { SELECT_QUERY_PARAMS } from 'src/app/shared/stores/booking-store/booking.selector';
+import { IFilterParams } from 'src/app/shared/models/query-params.model';
+import { REFRESH_QUERY_PARAMS_ACTION } from 'src/app/shared/stores/booking-store/booking.actions';
 import {
   DEFAULT_PAGINATE_PARAMS,
   DEFAULT_QUERY_PARAMS,
@@ -29,13 +20,12 @@ import {
   selector: 'app-booking-filter',
   templateUrl: './booking-filter.component.html',
   styleUrls: ['./booking-filter.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BookingFilterComponent implements OnInit, AfterViewInit {
+export class BookingFilterComponent {
   vehicleOptions = VEHICLE_OPTIONS;
   statusOptions = BOOKING_STATUS_OPTIONS;
   channelOptions = BOOKING_CHANNEL_OPTIONS;
-
-  queryParams: IQueryParams;
 
   filterForm = this.fb.group({
     bookingId: [''],
@@ -69,33 +59,16 @@ export class BookingFilterComponent implements OnInit, AfterViewInit {
 
   constructor(private fb: FormBuilder, private store: Store<IBookingState>) {}
 
-  ngOnInit(): void {
-    this.store
-      .select(SELECT_QUERY_PARAMS)
-      .subscribe(
-        (bookingQueryParams: IQueryParams) =>
-          (this.queryParams = bookingQueryParams)
-      );
-  }
-
-  ngAfterViewInit() {
-    this.filterForm.valueChanges
-      .pipe(startWith(DEFAULT_QUERY_PARAMS))
-      .subscribe(() => {
-        this.store.dispatch(
-          REFRESH_QUERY_PARAMS_ACTION({
-            params: {
-              filter: this.filterParams,
-              sort: DEFAULT_SORT_PARAMS,
-              paginate: DEFAULT_PAGINATE_PARAMS,
-            },
-          })
-        );
-      });
-  }
-
   onFilterFormSubmit() {
-    this.store.dispatch(LOAD_BOOKINGS_BY_QUERY({ params: this.queryParams }));
+    this.store.dispatch(
+      REFRESH_QUERY_PARAMS_ACTION({
+        params: {
+          filter: this.filterParams,
+          sort: DEFAULT_SORT_PARAMS,
+          paginate: DEFAULT_PAGINATE_PARAMS,
+        },
+      })
+    );
   }
 
   onDateSetup(
@@ -118,6 +91,10 @@ export class BookingFilterComponent implements OnInit, AfterViewInit {
 
   onGetAllBookings(): void {
     this.filterForm.reset();
-    this.store.dispatch(LOAD_BOOKINGS_ACTION());
+    this.store.dispatch(
+      REFRESH_QUERY_PARAMS_ACTION({
+        params: DEFAULT_QUERY_PARAMS,
+      })
+    );
   }
 }

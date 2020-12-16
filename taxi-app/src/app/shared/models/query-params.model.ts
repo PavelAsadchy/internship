@@ -20,7 +20,7 @@ export interface IPaginateParams {
 }
 
 export interface IQueryParams {
-  filter: IFilterParams;
-  sort: ISortParams;
-  paginate: IPaginateParams;
+  filter?: IFilterParams;
+  sort?: ISortParams;
+  paginate?: IPaginateParams;
 }

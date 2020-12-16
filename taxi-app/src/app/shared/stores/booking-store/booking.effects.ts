@@ -20,33 +20,6 @@ export class BookingEffects {
     private readonly bookingListService: BookingListService
   ) {}
 
-  loadBookings$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(BookingActions.ActionsType.LOAD_BOOKINGS),
-      tap(() =>
-        this.store.dispatch(
-          SHOW_MESSAGE_ACTION({ message: SHOW_MESSAGE_VALUES.loadBookings })
-        )
-      ),
-      switchMap(() => {
-        return this.bookingListService.loadBookings().pipe(
-          map((serverResponse: IServerResponse) => {
-            return BookingActions.LOAD_BOOKINGS_SUCCESS_ACTION({
-              serverResponse,
-            });
-          }),
-          catchError(() =>
-            of(
-              BookingActions.LOAD_BOOKINGS_FAIL_ACTION({
-                message: SHOW_MESSAGE_VALUES.loadBookingsFail,
-              })
-            )
-          )
-        );
-      })
-    )
-  );
-
   loadBookingsByQuery$ = createEffect(() =>
     this.actions$.pipe(
       ofType(BookingActions.ActionsType.LOAD_BOOKINGS_BY_QUERY),
@@ -64,7 +37,7 @@ export class BookingEffects {
           }),
           catchError(() =>
             of(
-              BookingActions.LOAD_BOOKINGS_FAIL_ACTION({
+              BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL({
                 message: SHOW_MESSAGE_VALUES.loadBookingsFail,
               })
             )
@@ -205,7 +178,7 @@ export class BookingEffects {
     () =>
       this.actions$.pipe(
         ofType(
-          BookingActions.ActionsType.LOAD_BOOKINGS_FAIL,
+          BookingActions.ActionsType.LOAD_BOOKINGS_BY_QUERY_FAIL,
           BookingActions.ActionsType.LOAD_BOOKING_FAIL,
           BookingActions.ActionsType.CREATE_BOOKING_FAIL,
           BookingActions.ActionsType.UPDATE_BOOKING_FAIL,

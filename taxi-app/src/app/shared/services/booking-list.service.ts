@@ -24,20 +24,6 @@ export class BookingListService {
     this.http = new HttpClient(handler);
   }
 
-  loadBookings(): Observable<IServerResponse> {
-    return this.http.get<IBooking[]>(`${DATABASE_URL}.json`).pipe(
-      map((savedBookings: IBooking[]) => {
-        if (savedBookings) {
-          const bookings = Object.keys(savedBookings).map((key: string) => ({
-            ...savedBookings[key],
-            id: key,
-          }));
-          return { bookings, totalLength: bookings.length };
-        } else return { bookings: [], totalLength: 0 };
-      })
-    );
-  }
-
   loadBookingsByQuery(queryParams: IQueryParams): Observable<IServerResponse> {
     return this.http.get<IBooking[]>(`${DATABASE_URL}.json`).pipe(
       map((savedBookingsById) => {
@@ -107,6 +93,7 @@ export class BookingListService {
     const filteredBookingList = data.filter((item: IBooking) => {
       return (
         this.doPriceFilter(queryParams.price, item.price) &&
+        this.doSearch(queryParams.search, item.customerName) &&
         this.doSelectFilter(queryParams.statuses, item.status) &&
         this.doSelectFilter(queryParams.channels, item.bookingChannel) &&
         this.doSelectFilter(queryParams.vehicle, item.vehicle) &&
@@ -143,6 +130,12 @@ export class BookingListService {
 
   doPriceFilter(minPrice: number, item: number): boolean {
     return minPrice ? item > minPrice : true;
+  }
+
+  doSearch(searchValue: string, item: string): boolean {
+    return searchValue
+      ? item.toLowerCase().includes(searchValue.toLowerCase())
+      : true;
   }
 
   doSelectFilter(selectedParams: string[], item: string): boolean {

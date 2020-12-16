@@ -10,7 +10,6 @@
                     matInput
                     placeholder="Booking"
                     formControlName="bookingId"
-                    #bookingIdInput
                 >
             </mat-form-field>
             <mat-form-field>
@@ -20,7 +19,8 @@
                     placeholder="Price"
                     formControlName="price"
                     type="number"
-                    #priceInput
+                    step="10"
+                    min="0"
                 >
                 <mat-hint>i.e. 10 or 10-20 (range)</mat-hint>
             </mat-form-field>
@@ -32,7 +32,6 @@
                     matInput
                     placeholder="Search"
                     formControlName="search"
-                    #searchInput
                 >
             </mat-form-field>
             <mat-form-field>

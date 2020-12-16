@@ -29,6 +29,10 @@
 .table {
   width: 100%;
 
+  & td {
+    text-align: center;
+  }
+
   &__col-data {
     position: relative;
     text-align: center;

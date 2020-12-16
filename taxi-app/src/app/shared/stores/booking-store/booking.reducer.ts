@@ -8,32 +8,6 @@ import {
 
 const bookingReducer = createReducer(
   INITIAL_BOOKING_STATE,
-  on(BookingActions.LOAD_BOOKINGS_ACTION, (state) => ({
-    ...state,
-    loading: true,
-    loaded: false,
-    errorMessage: null,
-  })),
-  on(
-    BookingActions.LOAD_BOOKINGS_SUCCESS_ACTION,
-    (state, { serverResponse }) => {
-      return bookingAdapter.setAll(serverResponse.bookings, {
-        ...state,
-        loading: false,
-        loaded: true,
-        totalLength: serverResponse.totalLength,
-        errorMessage: null,
-      });
-    }
-  ),
-  on(BookingActions.LOAD_BOOKINGS_FAIL_ACTION, (state, { message }) => ({
-    ...state,
-    entities: {},
-    loading: false,
-    loaded: false,
-    errorMessage: message.value,
-  })),
-
   on(BookingActions.LOAD_BOOKINGS_BY_QUERY, (state) => ({
     ...state,
     loading: true,
@@ -113,14 +87,7 @@ const bookingReducer = createReducer(
   on(BookingActions.DELETE_BOOKING_FAIL_ACTION, (state, { message }) => ({
     ...state,
     errorMessage: message.value,
-  })),
-
-  on(BookingActions.CLEAR_BOOKINGS_ACTION, (state) => {
-    return bookingAdapter.removeAll({
-      ...state,
-      selectedBookingId: null,
-    });
-  })
+  }))
 );
 
 export function reducer(state: IBookingState | undefined, action: Action) {
