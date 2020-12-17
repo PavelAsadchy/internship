@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { ILoggedInUser } from '../../models/loggedInUser.model';
+import { ILoggedInUser } from '../../models/user-logged.model';
 import { IUser } from '../../models/user.model';
 
 export enum ActionsType {

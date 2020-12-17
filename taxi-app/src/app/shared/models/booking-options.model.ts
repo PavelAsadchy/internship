@@ -1,77 +1,7 @@
-interface IHeadings {
-  label?: string;
-  caption?: string;
-  note?: string;
-}
-
-interface IRadioSection extends IHeadings {
-  selected: string;
-  options: string[];
-}
-
 export interface IVehicle {
   name: string;
   img: string;
   capacity: string;
-}
-
-export interface IChannel {
-  channel: IRadioSection;
-}
-
-export interface IPickUp extends IHeadings {
-  time: IRadioSection;
-  point: IRadioSection;
-  address: string;
-}
-
-export interface IDropOff extends IHeadings {
-  point: IRadioSection;
-  address: string;
-}
-
-export interface IVehicleList extends IHeadings {
-  items: IVehicle[];
-}
-
-export interface IClientInformation extends IHeadings {
-  phone: string;
-  email?: string;
-  name: string;
-}
-
-export interface ICheckboxSection extends IHeadings {
-  name: string;
-  checked: boolean;
-}
-
-interface ICheckboxOptions extends IHeadings {
-  options: ICheckboxSection[];
-}
-
-export interface IPaymentOptions {
-  channel: IRadioSection;
-  type: IRadioSection;
-}
-
-export interface IPayment {
-  paymentOptions: IPaymentOptions;
-  checkBasicOptions: ICheckboxOptions;
-  checkExtraOptions: ICheckboxOptions;
-}
-
-export interface INotes extends IHeadings {}
-
-export interface IBookingOptions {
-  bookingChannel: IChannel;
-  pickUp: IPickUp;
-  dropOff: IDropOff;
-  vehicle: IVehicleList;
-  customerInformation: IClientInformation;
-  passengerInformation: IClientInformation;
-  payment: IPayment;
-  notes: INotes;
-  id?: string;
 }
 
 import { Validators } from '@angular/forms';

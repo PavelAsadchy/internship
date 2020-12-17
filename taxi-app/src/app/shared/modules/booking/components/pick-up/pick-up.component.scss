@@ -1,0 +1,20 @@
+@import "../../../../UI/mixins.scss";
+
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+.pick-up {
+  &__label {
+    font-weight: bold;
+  }
+
+  &__radio-btn {
+    @include marginsForRadioBtns;
+  }
+
+  &__point {
+    @include styleForBookingBlocks;
+  }
+}

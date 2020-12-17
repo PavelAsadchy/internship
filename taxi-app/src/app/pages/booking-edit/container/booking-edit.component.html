@@ -1,0 +1,15 @@
+<div class="booking-edit" *ngIf="editBookingParams">
+    <as-split unit="percent" direction="horizontal" #split="asSplit">
+        <as-split-area [size]=50>
+            <app-booking-board
+                [bookingParams]="editBookingParams"
+                (onFormSubmit)="bookingEditHandler($event)"
+            >
+            </app-booking-board>
+        </as-split-area>
+        <as-split-area [size]=50>
+            <app-map></app-map>
+        </as-split-area>
+    </as-split>
+</div>
+<mat-spinner *ngIf="isLoading$ | async"></mat-spinner>

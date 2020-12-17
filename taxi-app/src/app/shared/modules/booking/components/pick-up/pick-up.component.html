@@ -1,0 +1,47 @@
+<div [formGroup]="parentGroup">
+    <label
+        class="pick-up__label"
+        id="pick-up-label"
+    >
+        Pick Up Client
+    </label>
+    <div>
+        <mat-radio-group
+            color="primary"
+            aria-labelledby="pick-up-label"
+            formControlName="time"
+        >
+            <mat-radio-button
+                class="pick-up__radio-btn"
+                *ngFor="let pickUpTime of pickUpOptions.time | keyvalue: originalOrder"
+                [value]="pickUpTime.key"
+            >
+                {{ pickUpTime.value.name }}
+            </mat-radio-button>
+        </mat-radio-group>
+        <div class="pick-up__point">
+            <caption>
+                Pick Up
+            </caption>
+            <mat-radio-group
+                color="primary"
+                formControlName="point"
+            >
+                <mat-radio-button
+                    class="pick-up__radio-btn"
+                    *ngFor="let pickUpPoint of pickUpOptions.point | keyvalue: originalOrder"
+                    [value]="pickUpPoint.key"
+                >
+                    {{ pickUpPoint.value.name }}
+                </mat-radio-button>
+            </mat-radio-group>
+            <mat-form-field #addressInput>
+                <input
+                    matInput
+                    placeholder="Search for an address*"
+                    formControlName="address"
+                >
+            </mat-form-field>
+        </div>
+    </div>
+</div>

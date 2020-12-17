@@ -1,0 +1,7 @@
+<ul class="booking-table-legend">
+    <li *ngFor="let pickUpUrgencyOption of pickUpUrgency | keyvalue" class="booking-table-legend__urgency-item">
+        <div class="booking-table-legend__urgency-sqr" [ngClass]="pickUpUrgencyOption.value.class">
+        </div>
+        {{ pickUpUrgencyOption.value.name }}
+    </li>
+</ul>

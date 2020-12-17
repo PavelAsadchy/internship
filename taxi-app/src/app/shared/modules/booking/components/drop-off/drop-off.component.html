@@ -1,0 +1,27 @@
+<div class="drop-off__address" [formGroup]="parentGroup">
+    <caption>
+        Drop Off
+    </caption>
+    <div>
+        <mat-radio-group
+            color="primary"
+            formControlName="point"
+        >
+            <mat-radio-button
+                class="drop-off__radio-btn"
+                *ngFor="let dropOffPoint of dropOffOptions.point | keyvalue: originalOrder"
+                [value]="dropOffPoint.key"
+            >
+                {{ dropOffPoint.value.name }}
+            </mat-radio-button>
+        </mat-radio-group>
+        <mat-form-field #addressInput >
+            <input
+                matInput
+                placeholder="Search for an address*"
+                formControlName="address"
+            >
+        </mat-form-field>
+    </div>
+    <p>If you choose the option "Indefinite", you have to set a custom price.</p>
+</div>

@@ -3,39 +3,42 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { SHOW_MESSAGE_VALUES } from '../../consts/consts';
-import { IBookingOptions } from '../../models/booking-options.model';
+import { SHOW_MESSAGE_VALUES } from '../../consts/store.consts';
+import { IServerResponse } from '../../models/server-response.model';
+import { IBooking } from '../../models/booking.model';
+import { IQueryParams } from '../../models/query-params.model';
 import { IShowMessage } from '../../models/show-message.model';
 import { BookingListService } from '../../services/booking-list.service';
 import { SHOW_MESSAGE_ACTION } from '../message-store/message.actions';
 import * as BookingActions from './booking.actions';
+import { IMessageState } from '../message-store/message.state';
 
 @Injectable()
 export class BookingEffects {
   constructor(
     private actions$: Actions,
-    private store: Store,
+    private store: Store<IMessageState>,
     private readonly bookingListService: BookingListService
   ) {}
 
-  loadBookings$ = createEffect(() =>
+  loadBookingsByQuery$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(BookingActions.ActionsType.LOAD_BOOKINGS),
+      ofType(BookingActions.ActionsType.LOAD_BOOKINGS_BY_QUERY),
       tap(() =>
         this.store.dispatch(
           SHOW_MESSAGE_ACTION({ message: SHOW_MESSAGE_VALUES.loadBookings })
         )
       ),
-      switchMap(() => {
-        return this.bookingListService.loadBookings().pipe(
-          map((bookings: IBookingOptions[]) => {
-            return BookingActions.LOAD_BOOKINGS_SUCCESS_ACTION({
-              bookingList: bookings,
+      switchMap((action: { params: IQueryParams; type: string }) => {
+        return this.bookingListService.loadBookingsByQuery(action.params).pipe(
+          map((serverResponse: IServerResponse) => {
+            return BookingActions.LOAD_BOOKINGS_BY_QUERY_SUCCESS({
+              serverResponse,
             });
           }),
           catchError(() =>
             of(
-              BookingActions.LOAD_BOOKINGS_FAIL_ACTION({
+              BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL({
                 message: SHOW_MESSAGE_VALUES.loadBookingsFail,
               })
             )
@@ -56,7 +59,7 @@ export class BookingEffects {
       map((action: { bookingId: string; type: string }) => action.bookingId),
       switchMap((bookingId: string) => {
         return this.bookingListService.getBookingById(bookingId).pipe(
-          map((booking: IBookingOptions) => {
+          map((booking: IBooking) => {
             return BookingActions.LOAD_BOOKING_SUCCESS_ACTION({
               selectedBooking: booking,
             });
@@ -82,12 +85,11 @@ export class BookingEffects {
         )
       ),
       map(
-        (action: { newBooking: IBookingOptions; type: string }) =>
-          action.newBooking
+        (action: { newBooking: IBooking; type: string }) => action.newBooking
       ),
-      switchMap((newBooking: IBookingOptions) => {
+      switchMap((newBooking: IBooking) => {
         return this.bookingListService.createBooking(newBooking).pipe(
-          map((booking: IBookingOptions) => {
+          map((booking: IBooking) => {
             return BookingActions.CREATE_BOOKING_SUCCESS_ACTION({
               newBooking: booking,
             });
@@ -112,12 +114,10 @@ export class BookingEffects {
           SHOW_MESSAGE_ACTION({ message: SHOW_MESSAGE_VALUES.updateBooking })
         )
       ),
-      map(
-        (action: { booking: IBookingOptions; type: string }) => action.booking
-      ),
-      switchMap((booking: IBookingOptions) => {
+      map((action: { booking: IBooking; type: string }) => action.booking),
+      switchMap((booking: IBooking) => {
         return this.bookingListService.updateBooking(booking).pipe(
-          map((updatedBooking: IBookingOptions) => {
+          map((updatedBooking: IBooking) => {
             return BookingActions.UPDATE_BOOKING_SUCCESS_ACTION({
               update: {
                 id: updatedBooking.id,
@@ -179,7 +179,7 @@ export class BookingEffects {
     () =>
       this.actions$.pipe(
         ofType(
-          BookingActions.ActionsType.LOAD_BOOKINGS_FAIL,
+          BookingActions.ActionsType.LOAD_BOOKINGS_BY_QUERY_FAIL,
           BookingActions.ActionsType.LOAD_BOOKING_FAIL,
           BookingActions.ActionsType.CREATE_BOOKING_FAIL,
           BookingActions.ActionsType.UPDATE_BOOKING_FAIL,

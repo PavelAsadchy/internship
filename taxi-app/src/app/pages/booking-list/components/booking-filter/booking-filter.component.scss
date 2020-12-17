@@ -1,0 +1,31 @@
+@import "../../../../shared/UI/colors.scss";
+
+.booking-filter {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  background: $light-xxl;
+
+  &__col {
+    display: grid;
+    grid-template-rows: 2;
+  }
+
+  &__date-setup {
+    cursor: pointer;
+    color: $main;
+    font-weight: bold;
+  }
+
+  &__actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.mat-action-btn {
+  background-color: $dark-xxl;
+  color: $light-xxl;
+}

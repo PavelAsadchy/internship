@@ -1,0 +1,43 @@
+<div class="customer-information" [formGroup]="parentGroup">
+    <caption>
+        Customer & Loyalty
+    </caption>
+    <mat-tab-group>
+        <mat-tab label="Customer">
+            <mat-form-field>
+                <mat-label class="customer-information__phone-label">Phone*</mat-label>
+                <input
+                    matInput
+                    ng2TelInput
+                    [ng2TelInputOptions]="telOptions"
+                    (intlTelInputObject)="telInputObject($event)"
+                    (countryChange)="onCountryChange($event)"
+                    formControlName="phone"
+                >
+                <span matPrefix>{{ telOptions.prefix }} &nbsp;</span>
+            </mat-form-field>
+            <div class="customer-information__field-wrapper">
+                <div class="customer-information__field">
+                    <mat-form-field>
+                        <mat-label>Email*</mat-label>
+                        <input
+                            matInput
+                            placeholder="Email"
+                            formControlName="email"
+                        >
+                    </mat-form-field>
+                </div>
+                <div class="customer-information__field">
+                    <mat-form-field>
+                        <mat-label>Name*</mat-label>
+                        <input
+                            matInput
+                            placeholder="Name*"
+                            formControlName="name"
+                        >
+                    </mat-form-field>
+                </div>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>

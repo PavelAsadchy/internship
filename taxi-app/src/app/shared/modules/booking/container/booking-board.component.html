@@ -1,0 +1,132 @@
+<div class="booking-board" id="top">
+    <form
+        class="booking-board__form"
+        [formGroup]="bookingOptionsForm"
+        (ngSubmit)="onBookingOptionsSubmit()"
+    >
+        <div class="booking-board__component">
+            <app-booking-channel
+                [parentGroup]="bookingOptionsForm.get('bookingChannel')"
+            >
+            </app-booking-channel>
+        </div>
+        <div class="booking-board__component">
+            <app-pick-up
+                [parentGroup]="bookingOptionsForm.get('pickUp')"
+            >
+            </app-pick-up>
+        </div>
+        <div class="booking-board__component">
+            <app-drop-off
+                [parentGroup]="bookingOptionsForm.get('dropOff')"
+            >
+            </app-drop-off>
+        </div>
+        <div class="booking-board__component">
+            <app-vehicle
+                [parentGroup]="bookingOptionsForm.get('vehicle')"
+            >
+            </app-vehicle>
+        </div>
+        <div class="booking-board__component">
+            <app-customer-information
+                [parentGroup]="bookingOptionsForm.get('customerInformation')"
+            >
+            </app-customer-information>
+        </div>
+        
+        <div class="booking-board__component">
+            <mat-slide-toggle
+                color="primary"
+                [(ngModel)]="isSliderChecked"
+                [ngModelOptions]="{standalone: true}"
+            >
+                Set passenger information
+            </mat-slide-toggle>
+            <app-passenger-information
+                *ngIf="isSliderChecked"
+                [parentGroup]="bookingOptionsForm.get('passengerInformation')"
+            >
+            </app-passenger-information>
+        </div>
+        <div class="booking-board__component">
+            <app-payment
+                [parentGroup]="bookingOptionsForm.get('payment')"
+            >
+            </app-payment>
+        </div>
+        <div class="booking-board__component">
+            <app-notes
+                [parentGroup]="bookingOptionsForm.get('notes')"
+            >
+            </app-notes>
+        </div>
+        <div class="booking-board__component booking-board__component--right">
+            <span
+                class="booking-board__mandatory booking-board__mandatory--heading"
+                [class.valid]="checkFormValidity()"
+            >
+                Mandatory fields
+            </span>
+            <span
+                class="booking-board__mandatory"
+                [class.valid]="checkConrolValidity('pickUp')"
+            >
+                Pick Up Address
+            </span>
+            <span
+                class="booking-board__mandatory"
+                [class.valid]="checkConrolValidity('dropOff')"
+            >
+                Drop Off Address
+            </span>
+            <span
+                class="booking-board__mandatory"
+                [class.valid]="checkConrolValidity('vehicle')"
+            >
+                Vehicle
+            </span>
+            <span
+                class="booking-board__mandatory"
+                [class.valid]="checkFieldValidity('customerInformation', 'phone')"
+            >
+                Customer Phone
+            </span>
+            <span
+                class="booking-board__mandatory"
+                [class.valid]="checkFieldValidity('customerInformation', 'name')"
+            >
+                Customer Name
+            </span>
+            <span
+                class="booking-board__mandatory"
+                [class.valid]="checkFormValidity()"
+            >
+                Price
+            </span>
+        </div>
+
+        <div class="booking-board__component booking-board__component--right">
+            <button
+                mat-raised-button
+                color="primary"
+                class="booking-board__submit"
+                [disabled]="bookingOptionsForm.invalid"
+            >
+                summary
+                <mat-icon>keyboard_arrow_right</mat-icon>
+            </button>
+        </div>    
+    </form>
+    <div class="booking-board__footer">
+        <div class="booking-board__price">
+            <span>Price calculated</span>
+            <span *ngIf="price">
+                {{ price | currency }}
+            </span>
+            <span *ngIf="!price">
+                NA
+            </span>
+        </div>
+    </div>
+</div>
