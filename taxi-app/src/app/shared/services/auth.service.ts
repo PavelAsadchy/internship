@@ -7,7 +7,7 @@ import {
   REFRESH_TOKEN,
   USER_NAME,
 } from '../consts/app.consts';
-import { ILoggedInUser } from '../models/loggedInUser.model';
+import { ILoggedInUser } from '../models/user-logged.model';
 import { ITokens } from '../models/tokens.model';
 import { IUser } from '../models/user.model';
 
