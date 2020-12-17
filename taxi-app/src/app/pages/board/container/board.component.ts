@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { USER_NAME } from 'src/app/shared/consts/app.consts';
 import { IMenuItem } from 'src/app/shared/models/menu-item.model';
+import { HttpClientService } from 'src/app/shared/services/http-client.service';
 import { MenuService } from 'src/app/shared/services/menu.service';
 
 @Component({
@@ -31,7 +32,10 @@ export class BoardComponent implements OnInit {
     new IMenuItem('item4', 'description', 'account_box', 'board'),
   ];
 
-  constructor(private readonly menuService: MenuService) {}
+  constructor(
+    private readonly menuService: MenuService,
+    private readonly httpClientService: HttpClientService
+  ) {}
 
   ngOnInit(): void {
     this.menuService.setMenuItemList(this.menuContent);
@@ -40,5 +44,9 @@ export class BoardComponent implements OnInit {
 
   navToggle(): void {
     this.isNavActive = !this.isNavActive;
+  }
+
+  trigger() {
+    this.httpClientService.test().subscribe();
   }
 }
