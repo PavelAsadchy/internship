@@ -1,0 +1,23 @@
+<div [formGroup]="parentGroup">
+    <label
+        class="booking-channel__label"
+        id="booking-channel-label"
+    >
+        Booking channel
+    </label>
+    <div>
+        <mat-radio-group
+            color="primary"
+            aria-labelledby="booking-channel-label"
+            formControlName="channel"
+        >
+            <mat-radio-button
+                class="booking-channel__radio-btn"
+                *ngFor="let bookingChannel of bookingChannelOptions.channel | keyvalue: originalOrder"
+                [value]="bookingChannel.key"
+            >
+                {{ bookingChannel.value.name }}
+            </mat-radio-button>
+        </mat-radio-group>
+    </div>
+</div>

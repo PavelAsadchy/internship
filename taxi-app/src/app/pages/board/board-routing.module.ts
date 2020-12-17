@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CreateBookingComponent } from 'src/app/pages/create-booking/container/create-booking.component';
-import { BoardComponent } from './board.component';
-import { BookingListComponent } from './components/booking-list/booking-list.component';
+import { BookingCreateComponent } from 'src/app/pages/booking-create/container/booking-create.component';
+import { BoardComponent } from './container/board.component';
 import { MenuMainComponent } from './components/menu-main/menu-main.component';
+import { BookingEditComponent } from '../booking-edit/container/booking-edit.component';
+import { BookingListComponent } from '../booking-list/container/booking-list.component';
 
 const routes: Routes = [
   {
@@ -15,19 +16,33 @@ const routes: Routes = [
         component: MenuMainComponent,
       },
       {
-        path: 'create-booking',
-        component: CreateBookingComponent,
+        path: 'booking',
+        redirectTo: 'booking/create',
+        pathMatch: 'full',
       },
       {
-        path: 'booking-list',
-        component: BookingListComponent,
+        path: 'booking',
+        children: [
+          {
+            path: 'create',
+            component: BookingCreateComponent,
+          },
+          {
+            path: 'list',
+            component: BookingListComponent,
+          },
+          {
+            path: 'update/:id',
+            component: BookingEditComponent,
+          },
+        ],
       },
-    ]
+    ],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class BoardRoutingModule { }
+export class BoardRoutingModule {}

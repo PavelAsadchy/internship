@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
+import * as moment from 'moment';
 import { BehaviorSubject } from 'rxjs';
+import {
+  BOOKING_STATUS_OPTIONS,
+  PickUpUrgency,
+  VehicleOptions,
+} from '../consts/booking-options.consts';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CreateBookingCalculationService {
-
   price$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
   createRandomCalculation(bookingOptions): void {
@@ -13,52 +18,77 @@ export class CreateBookingCalculationService {
       return;
     }
 
-    switch (bookingOptions.vehicle.items.name) {
-      case ('Cab'):
+    switch (bookingOptions.vehicle.items) {
+      case VehicleOptions[VehicleOptions.CAB]:
         this.price$.next(this.randomPrice(1, 10));
         break;
 
-      case ('Branded standart Cab'):
+      case VehicleOptions[VehicleOptions.BRANDED_STANDART_CAB]:
         this.price$.next(this.randomPrice(10, 20));
         break;
 
-      case ('Van'):
+      case VehicleOptions[VehicleOptions.VAN]:
         this.price$.next(this.randomPrice(20, 30));
         break;
 
-      case ('Executive Cab'):
+      case VehicleOptions[VehicleOptions.EXECUTIVE_CAB]:
         this.price$.next(this.randomPrice(30, 40));
         break;
 
-      case ('Executive Van'):
+      case VehicleOptions[VehicleOptions.EXECUTIVE_VAN]:
         this.price$.next(this.randomPrice(40, 50));
         break;
 
-      case ('Luxury Executive'):
+      case VehicleOptions[VehicleOptions.LUXURY_EXECUTIVE]:
         this.price$.next(this.randomPrice(50, 60));
         break;
 
-      case ('Mini Bus'):
+      case VehicleOptions[VehicleOptions.MINI_BUS]:
         this.price$.next(this.randomPrice(60, 70));
         break;
 
-      case ('Restricted Mobility'):
+      case VehicleOptions[VehicleOptions.RESTRICTED_MOBILITY]:
         this.price$.next(this.randomPrice(70, 80));
         break;
 
-      case ('Vintage'):
+      case VehicleOptions[VehicleOptions.VINTAGE]:
         this.price$.next(this.randomPrice(80, 90));
         break;
 
-      case ('Luxury Exec. Van'):
+      case VehicleOptions[VehicleOptions.LUXURY_EXEC_VAN]:
         this.price$.next(this.randomPrice(90, 100));
         break;
     }
   }
 
-  randomPrice(min, max): number {
+  randomPrice(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min) + min);
   }
 
-  formSubmit(form): void {}
+  setPickUpTime(urgencyFlag: string): moment.Moment {
+    return this.createPermissibleTimeLag(urgencyFlag);
+  }
+
+  createPermissibleTimeLag(property: string): moment.Moment {
+    const now = moment();
+
+    if (property === 'NOW') {
+      return now.add(10, 'minutes');
+    } else {
+      return now.add(30, 'minutes');
+    }
+  }
+
+  setRandomPickUpUrgency() {
+    const keys = Object.keys(PickUpUrgency);
+    return keys[Math.round(keys.length * Math.random())];
+  }
+
+  setRandomStatus(): string {
+    return Object.keys(BOOKING_STATUS_OPTIONS)[
+      Math.round(
+        Math.random() * (Object.keys(BOOKING_STATUS_OPTIONS).length - 1)
+      )
+    ];
+  }
 }

@@ -1,32 +1,22 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { BoardRoutingModule } from './board-routing.module';
-import { BoardComponent } from './board.component';
-import { BoardAdminComponent } from './components/board-admin/board-admin.component';
-import { BoardDriverComponent } from './components/board-driver/board-driver.component';
-import { BoardUserComponent } from './components/board-user/board-user.component';
+import { BoardComponent } from './container/board.component';
 import { MenuSideComponent } from './components/menu-side/menu-side.component';
 import { MenuMainComponent } from './components/menu-main/menu-main.component';
-import { BookingListComponent } from './components/booking-list/booking-list.component';
-import { CreateBookingModule } from 'src/app/pages/create-booking/create-booking.module';
+import { BookingCreateModule } from 'src/app/pages/booking-create/booking-create.module';
+import { BookingListModule } from '../booking-list/booking-list.module';
+import { BookingEditModule } from '../booking-edit/booking-edit.module';
 
 @NgModule({
-  declarations: [
-    BoardComponent,
-    BoardAdminComponent,
-    BoardDriverComponent,
-    BoardUserComponent,
-    MenuSideComponent,
-    MenuMainComponent,
-    BookingListComponent
-  ],
+  declarations: [BoardComponent, MenuSideComponent, MenuMainComponent],
   imports: [
     SharedModule,
     BoardRoutingModule,
-    CreateBookingModule,
+    BookingCreateModule,
+    BookingListModule,
+    BookingEditModule,
   ],
-  exports: [
-    BoardComponent
-  ]
+  exports: [BoardComponent],
 })
-export class BoardModule { }
+export class BoardModule {}

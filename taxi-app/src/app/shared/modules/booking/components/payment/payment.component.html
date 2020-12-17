@@ -1,0 +1,93 @@
+<form [formGroup]="parentGroup">
+    <div formGroupName="paymentOptions">
+        <section class="payment-options">
+            <label
+                class="payment-options__label"
+                id="payment-options-channel"
+            >
+                Payment channel
+            </label>
+            <mat-radio-group
+                color="primary"
+                aria-labelledby="payment-options-channel"
+                formControlName="channel"
+            >
+                <mat-radio-button
+                    class="payment-options__radio-btn"
+                    *ngFor="let paymentChannel of paymentOptions.paymentOptions.channels | keyvalue: originalOrder"
+                    [value]="paymentChannel.key"
+                >
+                    {{ paymentChannel.value.name }}
+                </mat-radio-button>
+            </mat-radio-group>
+        </section>
+        <section class="payment-options">
+            <label
+                class="payment-options__label"
+                id="payment-options-type"
+            >
+                Payment type
+            </label>
+            <mat-radio-group
+                color="primary"
+                aria-labelledby="payment-options-type"
+                formControlName="type"
+            >
+                <mat-radio-button
+                    class="payment-options__radio-btn"
+                    *ngFor="let paymentType of paymentOptions.paymentOptions.types | keyvalue: originalOrder"
+                    [value]="paymentType.key"
+                >
+                    {{ paymentType.value.name }}
+                </mat-radio-button>
+            </mat-radio-group>
+        </section>
+    </div>
+    <section
+        class="payment-options"
+        formArrayName="checkBasicOptions"
+    >
+        <label
+            class="payment-options__label"
+            id="payment-options-options"
+        >
+            Payment Options
+        </label>
+        <mat-checkbox
+            class="payment-options__checkbox"
+            color="primary"
+            aria-labelledby="payment-options-options"
+            *ngFor="let paymentBasicOption of checkBasicOptions; let i = index"
+            [formControlName]="i"
+        >
+            {{ paymentBasicOption.name }}
+        </mat-checkbox>
+    </section>
+    <section
+        class="payment-options"
+        formArrayName="checkExtraOptions"
+    >
+        <label
+            class="payment-options__label"
+            id="payment-options-extras"
+        >
+            Extras
+        </label>
+        <div class="payment-options__checkbox-wrapper">
+            <mat-checkbox
+                class="payment-options__checkbox"
+                color="primary"
+                aria-labelledby="payment-options-extras"
+                *ngFor="let paymentExtraOption of checkExtraOptions; let i = index"
+                [formControlName]="i"
+
+            >
+                {{ paymentExtraOption.name }}
+            </mat-checkbox>
+        </div>
+        <p class="payment-options__note">
+            When you check an extra option, the price is re-calculated because<br>
+            some options could increase it's value
+        </p>
+    </section>
+</form>

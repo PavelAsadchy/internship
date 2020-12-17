@@ -17,6 +17,22 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { Ng2TelInputModule } from 'ng2-tel-input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import {
+  MatDatetimepickerModule,
+  MatNativeDatetimeModule,
+} from '@mat-datetimepicker/core';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 @NgModule({
   imports: [
@@ -39,6 +55,19 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatCheckboxModule,
     Ng2TelInputModule,
     MatSnackBarModule,
+    MatDialogModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatProgressSpinnerModule,
+    MatDividerModule,
+    MatMenuModule,
+    MatBadgeModule,
+    MatProgressBarModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatDatetimepickerModule,
+    MatMomentDateModule,
   ],
   exports: [
     CommonModule,
@@ -60,6 +89,20 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatCheckboxModule,
     Ng2TelInputModule,
     MatSnackBarModule,
-  ]
+    MatDialogModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatProgressSpinnerModule,
+    MatDividerModule,
+    MatMenuModule,
+    MatBadgeModule,
+    MatProgressBarModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatDatetimepickerModule,
+    MatNativeDatetimeModule,
+    MatMomentDateModule,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}
