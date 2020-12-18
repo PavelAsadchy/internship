@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { of, throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { IErrorHandle } from '../models/error-handle.model';
 
 @Injectable({
@@ -9,7 +9,7 @@ import { IErrorHandle } from '../models/error-handle.model';
 export class GenericService {
   constructor() {}
 
-  handleError(error: HttpErrorResponse) {
+  handleError(error: HttpErrorResponse): Observable<never> {
     if (error.error instanceof ErrorEvent) {
       console.log('errorEvent');
       return throwError(error.error.message);
