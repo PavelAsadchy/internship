@@ -8,9 +8,14 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { ITest } from '../models/test.model';
+import { AuthService } from './auth.service';
 import { GenericService } from './generic.service';
+
+const httpOptions = {
+  headers: new HttpHeaders()
+}
 
 @Injectable({
   providedIn: 'root',
@@ -18,36 +23,54 @@ import { GenericService } from './generic.service';
 export class HttpClientService {
   constructor(
     private http: HttpClient,
+    private readonly authService: AuthService,
     private readonly genericService: GenericService
   ) {}
 
-  get<T>(url: string, options?: any): Observable<HttpResponse<T>> {
+  // get<T>(url: string, options?: any): Observable<HttpResponse<T>> {
+  //   return this.http
+  //     .get<T>(url, { observe: 'response' })
+  //     .pipe(catchError(this.genericService.handleError));
+  // }
+
+  get<T>(url: string, options?: any): Observable<T> {
+    // const requesOptions = { headers: new HttpHeaders() };
+    if (options) this.setHeaders(httpOptions.headers, options);
     return this.http
-      .get<T>(url, { observe: 'response' })
+      .get<T>(url, httpOptions)
+      // .pipe(catchError(this.genericService.handleError));
+  }
+
+  post<T>(url: string, body: T, options?: any): Observable<T> {
+    // const requesOptions = { headers: new HttpHeaders() };
+    if (options) this.setHeaders(httpOptions.headers, options);
+    return this.http
+      .post<T>(url, body, httpOptions)
       .pipe(catchError(this.genericService.handleError));
   }
 
-  post(url: string, body: any) {
+  update<T>(url: string, body: T): Observable<T> {
     return this.http
-      .post(url, 'body', { headers: { header: 'something' } })
+      .patch<T>(url, body, httpOptions)
       .pipe(catchError(this.genericService.handleError));
   }
 
-  delete() {
+  delete(url: string): Observable<void> {
     return this.http
-      .delete('url', { headers: { header: 'something' } })
+      .delete<void>(url, httpOptions)
       .pipe(catchError(this.genericService.handleError));
   }
 
-  update() {
-    return this.http
-      .patch('url', 'body', { headers: { header: 'something' } })
-      .pipe(catchError(this.genericService.handleError));
-  }
+  private setHeaders(headers: HttpHeaders, params: {name: string, value: string}): void {
+    // const requesOptions = { headers: new HttpHeaders(params) };
+    // return requesOptions;
+    // headers.append(params.name, params.value)
+    // Object.entries(params).forEach((entry: {name: string, value: string}) => headers.set(entry.name, entry.value))
+    // const arr = Object.entries(params).forEach((entry: string[]) => headers.set(entry[0], entry[1]));
+    headers.set(params.name, params.value)
+    // const httpOptions = { headers: new HttpHeaders() };
+    // const token = this.authService.getJwtToken();
 
-  private setHeaders(token: string) {
-    const httpOptions = { headers: new HttpHeaders() };
-
-    httpOptions.headers.set('Authorization', `Bearer ${token}`);
+    // httpOptions.headers.set('Authorization', `Bearer ${token}`);
   }
 }

@@ -11,10 +11,8 @@ export class GenericService {
 
   handleError(error: HttpErrorResponse): Observable<never> {
     if (error.error instanceof ErrorEvent) {
-      console.log('errorEvent');
       return throwError(error.error.message);
     } else {
-      console.log(error);
       const errorHandle: IErrorHandle = {
         internal_code: 666,
         validations_errors: 'smth',

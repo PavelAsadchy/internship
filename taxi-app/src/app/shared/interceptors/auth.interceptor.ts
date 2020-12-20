@@ -12,12 +12,14 @@ import { catchError, retry } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { AUTH_REFRESH_TOKEN } from '../stores/auth-store/auth.actions';
 import { IAuthState } from '../stores/auth-store/auth.state';
+import { GenericService } from '../services/generic.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   constructor(
     private readonly authService: AuthService,
-    private store: Store<IAuthState>
+    private store: Store<IAuthState>,
+    private readonly genericService: GenericService
   ) {}
 
   intercept(
@@ -29,11 +31,12 @@ export class AuthInterceptor implements HttpInterceptor {
     }
     return next.handle(request).pipe(
       retry(3),
+      // catchError(this.genericService.handleError)
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401) {
           return this.handle401error(request, next);
         } else {
-          return throwError(error);
+          return this.genericService.handleError(error);
         }
       })
     );
