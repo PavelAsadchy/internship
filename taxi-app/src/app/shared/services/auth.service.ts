@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpBackend } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {
@@ -10,30 +10,33 @@ import {
 import { ILoggedInUser } from '../models/user-logged.model';
 import { ITokens } from '../models/tokens.model';
 import { IUser } from '../models/user.model';
+import { HttpClientService } from './http-client.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
-  constructor(private http: HttpClient) {}
+export class AuthService extends HttpClientService {
+  constructor(handler: HttpBackend) {
+    super(handler);
+  }
 
   isLoggedIn(): boolean {
     return Boolean(this.getJwtToken());
   }
 
   login(user: IUser): Observable<ITokens> {
-    return this.http.post<ITokens>(AUTH_URL + '/login', user);
+    return this.myPost<ITokens>(AUTH_URL + '/login', user);
   }
 
   logout(): void {
-    this.http.post<any>(AUTH_URL + '/logout', {
+    this.myPost<any>(AUTH_URL + '/logout', {
       refreshToken: this.getRefreshToken(),
     });
     this.doLogoutUser();
   }
 
   refreshToken(): Observable<string> {
-    return this.http.post<string>(AUTH_URL + '/refresh', {
+    return this.myPost<string>(AUTH_URL + '/refresh', {
       refreshToken: this.getRefreshToken(),
     });
   }

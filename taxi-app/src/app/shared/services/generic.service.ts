@@ -19,8 +19,6 @@ export class GenericService {
         status: error.status,
         message: error.message,
       };
-      console.log(errorHandle);
-
       return throwError(errorHandle);
     }
   }

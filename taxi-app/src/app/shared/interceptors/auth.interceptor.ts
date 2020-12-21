@@ -6,7 +6,7 @@ import {
   HttpInterceptor,
   HttpErrorResponse,
 } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { catchError, retry } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
@@ -31,7 +31,6 @@ export class AuthInterceptor implements HttpInterceptor {
     }
     return next.handle(request).pipe(
       retry(3),
-      // catchError(this.genericService.handleError)
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401) {
           return this.handle401error(request, next);
