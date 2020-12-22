@@ -1,10 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { IHeaders, IMyRequestParams } from '../models/my-request-params.model';
 import { GenericService } from './generic.service';
 
-export class HttpClientClass {
+@Injectable({
+  providedIn: 'root',
+})
+export class HttpClientService {
   constructor(
     private http: HttpClient,
     private readonly genericService: GenericService
@@ -12,8 +16,8 @@ export class HttpClientClass {
 
   myGet<T>(requestParams: IMyRequestParams): Observable<{}> {
     if (requestParams.search.filter.dateFrom) {
-      let dateValue = requestParams.search.filter.dateFrom;
-      dateValue = dateValue.toString();
+      const dateObj = requestParams.search.filter;
+      dateObj.dateFrom = dateObj.dateFrom.toString();
     }
 
     return this.http
@@ -25,8 +29,8 @@ export class HttpClientClass {
 
   myPost<T>(requestParams: IMyRequestParams): Observable<T> {
     if (requestParams.payload.pickUpUrgency) {
-      let dateValue = requestParams.payload.pickUpUrgency;
-      dateValue = dateValue.toString();
+      const dateObj = requestParams.payload;
+      dateObj.pickUpUrgency = dateObj.pickUpUrgency.toString();
     }
 
     return this.http

@@ -10,13 +10,13 @@ import {
 import { ILoggedInUser } from '../models/user-logged.model';
 import { ITokens } from '../models/tokens.model';
 import { IUser } from '../models/user.model';
-import { HttpClientClass } from './http-client.class';
+import { HttpClientService } from './http-client.service';
 import { GenericService } from './generic.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService extends HttpClientClass {
+export class AuthService extends HttpClientService {
   constructor(genericService: GenericService, http: HttpClient) {
     super(http, genericService);
   }

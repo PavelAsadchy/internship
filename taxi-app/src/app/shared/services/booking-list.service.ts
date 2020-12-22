@@ -1,4 +1,4 @@
-import { HttpBackend, HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
 import { Moment } from 'moment';
@@ -13,13 +13,13 @@ import {
   IQueryParams,
   ISortParams,
 } from '../models/query-params.model';
-import { HttpClientClass } from './http-client.class';
+import { HttpClientService } from './http-client.service';
 import { GenericService } from './generic.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class BookingListService extends HttpClientClass {
+export class BookingListService extends HttpClientService {
   constructor(genericService: GenericService, http: HttpClient) {
     super(http, genericService);
   }

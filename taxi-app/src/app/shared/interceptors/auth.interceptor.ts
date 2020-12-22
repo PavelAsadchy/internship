@@ -13,13 +13,15 @@ import { Store } from '@ngrx/store';
 import { AUTH_REFRESH_TOKEN } from '../stores/auth-store/auth.actions';
 import { IAuthState } from '../stores/auth-store/auth.state';
 import { GenericService } from '../services/generic.service';
+import { HttpClientService } from '../services/http-client.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   constructor(
     private readonly authService: AuthService,
     private store: Store<IAuthState>,
-    private readonly genericService: GenericService
+    private readonly genericService: GenericService,
+    private readonly httpClientService: HttpClientService
   ) {}
 
   intercept(
@@ -50,9 +52,10 @@ export class AuthInterceptor implements HttpInterceptor {
     token: string
   ): HttpRequest<unknown> {
     return request.clone({
-      setHeaders: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: this.httpClientService.setHeaders({
+        name: 'Authorization',
+        value: `Bearer ${token}`,
+      })
     });
   }
 
