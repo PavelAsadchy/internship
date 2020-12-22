@@ -122,6 +122,8 @@ export class BookingListService extends HttpClientService {
   }
 
   doPaginate(data: IBooking[], queryParams: IPaginateParams): IBooking[] {
+    if (!data.length) return [];
+
     const paginatedData = data.slice(
       queryParams.pageIndex * queryParams.pageSize,
       queryParams.pageSize * (queryParams.pageIndex + 1)
