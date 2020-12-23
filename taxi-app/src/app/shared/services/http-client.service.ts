@@ -35,9 +35,11 @@ export class HttpClientService {
   }
 
   myPost<T>(requestParams: IMyRequestParams): Observable<T> {
+    const processedRequest = this.processRequest(requestParams);
+
     return this.http
-      .post<T>(requestParams.url, requestParams.payload, {
-        headers: this.setHeaders(requestParams.headers),
+      .post<T>(processedRequest.url, processedRequest.payload, {
+        headers: this.setHeaders(processedRequest.headers),
       })
       .pipe(
         catchError((error: HttpErrorResponse) =>
@@ -74,13 +76,14 @@ export class HttpClientService {
   }
 
   private processRequest(requestParams: IMyRequestParams): IMyRequestParams {
-    const filterObj = requestParams.search.filter;
-    for (let prop in filterObj) {
-      if (filterObj[prop] instanceof Date) {
-        filterObj[prop] = this.datePipe.transform(
-          filterObj[prop],
+    for (let prop in requestParams) {
+      if (requestParams[prop] instanceof Date) {
+        requestParams[prop] = this.datePipe.transform(
+          requestParams[prop],
           'yyyy-MM-dd-HH-mm-ss-ZZZZZ'
         );
+      } else if (typeof prop === 'object') {
+        this.processRequest(prop);
       }
     }
 
