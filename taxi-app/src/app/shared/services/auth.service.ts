@@ -10,31 +10,49 @@ import {
 import { ILoggedInUser } from '../models/user-logged.model';
 import { ITokens } from '../models/tokens.model';
 import { IUser } from '../models/user.model';
+import { HttpClientService } from './http-client.service';
+import { GenericService } from './generic.service';
+import { DatePipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
-  constructor(private http: HttpClient) {}
+export class AuthService extends HttpClientService {
+  constructor(
+    http: HttpClient,
+    datePipe: DatePipe,
+    genericService: GenericService
+  ) {
+    super(http, datePipe, genericService);
+  }
 
   isLoggedIn(): boolean {
     return Boolean(this.getJwtToken());
   }
 
   login(user: IUser): Observable<ITokens> {
-    return this.http.post<ITokens>(AUTH_URL + '/login', user);
+    return this.myPost<ITokens>({
+      url: AUTH_URL + '/login',
+      payload: user,
+    });
   }
 
   logout(): void {
-    this.http.post<any>(AUTH_URL + '/logout', {
-      refreshToken: this.getRefreshToken(),
+    this.myPost<any>({
+      url: AUTH_URL + '/logout',
+      payload: {
+        refreshToken: this.getRefreshToken(),
+      },
     });
     this.doLogoutUser();
   }
 
   refreshToken(): Observable<string> {
-    return this.http.post<string>(AUTH_URL + '/refresh', {
-      refreshToken: this.getRefreshToken(),
+    return this.myPost<string>({
+      url: AUTH_URL + '/refresh',
+      payload: {
+        refreshToken: this.getRefreshToken(),
+      },
     });
   }
 

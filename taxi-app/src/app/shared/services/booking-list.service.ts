@@ -1,4 +1,4 @@
-import { HttpBackend, HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
 import { Moment } from 'moment';
@@ -13,19 +13,31 @@ import {
   IQueryParams,
   ISortParams,
 } from '../models/query-params.model';
+import { HttpClientService } from './http-client.service';
+import { GenericService } from './generic.service';
+import { DatePipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
 })
-export class BookingListService {
-  private http: HttpClient;
-
-  constructor(private handler: HttpBackend) {
-    this.http = new HttpClient(handler);
+export class BookingListService extends HttpClientService {
+  constructor(
+    http: HttpClient,
+    datePipe: DatePipe,
+    genericService: GenericService
+  ) {
+    super(http, datePipe, genericService);
   }
 
   loadBookingsByQuery(queryParams: IQueryParams): Observable<IServerResponse> {
-    return this.http.get<IBooking[]>(`${DATABASE_URL}.json`).pipe(
+    return this.myGet<IBooking[]>({
+      url: `${DATABASE_URL}.json`,
+      search: queryParams,
+      headers: {
+        name: 'InterceptorSkipHeader',
+        value: '',
+      },
+    }).pipe(
       map((savedBookingsById) => {
         if (!savedBookingsById) return { bookings: [], totalLength: 0 };
         const savedBookingsWithId = Object.keys(savedBookingsById).map(
@@ -61,7 +73,13 @@ export class BookingListService {
   }
 
   getBookingById(bookingId: string): Observable<IBooking> {
-    return this.http.get<IBooking>(`${DATABASE_URL}/${bookingId}.json`).pipe(
+    return this.myGet<IBooking>({
+      url: `${DATABASE_URL}/${bookingId}.json`,
+      headers: {
+        name: 'InterceptorSkipHeader',
+        value: '',
+      },
+    }).pipe(
       map((selectedBooking: IBooking) => {
         return { ...selectedBooking, id: bookingId };
       })
@@ -69,24 +87,39 @@ export class BookingListService {
   }
 
   createBooking(newBookingOptions: IBooking): Observable<IBooking> {
-    return this.http
-      .post<IBooking>(`${DATABASE_URL}.json`, newBookingOptions)
-      .pipe(
-        map((response: any) => {
-          return { ...newBookingOptions, id: response.name };
-        })
-      );
-  }
-
-  updateBooking(bookingOptions: IBooking): Observable<IBooking> {
-    return this.http.patch<IBooking>(
-      `${DATABASE_URL}/${bookingOptions.id}.json`,
-      bookingOptions
+    return this.myPost<IBooking>({
+      url: `${DATABASE_URL}.json`,
+      payload: newBookingOptions,
+      headers: {
+        name: 'InterceptorSkipHeader',
+        value: '',
+      },
+    }).pipe(
+      map((response: any) => {
+        return { ...newBookingOptions, id: response.name };
+      })
     );
   }
 
+  updateBooking(bookingOptions: IBooking): Observable<IBooking> {
+    return this.myPatch<IBooking>({
+      url: `${DATABASE_URL}/${bookingOptions.id}.json`,
+      payload: bookingOptions,
+      headers: {
+        name: 'InterceptorSkipHeader',
+        value: '',
+      },
+    });
+  }
+
   deleteBooking(bookingId: string): Observable<void> {
-    return this.http.delete<void>(`${DATABASE_URL}/${bookingId}.json`);
+    return this.myDelete<void>({
+      url: `${DATABASE_URL}/${bookingId}.json`,
+      headers: {
+        name: 'InterceptorSkipHeader',
+        value: '',
+      },
+    });
   }
 
   doFilter(data: IBooking[], queryParams: IFilterParams): IBooking[] {
@@ -122,6 +155,8 @@ export class BookingListService {
   }
 
   doPaginate(data: IBooking[], queryParams: IPaginateParams): IBooking[] {
+    if (!data.length) return [];
+
     const paginatedData = data.slice(
       queryParams.pageIndex * queryParams.pageSize,
       queryParams.pageSize * (queryParams.pageIndex + 1)

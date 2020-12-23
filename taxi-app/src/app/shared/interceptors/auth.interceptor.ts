@@ -6,24 +6,32 @@ import {
   HttpInterceptor,
   HttpErrorResponse,
 } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { catchError, retry } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { AUTH_REFRESH_TOKEN } from '../stores/auth-store/auth.actions';
 import { IAuthState } from '../stores/auth-store/auth.state';
+import { GenericService } from '../services/generic.service';
+import { HttpClientService } from '../services/http-client.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   constructor(
     private readonly authService: AuthService,
-    private store: Store<IAuthState>
+    private store: Store<IAuthState>,
+    private readonly genericService: GenericService,
+    private readonly httpClientService: HttpClientService
   ) {}
 
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
+    if (request.headers.has('InterceptorSkipHeader')) {
+      const headers = request.headers.delete('InterceptorSkipHeader');
+      return next.handle(request.clone({ headers }));
+    }
     if (this.authService.getJwtToken()) {
       request = this.addToken(request, this.authService.getJwtToken());
     }
@@ -33,7 +41,7 @@ export class AuthInterceptor implements HttpInterceptor {
         if (error.status === 401) {
           return this.handle401error(request, next);
         } else {
-          return throwError(error);
+          return this.genericService.handleError(error);
         }
       })
     );
@@ -44,9 +52,10 @@ export class AuthInterceptor implements HttpInterceptor {
     token: string
   ): HttpRequest<unknown> {
     return request.clone({
-      setHeaders: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: this.httpClientService.setHeaders({
+        name: 'Authorization',
+        value: `Bearer ${token}`,
+      })
     });
   }
 
