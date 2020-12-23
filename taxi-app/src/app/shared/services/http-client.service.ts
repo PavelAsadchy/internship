@@ -49,8 +49,12 @@ export class HttpClientService {
   }
 
   myPatch<T>(requestParams: IMyRequestParams): Observable<T> {
+    const processedRequest = this.processRequest(requestParams);
+
     return this.http
-      .patch<T>(requestParams.url, requestParams.payload)
+      .patch<T>(requestParams.url, requestParams.payload, {
+        headers: this.setHeaders(processedRequest.headers),
+      })
       .pipe(
         catchError((error: HttpErrorResponse) =>
           this.genericService.handleError(error)
@@ -60,7 +64,9 @@ export class HttpClientService {
 
   myDelete<T>(requestParams: IMyRequestParams): Observable<T> {
     return this.http
-      .delete<T>(requestParams.url)
+      .delete<T>(requestParams.url, {
+        headers: this.setHeaders(requestParams.headers),
+      })
       .pipe(
         catchError((error: HttpErrorResponse) =>
           this.genericService.handleError(error)

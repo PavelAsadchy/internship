@@ -75,6 +75,10 @@ export class BookingListService extends HttpClientService {
   getBookingById(bookingId: string): Observable<IBooking> {
     return this.myGet<IBooking>({
       url: `${DATABASE_URL}/${bookingId}.json`,
+      headers: {
+        name: 'InterceptorSkipHeader',
+        value: '',
+      },
     }).pipe(
       map((selectedBooking: IBooking) => {
         return { ...selectedBooking, id: bookingId };
@@ -86,6 +90,10 @@ export class BookingListService extends HttpClientService {
     return this.myPost<IBooking>({
       url: `${DATABASE_URL}.json`,
       payload: newBookingOptions,
+      headers: {
+        name: 'InterceptorSkipHeader',
+        value: '',
+      },
     }).pipe(
       map((response: any) => {
         return { ...newBookingOptions, id: response.name };
@@ -97,11 +105,21 @@ export class BookingListService extends HttpClientService {
     return this.myPatch<IBooking>({
       url: `${DATABASE_URL}/${bookingOptions.id}.json`,
       payload: bookingOptions,
+      headers: {
+        name: 'InterceptorSkipHeader',
+        value: '',
+      },
     });
   }
 
   deleteBooking(bookingId: string): Observable<void> {
-    return this.myDelete<void>({ url: `${DATABASE_URL}/${bookingId}.json` });
+    return this.myDelete<void>({
+      url: `${DATABASE_URL}/${bookingId}.json`,
+      headers: {
+        name: 'InterceptorSkipHeader',
+        value: '',
+      },
+    });
   }
 
   doFilter(data: IBooking[], queryParams: IFilterParams): IBooking[] {
