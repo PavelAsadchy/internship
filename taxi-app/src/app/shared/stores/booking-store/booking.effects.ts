@@ -3,7 +3,10 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { SHOW_MESSAGE_VALUES } from '../../consts/store.consts';
+import {
+  SHOW_MESSAGE_VALUES,
+  SNACKBAR_OPTIONS,
+} from '../../consts/store.consts';
 import { IServerResponse } from '../../models/server-response.model';
 import { IBooking } from '../../models/booking.model';
 import { IQueryParams } from '../../models/query-params.model';
@@ -36,13 +39,26 @@ export class BookingEffects {
               serverResponse,
             });
           }),
-          catchError(() =>
-            of(
-              BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL({
-                message: SHOW_MESSAGE_VALUES.loadBookingsFail,
-              })
-            )
-          )
+          catchError((err) => {
+            if (err.message) {
+              return of(
+                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL({
+                  message: {
+                    ...SHOW_MESSAGE_VALUES.defaultActionFail,
+                    value: `ERROR ${err.status}: ${err.validations_errors}`,
+                  },
+                })
+              );
+            } else
+              return of(
+                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL({
+                  message: {
+                    ...SHOW_MESSAGE_VALUES.defaultActionFail,
+                    value: `Client-side ERROR: ${err}`,
+                  },
+                })
+              );
+          })
         );
       })
     )
@@ -64,13 +80,26 @@ export class BookingEffects {
               selectedBooking: booking,
             });
           }),
-          catchError(() =>
-            of(
-              BookingActions.LOAD_BOOKING_FAIL_ACTION({
-                message: SHOW_MESSAGE_VALUES.loadBookingFail,
-              })
-            )
-          )
+          catchError((err) => {
+            if (err.message) {
+              return of(
+                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL({
+                  message: {
+                    ...SHOW_MESSAGE_VALUES.defaultActionFail,
+                    value: `ERROR ${err.status}: ${err.validations_errors}`,
+                  },
+                })
+              );
+            } else
+              return of(
+                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL({
+                  message: {
+                    ...SHOW_MESSAGE_VALUES.defaultActionFail,
+                    value: `Client-side ERROR: ${err}`,
+                  },
+                })
+              );
+          })
         );
       })
     )
@@ -94,13 +123,26 @@ export class BookingEffects {
               newBooking: booking,
             });
           }),
-          catchError(() =>
-            of(
-              BookingActions.CREATE_BOOKING_FAIL_ACTION({
-                message: SHOW_MESSAGE_VALUES.createBookingFail,
-              })
-            )
-          )
+          catchError((err) => {
+            if (err.message) {
+              return of(
+                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL({
+                  message: {
+                    ...SHOW_MESSAGE_VALUES.defaultActionFail,
+                    value: `ERROR ${err.status}: ${err.validations_errors}`,
+                  },
+                })
+              );
+            } else
+              return of(
+                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL({
+                  message: {
+                    ...SHOW_MESSAGE_VALUES.defaultActionFail,
+                    value: `Client-side ERROR: ${err}`,
+                  },
+                })
+              );
+          })
         );
       })
     )
@@ -125,13 +167,26 @@ export class BookingEffects {
               },
             });
           }),
-          catchError(() =>
-            of(
-              BookingActions.UPDATE_BOOKING_FAIL_ACTION({
-                message: SHOW_MESSAGE_VALUES.updateBookingFail,
-              })
-            )
-          )
+          catchError((err) => {
+            if (err.message) {
+              return of(
+                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL({
+                  message: {
+                    ...SHOW_MESSAGE_VALUES.defaultActionFail,
+                    value: `ERROR ${err.status}: ${err.validations_errors}`,
+                  },
+                })
+              );
+            } else
+              return of(
+                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL({
+                  message: {
+                    ...SHOW_MESSAGE_VALUES.defaultActionFail,
+                    value: `Client-side ERROR: ${err}`,
+                  },
+                })
+              );
+          })
         );
       })
     )
@@ -148,26 +203,45 @@ export class BookingEffects {
               bookingId: id,
             });
           }),
-          catchError(() =>
-            of(
-              BookingActions.DELETE_BOOKING_FAIL_ACTION({
-                message: SHOW_MESSAGE_VALUES.deleteBookingFail,
-              })
-            )
-          )
+          catchError((err) => {
+            if (err.message) {
+              return of(
+                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL({
+                  message: {
+                    ...SHOW_MESSAGE_VALUES.defaultActionFail,
+                    value: `ERROR ${err.status}: ${err.validations_errors}`,
+                  },
+                })
+              );
+            } else
+              return of(
+                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL({
+                  message: {
+                    ...SHOW_MESSAGE_VALUES.defaultActionFail,
+                    value: `Client-side ERROR: ${err}`,
+                  },
+                })
+              );
+          })
         );
       })
     )
   );
 
-  deleteBookingSuccess$ = createEffect(
+  bookingActionsSuccess$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(BookingActions.ActionsType.DELETE_BOOKING_SUCCESS),
+        ofType(
+          BookingActions.ActionsType.LOAD_BOOKINGS_BY_QUERY_SUCCESS,
+          BookingActions.ActionsType.LOAD_BOOKING_SUCCESS,
+          BookingActions.ActionsType.CREATE_BOOKING_SUCCESS,
+          BookingActions.ActionsType.UPDATE_BOOKING_SUCCESS,
+          BookingActions.ActionsType.DELETE_BOOKING_SUCCESS
+        ),
         tap(() =>
           this.store.dispatch(
             SHOW_MESSAGE_ACTION({
-              message: SHOW_MESSAGE_VALUES.deleteBookingSuccess,
+              message: SHOW_MESSAGE_VALUES.defaultActionSuccess,
             })
           )
         )

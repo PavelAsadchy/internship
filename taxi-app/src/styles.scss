@@ -42,3 +42,31 @@ $theme: mat-light-theme($app-primary, $app-accent, $app-warn);
 
 // Using the $theme variable from the pre-built theme you can call the theming function
 @include mat-datetimepicker-theme($theme);
+
+@mixin customSnackBarStyle {
+  color: #ffffff;
+
+  & span {
+    margin: auto;
+    text-align: center;
+  }
+
+  & button {
+    color: #ffffff;
+  }
+}
+
+.notif-success {
+  @include customSnackBarStyle;
+  background: #64dd17;
+}
+
+.notif-warning {
+  @include customSnackBarStyle;
+  background: #ff8c00;
+}
+
+.notif-error {
+  @include customSnackBarStyle;
+  background: #ff2f00;
+}
