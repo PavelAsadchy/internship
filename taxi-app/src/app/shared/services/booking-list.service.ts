@@ -15,13 +15,18 @@ import {
 } from '../models/query-params.model';
 import { HttpClientService } from './http-client.service';
 import { GenericService } from './generic.service';
+import { DatePipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BookingListService extends HttpClientService {
-  constructor(genericService: GenericService, http: HttpClient) {
-    super(http, genericService);
+  constructor(
+    http: HttpClient,
+    datePipe: DatePipe,
+    genericService: GenericService
+  ) {
+    super(http, datePipe, genericService);
   }
 
   loadBookingsByQuery(queryParams: IQueryParams): Observable<IServerResponse> {
