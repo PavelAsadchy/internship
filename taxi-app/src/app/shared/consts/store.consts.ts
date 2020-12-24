@@ -10,23 +10,18 @@ export const SNACKBAR_OPTIONS: ISnackbarOptions = {
 };
 
 export const SUCCESS_SNACKBAR_OPTIONS: ISnackbarOptions = {
-  duration: 1000,
-  horizontalPosition: 'center',
-  verticalPosition: 'top',
+  ...SNACKBAR_OPTIONS,
   panelClass: 'notif-success',
 };
 
 export const WARNING_SNACKBAR_OPTIONS: ISnackbarOptions = {
+  ...SNACKBAR_OPTIONS,
   duration: 5000,
-  horizontalPosition: 'center',
-  verticalPosition: 'top',
   panelClass: 'notif-warning',
 };
 
 export const FAIL_SNACKBAR_OPTIONS: ISnackbarOptions = {
-  duration: 1000,
-  horizontalPosition: 'center',
-  verticalPosition: 'top',
+  ...SNACKBAR_OPTIONS,
   panelClass: 'notif-error',
 };
 
