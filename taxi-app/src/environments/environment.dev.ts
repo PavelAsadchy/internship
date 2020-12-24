@@ -1,7 +1,7 @@
 import { IEnvironment } from './ienvironment.model';
 
 export const environment: IEnvironment = {
-  production: true,
+  production: false,
   authApiUrl: 'http://localhost:8080',
   databaseApiUrl: 'https://taxi-app-294611.firebaseio.com/booking-list',
   databaseApiKey: 'AIzaSyAFYEI6Mv2SthzLCRsN_jTogm5aWJ8Ajt8',

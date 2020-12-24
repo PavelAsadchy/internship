@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-customer-information',
@@ -12,10 +13,14 @@ export class CustomerInformationComponent {
   parentGroup: FormGroup;
 
   telOptions = {
-    initialCountry: 'by',
+    initialCountry: '',
     prefix: '',
-    preferredCountries: ['by', 'ru'],
+    preferredCountries: [],
   };
+
+  constructor() {
+    this.telOptions = { ...environment.telOptions };
+  }
 
   telInputObject(event): void {
     this.telOptions.prefix = event.s.dialCode;

@@ -4,7 +4,6 @@ import * as moment from 'moment';
 import { Moment } from 'moment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { DATABASE_URL } from '../consts/app.consts';
 import { IServerResponse } from '../models/server-response.model';
 import { IBooking } from '../models/booking.model';
 import {
@@ -16,22 +15,26 @@ import {
 import { HttpClientService } from './http-client.service';
 import { GenericService } from './generic.service';
 import { DatePipe } from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BookingListService extends HttpClientService {
+  databaseUrl: string;
+
   constructor(
     http: HttpClient,
     datePipe: DatePipe,
     genericService: GenericService
   ) {
     super(http, datePipe, genericService);
+    this.databaseUrl = environment.databaseApiUrl;
   }
 
   loadBookingsByQuery(queryParams: IQueryParams): Observable<IServerResponse> {
     return this.myGet<IBooking[]>({
-      url: `${DATABASE_URL}.json`,
+      url: `${this.databaseUrl}.json`,
       search: queryParams,
       headers: {
         name: 'InterceptorSkipHeader',
@@ -74,7 +77,7 @@ export class BookingListService extends HttpClientService {
 
   getBookingById(bookingId: string): Observable<IBooking> {
     return this.myGet<IBooking>({
-      url: `${DATABASE_URL}/${bookingId}.json`,
+      url: `${this.databaseUrl}/${bookingId}.json`,
       headers: {
         name: 'InterceptorSkipHeader',
         value: '',
@@ -88,7 +91,7 @@ export class BookingListService extends HttpClientService {
 
   createBooking(newBookingOptions: IBooking): Observable<IBooking> {
     return this.myPost<IBooking>({
-      url: `${DATABASE_URL}.json`,
+      url: `${this.databaseUrl}.json`,
       payload: newBookingOptions,
       headers: {
         name: 'InterceptorSkipHeader',
@@ -103,7 +106,7 @@ export class BookingListService extends HttpClientService {
 
   updateBooking(bookingOptions: IBooking): Observable<IBooking> {
     return this.myPatch<IBooking>({
-      url: `${DATABASE_URL}/${bookingOptions.id}.json`,
+      url: `${this.databaseUrl}/${bookingOptions.id}.json`,
       payload: bookingOptions,
       headers: {
         name: 'InterceptorSkipHeader',
@@ -114,7 +117,7 @@ export class BookingListService extends HttpClientService {
 
   deleteBooking(bookingId: string): Observable<void> {
     return this.myDelete<void>({
-      url: `${DATABASE_URL}/${bookingId}.json`,
+      url: `${this.databaseUrl}/${bookingId}.json`,
       headers: {
         name: 'InterceptorSkipHeader',
         value: '',

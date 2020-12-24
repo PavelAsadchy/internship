@@ -1,6 +1,7 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-passenger-information',
@@ -43,10 +44,14 @@ export class PassengerInformationComponent {
   parentGroup: FormGroup;
 
   telOptions = {
-    initialCountry: 'by',
+    initialCountry: '',
     prefix: '',
-    preferredCountries: ['by', 'ru'],
+    preferredCountries: [],
   };
+
+  constructor() {
+    this.telOptions = { ...environment.telOptions };
+  }
 
   telInputObject(event): void {
     this.telOptions.prefix = event.s.dialCode;

@@ -1,29 +1,28 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {
-  AUTH_URL,
-  JWT_TOKEN,
-  REFRESH_TOKEN,
-  USER_NAME,
-} from '../consts/app.consts';
+import { JWT_TOKEN, REFRESH_TOKEN, USER_NAME } from '../consts/app.consts';
 import { ILoggedInUser } from '../models/user-logged.model';
 import { ITokens } from '../models/tokens.model';
 import { IUser } from '../models/user.model';
 import { HttpClientService } from './http-client.service';
 import { GenericService } from './generic.service';
 import { DatePipe } from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService extends HttpClientService {
+  authUrl: string;
+
   constructor(
     http: HttpClient,
     datePipe: DatePipe,
     genericService: GenericService
   ) {
     super(http, datePipe, genericService);
+    this.authUrl = environment.authApiUrl;
   }
 
   isLoggedIn(): boolean {
@@ -32,14 +31,14 @@ export class AuthService extends HttpClientService {
 
   login(user: IUser): Observable<ITokens> {
     return this.myPost<ITokens>({
-      url: AUTH_URL + '/login',
+      url: this.authUrl + '/login',
       payload: user,
     });
   }
 
   logout(): void {
     this.myPost<any>({
-      url: AUTH_URL + '/logout',
+      url: this.authUrl + '/logout',
       payload: {
         refreshToken: this.getRefreshToken(),
       },
@@ -49,7 +48,7 @@ export class AuthService extends HttpClientService {
 
   refreshToken(): Observable<string> {
     return this.myPost<string>({
-      url: AUTH_URL + '/refresh',
+      url: this.authUrl + '/refresh',
       payload: {
         refreshToken: this.getRefreshToken(),
       },
