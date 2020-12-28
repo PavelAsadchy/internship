@@ -20,7 +20,7 @@ export class HttpClientService {
     private readonly genericService: GenericService
   ) {}
 
-  myGet<T>(requestParams: IMyRequestParams): Observable<{}> {
+  myGet<T>(requestParams: IMyRequestParams): Observable<T> {
     const processedRequest = this.processRequest(requestParams);
 
     return this.http
