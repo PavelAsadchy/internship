@@ -4,9 +4,26 @@ import {
 } from '../models/show-message.model';
 
 export const SNACKBAR_OPTIONS: ISnackbarOptions = {
-  duration: 3000,
+  duration: 1500,
   horizontalPosition: 'center',
   verticalPosition: 'top',
+};
+
+export const SUCCESS_SNACKBAR_OPTIONS: ISnackbarOptions = {
+  ...SNACKBAR_OPTIONS,
+  panelClass: 'notif-success',
+};
+
+export const WARNING_SNACKBAR_OPTIONS: ISnackbarOptions = {
+  ...SNACKBAR_OPTIONS,
+  duration: 5000,
+  panelClass: 'notif-warning',
+};
+
+export const FAIL_SNACKBAR_OPTIONS: ISnackbarOptions = {
+  ...SNACKBAR_OPTIONS,
+  duration: 5000,
+  panelClass: 'notif-error',
 };
 
 export const SHOW_MESSAGE_VALUES: IShowMessageOnAction = {
@@ -30,18 +47,8 @@ export const SHOW_MESSAGE_VALUES: IShowMessageOnAction = {
     action: null,
     options: SNACKBAR_OPTIONS,
   },
-  loadBookingsFail: {
-    value: 'Failed to load bookings',
-    action: null,
-    options: SNACKBAR_OPTIONS,
-  },
   loadBooking: {
     value: 'Getting selected booking',
-    action: null,
-    options: SNACKBAR_OPTIONS,
-  },
-  loadBookingFail: {
-    value: 'Failed to load selected booking',
     action: null,
     options: SNACKBAR_OPTIONS,
   },
@@ -50,34 +57,24 @@ export const SHOW_MESSAGE_VALUES: IShowMessageOnAction = {
     action: null,
     options: SNACKBAR_OPTIONS,
   },
-  createBookingFail: {
-    value: 'Failed to save new booking',
-    action: null,
-    options: SNACKBAR_OPTIONS,
-  },
   updateBooking: {
     value: 'Updating new options',
     action: null,
     options: SNACKBAR_OPTIONS,
   },
-  updateBookingFail: {
-    value: 'Failed to update new options',
+  defaultActionSuccess: {
+    value: 'Successful',
     action: null,
-    options: SNACKBAR_OPTIONS,
+    options: SUCCESS_SNACKBAR_OPTIONS,
   },
-  deleteBookingSuccess: {
-    value: 'Booking was deleted',
-    action: null,
-    options: SNACKBAR_OPTIONS,
+  defaultActionWarning: {
+    value: 'Client-side ERROR',
+    action: 'X',
+    options: WARNING_SNACKBAR_OPTIONS,
   },
-  deleteBookingFail: {
-    value: 'Failed to delete the booking',
-    action: null,
-    options: SNACKBAR_OPTIONS,
-  },
-  defaultBookingActionFail: {
-    value: 'Failed to complete',
-    action: null,
-    options: SNACKBAR_OPTIONS,
+  defaultActionFail: {
+    value: 'ERROR',
+    action: 'X',
+    options: FAIL_SNACKBAR_OPTIONS,
   },
 };

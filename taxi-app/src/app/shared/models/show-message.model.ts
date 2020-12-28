@@ -7,6 +7,7 @@ export interface ISnackbarOptions {
   duration: number;
   horizontalPosition: MatSnackBarHorizontalPosition;
   verticalPosition: MatSnackBarVerticalPosition;
+  panelClass?: string;
 }
 
 export interface IShowMessage {
@@ -20,14 +21,10 @@ export interface IShowMessageOnAction {
   loginFailure: IShowMessage;
   logout: IShowMessage;
   loadBookings: IShowMessage;
-  loadBookingsFail: IShowMessage;
   loadBooking: IShowMessage;
-  loadBookingFail: IShowMessage;
   createBooking: IShowMessage;
-  createBookingFail: IShowMessage;
   updateBooking: IShowMessage;
-  updateBookingFail: IShowMessage;
-  deleteBookingSuccess: IShowMessage;
-  deleteBookingFail: IShowMessage;
-  defaultBookingActionFail: IShowMessage;
+  defaultActionSuccess: IShowMessage;
+  defaultActionWarning: IShowMessage;
+  defaultActionFail: IShowMessage;
 }

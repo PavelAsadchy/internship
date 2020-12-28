@@ -3,9 +3,15 @@ import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { skip, takeUntil } from 'rxjs/operators';
 import { IQueryParams } from 'src/app/shared/models/query-params.model';
-import { LOAD_BOOKINGS_BY_QUERY } from 'src/app/shared/stores/booking-store/booking.actions';
+import {
+  LOAD_BOOKINGS_BY_QUERY,
+  REFRESH_QUERY_PARAMS_ACTION,
+} from 'src/app/shared/stores/booking-store/booking.actions';
 import { SELECT_QUERY_PARAMS } from 'src/app/shared/stores/booking-store/booking.selector';
-import { IBookingState } from 'src/app/shared/stores/booking-store/booking.state';
+import {
+  DEFAULT_QUERY_PARAMS,
+  IBookingState,
+} from 'src/app/shared/stores/booking-store/booking.state';
 
 @Component({
   selector: 'app-booking-list',
@@ -31,5 +37,9 @@ export class BookingListComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.sub.next();
     this.sub.complete();
+
+    this.store.dispatch(
+      REFRESH_QUERY_PARAMS_ACTION({ params: DEFAULT_QUERY_PARAMS })
+    );
   }
 }

@@ -97,7 +97,7 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
         .value,
       passengerName: this.bookingOptionsForm.get('passengerInformation.name')
         .value,
-      passengerPhone: this.bookingOptionsForm.get('customerInformation.phone')
+      passengerPhone: this.bookingOptionsForm.get('passengerInformation.phone')
         .value,
       paymentChannel: this.bookingOptionsForm.get(
         'payment.paymentOptions.channel'
