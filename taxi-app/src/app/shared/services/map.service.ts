@@ -1,15 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LOCATION_API_URL } from '../consts/app.consts';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MapService {
-  constructor(private httpClient: HttpClient) {}
+  locationApiUrl: string;
+
+  constructor(private http: HttpClient) {
+    this.locationApiUrl = environment.locationApiUrl;
+  }
 
   getLocation(): Observable<string> {
-    return this.httpClient.get<string>(LOCATION_API_URL);
+    return this.http.get<string>(this.locationApiUrl);
   }
 }

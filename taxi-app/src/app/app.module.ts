@@ -15,6 +15,8 @@ import { StoreModule } from '@ngrx/store';
 import { GlobalStoreModule } from './shared/stores/global-store.module';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
+import { environment } from 'src/environments/environment';
+
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],
   imports: [
@@ -26,7 +28,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     BoardModule,
     ProfileModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAFYEI6Mv2SthzLCRsN_jTogm5aWJ8Ajt8',
+      apiKey: environment.mapsApiKey,
     }),
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
