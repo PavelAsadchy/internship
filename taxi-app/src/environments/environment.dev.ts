@@ -8,8 +8,8 @@ export const environment: IEnvironment = {
   locationApiUrl: 'https://ipapi.co/json/',
   mapsApiKey: 'AIzaSyAFYEI6Mv2SthzLCRsN_jTogm5aWJ8Ajt8',
   telOptions: {
-    initialCountry: 'by',
+    initialCountry: 'us',
     prefix: '',
-    preferredCountries: ['by', 'ru'],
+    preferredCountries: ['us', 'ca'],
   },
 };
