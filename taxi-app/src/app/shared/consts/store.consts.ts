@@ -4,7 +4,7 @@ import {
 } from '../models/show-message.model';
 
 export const SNACKBAR_OPTIONS: ISnackbarOptions = {
-  duration: 1000,
+  duration: 1500,
   horizontalPosition: 'center',
   verticalPosition: 'top',
 };
@@ -22,6 +22,7 @@ export const WARNING_SNACKBAR_OPTIONS: ISnackbarOptions = {
 
 export const FAIL_SNACKBAR_OPTIONS: ISnackbarOptions = {
   ...SNACKBAR_OPTIONS,
+  duration: 5000,
   panelClass: 'notif-error',
 };
 
