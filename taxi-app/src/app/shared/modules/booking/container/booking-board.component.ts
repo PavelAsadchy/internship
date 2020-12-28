@@ -1,6 +1,5 @@
-import { Component, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormControl } from '@angular/forms';
-import { Subject } from 'rxjs';
 import {
   BookingChannel,
   CustomerInformation,
@@ -20,6 +19,7 @@ import {
   CHECK_EXTRA_OPTIONS,
 } from 'src/app/shared/consts/booking-options.consts';
 import { EventEmitter } from '@angular/core';
+import { UnsubscribeService } from 'src/app/shared/services/unsubscribe.service';
 
 @Component({
   selector: 'app-booking-board',
@@ -27,7 +27,9 @@ import { EventEmitter } from '@angular/core';
   styleUrls: ['./booking-board.component.scss'],
   providers: [CreateBookingCalculationService],
 })
-export class BookingBoardComponent implements OnInit, OnDestroy {
+export class BookingBoardComponent
+  extends UnsubscribeService
+  implements OnInit {
   @Input()
   bookingParams: IBooking;
 
@@ -53,16 +55,16 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
 
   isSliderChecked = false;
 
-  private sub: Subject<void> = new Subject<void>();
-
   constructor(
     private fb: FormBuilder,
     private readonly createBookingCalculationService: CreateBookingCalculationService
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnInit(): void {
     this.createBookingCalculationService.price$
-      .pipe(takeUntil(this.sub))
+      .pipe(takeUntil(this.unsubscribe))
       .subscribe((price: number) => {
         this.price = price;
       });
@@ -72,11 +74,6 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
     });
 
     this.patchValueToForm();
-  }
-
-  ngOnDestroy(): void {
-    this.sub.next();
-    this.sub.complete();
   }
 
   onBookingOptionsSubmit(): void {

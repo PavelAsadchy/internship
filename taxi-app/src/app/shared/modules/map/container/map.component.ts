@@ -1,9 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ILocation, IMarker } from 'src/app/shared/models/location.model';
 import { MapService } from 'src/app/shared/services/map.service';
 import { MouseEvent } from '@agm/core';
-import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { UnsubscribeService } from 'src/app/shared/services/unsubscribe.service';
 
 @Component({
   selector: 'app-map',
@@ -11,7 +11,7 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./map.component.scss'],
   providers: [MapService],
 })
-export class MapComponent implements OnInit, OnDestroy {
+export class MapComponent extends UnsubscribeService implements OnInit {
   location: ILocation = {
     latitude: 53.9,
     longitude: 27.5667,
@@ -28,14 +28,14 @@ export class MapComponent implements OnInit, OnDestroy {
     isLocationChosen: false,
   };
 
-  private sub: Subject<void> = new Subject<void>();
-
-  constructor(private readonly mapService: MapService) {}
+  constructor(private readonly mapService: MapService) {
+    super();
+  }
 
   ngOnInit(): void {
     this.mapService
       .getLocation()
-      .pipe(takeUntil(this.sub))
+      .pipe(takeUntil(this.unsubscribe))
       .subscribe((data: any) => {
         this.location.latitude = data.latitude;
         this.location.longitude = data.longitude;
@@ -44,11 +44,6 @@ export class MapComponent implements OnInit, OnDestroy {
         this.location.currency = data.currency;
         this.location.countryCallingCode = data.country_calling_code;
       });
-  }
-
-  ngOnDestroy(): void {
-    this.sub.next();
-    this.sub.complete();
   }
 
   clickedLocation(event: MouseEvent): void {

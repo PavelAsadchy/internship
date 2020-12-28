@@ -32,9 +32,9 @@ import { IBookingState } from 'src/app/shared/stores/booking-store/booking.state
 })
 export class BookingTableComponent implements OnInit {
   displayedColumns: string[] = BOOKING_DISPLAYED_COLUMNS;
-  dataSource: Observable<IBooking[]>;
+  dataSource$: Observable<IBooking[]>;
   isLoading$: Observable<boolean>;
-  totalLength: Observable<number>;
+  totalLength$: Observable<number>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -47,8 +47,8 @@ export class BookingTableComponent implements OnInit {
   constructor(private store: Store<IBookingState>) {}
 
   ngOnInit(): void {
-    this.dataSource = this.store.select(SELECT_BOOKING_LIST);
-    this.totalLength = this.store.select(SELECT_BOOKING_LIST_LENGTH);
+    this.dataSource$ = this.store.select(SELECT_BOOKING_LIST);
+    this.totalLength$ = this.store.select(SELECT_BOOKING_LIST_LENGTH);
     this.isLoading$ = this.store.select(SELECT_BOOKING_LOADING);
   }
 
