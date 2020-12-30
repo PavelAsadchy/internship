@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { IBooking } from 'src/app/shared/models/booking.model';
+import { UnsubscribeService } from 'src/app/shared/services/unsubscribe.service';
 import {
   CLEAR_SELECTED_BOOKING_ACTION,
   LOAD_BOOKING_ACTION,
@@ -24,9 +25,8 @@ export class BookingEditComponent implements OnInit, OnDestroy {
   editBookingParams: IBooking;
   isLoading$: Observable<boolean>;
 
-  private sub: Subject<void> = new Subject<void>();
-
   constructor(
+    private readonly unsubscribeService: UnsubscribeService,
     private store: Store<IBookingState>,
     private activatedRoute: ActivatedRoute,
     private router: Router
@@ -34,7 +34,7 @@ export class BookingEditComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.activatedRoute.params
-      .pipe(takeUntil(this.sub))
+      .pipe(takeUntil(this.unsubscribeService.subscription))
       .subscribe((routeParams: { id: string }) => {
         this.store.dispatch(
           LOAD_BOOKING_ACTION({
@@ -43,6 +43,7 @@ export class BookingEditComponent implements OnInit, OnDestroy {
         );
         this.store
           .select(SELECT_CURRENT_BOOKING)
+          .pipe(takeUntil(this.unsubscribeService.subscription))
           .subscribe((currentBooking: IBooking) => {
             this.editBookingParams = currentBooking;
           });
@@ -51,9 +52,8 @@ export class BookingEditComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.unsubscribeService.destroy();
     this.store.dispatch(CLEAR_SELECTED_BOOKING_ACTION());
-    this.sub.next();
-    this.sub.complete();
   }
 
   bookingEditHandler(editedBooking: IBooking) {

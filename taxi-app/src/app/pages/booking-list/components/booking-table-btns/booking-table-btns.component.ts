@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { take } from 'rxjs/operators';
 import {
   DELETE_BOOKING_CONFIRM,
   OPEN_BOOKING_DETAILS,
@@ -41,9 +42,12 @@ export class BookingTableBtnsComponent {
       data: DELETE_BOOKING_CONFIRM,
     });
 
-    dialogRef.afterClosed().subscribe((isDeletingConfirmed) => {
-      if (isDeletingConfirmed)
-        this.store.dispatch(DELETE_BOOKING_ACTION({ bookingId }));
-    });
+    dialogRef
+      .afterClosed()
+      .pipe(take(1))
+      .subscribe((isDeletingConfirmed) => {
+        if (isDeletingConfirmed)
+          this.store.dispatch(DELETE_BOOKING_ACTION({ bookingId }));
+      });
   }
 }

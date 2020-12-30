@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ILocation, IMarker } from 'src/app/shared/models/location.model';
 import { MapService } from 'src/app/shared/services/map.service';
 import { MouseEvent } from '@agm/core';
-import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { UnsubscribeService } from 'src/app/shared/services/unsubscribe.service';
 
 @Component({
   selector: 'app-map',
@@ -28,14 +28,15 @@ export class MapComponent implements OnInit, OnDestroy {
     isLocationChosen: false,
   };
 
-  private sub: Subject<void> = new Subject<void>();
-
-  constructor(private readonly mapService: MapService) {}
+  constructor(
+    private readonly mapService: MapService,
+    private readonly unsubscribeService: UnsubscribeService
+  ) {}
 
   ngOnInit(): void {
     this.mapService
       .getLocation()
-      .pipe(takeUntil(this.sub))
+      .pipe(takeUntil(this.unsubscribeService.subscription))
       .subscribe((data: any) => {
         this.location.latitude = data.latitude;
         this.location.longitude = data.longitude;
@@ -47,8 +48,7 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.sub.next();
-    this.sub.complete();
+    this.unsubscribeService.destroy();
   }
 
   clickedLocation(event: MouseEvent): void {

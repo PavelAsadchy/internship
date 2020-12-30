@@ -8,7 +8,7 @@
     </div>
 
     <mat-paginator
-        [length]="totalLength | async"
+        [length]="totalLength$ | async"
         [pageSizeOptions]="[5, 10, 25, 100]"
         showFirstLastButtons
         (page)="onQueryParamsChange()"
@@ -18,7 +18,7 @@
     <table
         class="booking-list__table table"
         mat-table
-        [dataSource]="dataSource | async"
+        [dataSource]="dataSource$ | async"
         matSort
         (matSortChange)="onQueryParamsChange()"
     >
