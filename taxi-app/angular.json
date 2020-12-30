@@ -10,31 +10,31 @@
           "style": "scss"
         }
       },
-      "root": "apps/booking",
-      "sourceRoot": "apps/booking/src",
+      "root": "src/apps/booking",
+      "sourceRoot": "src/apps/booking/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/booking",
-            "index": "apps/booking/src/index.html",
-            "main": "apps/booking/src/main.ts",
-            "polyfills": "apps/booking/src/polyfills.ts",
-            "tsConfig": "apps/booking/tsconfig.app.json",
+            "index": "src/apps/booking/src/index.html",
+            "main": "src/apps/booking/src/main.ts",
+            "polyfills": "src/apps/booking/src/polyfills.ts",
+            "tsConfig": "src/apps/booking/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "apps/booking/src/favicon.ico",
-              "apps/booking/src/assets"
+              "src/apps/booking/src/favicon.ico",
+              "src/apps/booking/src/assets"
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "apps/booking/src/styles.scss",
+              "src/apps/booking/src/styles.scss",
               "node_modules/intl-tel-input/build/css/intlTelInput.css"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "styles"
+                "src/libs/@styles"
               ]
             },
             "scripts": [
@@ -45,8 +45,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/booking/src/environments/environment.ts",
-                  "with": "apps/booking/src/environments/environment.prod.ts"
+                  "replace": "src/apps/booking/src/environments/environment.ts",
+                  "with": "src/apps/booking/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -73,8 +73,8 @@
             "dev": {
               "fileReplacements": [
                 {
-                  "replace": "apps/booking/src/environments/environment.ts",
-                  "with": "apps/booking/src/environments/environment.dev.ts"
+                  "replace": "src/apps/booking/src/environments/environment.ts",
+                  "with": "src/apps/booking/src/environments/environment.dev.ts"
                 }
               ],
               "optimization": true,
@@ -101,8 +101,8 @@
             "stage": {
               "fileReplacements": [
                 {
-                  "replace": "apps/booking/src/environments/environment.ts",
-                  "with": "apps/booking/src/environments/environment.stage.ts"
+                  "replace": "src/apps/booking/src/environments/environment.ts",
+                  "with": "src/apps/booking/src/environments/environment.stage.ts"
                 }
               ],
               "optimization": true,
@@ -151,17 +151,17 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "apps/booking/src/test.ts",
-            "polyfills": "apps/booking/src/polyfills.ts",
-            "tsConfig": "apps/booking/tsconfig.spec.json",
-            "karmaConfig": "apps/booking/karma.conf.js",
+            "main": "src/apps/booking/src/test.ts",
+            "polyfills": "src/apps/booking/src/polyfills.ts",
+            "tsConfig": "src/apps/booking/tsconfig.spec.json",
+            "karmaConfig": "src/apps/booking/karma.conf.js",
             "assets": [
-              "apps/booking/src/favicon.ico",
-              "apps/booking/src/assets"
+              "src/apps/booking/src/favicon.ico",
+              "src/apps/booking/src/assets"
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "apps/booking/src/styles.scss"
+              "src/apps/booking/src/styles.scss"
             ],
             "scripts": []
           }
@@ -170,9 +170,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "apps/booking/tsconfig.app.json",
-              "apps/booking/tsconfig.spec.json",
-              "apps/booking/e2e/tsconfig.json"
+              "src/apps/booking/tsconfig.app.json",
+              "src/apps/booking/tsconfig.spec.json",
+              "src/apps/booking/e2e/tsconfig.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -182,7 +182,7 @@
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "apps/booking/e2e/protractor.conf.js",
+            "protractorConfig": "src/apps/booking/e2e/protractor.conf.js",
             "devServerTarget": "booking:serve"
           },
           "configurations": {
@@ -200,29 +200,29 @@
           "style": "scss"
         }
       },
-      "root": "apps/admin",
-      "sourceRoot": "apps/admin/src",
+      "root": "src/apps/admin",
+      "sourceRoot": "src/apps/admin/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/admin",
-            "index": "apps/admin/src/index.html",
-            "main": "apps/admin/src/main.ts",
-            "polyfills": "apps/admin/src/polyfills.ts",
-            "tsConfig": "apps/admin/tsconfig.app.json",
+            "index": "src/apps/admin/src/index.html",
+            "main": "src/apps/admin/src/main.ts",
+            "polyfills": "src/apps/admin/src/polyfills.ts",
+            "tsConfig": "src/apps/admin/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "apps/admin/src/favicon.ico",
-              "apps/admin/src/assets"
+              "src/apps/admin/src/favicon.ico",
+              "src/apps/admin/src/assets"
             ],
             "styles": [
-              "apps/admin/src/styles.scss"
+              "src/apps/admin/src/styles.scss"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "styles"
+                "src/libs/@styles"
               ]
             },
             "scripts": []
@@ -231,8 +231,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/admin/src/environments/environment.ts",
-                  "with": "apps/admin/src/environments/environment.prod.ts"
+                  "replace": "src/apps/admin/src/environments/environment.ts",
+                  "with": "src/apps/admin/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -279,16 +279,16 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "apps/admin/src/test.ts",
-            "polyfills": "apps/admin/src/polyfills.ts",
-            "tsConfig": "apps/admin/tsconfig.spec.json",
-            "karmaConfig": "apps/admin/karma.conf.js",
+            "main": "src/apps/admin/src/test.ts",
+            "polyfills": "src/apps/admin/src/polyfills.ts",
+            "tsConfig": "src/apps/admin/tsconfig.spec.json",
+            "karmaConfig": "src/apps/admin/karma.conf.js",
             "assets": [
-              "apps/admin/src/favicon.ico",
-              "apps/admin/src/assets"
+              "src/apps/admin/src/favicon.ico",
+              "src/apps/admin/src/assets"
             ],
             "styles": [
-              "apps/admin/src/styles.scss"
+              "src/apps/admin/src/styles.scss"
             ],
             "scripts": []
           }
@@ -297,9 +297,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "apps/admin/tsconfig.app.json",
-              "apps/admin/tsconfig.spec.json",
-              "apps/admin/e2e/tsconfig.json"
+              "src/apps/admin/tsconfig.app.json",
+              "src/apps/admin/tsconfig.spec.json",
+              "src/apps/admin/e2e/tsconfig.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -309,7 +309,7 @@
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "apps/admin/e2e/protractor.conf.js",
+            "protractorConfig": "src/apps/admin/e2e/protractor.conf.js",
             "devServerTarget": "admin:serve"
           },
           "configurations": {

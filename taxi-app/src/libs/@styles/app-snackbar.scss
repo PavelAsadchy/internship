@@ -1,0 +1,27 @@
+@mixin customSnackBarStyle {
+  color: #ffffff;
+
+  & span {
+    margin: auto;
+    text-align: center;
+  }
+
+  & button {
+    color: #ffffff;
+  }
+}
+
+.notif-success {
+  @include customSnackBarStyle;
+  background: #64dd17;
+}
+
+.notif-warning {
+  @include customSnackBarStyle;
+  background: #ff8c00;
+}
+
+.notif-error {
+  @include customSnackBarStyle;
+  background: #ff2f00;
+}
