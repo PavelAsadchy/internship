@@ -1,33 +1,32 @@
-@import '../../../../shared/UI/colors.scss';
+@import "app-colors";
 
 .menu {
+  &__list {
+    list-style: none;
+  }
 
-    &__list {
-        list-style: none;
+  &__item {
+    display: flex;
+    align-items: center;
+    color: $light-xxl;
+
+    &:not(:last-child) {
+      margin-bottom: 20px;
     }
 
-    &__item {
-        display: flex;
-        align-items: center;
-        color: $light-xxl;
-
-        &:not(:last-child) {
-            margin-bottom: 20px;
-        }
-
-        &--home {
-            margin-top: 50px;
-        }
+    &--home {
+      margin-top: 50px;
     }
+  }
 
-    &__link {
-        padding-left: 20px;
-        transition: .3s;
-        color: $light-xxl;
-        text-decoration: none;
+  &__link {
+    padding-left: 20px;
+    transition: 0.3s;
+    color: $light-xxl;
+    text-decoration: none;
 
-        &:hover {
-            color: $main;
-        }
+    &:hover {
+      color: $main;
     }
+  }
 }
