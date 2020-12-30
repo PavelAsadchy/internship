@@ -34,7 +34,7 @@ export class BookingEditComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.activatedRoute.params
-      .pipe(takeUntil(this.unsubscribeService.subscription()))
+      .pipe(takeUntil(this.unsubscribeService.subscription))
       .subscribe((routeParams: { id: string }) => {
         this.store.dispatch(
           LOAD_BOOKING_ACTION({
@@ -43,7 +43,7 @@ export class BookingEditComponent implements OnInit, OnDestroy {
         );
         this.store
           .select(SELECT_CURRENT_BOOKING)
-          .pipe(takeUntil(this.unsubscribeService.subscription()))
+          .pipe(takeUntil(this.unsubscribeService.subscription))
           .subscribe((currentBooking: IBooking) => {
             this.editBookingParams = currentBooking;
           });

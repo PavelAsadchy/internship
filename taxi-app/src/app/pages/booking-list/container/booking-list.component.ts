@@ -27,7 +27,7 @@ export class BookingListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.store
       .select(SELECT_QUERY_PARAMS)
-      .pipe(skip(1), takeUntil(this.unsubscribeService.subscription()))
+      .pipe(skip(1), takeUntil(this.unsubscribeService.subscription))
       .subscribe((bookingQueryParams: IQueryParams) => {
         this.store.dispatch(
           LOAD_BOOKINGS_BY_QUERY({ params: bookingQueryParams })

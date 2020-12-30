@@ -36,7 +36,7 @@ export class MapComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.mapService
       .getLocation()
-      .pipe(takeUntil(this.unsubscribeService.subscription()))
+      .pipe(takeUntil(this.unsubscribeService.subscription))
       .subscribe((data: any) => {
         this.location.latitude = data.latitude;
         this.location.longitude = data.longitude;

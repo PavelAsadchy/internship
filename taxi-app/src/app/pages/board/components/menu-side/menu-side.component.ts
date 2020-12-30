@@ -37,7 +37,7 @@ export class MenuSideComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.menuService.menuItemList$
-      .pipe(takeUntil(this.unsubscribeService.subscription()))
+      .pipe(takeUntil(this.unsubscribeService.subscription))
       .subscribe((menuItems) => (this.menuContent = menuItems));
   }
 

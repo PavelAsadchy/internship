@@ -5,11 +5,11 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class UnsubscribeService {
-  isCreated = false;
+  private isCreated = false;
 
   private unsubscribe$: Subject<void>;
 
-  subscription(): Subject<void> {
+  get subscription(): Subject<void> {
     if (!this.isCreated) {
       this.isCreated = true;
       this.unsubscribe$ = new Subject<void>();

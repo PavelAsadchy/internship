@@ -61,13 +61,13 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.createBookingCalculationService.price$
-      .pipe(takeUntil(this.unsubscribeService.subscription()))
+      .pipe(takeUntil(this.unsubscribeService.subscription))
       .subscribe((price: number) => {
         this.price = price;
       });
 
     this.bookingOptionsForm.valueChanges
-      .pipe(takeUntil(this.unsubscribeService.subscription()))
+      .pipe(takeUntil(this.unsubscribeService.subscription))
       .subscribe((status) => {
         this.createBookingCalculationService.createRandomCalculation(status);
       });
