@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormControl } from '@angular/forms';
 import {
   BookingChannel,
@@ -27,9 +27,7 @@ import { UnsubscribeService } from 'src/app/shared/services/unsubscribe.service'
   styleUrls: ['./booking-board.component.scss'],
   providers: [CreateBookingCalculationService],
 })
-export class BookingBoardComponent
-  extends UnsubscribeService
-  implements OnInit {
+export class BookingBoardComponent implements OnInit, OnDestroy {
   @Input()
   bookingParams: IBooking;
 
@@ -57,23 +55,28 @@ export class BookingBoardComponent
 
   constructor(
     private fb: FormBuilder,
-    private readonly createBookingCalculationService: CreateBookingCalculationService
-  ) {
-    super();
-  }
+    private readonly createBookingCalculationService: CreateBookingCalculationService,
+    private readonly unsubscribeService: UnsubscribeService
+  ) {}
 
   ngOnInit(): void {
     this.createBookingCalculationService.price$
-      .pipe(takeUntil(this.unsubscribe))
+      .pipe(takeUntil(this.unsubscribeService.subscription()))
       .subscribe((price: number) => {
         this.price = price;
       });
 
-    this.bookingOptionsForm.valueChanges.subscribe((status) => {
-      this.createBookingCalculationService.createRandomCalculation(status);
-    });
+    this.bookingOptionsForm.valueChanges
+      .pipe(takeUntil(this.unsubscribeService.subscription()))
+      .subscribe((status) => {
+        this.createBookingCalculationService.createRandomCalculation(status);
+      });
 
     this.patchValueToForm();
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribeService.destroy();
   }
 
   onBookingOptionsSubmit(): void {

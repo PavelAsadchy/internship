@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -21,21 +21,20 @@ import { IBookingState } from 'src/app/shared/stores/booking-store/booking.state
   templateUrl: './booking-edit.component.html',
   styleUrls: ['./booking-edit.component.scss'],
 })
-export class BookingEditComponent extends UnsubscribeService implements OnInit {
+export class BookingEditComponent implements OnInit, OnDestroy {
   editBookingParams: IBooking;
   isLoading$: Observable<boolean>;
 
   constructor(
+    private readonly unsubscribeService: UnsubscribeService,
     private store: Store<IBookingState>,
     private activatedRoute: ActivatedRoute,
     private router: Router
-  ) {
-    super();
-  }
+  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.params
-      .pipe(takeUntil(this.unsubscribe))
+      .pipe(takeUntil(this.unsubscribeService.subscription()))
       .subscribe((routeParams: { id: string }) => {
         this.store.dispatch(
           LOAD_BOOKING_ACTION({
@@ -44,6 +43,7 @@ export class BookingEditComponent extends UnsubscribeService implements OnInit {
         );
         this.store
           .select(SELECT_CURRENT_BOOKING)
+          .pipe(takeUntil(this.unsubscribeService.subscription()))
           .subscribe((currentBooking: IBooking) => {
             this.editBookingParams = currentBooking;
           });
@@ -52,6 +52,7 @@ export class BookingEditComponent extends UnsubscribeService implements OnInit {
   }
 
   ngOnDestroy(): void {
+    this.unsubscribeService.destroy();
     this.store.dispatch(CLEAR_SELECTED_BOOKING_ACTION());
   }
 

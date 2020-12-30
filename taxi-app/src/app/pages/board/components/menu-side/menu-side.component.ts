@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { takeUntil } from 'rxjs/operators';
 import { IMenuItem } from 'src/app/shared/models/menu-item.model';
@@ -12,7 +12,7 @@ import { IAuthState } from 'src/app/shared/stores/auth-store/auth.state';
   templateUrl: './menu-side.component.html',
   styleUrls: ['./menu-side.component.scss'],
 })
-export class MenuSideComponent extends UnsubscribeService implements OnInit {
+export class MenuSideComponent implements OnInit, OnDestroy {
   menuContent: IMenuItem[] = null;
 
   menuItemHome: IMenuItem = new IMenuItem(
@@ -31,15 +31,18 @@ export class MenuSideComponent extends UnsubscribeService implements OnInit {
 
   constructor(
     private readonly menuService: MenuService,
+    private readonly unsubscribeService: UnsubscribeService,
     private store: Store<IAuthState>
-  ) {
-    super();
-  }
+  ) {}
 
   ngOnInit(): void {
     this.menuService.menuItemList$
-      .pipe(takeUntil(this.unsubscribe))
+      .pipe(takeUntil(this.unsubscribeService.subscription()))
       .subscribe((menuItems) => (this.menuContent = menuItems));
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribeService.destroy();
   }
 
   logout(): void {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { skip, takeUntil } from 'rxjs/operators';
 import { IQueryParams } from 'src/app/shared/models/query-params.model';
@@ -18,15 +18,16 @@ import {
   templateUrl: './booking-list.component.html',
   styleUrls: ['./booking-list.component.scss'],
 })
-export class BookingListComponent extends UnsubscribeService implements OnInit {
-  constructor(private store: Store<IBookingState>) {
-    super();
-  }
+export class BookingListComponent implements OnInit, OnDestroy {
+  constructor(
+    private readonly unsubscribeService: UnsubscribeService,
+    private store: Store<IBookingState>
+  ) {}
 
   ngOnInit(): void {
     this.store
       .select(SELECT_QUERY_PARAMS)
-      .pipe(skip(1), takeUntil(this.unsubscribe))
+      .pipe(skip(1), takeUntil(this.unsubscribeService.subscription()))
       .subscribe((bookingQueryParams: IQueryParams) => {
         this.store.dispatch(
           LOAD_BOOKINGS_BY_QUERY({ params: bookingQueryParams })
@@ -35,6 +36,7 @@ export class BookingListComponent extends UnsubscribeService implements OnInit {
   }
 
   ngOnDestroy(): void {
+    this.unsubscribeService.destroy();
     this.store.dispatch(
       REFRESH_QUERY_PARAMS_ACTION({ params: DEFAULT_QUERY_PARAMS })
     );
