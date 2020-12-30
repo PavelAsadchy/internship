@@ -6,7 +6,7 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from 'src/apps/booking/src/app/shared/interceptors/auth.interceptor';
+import { AuthInterceptor } from 'src/libs/@shared/interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [

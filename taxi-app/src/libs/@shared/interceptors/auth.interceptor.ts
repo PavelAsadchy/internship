@@ -7,13 +7,13 @@ import {
   HttpErrorResponse,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../../apps/booking/src/app/shared/services/auth.service';
 import { catchError, retry } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
-import { AUTH_REFRESH_TOKEN } from '../stores/auth-store/auth.actions';
-import { IAuthState } from '../stores/auth-store/auth.state';
-import { GenericService } from '../services/generic.service';
-import { HttpClientService } from '../services/http-client.service';
+import { AUTH_REFRESH_TOKEN } from '../../../apps/booking/src/app/shared/stores/auth-store/auth.actions';
+import { IAuthState } from '../../../apps/booking/src/app/shared/stores/auth-store/auth.state';
+import { GenericService } from '../../../apps/booking/src/app/shared/services/generic.service';
+import { HttpClientService } from '../../../apps/booking/src/app/shared/services/http-client.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -55,7 +55,7 @@ export class AuthInterceptor implements HttpInterceptor {
       headers: this.httpClientService.setHeaders({
         name: 'Authorization',
         value: `Bearer ${token}`,
-      })
+      }),
     });
   }
 
