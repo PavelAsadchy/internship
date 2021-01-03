@@ -15,10 +15,15 @@ const routes: Routes = [
     component: AuthComponent,
   },
   {
+    path: 'board',
+    redirectTo: 'admin',
+    pathMatch: 'full',
+  },
+  {
     path: 'admin',
     loadChildren: () =>
-      import('src/apps/booking/src/app/pages/board/board.module').then(
-        (module) => module.BoardModule
+      import('src/apps/admin/src/app/pages/board-admin/board-admin.module').then(
+        (module) => module.BoardAdminModule
       ),
     canActivate: [AuthGuard],
   },
