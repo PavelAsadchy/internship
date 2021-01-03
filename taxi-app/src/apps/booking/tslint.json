@@ -1,0 +1,23 @@
+{
+  "extends": [
+    "tslint:recommended",
+    "angular-tslint-rules",
+    "tslint-config-prettier"
+  ],
+  "rulesDirectory": ["node_modules/codelyzer"],
+  "rules": {
+    "template-i18n": false,
+    "no-implicit-dependencies": false,
+    "object-literal-sort-keys": false,
+    "no-empty-interface": false,
+    "invalid-void": false,
+    "no-null-keyword": false,
+    "prefer-inline-decorator": false,
+    "object-literal-shorthand": false,
+    "max-classes-per-file": false,
+    "no-object-literal-type-assertion": false,
+    "no-string-literal": false,
+    "no-floating-promises": false,
+    "array-type": [true, "array"]
+  }
+}

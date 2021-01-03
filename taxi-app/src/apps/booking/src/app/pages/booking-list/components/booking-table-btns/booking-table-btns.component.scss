@@ -1,0 +1,32 @@
+@import "app-colors";
+@import "app-mixins";
+
+.action-btn {
+  position: relative;
+
+  &__icon {
+    transition: ease-in-out 0.3s;
+
+    &--primary {
+      &:hover {
+        color: $primary;
+      }
+    }
+
+    &--alert {
+      &:hover {
+        color: $alert;
+      }
+    }
+  }
+
+  &:hover span {
+    display: block;
+  }
+
+  &__tooltip {
+    @include tooltip;
+    top: -100%;
+    left: -200%;
+  }
+}

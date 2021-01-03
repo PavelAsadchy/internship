@@ -1,0 +1,51 @@
+@import "app-colors";
+
+@mixin marginsForRadioBtns {
+  margin: 5px 20px 5px 0;
+}
+
+@mixin styleForBookingBlocks {
+  position: relative;
+  margin-top: 20px;
+  padding: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+
+  & caption {
+    position: absolute;
+    top: -16px;
+    right: 16px;
+    padding: 5px;
+    color: $light-xxl;
+    background: $dark-xxl;
+  }
+
+  & mat-form-field {
+    margin-top: 10px;
+    width: 100%;
+  }
+}
+
+@mixin tooltip {
+  position: absolute;
+  z-index: 100;
+  display: none;
+  padding: 0 10px;
+  border-radius: 5px;
+  background-color: $light-xxl;
+  font-size: 0.8rem;
+
+  &--primary {
+    box-shadow: 1px 1px 20px $main;
+    color: $primary;
+  }
+
+  &--alert {
+    box-shadow: 1px 1px 20px $alert;
+    color: $alert;
+  }
+
+  &--left {
+    right: 100%;
+  }
+}

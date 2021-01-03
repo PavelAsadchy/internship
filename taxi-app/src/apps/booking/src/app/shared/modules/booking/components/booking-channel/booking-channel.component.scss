@@ -1,0 +1,16 @@
+@import "app-mixins";
+
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+.booking-channel {
+  &__label {
+    font-weight: bold;
+  }
+
+  &__radio-btn {
+    @include marginsForRadioBtns;
+  }
+}

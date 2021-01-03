@@ -1,0 +1,11 @@
+@import "app-mixins";
+
+.drop-off {
+  &__radio-btn {
+    @include marginsForRadioBtns;
+  }
+
+  &__address {
+    @include styleForBookingBlocks;
+  }
+}

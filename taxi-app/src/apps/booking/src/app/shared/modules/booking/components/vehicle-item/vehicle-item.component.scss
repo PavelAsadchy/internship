@@ -1,0 +1,15 @@
+@import "app-colors";
+
+.vehicle-item {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+
+  & > img {
+    align-self: center;
+  }
+
+  & > span {
+    font-size: 0.8rem;
+  }
+}

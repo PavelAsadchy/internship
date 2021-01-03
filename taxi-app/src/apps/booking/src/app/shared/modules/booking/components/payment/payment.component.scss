@@ -1,0 +1,29 @@
+@import "app-mixins";
+
+.payment-options {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+
+  &__label {
+    font-weight: bold;
+  }
+
+  &__radio-btn {
+    @include marginsForRadioBtns;
+  }
+
+  &__checkbox-wrapper {
+    display: flex;
+    flex-flow: row wrap;
+
+    & > .mat-checkbox {
+      width: 50%;
+      min-width: 200px;
+    }
+  }
+
+  &__note {
+    margin-top: 10px;
+  }
+}

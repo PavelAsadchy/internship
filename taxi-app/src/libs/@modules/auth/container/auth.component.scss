@@ -1,0 +1,19 @@
+@import "app-colors";
+
+.auth {
+  display: flex;
+  justify-content: space-between;
+  height: 100vh;
+
+  &__welcome {
+    flex-grow: 1;
+    background: $dark-xxl;
+  }
+
+  &__login {
+    padding: 100px 50px;
+    width: 25%;
+    min-width: 350px;
+    background: $light-xxl;
+  }
+}
