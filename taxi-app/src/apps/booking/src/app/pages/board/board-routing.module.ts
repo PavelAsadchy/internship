@@ -3,8 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { BookingCreateComponent } from 'src/apps/booking/src/app/pages/booking-create/container/booking-create.component';
 import { BoardComponent } from './container/board.component';
 import { MenuMainComponent } from './components/menu-main/menu-main.component';
-import { BookingEditComponent } from '../../../apps/booking/src/app/pages/booking-edit/container/booking-edit.component';
-import { BookingListComponent } from '../../../apps/booking/src/app/pages/booking-list/container/booking-list.component';
+import { BookingEditComponent } from '../booking-edit/container/booking-edit.component';
+import { BookingListComponent } from '../booking-list/container/booking-list.component';
 
 const routes: Routes = [
   {

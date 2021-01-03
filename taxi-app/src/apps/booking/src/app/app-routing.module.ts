@@ -17,7 +17,7 @@ const routes: Routes = [
   {
     path: 'board',
     loadChildren: () =>
-      import('src/libs/@modules/board/board.module').then(
+      import('src/apps/booking/src/app/pages/board/board.module').then(
         (module) => module.BoardModule
       ),
     canActivate: [AuthGuard],
