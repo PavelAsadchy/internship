@@ -1,31 +1,19 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { takeUntil } from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { IMenuItem } from 'src/apps/booking/src/app/shared/models/menu-item.model';
 import { MenuService } from 'src/apps/booking/src/app/shared/services/menu.service';
-import { UnsubscribeService } from 'src/apps/booking/src/app/shared/services/unsubscribe.service';
 
 @Component({
   selector: 'app-menu-main',
   templateUrl: './menu-main.component.html',
   styleUrls: ['./menu-main.component.scss'],
 })
-export class MenuMainComponent implements OnInit, OnDestroy {
-  menuContent: IMenuItem[] = null;
+export class MenuMainComponent implements OnInit {
+  menuContent$: Observable<IMenuItem[]>;
 
-  menu: IMenuItem[] = null;
-
-  constructor(
-    private readonly menuService: MenuService,
-    private readonly unsubscribeService: UnsubscribeService
-  ) {}
+  constructor(private readonly menuService: MenuService) {}
 
   ngOnInit(): void {
-    this.menuService.menuItemList$
-      .pipe(takeUntil(this.unsubscribeService.subscription))
-      .subscribe((menuItems) => (this.menuContent = menuItems));
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribeService.destroy();
+    this.menuContent$ = this.menuService.menuItemList$;
   }
 }

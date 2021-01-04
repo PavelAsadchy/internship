@@ -1,8 +1,16 @@
 <nav class="menu">
+    <label class="menu__btn" [class.opened]="isNavActive">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+
+    <span class="menu__username">Hello, {{ userName }}</span>
+
     <ul class="menu__list">
         <li
             class="menu__item"
-            *ngFor="let item of menuContent"
+            *ngFor="let item of menuContent$ | async"
         >
             <mat-icon>{{ item.icon }}</mat-icon>
             <a

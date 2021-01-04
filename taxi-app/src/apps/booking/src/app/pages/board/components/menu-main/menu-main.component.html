@@ -2,7 +2,7 @@
     <mat-card
         matRipple
         class="menu-main__item"
-        *ngFor="let item of menuContent"
+        *ngFor="let item of menuContent$ | async"
         [routerLink]="['/board' + item.link]"
     >
         <mat-icon color="primary">{{ item.icon }}</mat-icon>

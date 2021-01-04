@@ -27,8 +27,6 @@ export class BoardComponent implements OnInit {
       'library_books',
       '/booking/list'
     ),
-    new IMenuItem('item3', 'description', 'account_box', 'board'),
-    new IMenuItem('item4', 'description', 'account_box', 'board'),
   ];
 
   constructor(private readonly menuService: MenuService) {}

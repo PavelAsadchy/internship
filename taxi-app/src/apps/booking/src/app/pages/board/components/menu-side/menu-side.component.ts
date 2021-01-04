@@ -1,9 +1,13 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { Store } from '@ngrx/store';
-import { takeUntil } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { IMenuItem } from 'src/apps/booking/src/app/shared/models/menu-item.model';
 import { MenuService } from 'src/apps/booking/src/app/shared/services/menu.service';
-import { UnsubscribeService } from 'src/apps/booking/src/app/shared/services/unsubscribe.service';
 import { AUTH_LOGOUT_ACTION } from 'src/apps/booking/src/app/shared/stores/auth-store/auth.actions';
 import { IAuthState } from 'src/apps/booking/src/app/shared/stores/auth-store/auth.state';
 
@@ -11,9 +15,16 @@ import { IAuthState } from 'src/apps/booking/src/app/shared/stores/auth-store/au
   selector: 'app-menu-side',
   templateUrl: './menu-side.component.html',
   styleUrls: ['./menu-side.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MenuSideComponent implements OnInit, OnDestroy {
-  menuContent: IMenuItem[] = null;
+export class MenuSideComponent implements OnInit {
+  @Input()
+  userName: string;
+
+  @Input()
+  isNavActive: boolean;
+
+  menuContent$: Observable<IMenuItem[]>;
 
   menuItemHome: IMenuItem = new IMenuItem(
     'Home page',
@@ -31,18 +42,11 @@ export class MenuSideComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly menuService: MenuService,
-    private readonly unsubscribeService: UnsubscribeService,
     private store: Store<IAuthState>
   ) {}
 
   ngOnInit(): void {
-    this.menuService.menuItemList$
-      .pipe(takeUntil(this.unsubscribeService.subscription))
-      .subscribe((menuItems) => (this.menuContent = menuItems));
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribeService.destroy();
+    this.menuContent$ = this.menuService.menuItemList$;
   }
 
   logout(): void {

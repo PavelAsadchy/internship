@@ -4,8 +4,9 @@ import { IMenuItem } from '../models/menu-item.model';
 
 @Injectable()
 export class MenuService {
-
-  menuItemList: BehaviorSubject<IMenuItem[]> = new BehaviorSubject<IMenuItem[]>([]);
+  menuItemList: BehaviorSubject<IMenuItem[]> = new BehaviorSubject<IMenuItem[]>(
+    []
+  );
 
   menuItemList$: Observable<IMenuItem[]> = this.menuItemList.asObservable();
 
