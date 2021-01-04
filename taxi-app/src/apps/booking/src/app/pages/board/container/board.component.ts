@@ -11,7 +11,7 @@ import { MenuService } from 'src/apps/booking/src/app/shared/services/menu.servi
 })
 export class BoardComponent implements OnInit {
   isNavActive = false;
-
+  baseRouterLink = '/board';
   user: string;
 
   menuContent: IMenuItem[] = [
@@ -32,7 +32,7 @@ export class BoardComponent implements OnInit {
   constructor(private readonly menuService: MenuService) {}
 
   ngOnInit(): void {
-    this.menuService.setMenuItemList(this.menuContent);
+    this.menuService.setMenuItemList(this.menuContent, this.baseRouterLink);
     this.user = localStorage.getItem(USER_NAME);
   }
 

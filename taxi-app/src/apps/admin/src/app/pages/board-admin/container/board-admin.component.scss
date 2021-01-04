@@ -1,0 +1,21 @@
+@import "app-colors";
+
+.board-admin {
+  position: relative;
+  display: flex;
+
+  &__nav {
+    position: fixed;
+    height: 100vh;
+    transition: left 0.3s;
+    background-color: $dark-xxl;
+  }
+
+  &__content {
+    flex-grow: 1;
+    min-height: 100vh;
+    padding: 10px;
+    transition: margin-left 0.3s;
+    background: $light-xl;
+  }
+}

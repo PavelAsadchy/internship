@@ -15,7 +15,7 @@
             <mat-icon>{{ item.icon }}</mat-icon>
             <a
                 class="menu__link"
-                [routerLink]="['/board' + item.link]"
+                [routerLink]="[(baseRouterLink$ | async) + item.link]"
             >
                 {{ item.name }}
             </a>
@@ -24,7 +24,7 @@
             <mat-icon>{{ menuItemHome.icon }}</mat-icon>
             <a
                 class="menu__link"
-                [routerLink]="['/board']"
+                [routerLink]="[(baseRouterLink$ | async)]"
             >
                 {{ menuItemHome.name }}
             </a>

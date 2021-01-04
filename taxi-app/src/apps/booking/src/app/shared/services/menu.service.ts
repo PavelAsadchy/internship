@@ -10,7 +10,10 @@ export class MenuService {
 
   menuItemList$: Observable<IMenuItem[]> = this.menuItemList.asObservable();
 
-  setMenuItemList(menu: IMenuItem[]): void {
+  baseRouterLink$: BehaviorSubject<string> = new BehaviorSubject<string>('');
+
+  setMenuItemList(menu: IMenuItem[], link: string): void {
     this.menuItemList.next(menu);
+    this.baseRouterLink$.next(link);
   }
 }

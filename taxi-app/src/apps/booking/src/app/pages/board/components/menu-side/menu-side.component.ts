@@ -5,7 +5,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { IMenuItem } from 'src/apps/booking/src/app/shared/models/menu-item.model';
 import { MenuService } from 'src/apps/booking/src/app/shared/services/menu.service';
 import { AUTH_LOGOUT_ACTION } from 'src/apps/booking/src/app/shared/stores/auth-store/auth.actions';
@@ -25,6 +25,7 @@ export class MenuSideComponent implements OnInit {
   isNavActive: boolean;
 
   menuContent$: Observable<IMenuItem[]>;
+  baseRouterLink$: BehaviorSubject<string>;
 
   menuItemHome: IMenuItem = new IMenuItem(
     'Home page',
@@ -47,6 +48,7 @@ export class MenuSideComponent implements OnInit {
 
   ngOnInit(): void {
     this.menuContent$ = this.menuService.menuItemList$;
+    this.baseRouterLink$ = this.menuService.baseRouterLink$;
   }
 
   logout(): void {

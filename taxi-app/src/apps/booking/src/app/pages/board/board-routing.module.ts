@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BookingCreateComponent } from 'src/apps/booking/src/app/pages/booking-create/container/booking-create.component';
 import { BoardComponent } from './container/board.component';
-import { MenuMainComponent } from './components/menu-main/menu-main.component';
 import { BookingEditComponent } from '../booking-edit/container/booking-edit.component';
 import { BookingListComponent } from '../booking-list/container/booking-list.component';
+import { BoardContentComponent } from './components/board-content/board-content.component';
 
 const routes: Routes = [
   {
@@ -13,7 +13,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: MenuMainComponent,
+        component: BoardContentComponent,
       },
       {
         path: 'booking',
