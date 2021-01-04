@@ -19,7 +19,7 @@ export class BoardAdminComponent implements OnInit {
       'Manage Groups',
       'View/Edit managed groups',
       'security',
-      '/admin/groups'
+      '/groups/list'
     ),
   ];
 

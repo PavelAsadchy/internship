@@ -16,23 +16,23 @@ const routes: Routes = [
         component: BoardAdminContentComponent,
       },
       {
-        path: 'admin',
-        redirectTo: 'admin/groups',
+        path: 'groups',
+        redirectTo: 'groups/list',
         pathMatch: 'full',
       },
       {
-        path: 'admin',
+        path: 'groups',
         children: [
           {
-            path: 'groups',
+            path: 'list',
             component: AdminGroupsComponent,
           },
           {
-            path: 'groups/:id',
+            path: ':id',
             component: AdminDetailComponent,
           },
           {
-            path: 'groups/:id/edit',
+            path: ':id/edit',
             component: AdminEditComponent,
           },
         ],
