@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from 'src/apps/booking/src/app/shared/shared.module';
+import { SharedModule } from 'src/libs/@shared/shared.module';
 import { BookingListComponent } from './container/booking-list.component';
 import { UrgentBackgroundColorDirective } from 'src/apps/booking/src/app/shared/directives/urgent-background-color.directive';
 import { BookingCreateModule } from '../booking-create/booking-create.module';

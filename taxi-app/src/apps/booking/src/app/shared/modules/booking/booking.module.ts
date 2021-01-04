@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../../shared.module';
+import { SharedModule } from 'src/libs/@shared/shared.module';
 import { BookingChannelComponent } from './components/booking-channel/booking-channel.component';
 import { CustomerInformationComponent } from './components/customer-information/customer-information.component';
 import { DropOffComponent } from './components/drop-off/drop-off.component';

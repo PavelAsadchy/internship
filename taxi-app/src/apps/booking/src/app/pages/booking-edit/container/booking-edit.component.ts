@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { IBooking } from 'src/apps/booking/src/app/shared/models/booking.model';
-import { UnsubscribeService } from 'src/apps/booking/src/app/shared/services/unsubscribe.service';
+import { UnsubscribeService } from 'src/libs/@shared/services/unsubscribe.service';
 import {
   CLEAR_SELECTED_BOOKING_ACTION,
   LOAD_BOOKING_ACTION,

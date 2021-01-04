@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { IMenuItem } from '../models/menu-item.model';
+import { IMenuItem } from '../../../apps/booking/src/app/shared/models/menu-item.model';
 
 @Injectable()
 export class MenuService {

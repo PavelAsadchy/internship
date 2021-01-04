@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from 'src/apps/booking/src/app/shared/shared.module';
+import { SharedModule } from 'src/libs/@shared/shared.module';
 import { ProfileComponent } from './profile.component';
 
 @NgModule({

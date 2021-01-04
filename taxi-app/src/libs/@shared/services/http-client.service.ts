@@ -6,7 +6,10 @@ import {
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { IHeaders, IMyRequestParams } from '../models/my-request-params.model';
+import {
+  IHeaders,
+  IMyRequestParams,
+} from '../../../apps/booking/src/app/shared/models/my-request-params.model';
 import { GenericService } from './generic.service';
 import { DatePipe } from '@angular/common';
 

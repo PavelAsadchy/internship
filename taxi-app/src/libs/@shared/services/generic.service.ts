@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { IErrorHandle } from '../models/error-handle.model';
+import { IErrorHandle } from '../../../apps/booking/src/app/shared/models/error-handle.model';
 
 @Injectable({
   providedIn: 'root',

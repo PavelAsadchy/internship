@@ -6,7 +6,7 @@ import {
 import { MapService } from 'src/apps/booking/src/app/shared/services/map.service';
 import { MouseEvent } from '@agm/core';
 import { takeUntil } from 'rxjs/operators';
-import { UnsubscribeService } from 'src/apps/booking/src/app/shared/services/unsubscribe.service';
+import { UnsubscribeService } from 'src/libs/@shared/services/unsubscribe.service';
 
 @Component({
   selector: 'app-map',

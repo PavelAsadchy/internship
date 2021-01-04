@@ -7,16 +7,14 @@ import { NotFoundComponent } from 'src/libs/@modules/not-found/not-found.compone
 import { AuthModule } from 'src/libs/@modules/auth/auth.module';
 import { StoreModule } from '@ngrx/store';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedModule } from 'src/apps/booking/src/app/shared/shared.module';
+import { SharedModule } from 'src/libs/@shared/shared.module';
 import { EffectsModule } from '@ngrx/effects';
 import { GlobalStoreModule } from 'src/apps/booking/src/app/shared/stores/global-store.module';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { BoardAdminModule } from './pages/board-admin/board-admin.module';
 
 @NgModule({
-  declarations: [
-    AppComponent, NotFoundComponent
-  ],
+  declarations: [AppComponent, NotFoundComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -30,6 +28,6 @@ import { BoardAdminModule } from './pages/board-admin/board-admin.module';
     StoreDevtoolsModule.instrument(),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

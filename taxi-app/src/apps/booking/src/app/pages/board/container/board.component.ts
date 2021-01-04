@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { USER_NAME } from 'src/apps/booking/src/app/shared/consts/app.consts';
+import { USER_NAME } from 'src/libs/@shared/consts/app.consts';
 import { IMenuItem } from 'src/apps/booking/src/app/shared/models/menu-item.model';
-import { MenuService } from 'src/apps/booking/src/app/shared/services/menu.service';
+import { MenuService } from 'src/libs/@shared/services/menu.service';
 
 @Component({
   selector: 'app-board',
