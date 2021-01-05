@@ -3,15 +3,15 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { SHOW_MESSAGE_VALUES } from '../../consts/store.consts';
+import { SHOW_MESSAGE_VALUES } from 'src/libs/@shared/consts/store.consts';
 import { IServerResponse } from '../../models/server-response.model';
 import { IBooking } from '../../models/booking.model';
 import { IQueryParams } from '../../models/query-params.model';
-import { IShowMessage } from '../../models/show-message.model';
+import { IShowMessage } from 'src/libs/@shared/models/show-message.model';
 import { BookingListService } from '../../services/booking-list.service';
-import { SHOW_MESSAGE_ACTION } from '../message-store/message.actions';
+import { SHOW_MESSAGE_ACTION } from 'src/libs/@stores/message-store/message.actions';
 import * as BookingActions from './booking.actions';
-import { IMessageState } from '../message-store/message.state';
+import { IMessageState } from 'src/libs/@stores/message-store/message.state';
 
 @Injectable()
 export class BookingEffects {

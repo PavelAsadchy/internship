@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { AUTH_LOGIN_ACTION } from 'src/apps/booking/src/app/shared/stores/auth-store/auth.actions';
-import { IAuthState } from 'src/apps/booking/src/app/shared/stores/auth-store/auth.state';
+import { AUTH_LOGIN_ACTION } from 'src/libs/@stores/auth-store/auth.actions';
+import { IAuthState } from 'src/libs/@stores/auth-store/auth.state';
 
 @Component({
   selector: 'app-login',

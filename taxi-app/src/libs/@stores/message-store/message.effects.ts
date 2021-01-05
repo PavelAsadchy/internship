@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, tap } from 'rxjs/operators';
-import { IShowMessage } from '../../models/show-message.model';
+import { IShowMessage } from 'src/libs/@shared/models/show-message.model';
 import * as MessageActions from './message.actions';
 
 @Injectable()

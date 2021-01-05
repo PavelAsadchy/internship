@@ -12,7 +12,8 @@ import { NotFoundComponent } from 'src/libs/@modules/not-found/not-found.compone
 import { AgmCoreModule } from '@agm/core';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { GlobalStoreModule } from './shared/stores/global-store.module';
+import { BookingGlobalStoreModule } from './shared/stores/booking-global-store.module';
+import { GlobalStoreModule } from 'src/libs/@stores/global-store.module';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { environment } from 'src/apps/booking/src/environments/environment';
@@ -32,6 +33,7 @@ import { environment } from 'src/apps/booking/src/environments/environment';
     }),
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
+    BookingGlobalStoreModule,
     GlobalStoreModule,
     StoreDevtoolsModule.instrument(),
   ],

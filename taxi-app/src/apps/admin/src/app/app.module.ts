@@ -9,7 +9,7 @@ import { StoreModule } from '@ngrx/store';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from 'src/libs/@shared/shared.module';
 import { EffectsModule } from '@ngrx/effects';
-import { GlobalStoreModule } from 'src/apps/booking/src/app/shared/stores/global-store.module';
+import { GlobalStoreModule } from 'src/libs/@stores/global-store.module';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { BoardAdminModule } from './pages/board-admin/board-admin.module';
 

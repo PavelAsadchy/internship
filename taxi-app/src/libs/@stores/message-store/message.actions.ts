@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { IShowMessage } from '../../models/show-message.model';
+import { IShowMessage } from 'src/libs/@shared/models/show-message.model';
 
 export enum ActionsType {
   SHOW_MESSAGE = '[MESSAGE] Show Message',

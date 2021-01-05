@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { USER_NAME } from 'src/libs/@shared/consts/app.consts';
-import { IMenuItem } from 'src/apps/booking/src/app/shared/models/menu-item.model';
+import { IMenuItem } from 'src/libs/@shared/models/menu-item.model';
 import { MenuService } from 'src/libs/@shared/services/menu.service';
 
 @Component({

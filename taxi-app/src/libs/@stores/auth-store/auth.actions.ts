@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import { ILoggedInUser } from '../../models/user-logged.model';
-import { IUser } from '../../models/user.model';
+import { ILoggedInUser } from 'src/libs/@shared/models/user-logged.model';
+import { IUser } from 'src/libs/@shared/models/user.model';
 
 export enum ActionsType {
   LOGIN = '[AUTH] Login',

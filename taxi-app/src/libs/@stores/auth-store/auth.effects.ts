@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { AuthService } from '../../../../../../../libs/@shared/services/auth.service';
+import { AuthService } from 'src/libs/@shared/services/auth.service';
 import * as AuthActions from './auth.actions';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { ITokens } from '../../models/tokens.model';
-import { ILoggedInUser } from '../../models/user-logged.model';
+import { ITokens } from 'src/libs/@shared/models/tokens.model';
+import { ILoggedInUser } from 'src/libs/@shared/models/user-logged.model';
 import { of } from 'rxjs';
-import { IUser } from '../../models/user.model';
+import { IUser } from 'src/libs/@shared/models/user.model';
 import { Store } from '@ngrx/store';
 import { SHOW_MESSAGE_ACTION } from '../message-store/message.actions';
-import { SHOW_MESSAGE_VALUES } from '../../consts/store.consts';
+import { SHOW_MESSAGE_VALUES } from 'src/libs/@shared/consts/store.consts';
 import { IMessageState } from '../message-store/message.state';
 
 @Injectable()

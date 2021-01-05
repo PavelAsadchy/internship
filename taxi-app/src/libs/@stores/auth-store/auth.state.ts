@@ -1,4 +1,4 @@
-import { ILoggedInUser } from '../../models/user-logged.model';
+import { ILoggedInUser } from 'src/libs/@shared/models/user-logged.model';
 
 export interface IAuthState {
   isLoggedIn: boolean;

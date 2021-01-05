@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { IMenuItem } from 'src/apps/booking/src/app/shared/models/menu-item.model';
+import { IMenuItem } from 'src/libs/@shared/models/menu-item.model';
 import { MenuService } from 'src/libs/@shared/services/menu.service';
 
 @Component({

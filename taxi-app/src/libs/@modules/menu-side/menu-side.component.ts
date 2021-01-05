@@ -6,10 +6,10 @@ import {
 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { IMenuItem } from 'src/apps/booking/src/app/shared/models/menu-item.model';
+import { IMenuItem } from 'src/libs/@shared/models/menu-item.model';
 import { MenuService } from 'src/libs/@shared/services/menu.service';
-import { AUTH_LOGOUT_ACTION } from 'src/apps/booking/src/app/shared/stores/auth-store/auth.actions';
-import { IAuthState } from 'src/apps/booking/src/app/shared/stores/auth-store/auth.state';
+import { AUTH_LOGOUT_ACTION } from 'src/libs/@stores/auth-store/auth.actions';
+import { IAuthState } from 'src/libs/@stores/auth-store/auth.state';
 
 @Component({
   selector: 'app-menu-side',
