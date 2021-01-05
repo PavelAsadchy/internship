@@ -12,8 +12,8 @@ import {
   IQueryParams,
   ISortParams,
 } from '../models/query-params.model';
-import { HttpClientService } from './http-client.service';
-import { GenericService } from './generic.service';
+import { HttpClientService } from 'src/libs/@shared/services/http-client.service';
+import { GenericService } from 'src/libs/@shared/services/generic.service';
 import { DatePipe } from '@angular/common';
 import { environment } from 'src/apps/booking/src/environments/environment';
 

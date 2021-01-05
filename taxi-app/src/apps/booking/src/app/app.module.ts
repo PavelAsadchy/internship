@@ -3,16 +3,17 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SharedModule } from './shared/shared.module';
-import { AuthModule } from '../../../../libs/@modules/auth/auth.module';
+import { SharedModule } from 'src/libs/@shared/shared.module';
+import { AuthModule } from 'src/libs/@modules/auth/auth.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BoardModule } from '../../../../libs/@modules/board/board.module';
-import { ProfileModule } from '../../../../libs/@modules/profile/profile.module';
-import { NotFoundComponent } from '../../../../libs/@modules/not-found/not-found.component';
+import { BoardModule } from './pages/board/board.module';
+import { ProfileModule } from 'src/libs/@modules/profile/profile.module';
+import { NotFoundComponent } from 'src/libs/@modules/not-found/not-found.component';
 import { AgmCoreModule } from '@agm/core';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { GlobalStoreModule } from './shared/stores/global-store.module';
+import { BookingGlobalStoreModule } from './shared/stores/booking-global-store.module';
+import { GlobalStoreModule } from 'src/libs/@stores/global-store.module';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { environment } from 'src/apps/booking/src/environments/environment';
@@ -32,6 +33,7 @@ import { environment } from 'src/apps/booking/src/environments/environment';
     }),
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
+    BookingGlobalStoreModule,
     GlobalStoreModule,
     StoreDevtoolsModule.instrument(),
   ],

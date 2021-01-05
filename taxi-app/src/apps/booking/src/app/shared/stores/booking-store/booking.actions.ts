@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
-import { IShowMessage } from '../../models/show-message.model';
+import { IShowMessage } from 'src/libs/@shared/models/show-message.model';
 import { IBooking } from '../../models/booking.model';
 import { IQueryParams } from '../../models/query-params.model';
 import { IServerResponse } from '../../models/server-response.model';

@@ -1,0 +1,81 @@
+@import "app-colors";
+
+.menu {
+  position: relative;
+  padding: 100px 50px;
+  width: 300px;
+
+  &__btn {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    width: 30px;
+    cursor: pointer;
+
+    & > span {
+      position: relative;
+      display: block;
+      height: 5px;
+      margin-top: 5px;
+      transition: 0.3s;
+      background: $dark-xl;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    &.opened {
+      right: 20px;
+
+      & > span:first-child {
+        top: 10px;
+        transform: rotate(45deg);
+      }
+
+      & > span:nth-child(2n) {
+        opacity: 0;
+      }
+
+      & > span:last-child {
+        top: -10px;
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+  &__username {
+    color: $light-xxl;
+    font-size: 1.5rem;
+  }
+
+  &__list {
+    list-style: none;
+    margin-top: 2rem;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    color: $light-xxl;
+
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+
+    &--home {
+      margin-top: 50px;
+    }
+  }
+
+  &__link {
+    padding-left: 20px;
+    transition: 0.3s;
+    color: $light-xxl;
+    text-decoration: none;
+
+    &:hover {
+      color: $main;
+    }
+  }
+}

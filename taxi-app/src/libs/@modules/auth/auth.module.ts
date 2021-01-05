@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from 'src/apps/booking/src/app/shared/shared.module';
+import { SharedModule } from 'src/libs/@shared/shared.module';
 import { AuthComponent } from './container/auth.component';
 import { LoginComponent } from './components/login/login.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
