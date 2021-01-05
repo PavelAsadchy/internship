@@ -2,8 +2,12 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-export const environment = {
-  production: false
+import { IEnvironmentAdmin } from './ienvironment-admin.model';
+
+export const environment: IEnvironmentAdmin = {
+  production: false,
+  databaseApiUrl: 'https://taxi-app-294611.firebaseio.com/groups',
+  databaseApiKey: 'AIzaSyAFYEI6Mv2SthzLCRsN_jTogm5aWJ8Ajt8',
 };
 
 /*
