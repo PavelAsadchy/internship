@@ -4,52 +4,52 @@ export const DEFAULT_ADMIN_GROUPS: IAdminGroup[] = [
   {
     id: '1',
     name: 'user_basic',
-    priveleges: [''],
+    privileges: [''],
   },
   {
     id: '2',
     name: 'user_avg',
-    priveleges: [''],
+    privileges: [''],
   },
   {
     id: '3',
     name: 'user_adv',
-    priveleges: [''],
+    privileges: [''],
   },
   {
     id: '4',
     name: 'user_prem',
-    priveleges: [''],
+    privileges: [''],
   },
   {
     id: '5',
     name: 'manager_basic',
-    priveleges: [''],
+    privileges: [''],
   },
   {
     id: '6',
     name: 'manager_avg',
-    priveleges: [''],
+    privileges: [''],
   },
   {
     id: '7',
     name: 'manager_adv',
-    priveleges: [''],
+    privileges: [''],
   },
   {
     id: '8',
     name: 'manager_prem',
-    priveleges: [''],
+    privileges: [''],
   },
   {
     id: '9',
     name: 'management',
-    priveleges: [''],
+    privileges: [''],
   },
   {
     id: '10',
     name: 'admin',
-    priveleges: [''],
+    privileges: [''],
   },
 ];
 
