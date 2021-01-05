@@ -11,7 +11,7 @@ import {
   IPaginateParams,
   IQueryParams,
   ISortParams,
-} from '../models/query-params.model';
+} from 'src/libs/@shared/models/query-params.model';
 import { HttpClientService } from 'src/libs/@shared/services/http-client.service';
 import { GenericService } from 'src/libs/@shared/services/generic.service';
 import { DatePipe } from '@angular/common';

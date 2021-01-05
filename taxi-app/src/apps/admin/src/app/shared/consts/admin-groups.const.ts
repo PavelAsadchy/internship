@@ -1,6 +1,6 @@
-import { IGroup } from '../models/group.model';
+import { IAdminGroup } from '../models/admin-group.model';
 
-export const DEFAULT_GROUPS: IGroup[] = [
+export const DEFAULT_ADMIN_GROUPS: IAdminGroup[] = [
   {
     id: '1',
     name: 'user_basic',
@@ -51,4 +51,11 @@ export const DEFAULT_GROUPS: IGroup[] = [
     name: 'admin',
     priveleges: [''],
   },
+];
+
+export const GROUPS_DISPLAYED_COLUMNS = [
+  'id',
+  'name',
+  'privileges_total',
+  'action_btn',
 ];

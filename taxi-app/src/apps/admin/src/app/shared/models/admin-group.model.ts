@@ -1,4 +1,4 @@
-export interface IGroup {
+export interface IAdminGroup {
   id: string;
   name: string;
   priveleges: string[];

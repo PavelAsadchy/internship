@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClientService } from 'src/libs/@shared/services/http-client.service';
 import { environment } from 'src/apps/admin/src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { DEFAULT_GROUPS } from '../../shared/consts/groups.const';
+import {
+  DEFAULT_ADMIN_GROUPS,
+  GROUPS_DISPLAYED_COLUMNS,
+} from '../../shared/consts/admin-groups.const';
 
 @Component({
   selector: 'app-admin-groups',
@@ -10,8 +13,9 @@ import { DEFAULT_GROUPS } from '../../shared/consts/groups.const';
   styleUrls: ['./admin-groups.component.scss'],
 })
 export class AdminGroupsComponent implements OnInit {
+  displayedColumns: string[] = GROUPS_DISPLAYED_COLUMNS;
   databaseUrl: string;
-  groups = DEFAULT_GROUPS;
+  groups = DEFAULT_ADMIN_GROUPS;
 
   constructor(
     httpClientService: HttpClientService,
@@ -22,9 +26,13 @@ export class AdminGroupsComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  trigger(): void {
+  save(): void {
     this.httpClient
-      .post(`${this.databaseUrl}.json`, this.groups)
+      .put(`${this.databaseUrl}.json`, this.groups)
       .subscribe((resp) => console.log(resp));
+  }
+
+  read(): void {
+    this.httpClient.get(`${this.databaseUrl}`);
   }
 }

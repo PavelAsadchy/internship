@@ -6,7 +6,7 @@ import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { SHOW_MESSAGE_VALUES } from 'src/libs/@shared/consts/store.consts';
 import { IServerResponse } from '../../models/server-response.model';
 import { IBooking } from '../../models/booking.model';
-import { IQueryParams } from '../../models/query-params.model';
+import { IQueryParams } from 'src/libs/@shared/models/query-params.model';
 import { IShowMessage } from 'src/libs/@shared/models/show-message.model';
 import { BookingListService } from '../../services/booking-list.service';
 import { SHOW_MESSAGE_ACTION } from 'src/libs/@stores/message-store/message.actions';

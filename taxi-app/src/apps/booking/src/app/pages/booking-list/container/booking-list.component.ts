@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { skip, takeUntil } from 'rxjs/operators';
-import { IQueryParams } from 'src/apps/booking/src/app/shared/models/query-params.model';
+import { IQueryParams } from 'src/libs/@shared/models/query-params.model';
 import { UnsubscribeService } from 'src/libs/@shared/services/unsubscribe.service';
 import { LOAD_BOOKINGS_BY_QUERY } from 'src/apps/booking/src/app/shared/stores/booking-store/booking.actions';
 import { SELECT_QUERY_PARAMS } from 'src/apps/booking/src/app/shared/stores/booking-store/booking.selector';
