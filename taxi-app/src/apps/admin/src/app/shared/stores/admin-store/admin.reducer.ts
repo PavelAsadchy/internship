@@ -46,6 +46,13 @@ const adminReducer = createReducer(
     isDetailBarOpen,
   })),
 
+  on(AdminActions.SET_ADMIN_GROUP_ACTION, (state, { adminGroup }) => {
+    return adminAdapter.setOne(adminGroup, {
+      ...state,
+      selectedAdminGroup: adminGroup,
+    });
+  }),
+
   on(AdminActions.LOAD_GROUP_PRIVILEGES_ACTION, (state) => ({
     ...state,
     loading: true,

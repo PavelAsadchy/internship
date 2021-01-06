@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { IAdminGroup } from '../../../../shared/models/admin-group.model';
 import {
   LOAD_GROUP_PRIVILEGES_ACTION,
+  SET_ADMIN_GROUP_ACTION,
   TOGGLE_DETAIL_BAR_ACTION,
 } from '../../../../shared/stores/admin-store/admin.actions';
 import { IAdminState } from '../../../../shared/stores/admin-store/admin.state';
@@ -20,8 +21,8 @@ export class AdminGroupsTableBtnsComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onDetailBarOpen(): void {
-    this.selectAminGroup();
+  onDetail(): void {
+    this.store.dispatch(SET_ADMIN_GROUP_ACTION({ adminGroup: this.element }));
     this.store.dispatch(TOGGLE_DETAIL_BAR_ACTION({ isDetailBarOpen: true }));
   }
 

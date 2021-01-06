@@ -1,5 +1,5 @@
 <mat-sidenav-container class="example-container">
-    <mat-sidenav #sidenav position="end" mode="side" [opened]="(isDetailBarOpen$ | async)">
+    <mat-sidenav #sidenav position="end" mode="over" [opened]="(isDetailBarOpen$ | async)">
         <app-admin-groups-detail></app-admin-groups-detail>
     </mat-sidenav>
     
@@ -7,5 +7,3 @@
         <app-admin-groups-table></app-admin-groups-table>
     </mat-sidenav-content>
 </mat-sidenav-container>
-<!-- <button (click)="save()">save</button>
-<button (click)="read()">read</button> -->

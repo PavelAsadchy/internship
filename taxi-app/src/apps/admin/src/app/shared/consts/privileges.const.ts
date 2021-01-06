@@ -9,37 +9,29 @@ export enum PrivilegeOptions {
   DELETE_PRIVILEGE,
 }
 
-export const PRIVILEGE_OPTIONS = [
-  {
+export const PRIVILEGE_OPTIONS = {
+  [PrivilegeOptions[PrivilegeOptions.CREATE_BOOKINGS]]: {
     name: 'Create bookings',
-    value: PrivilegeOptions[PrivilegeOptions.CREATE_BOOKINGS],
   },
-  {
+  [PrivilegeOptions[PrivilegeOptions.READ_BOOKINGS]]: {
     name: 'Read bookings',
-    value: PrivilegeOptions[PrivilegeOptions.READ_BOOKINGS],
   },
-  {
+  [PrivilegeOptions[PrivilegeOptions.UPDATE_BOOKINGS]]: {
     name: 'Update bookings',
-    value: PrivilegeOptions[PrivilegeOptions.UPDATE_BOOKINGS],
   },
-  {
+  [PrivilegeOptions[PrivilegeOptions.DELETE_BOOKINGS]]: {
     name: 'Delete bookings',
-    value: PrivilegeOptions[PrivilegeOptions.DELETE_BOOKINGS],
   },
-  {
+  [PrivilegeOptions[PrivilegeOptions.CREATE_PRIVILEGE]]: {
     name: 'Create privileges',
-    value: PrivilegeOptions[PrivilegeOptions.CREATE_PRIVILEGE],
   },
-  {
+  [PrivilegeOptions[PrivilegeOptions.READ_PRIVILEGE]]: {
     name: 'Read privileges',
-    value: PrivilegeOptions[PrivilegeOptions.READ_PRIVILEGE],
   },
-  {
+  [PrivilegeOptions[PrivilegeOptions.UPDATE_PRIVILEGE]]: {
     name: 'Update privileges',
-    value: PrivilegeOptions[PrivilegeOptions.UPDATE_PRIVILEGE],
   },
-  {
+  [PrivilegeOptions[PrivilegeOptions.DELETE_PRIVILEGE]]: {
     name: 'Delete privileges',
-    value: PrivilegeOptions[PrivilegeOptions.DELETE_PRIVILEGE],
   },
-];
+};
