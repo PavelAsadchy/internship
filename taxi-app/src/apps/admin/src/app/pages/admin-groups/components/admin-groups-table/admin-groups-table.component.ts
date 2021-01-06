@@ -21,7 +21,7 @@ import { IAdminState } from '../../../../shared/stores/admin-store/admin.state';
 export class AdminGroupsTableComponent implements OnInit {
   displayedColumns: string[] = GROUPS_DISPLAYED_COLUMNS;
   dataSource$: Observable<IAdminGroup[]>;
-  isLoading: Observable<boolean>;
+  isLoading$: Observable<boolean>;
   totalLength$: Observable<number>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -32,7 +32,7 @@ export class AdminGroupsTableComponent implements OnInit {
   ngOnInit(): void {
     this.dataSource$ = this.store.select(SELECT_ADMIN_GROUPS);
     this.totalLength$ = this.store.select(SELECT_ADMIN_GROUPS_LENGTH);
-    this.isLoading = this.store.select(SELECT_ADMIN_LOADING);
+    this.isLoading$ = this.store.select(SELECT_ADMIN_LOADING);
   }
 
   onQueryParamsChange(): void {
