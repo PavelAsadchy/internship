@@ -14,7 +14,7 @@ import { IAdminState } from '../../../../shared/stores/admin-store/admin.state';
 })
 export class AdminGroupsDetailComponent implements OnInit {
   selectedGroup$: Observable<IAdminGroup>;
-  privelegeOptions = PRIVILEGE_OPTIONS;
+  privilegeOptions = PRIVILEGE_OPTIONS;
 
   constructor(private store: Store<IAdminState>) {}
 
