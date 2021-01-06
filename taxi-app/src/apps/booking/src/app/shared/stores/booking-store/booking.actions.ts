@@ -25,17 +25,17 @@ export enum ActionsType {
   DELETE_BOOKING_FAIL = '[BOOKING] Delete Booking Fail',
 }
 
-export const LOAD_BOOKINGS_BY_QUERY = createAction(
+export const LOAD_BOOKINGS_BY_QUERY_ACTION = createAction(
   ActionsType.LOAD_BOOKINGS_BY_QUERY,
   props<{ params: IQueryParams }>()
 );
 
-export const LOAD_BOOKINGS_BY_QUERY_SUCCESS = createAction(
+export const LOAD_BOOKINGS_BY_QUERY_SUCCESS_ACTION = createAction(
   ActionsType.LOAD_BOOKINGS_BY_QUERY_SUCCESS,
   props<{ serverResponse: IServerResponse }>()
 );
 
-export const LOAD_BOOKINGS_BY_QUERY_FAIL = createAction(
+export const LOAD_BOOKINGS_BY_QUERY_FAIL_ACTION = createAction(
   ActionsType.LOAD_BOOKINGS_BY_QUERY_FAIL,
   props<{ message: IShowMessage }>()
 );

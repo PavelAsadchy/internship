@@ -22,6 +22,11 @@ export const SELECT_CURRENT_GROUP = createSelector(
   (state: IAdminState) => state.selectedAdminGroup
 );
 
+export const SELECT_ADMIN_GROUPS_QUERY_PARAMS = createSelector(
+  SELECT_ADMIN_FEATURE,
+  (state: IAdminState) => state.queryParams
+);
+
 export const SELECT_ADMIN_GROUPS_LENGTH = createSelector(
   SELECT_ADMIN_FEATURE,
   (state: IAdminState) => state.totalLength

@@ -30,6 +30,17 @@ const adminReducer = createReducer(
     errorMessage: message.value,
   })),
 
+  on(
+    AdminActions.REFRESH_ADMIN_GROUPS_QUERY_PARAMS_ACTION,
+    (state, { params }) => ({
+      ...state,
+      queryParams: {
+        ...state.queryParams,
+        ...params,
+      },
+    })
+  ),
+
   on(AdminActions.LOAD_GROUP_PRIVILEGES_ACTION, (state) => ({
     ...state,
     loading: true,

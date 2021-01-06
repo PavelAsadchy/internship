@@ -32,14 +32,14 @@ export class BookingEffects {
       switchMap((action: { params: IQueryParams; type: string }) => {
         return this.bookingListService.loadBookingsByQuery(action.params).pipe(
           map((serverResponse: IServerResponse) => {
-            return BookingActions.LOAD_BOOKINGS_BY_QUERY_SUCCESS({
+            return BookingActions.LOAD_BOOKINGS_BY_QUERY_SUCCESS_ACTION({
               serverResponse,
             });
           }),
           catchError((err) => {
             if (err.message) {
               return of(
-                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL({
+                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL_ACTION({
                   message: {
                     ...SHOW_MESSAGE_VALUES.defaultActionFail,
                     value: `ERROR ${err.status}: ${err.validations_errors}`,
@@ -50,7 +50,7 @@ export class BookingEffects {
             // Different notification for educational purposes
             else
               return of(
-                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL({
+                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL_ACTION({
                   message: {
                     ...SHOW_MESSAGE_VALUES.defaultActionWarning,
                     value: `Client-side ERROR: ${err}`,
@@ -82,7 +82,7 @@ export class BookingEffects {
           catchError((err) => {
             if (err.message) {
               return of(
-                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL({
+                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL_ACTION({
                   message: {
                     ...SHOW_MESSAGE_VALUES.defaultActionFail,
                     value: `ERROR ${err.status}: ${err.validations_errors}`,
@@ -91,7 +91,7 @@ export class BookingEffects {
               );
             } else
               return of(
-                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL({
+                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL_ACTION({
                   message: {
                     ...SHOW_MESSAGE_VALUES.defaultActionWarning,
                     value: `Client-side ERROR: ${err}`,
@@ -125,7 +125,7 @@ export class BookingEffects {
           catchError((err) => {
             if (err.message) {
               return of(
-                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL({
+                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL_ACTION({
                   message: {
                     ...SHOW_MESSAGE_VALUES.defaultActionFail,
                     value: `ERROR ${err.status}: ${err.validations_errors}`,
@@ -134,7 +134,7 @@ export class BookingEffects {
               );
             } else
               return of(
-                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL({
+                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL_ACTION({
                   message: {
                     ...SHOW_MESSAGE_VALUES.defaultActionWarning,
                     value: `Client-side ERROR: ${err}`,
@@ -169,7 +169,7 @@ export class BookingEffects {
           catchError((err) => {
             if (err.message) {
               return of(
-                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL({
+                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL_ACTION({
                   message: {
                     ...SHOW_MESSAGE_VALUES.defaultActionFail,
                     value: `ERROR ${err.status}: ${err.validations_errors}`,
@@ -178,7 +178,7 @@ export class BookingEffects {
               );
             } else
               return of(
-                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL({
+                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL_ACTION({
                   message: {
                     ...SHOW_MESSAGE_VALUES.defaultActionWarning,
                     value: `Client-side ERROR: ${err}`,
@@ -205,7 +205,7 @@ export class BookingEffects {
           catchError((err) => {
             if (err.message) {
               return of(
-                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL({
+                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL_ACTION({
                   message: {
                     ...SHOW_MESSAGE_VALUES.defaultActionFail,
                     value: `ERROR ${err.status}: ${err.validations_errors}`,
@@ -214,7 +214,7 @@ export class BookingEffects {
               );
             } else
               return of(
-                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL({
+                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL_ACTION({
                   message: {
                     ...SHOW_MESSAGE_VALUES.defaultActionWarning,
                     value: `Client-side ERROR: ${err}`,

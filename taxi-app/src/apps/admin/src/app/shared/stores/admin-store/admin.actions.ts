@@ -9,6 +9,7 @@ export enum ActionsType {
   LOAD_ADMIN_GROUPS = '[ADMIN] Load Admin Groups',
   LOAD_ADMIN_GROUPS_SUCCESS = '[ADMIN] Load Admin Groups Success',
   LOAD_ADMIN_GROUPS_FAIL = '[ADMIN] Load Admin Groups Fail',
+  REFRESH_ADMIN_GROUPS_QUERY_PARAMS = '[ADMIN] Refresh Admin Groups Query Params',
   LOAD_GROUP_PRIVILEGES = '[ADMIN] Load Admin Group',
   LOAD_GROUP_PRIVILEGES_SUCCESS = '[ADMIN] Load Admin Group Success',
   LOAD_GROUP_PRIVILEGES_FAIL = '[ADMIN] Load Admin Group Fail',
@@ -30,6 +31,11 @@ export const LOAD_ADMIN_GROUPS_SUCCESS_ACTION = createAction(
 export const LOAD_ADMIN_GROUPS_FAIL_ACTION = createAction(
   ActionsType.LOAD_ADMIN_GROUPS_FAIL,
   props<{ message: IShowMessage }>()
+);
+
+export const REFRESH_ADMIN_GROUPS_QUERY_PARAMS_ACTION = createAction(
+  ActionsType.REFRESH_ADMIN_GROUPS_QUERY_PARAMS,
+  props<{ params: IQueryParams }>()
 );
 
 export const LOAD_GROUP_PRIVILEGES_ACTION = createAction(

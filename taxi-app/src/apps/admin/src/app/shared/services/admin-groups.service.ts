@@ -80,6 +80,22 @@ export class AdminGroupsService extends HttpClientService {
 
   doSort(data: IAdminGroup[], queryParams: ISortParams): IAdminGroup[] {
     if (!queryParams.field) return data;
+
+    if (queryParams.field === 'privileges_total') {
+      if (queryParams.direction === 'asc') {
+        return data.sort((a: IAdminGroup, b: IAdminGroup) => {
+          if (a.privileges.length > b.privileges.length) return 1;
+          if (a.privileges.length < b.privileges.length) return -1;
+          return 0;
+        });
+      } else
+        return data.sort((a: IAdminGroup, b: IAdminGroup) => {
+          if (a.privileges.length > b.privileges.length) return -1;
+          if (a.privileges.length < b.privileges.length) return 1;
+          return 0;
+        });
+    }
+
     if (queryParams.field && queryParams.direction === 'asc') {
       return data.sort((a: IAdminGroup, b: IAdminGroup) => {
         if (a[queryParams.field] > b[queryParams.field]) return 1;

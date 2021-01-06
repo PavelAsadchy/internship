@@ -5,6 +5,7 @@ import { SharedModule } from 'src/libs/@shared/shared.module';
 import { BoardAdminRoutingModule } from './board-admin-routing.module';
 import { BoardAdminComponent } from './container/board-admin.component';
 import { BoardAdminContentComponent } from './components/board-admin-content/board-admin-content.component';
+import { AdminGroupsModule } from '../admin-groups/admin-groups.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,7 @@ import { BoardAdminContentComponent } from './components/board-admin-content/boa
     MenuMainComponent,
     BoardAdminContentComponent,
   ],
-  imports: [SharedModule, BoardAdminRoutingModule],
+  imports: [SharedModule, BoardAdminRoutingModule, AdminGroupsModule],
   exports: [BoardAdminComponent],
 })
 export class BoardAdminModule {}

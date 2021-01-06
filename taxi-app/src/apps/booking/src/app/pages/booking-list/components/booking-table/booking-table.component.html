@@ -35,7 +35,7 @@
 
         <ng-container matColumnDef="pickUpTime">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Pickup Time </th>
-            <td mat-cell *matCellDef="let row" appUrgentBackgroundColor [pickUpUrgency]="row.pickUpUrgency">
+            <td class="table__col--center" mat-cell *matCellDef="let row" appUrgentBackgroundColor [pickUpUrgency]="row.pickUpUrgency">
                 <span class="table__cell-text--small">
                     {{ row.bookingTime | date:'dd/M/yyyy' }}
                 </span>
@@ -121,7 +121,7 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
         <tr class="mat-row" *matNoDataRow>
-            <td class="mat-cell" colspan="9">No data loaded</td>
+            <td class="mat-cell table__col--center" colspan="9">No data loaded</td>
         </tr>
     </table>
 </div>
