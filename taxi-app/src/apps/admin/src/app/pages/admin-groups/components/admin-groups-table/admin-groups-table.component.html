@@ -42,7 +42,7 @@
         <ng-container matColumnDef="action_btn">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element">
-                <!-- {{element.symbol}} -->
+                <app-admin-groups-table-btns [element]="element"></app-admin-groups-table-btns>
             </td>
         </ng-container>
 
