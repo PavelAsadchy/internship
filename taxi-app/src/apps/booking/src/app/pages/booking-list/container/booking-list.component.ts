@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { skip, takeUntil } from 'rxjs/operators';
-import { IQueryParams } from 'src/apps/booking/src/app/shared/models/query-params.model';
+import { IQueryParams } from 'src/libs/@shared/models/query-params.model';
 import { UnsubscribeService } from 'src/libs/@shared/services/unsubscribe.service';
-import { LOAD_BOOKINGS_BY_QUERY } from 'src/apps/booking/src/app/shared/stores/booking-store/booking.actions';
+import { LOAD_BOOKINGS_BY_QUERY_ACTION } from 'src/apps/booking/src/app/shared/stores/booking-store/booking.actions';
 import { SELECT_QUERY_PARAMS } from 'src/apps/booking/src/app/shared/stores/booking-store/booking.selector';
 import { IBookingState } from 'src/apps/booking/src/app/shared/stores/booking-store/booking.state';
 
@@ -24,7 +24,7 @@ export class BookingListComponent implements OnInit, OnDestroy {
       .pipe(skip(1), takeUntil(this.unsubscribeService.subscription))
       .subscribe((bookingQueryParams: IQueryParams) => {
         this.store.dispatch(
-          LOAD_BOOKINGS_BY_QUERY({ params: bookingQueryParams })
+          LOAD_BOOKINGS_BY_QUERY_ACTION({ params: bookingQueryParams })
         );
       });
   }

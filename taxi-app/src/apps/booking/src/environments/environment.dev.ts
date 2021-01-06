@@ -1,6 +1,6 @@
-import { IEnvironment } from './ienvironment.model';
+import { IEnvironmentBooking } from './ienvironment-booking.model';
 
-export const environment: IEnvironment = {
+export const environment: IEnvironmentBooking = {
   production: false,
   authApiUrl: 'http://localhost:8080',
   databaseApiUrl: 'https://taxi-app-294611.firebaseio.com/booking-list',

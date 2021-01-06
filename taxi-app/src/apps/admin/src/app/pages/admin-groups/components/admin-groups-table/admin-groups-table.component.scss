@@ -1,0 +1,15 @@
+@import "app-mixins";
+
+.admin-groups {
+  &__enum {
+    position: relative;
+  }
+
+  &__loading {
+    @include tableLoader;
+  }
+}
+
+.table {
+  @include table;
+}

@@ -1,4 +1,4 @@
-export interface IEnvironment {
+export interface IEnvironmentBooking {
   production: boolean;
   authApiUrl: string;
   databaseApiUrl: string;

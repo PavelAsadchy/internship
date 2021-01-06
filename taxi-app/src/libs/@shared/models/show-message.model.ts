@@ -27,4 +27,7 @@ export interface IShowMessageOnAction {
   defaultActionSuccess: IShowMessage;
   defaultActionWarning: IShowMessage;
   defaultActionFail: IShowMessage;
+  loadAdminGroups: IShowMessage;
+  loadGroupPrivileges: IShowMessage;
+  updatePrivileges: IShowMessage;
 }

@@ -1,4 +1,4 @@
-import { IQueryParams } from 'src/apps/booking/src/app/shared/models/query-params.model';
+import { IQueryParams } from 'src/libs/@shared/models/query-params.model';
 
 export interface IHeaders {
   name: string;

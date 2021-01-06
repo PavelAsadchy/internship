@@ -52,7 +52,7 @@ export class BookingTableComponent implements OnInit {
     this.isLoading$ = this.store.select(SELECT_BOOKING_LOADING);
   }
 
-  onQueryParamsChange() {
+  onQueryParamsChange(): void {
     this.store.dispatch(
       REFRESH_QUERY_PARAMS_ACTION({
         params: {

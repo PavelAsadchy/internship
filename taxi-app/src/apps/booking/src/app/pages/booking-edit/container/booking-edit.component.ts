@@ -16,7 +16,7 @@ import {
   SELECT_CURRENT_BOOKING,
 } from 'src/apps/booking/src/app/shared/stores/booking-store/booking.selector';
 import {
-  DEFAULT_QUERY_PARAMS,
+  DEFAULT_BOOKING_QUERY_PARAMS,
   IBookingState,
 } from 'src/apps/booking/src/app/shared/stores/booking-store/booking.state';
 
@@ -69,7 +69,7 @@ export class BookingEditComponent implements OnInit, OnDestroy {
 
     this.router.navigate(['board', 'booking', 'list']);
     this.store.dispatch(
-      REFRESH_QUERY_PARAMS_ACTION({ params: DEFAULT_QUERY_PARAMS })
+      REFRESH_QUERY_PARAMS_ACTION({ params: DEFAULT_BOOKING_QUERY_PARAMS })
     );
   }
 }

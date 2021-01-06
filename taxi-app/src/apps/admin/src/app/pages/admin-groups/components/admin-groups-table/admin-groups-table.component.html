@@ -1,0 +1,53 @@
+<div class="admin-groups__enum mat-elevation-z8">
+    <div class="admin-groups__loading" *ngIf="isLoading$ | async">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+
+    <mat-paginator
+        [length]="totalLength$ | async"
+        [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons
+        (page)="onQueryParamsChange()"
+    >
+    </mat-paginator>
+
+    <table
+        class="admin-groups__table table"
+        mat-table
+        [dataSource]="dataSource$ | async"
+        matSort
+        (matSortChange)="onQueryParamsChange()"
+    >
+
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.id }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.name }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="privileges_total">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> № of privileges </th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.privileges.length }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action_btn">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+                <app-admin-groups-table-btns [element]="element"></app-admin-groups-table-btns>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

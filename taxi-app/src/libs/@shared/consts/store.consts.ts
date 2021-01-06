@@ -77,4 +77,19 @@ export const SHOW_MESSAGE_VALUES: IShowMessageOnAction = {
     action: 'X',
     options: FAIL_SNACKBAR_OPTIONS,
   },
+  loadAdminGroups: {
+    value: 'Loading admin groups',
+    action: null,
+    options: SNACKBAR_OPTIONS,
+  },
+  loadGroupPrivileges: {
+    value: 'Loading group privileges',
+    action: null,
+    options: SNACKBAR_OPTIONS,
+  },
+  updatePrivileges: {
+    value: 'Updating new privileges',
+    action: null,
+    options: SNACKBAR_OPTIONS,
+  },
 };

@@ -1,0 +1,16 @@
+<button mat-icon-button class="action-btn" (click)="onDetail()">
+    <mat-icon class="action-btn__icon action-btn__icon--primary">
+        remove_red_eye
+    </mat-icon>
+    <span class="action-btn__tooltip action-btn__tooltip--primary">
+        View details for {{ element.name }}
+    </span>
+</button>
+<button mat-icon-button class="action-btn" (click)="onEdit()">
+    <mat-icon class="action-btn__icon action-btn__icon--primary">
+        create
+    </mat-icon>
+    <span class="action-btn__tooltip action-btn__tooltip--primary">
+        Update privileges for {{ element.name }}
+    </span>
+</button>

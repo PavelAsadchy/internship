@@ -1,0 +1,36 @@
+<div class="admin-groups-detail" *ngIf="(selectedGroup$ | async)">
+    <mat-card-title>
+        User Group #{{ (selectedGroup$ | async).name }}
+    </mat-card-title>
+    <mat-tab-group>
+        <mat-tab label="Detail">
+            <table class="admin-groups-detail__table table">
+                <tr>
+                    <td class="table__cell table__cell--heading">id</td>
+                    <td class="table__cell">{{ (selectedGroup$ | async).id }}</td>
+                </tr>
+                <tr>
+                    <td class="table__cell table__cell--heading">name</td>
+                    <td class="table__cell">{{ (selectedGroup$ | async).name }}</td>
+                </tr>
+                <tr>
+                    <td class="table__cell table__cell--heading">number of privileges</td>
+                    <td class="table__cell">{{ (selectedGroup$ | async).privileges.length }}</td>
+                </tr>
+                <tr>
+                    <td class="table__cell table__cell--heading">privileges</td>
+                    <td class="table__cell">
+                        <ul class="table__privileges">
+                            <li class="table__privilege-item" *ngFor="let privilege of (selectedGroup$ | async).privileges">
+                                {{ privilegeOptions[privilege].name }}
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+        </mat-tab>
+    </mat-tab-group>
+    <button class="admin-groups-detail__btn" mat-raised-button color="warn" (click)="onDetailBarClose()">
+        Close
+    </button>
+</div>
