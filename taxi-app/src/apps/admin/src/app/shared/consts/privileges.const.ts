@@ -1,37 +1,45 @@
 export enum PrivilegeOptions {
-  CREATE_BOOKINGS,
-  READ_BOOKINGS,
-  UPDATE_BOOKINGS,
-  DELETE_BOOKINGS,
-  CREATE_PRIVILEGE,
-  READ_PRIVILEGE,
-  UPDATE_PRIVILEGE,
-  DELETE_PRIVILEGE,
+  CREATE_BOOKINGS = 'Create bookings',
+  READ_BOOKINGS = 'Read bookings',
+  UPDATE_BOOKINGS = 'Update bookings',
+  DELETE_BOOKINGS = 'Delete bookings',
+  CREATE_PRIVILEGE = 'Create privileges',
+  READ_PRIVILEGE = 'Read privileges',
+  UPDATE_PRIVILEGE = 'Update privileges',
+  DELETE_PRIVILEGE = 'Delete privileges',
 }
 
-export const PRIVILEGE_OPTIONS = {
-  [PrivilegeOptions[PrivilegeOptions.CREATE_BOOKINGS]]: {
+export const PRIVILEGE_OPTIONS = [
+  {
     name: 'Create bookings',
+    value: PrivilegeOptions[PrivilegeOptions.CREATE_BOOKINGS],
   },
-  [PrivilegeOptions[PrivilegeOptions.READ_BOOKINGS]]: {
+  {
     name: 'Read bookings',
+    value: PrivilegeOptions[PrivilegeOptions.READ_BOOKINGS],
   },
-  [PrivilegeOptions[PrivilegeOptions.UPDATE_BOOKINGS]]: {
+  {
     name: 'Update bookings',
+    value: PrivilegeOptions[PrivilegeOptions.UPDATE_BOOKINGS],
   },
-  [PrivilegeOptions[PrivilegeOptions.DELETE_BOOKINGS]]: {
+  {
     name: 'Delete bookings',
+    value: PrivilegeOptions[PrivilegeOptions.DELETE_BOOKINGS],
   },
-  [PrivilegeOptions[PrivilegeOptions.CREATE_PRIVILEGE]]: {
+  {
     name: 'Create privileges',
+    value: PrivilegeOptions[PrivilegeOptions.CREATE_PRIVILEGE],
   },
-  [PrivilegeOptions[PrivilegeOptions.READ_PRIVILEGE]]: {
+  {
     name: 'Read privileges',
+    value: PrivilegeOptions[PrivilegeOptions.READ_PRIVILEGE],
   },
-  [PrivilegeOptions[PrivilegeOptions.UPDATE_PRIVILEGE]]: {
+  {
     name: 'Update privileges',
+    value: PrivilegeOptions[PrivilegeOptions.UPDATE_PRIVILEGE],
   },
-  [PrivilegeOptions[PrivilegeOptions.DELETE_PRIVILEGE]]: {
+  {
     name: 'Delete privileges',
+    value: PrivilegeOptions[PrivilegeOptions.DELETE_PRIVILEGE],
   },
-};
+];

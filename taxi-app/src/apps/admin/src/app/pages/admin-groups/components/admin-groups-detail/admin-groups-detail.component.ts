@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { PRIVILEGE_OPTIONS } from '../../../../shared/consts/privileges.const';
+import { PrivilegeOptions } from '../../../../shared/consts/privileges.const';
 import { IAdminGroup } from '../../../../shared/models/admin-group.model';
 import { TOGGLE_DETAIL_BAR_ACTION } from '../../../../shared/stores/admin-store/admin.actions';
 import { SELECT_CURRENT_GROUP } from '../../../../shared/stores/admin-store/admin.selector';
@@ -14,7 +14,7 @@ import { IAdminState } from '../../../../shared/stores/admin-store/admin.state';
 })
 export class AdminGroupsDetailComponent implements OnInit {
   selectedGroup$: Observable<IAdminGroup>;
-  privilegeOptions = PRIVILEGE_OPTIONS;
+  privilegeOptions = PrivilegeOptions;
 
   constructor(private store: Store<IAdminState>) {}
 

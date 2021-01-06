@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { BoardAdminComponent } from './container/board-admin.component';
 import { AdminGroupsComponent } from '../admin-groups/container/admin-groups.component';
 import { AdminDetailComponent } from '../admin-detail/admin-detail.component';
-import { AdminEditComponent } from '../admin-edit/admin-edit.component';
+import { AdminEditComponent } from '../admin-edit/container/admin-edit.component';
 import { BoardAdminContentComponent } from './components/board-admin-content/board-admin-content.component';
 
 const routes: Routes = [
@@ -27,12 +27,12 @@ const routes: Routes = [
             path: 'list',
             component: AdminGroupsComponent,
           },
+          // {
+          //   path: ':id',
+          //   component: AdminDetailComponent,
+          // },
           {
-            path: ':id',
-            component: AdminDetailComponent,
-          },
-          {
-            path: ':id/edit',
+            path: 'edit',
             component: AdminEditComponent,
           },
         ],
