@@ -10,6 +10,7 @@ export enum ActionsType {
   LOAD_ADMIN_GROUPS_SUCCESS = '[ADMIN] Load Admin Groups Success',
   LOAD_ADMIN_GROUPS_FAIL = '[ADMIN] Load Admin Groups Fail',
   REFRESH_ADMIN_GROUPS_QUERY_PARAMS = '[ADMIN] Refresh Admin Groups Query Params',
+  TOGGLE_DETAIL_BAR = '[ADMIN] Open Detail Bar',
   LOAD_GROUP_PRIVILEGES = '[ADMIN] Load Admin Group',
   LOAD_GROUP_PRIVILEGES_SUCCESS = '[ADMIN] Load Admin Group Success',
   LOAD_GROUP_PRIVILEGES_FAIL = '[ADMIN] Load Admin Group Fail',
@@ -38,9 +39,14 @@ export const REFRESH_ADMIN_GROUPS_QUERY_PARAMS_ACTION = createAction(
   props<{ params: IQueryParams }>()
 );
 
+export const TOGGLE_DETAIL_BAR_ACTION = createAction(
+  ActionsType.TOGGLE_DETAIL_BAR,
+  props<{ isDetailBarOpen: boolean }>()
+);
+
 export const LOAD_GROUP_PRIVILEGES_ACTION = createAction(
   ActionsType.LOAD_GROUP_PRIVILEGES,
-  props<{ adminGroupId: string }>()
+  props<{ adminGroupId: number }>()
 );
 
 export const LOAD_GROUP_PRIVILEGES_SUCCESS_ACTION = createAction(

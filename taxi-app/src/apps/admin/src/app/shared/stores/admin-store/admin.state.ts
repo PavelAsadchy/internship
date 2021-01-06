@@ -8,6 +8,7 @@ import { IAdminGroup } from '../../models/admin-group.model';
 
 export interface IAdminState extends EntityState<IAdminGroup> {
   selectedAdminGroup: IAdminGroup;
+  isDetailBarOpen: boolean;
   queryParams: IQueryParams;
   totalLength: number;
   loading: boolean;
@@ -36,6 +37,7 @@ export const DEFAULT_ADMIN_STATE: IAdminState = {
   ids: [],
   entities: {},
   selectedAdminGroup: null,
+  isDetailBarOpen: false,
   queryParams: DEFAULT_ADMIN_GROUPS_QUERY_PARAMS,
   totalLength: null,
   loading: false,

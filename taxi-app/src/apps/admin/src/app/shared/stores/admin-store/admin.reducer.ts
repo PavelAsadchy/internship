@@ -41,6 +41,11 @@ const adminReducer = createReducer(
     })
   ),
 
+  on(AdminActions.TOGGLE_DETAIL_BAR_ACTION, (state, { isDetailBarOpen }) => ({
+    ...state,
+    isDetailBarOpen,
+  })),
+
   on(AdminActions.LOAD_GROUP_PRIVILEGES_ACTION, (state) => ({
     ...state,
     loading: true,

@@ -6,10 +6,14 @@ import { DEFAULT_ADMIN_GROUPS } from '../../../shared/consts/admin-groups.const'
 import { Store } from '@ngrx/store';
 import { UnsubscribeService } from 'src/libs/@shared/services/unsubscribe.service';
 import { IAdminState } from '../../../shared/stores/admin-store/admin.state';
-import { SELECT_ADMIN_GROUPS_QUERY_PARAMS } from '../../../shared/stores/admin-store/admin.selector';
+import {
+  SELECT_ADMIN_GROUPS_QUERY_PARAMS,
+  SELECT_IS_DETAIL_BAR_OPEN,
+} from '../../../shared/stores/admin-store/admin.selector';
 import { takeUntil } from 'rxjs/operators';
 import { IQueryParams } from 'src/libs/@shared/models/query-params.model';
 import { LOAD_ADMIN_GROUPS_ACTION } from '../../../shared/stores/admin-store/admin.actions';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-admin-groups',
@@ -19,6 +23,8 @@ import { LOAD_ADMIN_GROUPS_ACTION } from '../../../shared/stores/admin-store/adm
 export class AdminGroupsComponent implements OnInit {
   databaseUrl: string;
   groups = DEFAULT_ADMIN_GROUPS;
+
+  isDetailBarOpen$: Observable<boolean>;
 
   constructor(
     private store: Store<IAdminState>,
@@ -38,6 +44,8 @@ export class AdminGroupsComponent implements OnInit {
           LOAD_ADMIN_GROUPS_ACTION({ params: adminGroupsQueryParams })
         );
       });
+
+    this.isDetailBarOpen$ = this.store.select(SELECT_IS_DETAIL_BAR_OPEN);
   }
 
   // save(): void {
