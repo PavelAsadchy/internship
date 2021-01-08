@@ -1,3 +1,5 @@
+import { Chbx } from '../models/privilege.model';
+
 export enum PrivilegeOptions {
   CREATE_BOOKINGS,
   READ_BOOKINGS,
@@ -9,7 +11,7 @@ export enum PrivilegeOptions {
   DELETE_PRIVILEGE,
 }
 
-export const PRIVILEGE_OPTIONS = [
+export const PRIVILEGE_OPTIONS: Chbx[] = [
   {
     name: 'Create bookings',
     value: PrivilegeOptions[PrivilegeOptions.CREATE_BOOKINGS],
