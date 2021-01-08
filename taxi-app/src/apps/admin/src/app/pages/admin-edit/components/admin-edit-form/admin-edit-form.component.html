@@ -1,0 +1,24 @@
+<form
+    class="admin-edit-form"
+    [formGroup]="privilegeEditForm"
+    (ngSubmit)="onPrivilegeEditFormSubmit()"
+>
+    <section class="admin-edit-form__chbx" formArrayName="privilegeOptions">
+        <mat-checkbox
+            color="primary"
+            *ngFor="let privilegeOption of privilegeOptions; let i = index"
+            [formControlName]="i"
+        >
+            {{ privilegeOption.name }}
+        </mat-checkbox>
+    </section>
+
+    <section>
+        <button mat-raised-button color="action-btn" type="submit">
+            Update
+            <mat-icon>save</mat-icon>
+        </button>
+    </section>
+
+</form>
+

@@ -1,0 +1,21 @@
+@import "app-colors";
+
+.admin-edit-form {
+  display: flex;
+  flex-direction: column;
+
+  &__chbx {
+    display: flex;
+    flex-flow: row wrap;
+
+    & > .mat-checkbox {
+      width: 33%;
+      min-width: 200px;
+    }
+  }
+}
+
+.mat-action-btn {
+  background-color: $dark-xxl;
+  color: $light-xxl;
+}
