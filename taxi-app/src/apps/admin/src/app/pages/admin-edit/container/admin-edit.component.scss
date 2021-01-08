@@ -1,5 +1,11 @@
 @import "app-colors";
 
+.admin-edit {
+  &__section:not(:last-child) {
+    margin-bottom: 20px;
+  }
+}
+
 .mat-action-btn {
   background-color: $dark-xxl;
   color: $light-xxl;
