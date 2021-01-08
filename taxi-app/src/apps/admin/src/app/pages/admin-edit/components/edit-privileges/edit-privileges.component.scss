@@ -1,0 +1,11 @@
+.edit-privileges {
+  &__chbx {
+    display: flex;
+    flex-flow: row wrap;
+
+    & > .mat-checkbox {
+      width: 33%;
+      min-width: 200px;
+    }
+  }
+}

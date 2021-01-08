@@ -27,17 +27,17 @@ export class BookingTableBtnsComponent {
     private router: Router
   ) {}
 
-  openBookingDetails(booking: IBooking): void {
+  openBookingDetails(): void {
     this.dialog.open(PopupComponent, {
-      data: { ...OPEN_BOOKING_DETAILS, payload: booking },
+      data: { ...OPEN_BOOKING_DETAILS, payload: this.row },
     });
   }
 
-  openBookingEdit(booking: IBooking): void {
-    this.router.navigate(['board', 'booking', 'update', booking.id]);
+  openBookingEdit(): void {
+    this.router.navigate(['board', 'booking', 'update', this.row.id]);
   }
 
-  openDeleteConfirmation(bookingId: string): void {
+  openDeleteConfirmation(): void {
     const dialogRef = this.dialog.open(PopupComponent, {
       data: DELETE_BOOKING_CONFIRM,
     });
@@ -47,7 +47,9 @@ export class BookingTableBtnsComponent {
       .pipe(take(1))
       .subscribe((isDeletingConfirmed) => {
         if (isDeletingConfirmed)
-          this.store.dispatch(DELETE_BOOKING_ACTION({ bookingId }));
+          this.store.dispatch(
+            DELETE_BOOKING_ACTION({ bookingId: this.row.id })
+          );
       });
   }
 }

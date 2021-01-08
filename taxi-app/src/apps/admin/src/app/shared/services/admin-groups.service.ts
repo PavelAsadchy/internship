@@ -40,7 +40,17 @@ export class AdminGroupsService extends HttpClientService {
       map((adminGroups: IAdminGroup[]) => {
         if (!adminGroups) return { adminGroups: [], totalLength: 0 };
 
-        const sortedAdminGroups = this.doSort(adminGroups, queryParams.sort);
+        const savedAdminGroupsWithId = Object.keys(adminGroups).map(
+          (key: string) => ({
+            ...adminGroups[key],
+            id: key,
+          })
+        );
+
+        const sortedAdminGroups = this.doSort(
+          savedAdminGroupsWithId,
+          queryParams.sort
+        );
 
         const totalLength = sortedAdminGroups.length;
 
@@ -64,7 +74,11 @@ export class AdminGroupsService extends HttpClientService {
         name: 'InterceptorSkipHeader',
         value: '',
       },
-    });
+    }).pipe(
+      map((selectedAdminGroup: IAdminGroup) => {
+        return { ...selectedAdminGroup, id: adminGroupId };
+      })
+    );
   }
 
   updateAdminGroup(adminGroup: IAdminGroup): Observable<IAdminGroup> {

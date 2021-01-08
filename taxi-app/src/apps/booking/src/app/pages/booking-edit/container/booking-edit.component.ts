@@ -60,7 +60,7 @@ export class BookingEditComponent implements OnInit, OnDestroy {
     this.store.dispatch(CLEAR_SELECTED_BOOKING_ACTION());
   }
 
-  bookingEditHandler(editedBooking: IBooking) {
+  bookingEditHandler(editedBooking: IBooking): void {
     this.store.dispatch(
       UPDATE_BOOKING_ACTION({
         booking: { ...editedBooking, id: this.editBookingParams.id },

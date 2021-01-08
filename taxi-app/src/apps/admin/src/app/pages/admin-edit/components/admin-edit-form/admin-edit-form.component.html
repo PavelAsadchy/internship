@@ -1,16 +1,24 @@
 <form
     class="admin-edit-form"
-    [formGroup]="privilegeEditForm"
+    [formGroup]="adminGroupEditForm"
     (ngSubmit)="onPrivilegeEditFormSubmit()"
 >
-    <section class="admin-edit-form__chbx" formArrayName="privilegeOptions">
-        <mat-checkbox
-            color="primary"
-            *ngFor="let privilegeOption of privilegeOptions; let i = index"
-            [formControlName]="i"
+    <section>
+        <app-edit-name
+            [parentGroup]="adminGroupEditForm.get('userGroup')"
         >
-            {{ privilegeOption.name }}
-        </mat-checkbox>
+        </app-edit-name>
+    </section>
+
+    <section>
+        <mat-card-title>Privileges</mat-card-title>
+    </section>
+
+    <section class="admin-edit-form__privileges">
+        <app-edit-privileges
+            [parentGroup]="adminGroupEditForm.get('privileges')"
+        >
+        </app-edit-privileges>
     </section>
 
     <section>
@@ -19,6 +27,4 @@
             <mat-icon>save</mat-icon>
         </button>
     </section>
-
 </form>
-

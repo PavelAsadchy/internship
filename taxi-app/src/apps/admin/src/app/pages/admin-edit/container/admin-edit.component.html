@@ -1,12 +1,16 @@
-<div class="admin-edit">
+<div class="admin-edit" *ngIf="editAdminGroup">
     <section>
-        <button mat-raised-button color="action-btn">
+        <button mat-raised-button color="action-btn" (click)="onReturn()">
             <mat-icon>keyboard_arrow_left</mat-icon>
             Back
         </button>
     </section>
-    <mat-card-title>Privileges</mat-card-title>
 
-    <app-admin-edit-form></app-admin-edit-form>
+    <app-admin-edit-form
+        [adminGroup]="editAdminGroup"
+        (onFormSubmit)="adminGroupEditHandler($event)"
+    >
+    </app-admin-edit-form>
 
 </div>
+<mat-spinner *ngIf="isLoading$ | async"></mat-spinner>

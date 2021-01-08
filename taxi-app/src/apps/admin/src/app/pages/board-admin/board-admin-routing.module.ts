@@ -33,6 +33,11 @@ const routes: Routes = [
           // },
           {
             path: 'edit',
+            redirectTo: 'list',
+            pathMatch: 'full',
+          },
+          {
+            path: 'edit/:id',
             component: AdminEditComponent,
           },
         ],

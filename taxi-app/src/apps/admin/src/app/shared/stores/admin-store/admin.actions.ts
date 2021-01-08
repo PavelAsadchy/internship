@@ -15,6 +15,7 @@ export enum ActionsType {
   LOAD_GROUP_PRIVILEGES = '[ADMIN] Load Admin Group',
   LOAD_GROUP_PRIVILEGES_SUCCESS = '[ADMIN] Load Admin Group Success',
   LOAD_GROUP_PRIVILEGES_FAIL = '[ADMIN] Load Admin Group Fail',
+  CLEAR_SELECTED_ADMIN_GROUP = '[ADMIN] Clear Selected Admin Group',
   UPDATE_GROUP_PRIVILEGES = '[ADMIN] Update Admin Group',
   UPDATE_GROUP_PRIVILEGES_SUCCESS = '[ADMIN] Update Admin Group Success',
   UPDATE_GROUP_PRIVILEGES_FAIL = '[ADMIN] Update Admin Group Fail',
@@ -52,7 +53,7 @@ export const SET_ADMIN_GROUP_ACTION = createAction(
 
 export const LOAD_GROUP_PRIVILEGES_ACTION = createAction(
   ActionsType.LOAD_GROUP_PRIVILEGES,
-  props<{ adminGroupId: number }>()
+  props<{ adminGroupId: string }>()
 );
 
 export const LOAD_GROUP_PRIVILEGES_SUCCESS_ACTION = createAction(
@@ -63,6 +64,10 @@ export const LOAD_GROUP_PRIVILEGES_SUCCESS_ACTION = createAction(
 export const LOAD_GROUP_PRIVILEGES_FAIL_ACTION = createAction(
   ActionsType.LOAD_GROUP_PRIVILEGES_FAIL,
   props<{ message: IShowMessage }>()
+);
+
+export const CLEAR_SELECTED_ADMIN_GROUP_ACTION = createAction(
+  ActionsType.CLEAR_SELECTED_ADMIN_GROUP
 );
 
 export const UPDATE_GROUP_PRIVILEGES_ACTION = createAction(

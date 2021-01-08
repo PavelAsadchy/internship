@@ -1,12 +1,12 @@
 export enum PrivilegeOptions {
-  CREATE_BOOKINGS = 'Create bookings',
-  READ_BOOKINGS = 'Read bookings',
-  UPDATE_BOOKINGS = 'Update bookings',
-  DELETE_BOOKINGS = 'Delete bookings',
-  CREATE_PRIVILEGE = 'Create privileges',
-  READ_PRIVILEGE = 'Read privileges',
-  UPDATE_PRIVILEGE = 'Update privileges',
-  DELETE_PRIVILEGE = 'Delete privileges',
+  CREATE_BOOKINGS,
+  READ_BOOKINGS,
+  UPDATE_BOOKINGS,
+  DELETE_BOOKINGS,
+  CREATE_PRIVILEGE,
+  READ_PRIVILEGE,
+  UPDATE_PRIVILEGE,
+  DELETE_PRIVILEGE,
 }
 
 export const PRIVILEGE_OPTIONS = [

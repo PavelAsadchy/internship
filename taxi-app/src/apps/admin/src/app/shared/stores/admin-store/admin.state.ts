@@ -19,8 +19,8 @@ export interface IAdminState extends EntityState<IAdminGroup> {
 export const adminAdapter: EntityAdapter<IAdminGroup> = createEntityAdapter<IAdminGroup>();
 
 export const DEFAULT_ADMIN_GROUPS_SORT_PARAMS: ISortParams = {
-  field: null,
-  direction: null,
+  field: 'id_number',
+  direction: 'asc',
 };
 
 export const DEFAULT_ADMIN_GROUPS_PAGINATE_PARAMS: IPaginateParams = {

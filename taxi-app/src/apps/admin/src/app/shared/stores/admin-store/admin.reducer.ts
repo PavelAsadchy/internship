@@ -71,6 +71,10 @@ const adminReducer = createReducer(
     ...state,
     errorMessage: message.value,
   })),
+  on(AdminActions.CLEAR_SELECTED_ADMIN_GROUP_ACTION, (state) => ({
+    ...state,
+    selectedAdminGroup: null,
+  })),
 
   on(
     AdminActions.UPDATE_GROUP_PRIVILEGES_SUCCESS_ACTION,

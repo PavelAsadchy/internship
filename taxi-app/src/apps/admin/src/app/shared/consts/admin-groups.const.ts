@@ -2,22 +2,22 @@ import { IAdminGroup } from '../models/admin-group.model';
 
 export const DEFAULT_ADMIN_GROUPS: IAdminGroup[] = [
   {
-    id: 1,
+    id_number: 1,
     name: 'user_basic',
     privileges: ['READ_BOOKINGS'],
   },
   {
-    id: 2,
+    id_number: 2,
     name: 'user_avg',
     privileges: ['CREATE_BOOKINGS', 'READ_BOOKINGS'],
   },
   {
-    id: 3,
+    id_number: 3,
     name: 'user_adv',
     privileges: ['CREATE_BOOKINGS', 'READ_BOOKINGS', 'UPDATE_BOOKINGS'],
   },
   {
-    id: 4,
+    id_number: 4,
     name: 'user_prem',
     privileges: [
       'CREATE_BOOKINGS',
@@ -27,7 +27,7 @@ export const DEFAULT_ADMIN_GROUPS: IAdminGroup[] = [
     ],
   },
   {
-    id: 5,
+    id_number: 5,
     name: 'manager_basic',
     privileges: [
       'CREATE_BOOKINGS',
@@ -37,7 +37,7 @@ export const DEFAULT_ADMIN_GROUPS: IAdminGroup[] = [
     ],
   },
   {
-    id: 6,
+    id_number: 6,
     name: 'manager_avg',
     privileges: [
       'CREATE_BOOKINGS',
@@ -48,7 +48,7 @@ export const DEFAULT_ADMIN_GROUPS: IAdminGroup[] = [
     ],
   },
   {
-    id: 7,
+    id_number: 7,
     name: 'manager_adv',
     privileges: [
       'CREATE_BOOKINGS',
@@ -60,12 +60,12 @@ export const DEFAULT_ADMIN_GROUPS: IAdminGroup[] = [
     ],
   },
   {
-    id: 8,
+    id_number: 8,
     name: 'manager_prem',
     privileges: ['READ_BOOKINGS', 'READ_PRIVILEGE', 'UPDATE_PRIVILEGE'],
   },
   {
-    id: 9,
+    id_number: 9,
     name: 'management',
     privileges: [
       'READ_BOOKINGS',
@@ -76,7 +76,7 @@ export const DEFAULT_ADMIN_GROUPS: IAdminGroup[] = [
     ],
   },
   {
-    id: 10,
+    id_number: 10,
     name: 'admin',
     privileges: [
       'CREATE_BOOKINGS',
@@ -92,7 +92,7 @@ export const DEFAULT_ADMIN_GROUPS: IAdminGroup[] = [
 ];
 
 export const GROUPS_DISPLAYED_COLUMNS = [
-  'id',
+  'id_number',
   'name',
   'privileges_total',
   'action_btn',

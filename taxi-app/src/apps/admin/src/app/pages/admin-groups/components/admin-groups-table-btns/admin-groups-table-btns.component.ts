@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { IAdminGroup } from '../../../../shared/models/admin-group.model';
 import {
@@ -16,12 +17,14 @@ export class AdminGroupsTableBtnsComponent {
   @Input()
   element: IAdminGroup;
 
-  constructor(private store: Store<IAdminState>) {}
+  constructor(private store: Store<IAdminState>, private router: Router) {}
 
   onDetail(): void {
     this.store.dispatch(SET_ADMIN_GROUP_ACTION({ adminGroup: this.element }));
     this.store.dispatch(TOGGLE_DETAIL_BAR_ACTION({ isDetailBarOpen: true }));
   }
 
-  onEdit(): void {}
+  onEdit(): void {
+    this.router.navigate(['admin', 'groups', 'edit', this.element.id]);
+  }
 }
