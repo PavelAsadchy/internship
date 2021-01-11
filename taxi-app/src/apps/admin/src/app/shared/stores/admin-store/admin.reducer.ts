@@ -41,14 +41,6 @@ const adminReducer = createReducer(
     })
   ),
 
-  on(AdminActions.TOGGLE_DETAIL_BAR_ACTION, (state, { isDetailBarOpen }) => ({
-    ...state,
-    isDetailBarOpen,
-  })),
-  on(AdminActions.SELECT_ADMIN_GROUP_ACTION, (state, { adminGroup }) => ({
-    ...state,
-    selectedAdminGroup: adminGroup,
-  })),
   on(AdminActions.CLEAR_SELECTED_ADMIN_GROUP_ACTION, (state) => ({
     ...state,
     selectedAdminGroup: null,
