@@ -7,6 +7,7 @@ import { EditNameComponent } from './components/edit-name/edit-name.component';
 import { PrivilegesSearchComponent } from './components/privileges-search/privileges-search.component';
 import { SearchPipe } from '../../shared/pipes/search.pipe';
 import { SearchPrivilegeService } from '../../shared/services/search-privilege.service';
+import { PopupModule } from 'src/libs/@modules/popup/popup.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { SearchPrivilegeService } from '../../shared/services/search-privilege.s
     PrivilegesSearchComponent,
     SearchPipe,
   ],
-  imports: [SharedModule],
+  imports: [SharedModule, PopupModule],
   providers: [SearchPrivilegeService],
   exports: [AdminEditComponent],
 })

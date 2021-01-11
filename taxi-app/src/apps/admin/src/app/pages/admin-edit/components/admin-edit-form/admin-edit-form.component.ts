@@ -12,7 +12,10 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
+import { FORM_INVALID_WARNING } from 'src/libs/@shared/consts/popup.consts';
+import { PopupComponent } from 'src/libs/@modules/popup/container/popup.component';
 import { PRIVILEGE_OPTIONS } from '../../../../shared/consts/privileges.const';
 import { IAdminGroup } from '../../../../shared/models/admin-group.model';
 import { CLEAR_SELECTED_ADMIN_GROUP_ACTION } from '../../../../shared/stores/admin-store/admin.actions';
@@ -42,7 +45,11 @@ export class AdminEditFormComponent implements OnInit, OnDestroy {
     return this.adminGroupEditForm.get('privileges.options') as FormArray;
   }
 
-  constructor(private fb: FormBuilder, private store: Store) {}
+  constructor(
+    private fb: FormBuilder,
+    private store: Store,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.patchValueToForm();
@@ -53,14 +60,20 @@ export class AdminEditFormComponent implements OnInit, OnDestroy {
   }
 
   onPrivilegeEditFormSubmit(): void {
-    this.onFormSubmit.emit({
-      ...this.adminGroup,
-      privileges: this.privilegeOptionsArray.value
-        .map((isChecked: boolean, i: number) =>
-          isChecked ? PRIVILEGE_OPTIONS[i].value : null
-        )
-        .filter(Boolean),
-    });
+    if (this.adminGroupEditForm.valid) {
+      this.onFormSubmit.emit({
+        ...this.adminGroup,
+        privileges: this.privilegeOptionsArray.value
+          .map((isChecked: boolean, i: number) =>
+            isChecked ? PRIVILEGE_OPTIONS[i].value : null
+          )
+          .filter(Boolean),
+      });
+    } else {
+      this.dialog.open(PopupComponent, {
+        data: FORM_INVALID_WARNING,
+      });
+    }
   }
 
   private patchValueToForm(): void {

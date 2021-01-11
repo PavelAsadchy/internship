@@ -4,7 +4,7 @@ import { BookingListComponent } from './container/booking-list.component';
 import { UrgentBackgroundColorDirective } from 'src/apps/booking/src/app/shared/directives/urgent-background-color.directive';
 import { BookingCreateModule } from '../booking-create/booking-create.module';
 import { BookingModule } from 'src/apps/booking/src/app/shared/modules/booking/booking.module';
-import { PopupModule } from 'src/apps/booking/src/app/shared/modules/popup/popup.module';
+import { PopupModule } from 'src/libs/@modules/popup/popup.module';
 import { BookingTableLegendComponent } from './components/booking-table-legend/booking-table-legend.component';
 import { BookingTableBtnsComponent } from './components/booking-table-btns/booking-table-btns.component';
 import { BookingTableComponent } from './components/booking-table/booking-table.component';

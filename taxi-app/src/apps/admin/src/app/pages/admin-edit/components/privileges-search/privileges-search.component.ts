@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { SearchPrivilegeService } from '../../../../shared/services/search-privilege.service';
 
 @Component({
@@ -6,6 +6,10 @@ import { SearchPrivilegeService } from '../../../../shared/services/search-privi
   templateUrl: './privileges-search.component.html',
   styleUrls: ['./privileges-search.component.scss'],
 })
-export class PrivilegesSearchComponent {
+export class PrivilegesSearchComponent implements OnDestroy {
   constructor(public searchPrivilegeService: SearchPrivilegeService) {}
+
+  ngOnDestroy(): void {
+    this.searchPrivilegeService.privilegeSearched = '';
+  }
 }
