@@ -1,0 +1,15 @@
+@import "app-colors";
+
+.admin-edit-form {
+  display: flex;
+  flex-direction: column;
+
+  &__section:not(:last-child) {
+    margin-bottom: 20px;
+  }
+}
+
+.mat-update-btn {
+  background-color: $dark-xxl;
+  color: $light-xxl;
+}

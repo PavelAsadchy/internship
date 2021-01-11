@@ -1,5 +1,6 @@
 export interface IAdminGroup {
-  id: number;
+  id?: string;
+  id_number: number;
   name: string;
   privileges: string[];
 }

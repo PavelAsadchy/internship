@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { UnsubscribeService } from 'src/libs/@shared/services/unsubscribe.service';
 import { IAdminState } from '../../../shared/stores/admin-store/admin.state';
@@ -16,7 +16,7 @@ import { Observable } from 'rxjs';
   templateUrl: './admin-groups.component.html',
   styleUrls: ['./admin-groups.component.scss'],
 })
-export class AdminGroupsComponent implements OnInit {
+export class AdminGroupsComponent implements OnInit, OnDestroy {
   isDetailBarOpen$: Observable<boolean>;
 
   constructor(
@@ -35,5 +35,9 @@ export class AdminGroupsComponent implements OnInit {
       });
 
     this.isDetailBarOpen$ = this.store.select(SELECT_IS_DETAIL_BAR_OPEN);
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribeService.destroy();
   }
 }

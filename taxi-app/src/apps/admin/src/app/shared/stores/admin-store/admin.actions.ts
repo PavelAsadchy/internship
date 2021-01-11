@@ -10,8 +10,9 @@ export enum ActionsType {
   LOAD_ADMIN_GROUPS_SUCCESS = '[ADMIN] Load Admin Groups Success',
   LOAD_ADMIN_GROUPS_FAIL = '[ADMIN] Load Admin Groups Fail',
   REFRESH_ADMIN_GROUPS_QUERY_PARAMS = '[ADMIN] Refresh Admin Groups Query Params',
-  TOGGLE_DETAIL_BAR = '[ADMIN] Open Detail Bar',
-  SET_ADMIN_GROUP = '[ADMIN] Set Admin Group',
+  TOGGLE_DETAIL_BAR = '[ADMIN] Toggle Detail Bar',
+  SELECT_ADMIN_GROUP = '[ADMIN] Select Admin Group',
+  CLEAR_SELECTED_ADMIN_GROUP = '[ADMIN] Clear Selected Admin Group',
   LOAD_GROUP_PRIVILEGES = '[ADMIN] Load Admin Group',
   LOAD_GROUP_PRIVILEGES_SUCCESS = '[ADMIN] Load Admin Group Success',
   LOAD_GROUP_PRIVILEGES_FAIL = '[ADMIN] Load Admin Group Fail',
@@ -45,14 +46,18 @@ export const TOGGLE_DETAIL_BAR_ACTION = createAction(
   props<{ isDetailBarOpen: boolean }>()
 );
 
-export const SET_ADMIN_GROUP_ACTION = createAction(
-  ActionsType.SET_ADMIN_GROUP,
+export const SELECT_ADMIN_GROUP_ACTION = createAction(
+  ActionsType.SELECT_ADMIN_GROUP,
   props<{ adminGroup: IAdminGroup }>()
+);
+
+export const CLEAR_SELECTED_ADMIN_GROUP_ACTION = createAction(
+  ActionsType.CLEAR_SELECTED_ADMIN_GROUP
 );
 
 export const LOAD_GROUP_PRIVILEGES_ACTION = createAction(
   ActionsType.LOAD_GROUP_PRIVILEGES,
-  props<{ adminGroupId: number }>()
+  props<{ adminGroupId: string }>()
 );
 
 export const LOAD_GROUP_PRIVILEGES_SUCCESS_ACTION = createAction(

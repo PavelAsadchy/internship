@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { IDataForPopup } from 'src/apps/booking/src/app/shared/models/data-for-popup.model';
+import { IDataForPopup } from 'src/libs/@shared/models/data-for-popup.model';
 
 @Component({
   selector: 'app-popup',

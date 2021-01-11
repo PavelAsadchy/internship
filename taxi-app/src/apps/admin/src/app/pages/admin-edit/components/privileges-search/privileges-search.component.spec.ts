@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminDetailComponent } from './admin-detail.component';
+import { PrivilegesSearchComponent } from './privileges-search.component';
 
-describe('AdminDetailComponent', () => {
-  let component: AdminDetailComponent;
-  let fixture: ComponentFixture<AdminDetailComponent>;
+describe('PrivilegesSearchComponent', () => {
+  let component: PrivilegesSearchComponent;
+  let fixture: ComponentFixture<PrivilegesSearchComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AdminDetailComponent ]
+      declarations: [ PrivilegesSearchComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AdminDetailComponent);
+    fixture = TestBed.createComponent(PrivilegesSearchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,34 @@
+<form
+    class="admin-edit-form"
+    [formGroup]="adminGroupEditForm"
+    (ngSubmit)="onPrivilegeEditFormSubmit()"
+>
+    <section class="admin-edit-form__section">
+        <app-edit-name
+            [parentGroup]="adminGroupEditForm.get('userGroup')"
+        >
+        </app-edit-name>
+    </section>
+
+    <section class="admin-edit-form__section">
+        <mat-card-title>Privileges</mat-card-title>
+    </section>
+
+    <section class="admin-edit-form__section">
+        <app-privileges-search></app-privileges-search>
+    </section>
+
+    <section class="admin-edit-form__section">
+        <app-edit-privileges
+            [parentGroup]="adminGroupEditForm.get('privileges')"
+        >
+        </app-edit-privileges>
+    </section>
+
+    <section class="admin-edit-form__section">
+        <button mat-raised-button color="update-btn" type="submit">
+            Update
+            <mat-icon>save</mat-icon>
+        </button>
+    </section>
+</form>

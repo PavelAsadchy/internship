@@ -11,7 +11,10 @@ import {
   SELECT_ADMIN_GROUPS_LENGTH,
   SELECT_ADMIN_LOADING,
 } from '../../../../shared/stores/admin-store/admin.selector';
-import { IAdminState } from '../../../../shared/stores/admin-store/admin.state';
+import {
+  DEFAULT_ADMIN_GROUPS_SORT_PARAMS,
+  IAdminState,
+} from '../../../../shared/stores/admin-store/admin.state';
 
 @Component({
   selector: 'app-admin-groups-table',
@@ -40,8 +43,9 @@ export class AdminGroupsTableComponent implements OnInit {
       REFRESH_ADMIN_GROUPS_QUERY_PARAMS_ACTION({
         params: {
           sort: {
-            field: this.sort.active,
-            direction: this.sort.direction,
+            field: this.sort.active || DEFAULT_ADMIN_GROUPS_SORT_PARAMS.field,
+            direction:
+              this.sort.direction || DEFAULT_ADMIN_GROUPS_SORT_PARAMS.direction,
           },
           paginate: {
             pageIndex: this.paginator.pageIndex,

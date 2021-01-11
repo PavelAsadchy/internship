@@ -18,6 +18,12 @@
     <p>Phone: {{ data.payload.passengerPhone }}</p>
 </mat-dialog-content>
 <mat-dialog-actions *ngIf="data?.action">
-    <button mat-raised-button color="primary" [mat-dialog-close]="false">Cancel</button>
-    <button mat-raised-button color="warn" [mat-dialog-close]="true">Delete</button>
+    <button
+        *ngFor="let btn of data.action"
+        mat-raised-button
+        color="{{ btn.color }}"
+        [mat-dialog-close]="btn.matDialogClose"
+    >
+        {{ btn.content }}
+    </button>
 </mat-dialog-actions>
