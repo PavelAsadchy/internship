@@ -12,10 +12,19 @@
   }
 
   &__content {
+    position: relative;
     flex-grow: 1;
     min-height: 100vh;
     padding: 10px;
     transition: margin-left 0.3s;
     background: $light-xl;
+  }
+
+  &__toolbar {
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    right: 0;
   }
 }

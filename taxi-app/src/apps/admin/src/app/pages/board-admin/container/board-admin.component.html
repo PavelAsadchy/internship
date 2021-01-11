@@ -16,6 +16,9 @@
         class="board-admin__content"
         [style.margin-left]="isNavActive ? '300px' : '50px'"
     >
+        <div class="board-admin__toolbar">
+            <app-menu-apps></app-menu-apps>
+        </div>
         <router-outlet></router-outlet>
     </div>
 </div>
