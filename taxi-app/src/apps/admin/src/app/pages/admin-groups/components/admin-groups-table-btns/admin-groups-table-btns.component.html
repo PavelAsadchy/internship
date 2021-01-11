@@ -1,4 +1,4 @@
-<button mat-icon-button class="action-btn" (click)="onDetail()">
+<button mat-icon-button class="action-btn" (click)="onClick('list')">
     <mat-icon class="action-btn__icon action-btn__icon--primary">
         remove_red_eye
     </mat-icon>
@@ -6,7 +6,7 @@
         View details for {{ element.name }}
     </span>
 </button>
-<button mat-icon-button class="action-btn" (click)="onEdit()">
+<button mat-icon-button class="action-btn" (click)="onClick('edit')">
     <mat-icon class="action-btn__icon action-btn__icon--primary">
         create
     </mat-icon>

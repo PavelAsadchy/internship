@@ -4,6 +4,7 @@ import { BoardAdminComponent } from './container/board-admin.component';
 import { AdminGroupsComponent } from '../admin-groups/container/admin-groups.component';
 import { AdminEditComponent } from '../admin-edit/container/admin-edit.component';
 import { BoardAdminContentComponent } from './components/board-admin-content/board-admin-content.component';
+import { AdminDetailComponent } from '../admin-detail/container/admin-detail.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,11 @@ const routes: Routes = [
           {
             path: 'list',
             component: AdminGroupsComponent,
+          },
+          {
+            path: 'list/:id',
+            component: AdminDetailComponent,
+            data: { animation: 'Detail' },
           },
           {
             path: 'edit',

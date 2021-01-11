@@ -8,6 +8,7 @@ import { BoardAdminContentComponent } from './components/board-admin-content/boa
 import { AdminGroupsModule } from '../admin-groups/admin-groups.module';
 import { AdminEditModule } from '../admin-edit/admin-edit.module';
 import { MenuAppsModule } from 'src/libs/@modules/menu-apps/menu-apps.module';
+import { AdminDetailModule } from '../admin-detail/admin-detail.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { MenuAppsModule } from 'src/libs/@modules/menu-apps/menu-apps.module';
     AdminGroupsModule,
     AdminEditModule,
     MenuAppsModule,
+    AdminDetailModule,
   ],
   exports: [BoardAdminComponent],
 })
