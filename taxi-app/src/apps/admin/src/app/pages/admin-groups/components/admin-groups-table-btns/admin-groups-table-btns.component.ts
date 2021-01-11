@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { IAdminGroup } from '../../../../shared/models/admin-group.model';
 import {
-  SET_ADMIN_GROUP_ACTION,
+  SELECT_ADMIN_GROUP_ACTION,
   TOGGLE_DETAIL_BAR_ACTION,
 } from '../../../../shared/stores/admin-store/admin.actions';
 import { IAdminState } from '../../../../shared/stores/admin-store/admin.state';
@@ -20,7 +20,9 @@ export class AdminGroupsTableBtnsComponent {
   constructor(private store: Store<IAdminState>, private router: Router) {}
 
   onDetail(): void {
-    this.store.dispatch(SET_ADMIN_GROUP_ACTION({ adminGroup: this.element }));
+    this.store.dispatch(
+      SELECT_ADMIN_GROUP_ACTION({ adminGroup: this.element })
+    );
     this.store.dispatch(TOGGLE_DETAIL_BAR_ACTION({ isDetailBarOpen: true }));
   }
 
