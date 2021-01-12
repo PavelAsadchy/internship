@@ -1,4 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Store } from '@ngrx/store';
@@ -20,6 +25,7 @@ import {
   selector: 'app-admin-groups-table',
   templateUrl: './admin-groups-table.component.html',
   styleUrls: ['./admin-groups-table.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminGroupsTableComponent implements OnInit {
   displayedColumns: string[] = GROUPS_DISPLAYED_COLUMNS;

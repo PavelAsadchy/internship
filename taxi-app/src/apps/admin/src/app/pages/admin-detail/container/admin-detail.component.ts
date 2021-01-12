@@ -8,7 +8,6 @@ import { IAdminGroup } from '../../../shared/models/admin-group.model';
 import {
   CLEAR_SELECTED_ADMIN_GROUP_ACTION,
   LOAD_GROUP_PRIVILEGES_ACTION,
-  UPDATE_GROUP_PRIVILEGES_ACTION,
 } from '../../../shared/stores/admin-store/admin.actions';
 import {
   SELECT_ADMIN_LOADING,
@@ -17,18 +16,18 @@ import {
 import { IAdminState } from '../../../shared/stores/admin-store/admin.state';
 
 @Component({
-  selector: 'app-admin-edit',
-  templateUrl: './admin-edit.component.html',
-  styleUrls: ['./admin-edit.component.scss'],
+  selector: 'app-admin-detail',
+  templateUrl: './admin-detail.component.html',
+  styleUrls: ['./admin-detail.component.scss'],
 })
-export class AdminEditComponent implements OnInit, OnDestroy {
-  editAdminGroup: IAdminGroup;
+export class AdminDetailComponent implements OnInit, OnDestroy {
+  selectedGroup: IAdminGroup;
   isLoading$: Observable<boolean>;
 
   constructor(
     private readonly unsubscribeService: UnsubscribeService,
-    private store: Store<IAdminState>,
     private activatedRoute: ActivatedRoute,
+    private store: Store<IAdminState>,
     private router: Router
   ) {}
 
@@ -43,7 +42,7 @@ export class AdminEditComponent implements OnInit, OnDestroy {
           .select(SELECT_CURRENT_GROUP)
           .pipe(takeUntil(this.unsubscribeService.subscription))
           .subscribe((currentAdminGroup: IAdminGroup) => {
-            this.editAdminGroup = currentAdminGroup;
+            this.selectedGroup = currentAdminGroup;
           });
       });
 
@@ -55,17 +54,7 @@ export class AdminEditComponent implements OnInit, OnDestroy {
     this.unsubscribeService.destroy();
   }
 
-  adminGroupEditHandler(editedAdminGroup: IAdminGroup): void {
-    this.store.dispatch(
-      UPDATE_GROUP_PRIVILEGES_ACTION({
-        adminGroup: { ...editedAdminGroup, id: this.editAdminGroup.id },
-      })
-    );
-
-    this.onReturn();
-  }
-
-  onReturn(): void {
+  onClose(): void {
     this.router.navigate(['admin', 'groups', 'list']);
   }
 }

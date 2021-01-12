@@ -16,6 +16,14 @@
         class="board-admin__content"
         [style.margin-left]="isNavActive ? '300px' : '50px'"
     >
-        <router-outlet></router-outlet>
+        <div class="board-admin__toolbar">
+            <app-menu-apps></app-menu-apps>
+        </div>
+        <div
+            [@routeAnimations]="o && o.activatedRouteData 
+                                && o.activatedRouteData['animation']"
+        >
+            <router-outlet #o="outlet"></router-outlet>
+        </div>
     </div>
 </div>

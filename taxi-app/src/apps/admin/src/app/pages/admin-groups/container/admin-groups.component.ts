@@ -2,14 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { UnsubscribeService } from 'src/libs/@shared/services/unsubscribe.service';
 import { IAdminState } from '../../../shared/stores/admin-store/admin.state';
-import {
-  SELECT_ADMIN_GROUPS_QUERY_PARAMS,
-  SELECT_IS_DETAIL_BAR_OPEN,
-} from '../../../shared/stores/admin-store/admin.selector';
+import { SELECT_ADMIN_GROUPS_QUERY_PARAMS } from '../../../shared/stores/admin-store/admin.selector';
 import { takeUntil } from 'rxjs/operators';
 import { IQueryParams } from 'src/libs/@shared/models/query-params.model';
 import { LOAD_ADMIN_GROUPS_ACTION } from '../../../shared/stores/admin-store/admin.actions';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-admin-groups',
@@ -17,8 +13,6 @@ import { Observable } from 'rxjs';
   styleUrls: ['./admin-groups.component.scss'],
 })
 export class AdminGroupsComponent implements OnInit, OnDestroy {
-  isDetailBarOpen$: Observable<boolean>;
-
   constructor(
     private store: Store<IAdminState>,
     private readonly unsubscribeService: UnsubscribeService
@@ -33,8 +27,6 @@ export class AdminGroupsComponent implements OnInit, OnDestroy {
           LOAD_ADMIN_GROUPS_ACTION({ params: adminGroupsQueryParams })
         );
       });
-
-    this.isDetailBarOpen$ = this.store.select(SELECT_IS_DETAIL_BAR_OPEN);
   }
 
   ngOnDestroy(): void {
