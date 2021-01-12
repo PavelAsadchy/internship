@@ -1,17 +1,17 @@
-<mat-form-field class="edit-name">
+<mat-form-field class="edit-name" [formGroup]="privilegesSearch">
     <mat-label>Search</mat-label>
     <input
         matInput
         placeholder="Search"
-        [(ngModel)]="searchPrivilegeService.privilegeSearched"
+        formControlName="searchInput"
     >
     <button
         mat-button
-        *ngIf="searchPrivilegeService.privilegeSearched"
+        *ngIf="privilegesSearch.controls['searchInput'].value"
         matSuffix
         mat-icon-button
         aria-label="Clear"
-        (click)="searchPrivilegeService.privilegeSearched=''"
+        (click)="clearInput()"
     >
         <mat-icon>close</mat-icon>
     </button>

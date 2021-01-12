@@ -25,7 +25,6 @@ import {
   selector: 'app-admin-groups-table',
   templateUrl: './admin-groups-table.component.html',
   styleUrls: ['./admin-groups-table.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminGroupsTableComponent implements OnInit {
   displayedColumns: string[] = GROUPS_DISPLAYED_COLUMNS;
