@@ -54,6 +54,7 @@ export class AdminEditFormComponent implements OnInit {
     if (this.adminGroupEditForm.valid) {
       this.onFormSubmit.emit({
         ...this.adminGroup,
+        name: this.adminGroupEditForm.get('userGroup.name').value,
         privileges: this.privilegeOptionsArray.value
           .map((isChecked: boolean, i: number) =>
             isChecked ? PRIVILEGE_OPTIONS[i].value : null
