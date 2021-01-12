@@ -12,4 +12,6 @@
         </as-split-area>
     </as-split>
 </div>
-<mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
+<div class="booking-edit__spinner" *ngIf="isLoading$ | async">
+    <app-progress-spinner></app-progress-spinner>
+</div>

@@ -53,6 +53,18 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
 
   isSliderChecked = false;
 
+  get checkBasicOptions() {
+    return this.bookingOptionsForm.get(
+      'payment.checkBasicOptions'
+    ) as FormArray;
+  }
+
+  get checkExtraOptions() {
+    return this.bookingOptionsForm.get(
+      'payment.checkExtraOptions'
+    ) as FormArray;
+  }
+
   constructor(
     private fb: FormBuilder,
     private readonly createBookingCalculationService: CreateBookingCalculationService,
@@ -206,17 +218,5 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
         )
       );
     });
-  }
-
-  get checkBasicOptions() {
-    return this.bookingOptionsForm.get(
-      'payment.checkBasicOptions'
-    ) as FormArray;
-  }
-
-  get checkExtraOptions() {
-    return this.bookingOptionsForm.get(
-      'payment.checkExtraOptions'
-    ) as FormArray;
   }
 }

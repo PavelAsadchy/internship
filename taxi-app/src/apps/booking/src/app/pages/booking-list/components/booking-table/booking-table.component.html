@@ -1,7 +1,5 @@
 <div class="booking-list__enum mat-elevation-z8">
-    <div class="booking-list__loading" *ngIf="isLoading$ | async">
-        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-    </div>
+    <app-progress-bar class="booking-list__loading" *ngIf="isLoading$ | async"></app-progress-bar>
 
     <div class="booking-list__urgency">
         <app-booking-table-legend></app-booking-table-legend>

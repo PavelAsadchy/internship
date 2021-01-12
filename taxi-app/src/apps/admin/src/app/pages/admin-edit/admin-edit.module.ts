@@ -8,6 +8,7 @@ import { PrivilegesSearchComponent } from './components/privileges-search/privil
 import { SearchPipe } from '../../shared/pipes/search.pipe';
 import { SearchPrivilegeService } from '../../shared/services/search-privilege.service';
 import { PopupModule } from 'src/libs/@modules/popup/popup.module';
+import { ProgressModule } from 'src/libs/@modules/progress/progress.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { PopupModule } from 'src/libs/@modules/popup/popup.module';
     PrivilegesSearchComponent,
     SearchPipe,
   ],
-  imports: [SharedModule, PopupModule],
+  imports: [SharedModule, PopupModule, ProgressModule],
   providers: [SearchPrivilegeService],
   exports: [AdminEditComponent],
 })

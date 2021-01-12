@@ -8,7 +8,7 @@ import { IUser } from '../models/user.model';
 import { HttpClientService } from './http-client.service';
 import { GenericService } from './generic.service';
 import { DatePipe } from '@angular/common';
-import { environment } from 'src/apps/booking/src/environments/environment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',

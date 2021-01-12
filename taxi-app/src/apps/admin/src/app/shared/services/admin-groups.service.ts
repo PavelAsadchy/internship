@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClientService } from 'src/libs/@shared/services/http-client.service';
-import { environment } from 'src/apps/admin/src/environments/environment';
+import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { GenericService } from 'src/libs/@shared/services/generic.service';
@@ -13,6 +13,7 @@ import {
   IQueryParams,
   ISortParams,
 } from 'src/libs/@shared/models/query-params.model';
+import { IAppsEnvironment } from 'src/environments/ienvironment.model';
 
 @Injectable({
   providedIn: 'root',
@@ -26,7 +27,9 @@ export class AdminGroupsService extends HttpClientService {
     genericService: GenericService
   ) {
     super(http, datePipe, genericService);
-    this.databaseUrl = environment.databaseApiUrl;
+    this.databaseUrl = environment.apps.find(
+      (app: IAppsEnvironment) => app.name === 'Admin'
+    ).databaseUrl;
   }
 
   loadAdminGroups(queryParams: IQueryParams): Observable<IServerAdminResponse> {

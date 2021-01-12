@@ -20,10 +20,10 @@
             <app-menu-apps></app-menu-apps>
         </div>
         <div
-            [@routeAnimations]="o && o.activatedRouteData 
-                                && o.activatedRouteData['animation']"
+            [@routeAnimations]="outlet && outlet.activatedRouteData 
+                                && outlet.activatedRouteData['animation']"
         >
-            <router-outlet #o="outlet"></router-outlet>
+            <router-outlet #outlet="outlet"></router-outlet>
         </div>
     </div>
 </div>

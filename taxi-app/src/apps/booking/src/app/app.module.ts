@@ -16,7 +16,7 @@ import { BookingGlobalStoreModule } from './shared/stores/booking-global-store.m
 import { GlobalStoreModule } from 'src/libs/@stores/global-store.module';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import { environment } from 'src/apps/booking/src/environments/environment';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],

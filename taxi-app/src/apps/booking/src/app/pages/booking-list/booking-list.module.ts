@@ -9,6 +9,7 @@ import { BookingTableLegendComponent } from './components/booking-table-legend/b
 import { BookingTableBtnsComponent } from './components/booking-table-btns/booking-table-btns.component';
 import { BookingTableComponent } from './components/booking-table/booking-table.component';
 import { BookingFilterComponent } from './components/booking-filter/booking-filter.component';
+import { ProgressModule } from 'src/libs/@modules/progress/progress.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,13 @@ import { BookingFilterComponent } from './components/booking-filter/booking-filt
     BookingTableComponent,
     BookingFilterComponent,
   ],
-  imports: [SharedModule, BookingCreateModule, BookingModule, PopupModule],
+  imports: [
+    SharedModule,
+    BookingCreateModule,
+    BookingModule,
+    PopupModule,
+    ProgressModule,
+  ],
   exports: [BookingListComponent],
 })
 export class BookingListModule {}

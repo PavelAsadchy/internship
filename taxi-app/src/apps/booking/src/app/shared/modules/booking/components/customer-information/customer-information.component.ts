@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { environment } from 'src/apps/booking/src/environments/environment';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-customer-information',
