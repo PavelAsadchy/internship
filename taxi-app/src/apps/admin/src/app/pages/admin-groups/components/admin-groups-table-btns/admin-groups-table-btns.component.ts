@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { IAdminGroup } from '../../../../shared/models/admin-group.model';
 
@@ -6,6 +6,7 @@ import { IAdminGroup } from '../../../../shared/models/admin-group.model';
   selector: 'app-admin-groups-table-btns',
   templateUrl: './admin-groups-table-btns.component.html',
   styleUrls: ['./admin-groups-table-btns.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminGroupsTableBtnsComponent {
   @Input()

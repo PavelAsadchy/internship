@@ -6,6 +6,7 @@ import { takeUntil } from 'rxjs/operators';
 import { UnsubscribeService } from 'src/libs/@shared/services/unsubscribe.service';
 import { IAdminGroup } from '../../../shared/models/admin-group.model';
 import {
+  CLEAR_SELECTED_ADMIN_GROUP_ACTION,
   LOAD_GROUP_PRIVILEGES_ACTION,
   UPDATE_GROUP_PRIVILEGES_ACTION,
 } from '../../../shared/stores/admin-store/admin.actions';
@@ -50,6 +51,7 @@ export class AdminEditComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.store.dispatch(CLEAR_SELECTED_ADMIN_GROUP_ACTION());
     this.unsubscribeService.destroy();
   }
 

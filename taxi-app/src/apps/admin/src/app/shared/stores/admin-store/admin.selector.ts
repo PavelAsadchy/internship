@@ -31,8 +31,3 @@ export const SELECT_ADMIN_GROUPS_LENGTH = createSelector(
   SELECT_ADMIN_FEATURE,
   (state: IAdminState) => state.totalLength
 );
-
-export const SELECT_IS_DETAIL_BAR_OPEN = createSelector(
-  SELECT_ADMIN_FEATURE,
-  (state: IAdminState) => state.isDetailBarOpen
-);

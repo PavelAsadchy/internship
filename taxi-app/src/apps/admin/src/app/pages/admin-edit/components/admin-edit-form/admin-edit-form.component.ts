@@ -1,8 +1,8 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
-  OnDestroy,
   OnInit,
   Output,
 } from '@angular/core';
@@ -13,19 +13,18 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { Store } from '@ngrx/store';
 import { FORM_INVALID_WARNING } from 'src/libs/@shared/consts/popup.consts';
 import { PopupComponent } from 'src/libs/@modules/popup/container/popup.component';
 import { PRIVILEGE_OPTIONS } from '../../../../shared/consts/privileges.const';
 import { IAdminGroup } from '../../../../shared/models/admin-group.model';
-import { CLEAR_SELECTED_ADMIN_GROUP_ACTION } from '../../../../shared/stores/admin-store/admin.actions';
 
 @Component({
   selector: 'app-admin-edit-form',
   templateUrl: './admin-edit-form.component.html',
   styleUrls: ['./admin-edit-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AdminEditFormComponent implements OnInit, OnDestroy {
+export class AdminEditFormComponent implements OnInit {
   @Input()
   adminGroup: IAdminGroup;
 
@@ -45,18 +44,10 @@ export class AdminEditFormComponent implements OnInit, OnDestroy {
     return this.adminGroupEditForm.get('privileges.options') as FormArray;
   }
 
-  constructor(
-    private fb: FormBuilder,
-    private store: Store,
-    private dialog: MatDialog
-  ) {}
+  constructor(private fb: FormBuilder, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.patchValueToForm();
-  }
-
-  ngOnDestroy(): void {
-    this.store.dispatch(CLEAR_SELECTED_ADMIN_GROUP_ACTION());
   }
 
   onPrivilegeEditFormSubmit(): void {
