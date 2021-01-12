@@ -7,7 +7,7 @@ import { AuthGuard } from '../../../../libs/@shared/guards/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'board',
     pathMatch: 'full',
   },
   {

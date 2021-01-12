@@ -7,7 +7,7 @@ import { AuthGuard } from 'src/libs/@shared/guards/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'admin',
     pathMatch: 'full',
   },
   {
