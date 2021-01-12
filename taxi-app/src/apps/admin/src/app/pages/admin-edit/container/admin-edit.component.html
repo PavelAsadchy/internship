@@ -13,6 +13,7 @@
         >
         </app-admin-edit-form>
     </section>
-
 </div>
-<mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
+<div class="admin-edit__spinner" *ngIf="isLoading$ | async">
+    <app-progress-spinner></app-progress-spinner>
+</div>

@@ -1,5 +1,6 @@
+@import "app-mixins";
+
 .admin-detail {
-  position: relative;
   height: 100%;
 
   &__btn {
@@ -7,17 +8,13 @@
     right: 20px;
     bottom: 20px;
   }
+
+  &__spinner {
+    @include spinner;
+  }
 }
 
 mat-card-title {
   display: block;
   padding: 20px;
 }
-
-mat-spinner {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-

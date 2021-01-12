@@ -11,4 +11,6 @@
         Close
     </button>
 </div>
-<mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
+<div class="admin-detail__spinner" *ngIf="isLoading$ | async">
+    <app-progress-spinner></app-progress-spinner>
+</div>
