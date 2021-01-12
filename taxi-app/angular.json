@@ -45,8 +45,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/apps/booking/src/environments/environment.ts",
-                  "with": "src/apps/booking/src/environments/environment.prod.ts"
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -73,8 +73,8 @@
             "dev": {
               "fileReplacements": [
                 {
-                  "replace": "src/apps/booking/src/environments/environment.ts",
-                  "with": "src/apps/booking/src/environments/environment.dev.ts"
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
                 }
               ],
               "optimization": true,
@@ -101,8 +101,8 @@
             "stage": {
               "fileReplacements": [
                 {
-                  "replace": "src/apps/booking/src/environments/environment.ts",
-                  "with": "src/apps/booking/src/environments/environment.stage.ts"
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.stage.ts"
                 }
               ],
               "optimization": true,
@@ -232,8 +232,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/apps/admin/src/environments/environment.ts",
-                  "with": "src/apps/admin/src/environments/environment.prod.ts"
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,

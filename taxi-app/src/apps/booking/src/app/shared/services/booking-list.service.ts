@@ -15,7 +15,8 @@ import {
 import { HttpClientService } from 'src/libs/@shared/services/http-client.service';
 import { GenericService } from 'src/libs/@shared/services/generic.service';
 import { DatePipe } from '@angular/common';
-import { environment } from 'src/apps/booking/src/environments/environment';
+import { environment } from 'src/environments/environment';
+import { IAppsEnvironment } from 'src/environments/ienvironment.model';
 
 @Injectable({
   providedIn: 'root',
@@ -29,7 +30,9 @@ export class BookingListService extends HttpClientService {
     genericService: GenericService
   ) {
     super(http, datePipe, genericService);
-    this.databaseUrl = environment.databaseApiUrl;
+    this.databaseUrl = environment.apps.find(
+      (app: IAppsEnvironment) => app.name === 'Booking'
+    ).databaseUrl;
   }
 
   loadBookingsByQuery(queryParams: IQueryParams): Observable<IServerResponse> {

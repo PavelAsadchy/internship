@@ -1,7 +1,14 @@
-export interface IEnvironmentBooking {
+export interface IAppsEnvironment {
+  name: string;
+  description: string;
+  icon: string;
+  link: string;
+  databaseUrl: string;
+}
+
+export interface IEnvironment {
   production: boolean;
   authApiUrl: string;
-  databaseApiUrl: string;
   databaseApiKey: string;
   locationApiUrl: string;
   mapsApiKey: string;
@@ -10,4 +17,5 @@ export interface IEnvironmentBooking {
     prefix: string;
     preferredCountries: string[];
   };
+  apps: IAppsEnvironment[];
 }

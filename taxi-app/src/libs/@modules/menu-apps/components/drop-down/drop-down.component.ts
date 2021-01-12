@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IMenuItem } from 'src/libs/@shared/models/menu-item.model';
-import { environment } from 'src/apps/admin/src/environments/environment';
+import { environment } from 'src/environments/environment';
+import { IAppsEnvironment } from 'src/environments/ienvironment.model';
 
 @Component({
   selector: 'app-drop-down',
@@ -8,22 +9,13 @@ import { environment } from 'src/apps/admin/src/environments/environment';
   styleUrls: ['./drop-down.component.scss'],
 })
 export class DropDownComponent {
-  menuContent: IMenuItem[];
+  menuContent: IMenuItem[] = [];
 
   constructor() {
-    this.menuContent = [
-      new IMenuItem(
-        'Booking',
-        'Booking App',
-        'local_phone',
-        environment.bookingAppLink
-      ),
-      new IMenuItem(
-        'Admin',
-        'Edit user privileges',
-        'settings',
-        environment.adminAppLink
-      ),
-    ];
+    environment.apps.forEach((app: IAppsEnvironment) =>
+      this.menuContent.push(
+        new IMenuItem(app.name, app.description, app.icon, app.link)
+      )
+    );
   }
 }

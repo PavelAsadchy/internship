@@ -2,12 +2,11 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-import { IEnvironmentBooking } from './ienvironment-booking.model';
+import { IEnvironment } from './ienvironment.model';
 
-export const environment: IEnvironmentBooking = {
+export const environment: IEnvironment = {
   production: false,
   authApiUrl: 'http://localhost:8080',
-  databaseApiUrl: 'https://taxi-app-294611.firebaseio.com/booking-list',
   databaseApiKey: 'AIzaSyAFYEI6Mv2SthzLCRsN_jTogm5aWJ8Ajt8',
   locationApiUrl: 'https://ipapi.co/json/',
   mapsApiKey: 'AIzaSyAFYEI6Mv2SthzLCRsN_jTogm5aWJ8Ajt8',
@@ -16,6 +15,22 @@ export const environment: IEnvironmentBooking = {
     prefix: '',
     preferredCountries: ['by', 'ru'],
   },
+  apps: [
+    {
+      name: 'Admin',
+      description: 'Edit user privileges',
+      icon: 'settings',
+      link: 'http://localhost:4222/admin',
+      databaseUrl: 'https://taxi-app-294611.firebaseio.com/groups',
+    },
+    {
+      name: 'Booking',
+      description: 'Booking App',
+      icon: 'local_phone',
+      link: 'http://localhost:4200/board',
+      databaseUrl: 'https://taxi-app-294611.firebaseio.com/booking-list',
+    },
+  ],
 };
 
 /*
