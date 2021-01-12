@@ -60,7 +60,7 @@ export class AuthEffects {
         ),
         tap((loggedInUser: ILoggedInUser) => {
           this.authService.doLoginUser(loggedInUser);
-          this.router.navigate(['/board']);
+          this.router.navigate(['']);
           this.store.dispatch(
             SHOW_MESSAGE_ACTION({ message: SHOW_MESSAGE_VALUES.loginSuccess })
           );

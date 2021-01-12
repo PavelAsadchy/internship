@@ -15,11 +15,6 @@ const routes: Routes = [
     component: AuthComponent,
   },
   {
-    path: 'board',
-    redirectTo: 'admin',
-    pathMatch: 'full',
-  },
-  {
     path: 'admin',
     loadChildren: () =>
       import('src/apps/admin/src/app/pages/board-admin/board-admin.module').then(
