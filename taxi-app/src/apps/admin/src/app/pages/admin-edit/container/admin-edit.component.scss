@@ -1,0 +1,17 @@
+@import "app-colors";
+@import "app-mixins";
+
+.admin-edit {
+  &__section:not(:last-child) {
+    margin-bottom: 20px;
+  }
+
+  &__spinner {
+    @include spinner;
+  }
+}
+
+.mat-action-btn {
+  background-color: $dark-xxl;
+  color: $light-xxl;
+}

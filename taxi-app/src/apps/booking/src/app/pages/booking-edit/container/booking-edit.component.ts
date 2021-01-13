@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { IBooking } from 'src/apps/booking/src/app/shared/models/booking.model';
-import { UnsubscribeService } from 'src/apps/booking/src/app/shared/services/unsubscribe.service';
+import { UnsubscribeService } from 'src/libs/@shared/services/unsubscribe.service';
 import {
   CLEAR_SELECTED_BOOKING_ACTION,
   LOAD_BOOKING_ACTION,
@@ -16,7 +16,7 @@ import {
   SELECT_CURRENT_BOOKING,
 } from 'src/apps/booking/src/app/shared/stores/booking-store/booking.selector';
 import {
-  DEFAULT_QUERY_PARAMS,
+  DEFAULT_BOOKING_QUERY_PARAMS,
   IBookingState,
 } from 'src/apps/booking/src/app/shared/stores/booking-store/booking.state';
 
@@ -60,7 +60,7 @@ export class BookingEditComponent implements OnInit, OnDestroy {
     this.store.dispatch(CLEAR_SELECTED_BOOKING_ACTION());
   }
 
-  bookingEditHandler(editedBooking: IBooking) {
+  bookingEditHandler(editedBooking: IBooking): void {
     this.store.dispatch(
       UPDATE_BOOKING_ACTION({
         booking: { ...editedBooking, id: this.editBookingParams.id },
@@ -69,7 +69,7 @@ export class BookingEditComponent implements OnInit, OnDestroy {
 
     this.router.navigate(['board', 'booking', 'list']);
     this.store.dispatch(
-      REFRESH_QUERY_PARAMS_ACTION({ params: DEFAULT_QUERY_PARAMS })
+      REFRESH_QUERY_PARAMS_ACTION({ params: DEFAULT_BOOKING_QUERY_PARAMS })
     );
   }
 }

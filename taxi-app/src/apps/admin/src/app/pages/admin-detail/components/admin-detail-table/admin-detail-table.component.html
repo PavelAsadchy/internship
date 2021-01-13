@@ -1,0 +1,24 @@
+<table class="admin-detail__table table">
+    <tr>
+        <td class="table__cell table__cell--heading">id</td>
+        <td class="table__cell">{{ adminGroup.id_number }}</td>
+    </tr>
+    <tr>
+        <td class="table__cell table__cell--heading">name</td>
+        <td class="table__cell">{{ adminGroup.name }}</td>
+    </tr>
+    <tr>
+        <td class="table__cell table__cell--heading">number of privileges</td>
+        <td class="table__cell">{{ adminGroup.privileges.length }}</td>
+    </tr>
+    <tr>
+        <td class="table__cell table__cell--heading">privileges</td>
+        <td class="table__cell">
+            <ul class="table__privileges">
+                <li class="table__privilege-item" *ngFor="let privilege of adminGroup.privileges">
+                    {{ privilegeOptions | privilegeFilter:privilege }}
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>

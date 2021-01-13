@@ -19,7 +19,7 @@ import {
   CHECK_EXTRA_OPTIONS,
 } from 'src/apps/booking/src/app/shared/consts/booking-options.consts';
 import { EventEmitter } from '@angular/core';
-import { UnsubscribeService } from 'src/apps/booking/src/app/shared/services/unsubscribe.service';
+import { UnsubscribeService } from 'src/libs/@shared/services/unsubscribe.service';
 
 @Component({
   selector: 'app-booking-board',
@@ -52,6 +52,18 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
   });
 
   isSliderChecked = false;
+
+  get checkBasicOptions() {
+    return this.bookingOptionsForm.get(
+      'payment.checkBasicOptions'
+    ) as FormArray;
+  }
+
+  get checkExtraOptions() {
+    return this.bookingOptionsForm.get(
+      'payment.checkExtraOptions'
+    ) as FormArray;
+  }
 
   constructor(
     private fb: FormBuilder,
@@ -206,17 +218,5 @@ export class BookingBoardComponent implements OnInit, OnDestroy {
         )
       );
     });
-  }
-
-  get checkBasicOptions() {
-    return this.bookingOptionsForm.get(
-      'payment.checkBasicOptions'
-    ) as FormArray;
-  }
-
-  get checkExtraOptions() {
-    return this.bookingOptionsForm.get(
-      'payment.checkExtraOptions'
-    ) as FormArray;
   }
 }

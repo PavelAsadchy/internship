@@ -8,14 +8,14 @@ import {
 
 const bookingReducer = createReducer(
   INITIAL_BOOKING_STATE,
-  on(BookingActions.LOAD_BOOKINGS_BY_QUERY, (state) => ({
+  on(BookingActions.LOAD_BOOKINGS_BY_QUERY_ACTION, (state) => ({
     ...state,
     loading: true,
     loaded: false,
     errorMessage: null,
   })),
   on(
-    BookingActions.LOAD_BOOKINGS_BY_QUERY_SUCCESS,
+    BookingActions.LOAD_BOOKINGS_BY_QUERY_SUCCESS_ACTION,
     (state, { serverResponse }) => {
       return bookingAdapter.setAll(serverResponse.bookings, {
         ...state,
@@ -26,14 +26,17 @@ const bookingReducer = createReducer(
       });
     }
   ),
-  on(BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL, (state, { message }) => ({
-    ...state,
-    entities: {},
-    loading: false,
-    loaded: false,
-    totalLength: 0,
-    errorMessage: message.value,
-  })),
+  on(
+    BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL_ACTION,
+    (state, { message }) => ({
+      ...state,
+      entities: {},
+      loading: false,
+      loaded: false,
+      totalLength: 0,
+      errorMessage: message.value,
+    })
+  ),
 
   on(BookingActions.REFRESH_QUERY_PARAMS_ACTION, (state, { params }) => ({
     ...state,

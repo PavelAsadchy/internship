@@ -3,15 +3,15 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { SHOW_MESSAGE_VALUES } from '../../consts/store.consts';
+import { SHOW_MESSAGE_VALUES } from 'src/libs/@shared/consts/store.consts';
 import { IServerResponse } from '../../models/server-response.model';
 import { IBooking } from '../../models/booking.model';
-import { IQueryParams } from '../../models/query-params.model';
-import { IShowMessage } from '../../models/show-message.model';
+import { IQueryParams } from 'src/libs/@shared/models/query-params.model';
+import { IShowMessage } from 'src/libs/@shared/models/show-message.model';
 import { BookingListService } from '../../services/booking-list.service';
-import { SHOW_MESSAGE_ACTION } from '../message-store/message.actions';
+import { SHOW_MESSAGE_ACTION } from 'src/libs/@stores/message-store/message.actions';
 import * as BookingActions from './booking.actions';
-import { IMessageState } from '../message-store/message.state';
+import { IMessageState } from 'src/libs/@stores/message-store/message.state';
 
 @Injectable()
 export class BookingEffects {
@@ -32,14 +32,14 @@ export class BookingEffects {
       switchMap((action: { params: IQueryParams; type: string }) => {
         return this.bookingListService.loadBookingsByQuery(action.params).pipe(
           map((serverResponse: IServerResponse) => {
-            return BookingActions.LOAD_BOOKINGS_BY_QUERY_SUCCESS({
+            return BookingActions.LOAD_BOOKINGS_BY_QUERY_SUCCESS_ACTION({
               serverResponse,
             });
           }),
           catchError((err) => {
             if (err.message) {
               return of(
-                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL({
+                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL_ACTION({
                   message: {
                     ...SHOW_MESSAGE_VALUES.defaultActionFail,
                     value: `ERROR ${err.status}: ${err.validations_errors}`,
@@ -50,7 +50,7 @@ export class BookingEffects {
             // Different notification for educational purposes
             else
               return of(
-                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL({
+                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL_ACTION({
                   message: {
                     ...SHOW_MESSAGE_VALUES.defaultActionWarning,
                     value: `Client-side ERROR: ${err}`,
@@ -82,7 +82,7 @@ export class BookingEffects {
           catchError((err) => {
             if (err.message) {
               return of(
-                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL({
+                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL_ACTION({
                   message: {
                     ...SHOW_MESSAGE_VALUES.defaultActionFail,
                     value: `ERROR ${err.status}: ${err.validations_errors}`,
@@ -91,7 +91,7 @@ export class BookingEffects {
               );
             } else
               return of(
-                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL({
+                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL_ACTION({
                   message: {
                     ...SHOW_MESSAGE_VALUES.defaultActionWarning,
                     value: `Client-side ERROR: ${err}`,
@@ -125,7 +125,7 @@ export class BookingEffects {
           catchError((err) => {
             if (err.message) {
               return of(
-                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL({
+                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL_ACTION({
                   message: {
                     ...SHOW_MESSAGE_VALUES.defaultActionFail,
                     value: `ERROR ${err.status}: ${err.validations_errors}`,
@@ -134,7 +134,7 @@ export class BookingEffects {
               );
             } else
               return of(
-                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL({
+                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL_ACTION({
                   message: {
                     ...SHOW_MESSAGE_VALUES.defaultActionWarning,
                     value: `Client-side ERROR: ${err}`,
@@ -169,7 +169,7 @@ export class BookingEffects {
           catchError((err) => {
             if (err.message) {
               return of(
-                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL({
+                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL_ACTION({
                   message: {
                     ...SHOW_MESSAGE_VALUES.defaultActionFail,
                     value: `ERROR ${err.status}: ${err.validations_errors}`,
@@ -178,7 +178,7 @@ export class BookingEffects {
               );
             } else
               return of(
-                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL({
+                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL_ACTION({
                   message: {
                     ...SHOW_MESSAGE_VALUES.defaultActionWarning,
                     value: `Client-side ERROR: ${err}`,
@@ -205,7 +205,7 @@ export class BookingEffects {
           catchError((err) => {
             if (err.message) {
               return of(
-                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL({
+                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL_ACTION({
                   message: {
                     ...SHOW_MESSAGE_VALUES.defaultActionFail,
                     value: `ERROR ${err.status}: ${err.validations_errors}`,
@@ -214,7 +214,7 @@ export class BookingEffects {
               );
             } else
               return of(
-                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL({
+                BookingActions.LOAD_BOOKINGS_BY_QUERY_FAIL_ACTION({
                   message: {
                     ...SHOW_MESSAGE_VALUES.defaultActionWarning,
                     value: `Client-side ERROR: ${err}`,

@@ -26,6 +26,125 @@
   }
 }
 
+@mixin table {
+  width: 100%;
+
+  & td {
+    &:hover > .table__cell-tooltip {
+      display: block;
+    }
+  }
+
+  &__col-data {
+    position: relative;
+    text-align: center;
+
+    & > img {
+      vertical-align: middle;
+    }
+  }
+
+  &__col--center {
+    text-align: center;
+  }
+
+  &__cell-tooltip {
+    @include tooltip;
+    top: -100%;
+  }
+
+  &__cell-text {
+    position: absolute;
+    left: 24px;
+    top: 0;
+    z-index: 1;
+    vertical-align: top;
+  }
+
+  &__cell-text--small {
+    font-size: 0.8rem;
+  }
+
+  &__cell-text--bold {
+    font-weight: bold;
+  }
+
+  &__link-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  &__cell-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__cell-link {
+    position: relative;
+    color: #000000;
+
+    &:hover {
+      transition: ease-in-out 0.2s;
+      color: $primary;
+    }
+
+    &:hover > .table__cell-tooltip {
+      display: block;
+    }
+  }
+}
+
+@mixin tableLoader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+@mixin spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin tableActionBtn {
+  position: relative;
+
+  &__icon {
+    transition: ease-in-out 0.3s;
+
+    &--primary {
+      &:hover {
+        color: $primary;
+      }
+    }
+
+    &--alert {
+      &:hover {
+        color: $alert;
+      }
+    }
+  }
+
+  &:hover span {
+    display: block;
+  }
+
+  &__tooltip {
+    @include tooltip;
+    top: -100%;
+    left: -200%;
+  }
+}
+
 @mixin tooltip {
   position: absolute;
   z-index: 100;

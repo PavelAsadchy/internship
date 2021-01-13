@@ -6,9 +6,9 @@ import { take } from 'rxjs/operators';
 import {
   DELETE_BOOKING_CONFIRM,
   OPEN_BOOKING_DETAILS,
-} from 'src/apps/booking/src/app/shared/consts/popup.consts';
+} from 'src/libs/@shared/consts/popup.consts';
 import { IBooking } from 'src/apps/booking/src/app/shared/models/booking.model';
-import { PopupComponent } from 'src/apps/booking/src/app/shared/modules/popup/container/popup.component';
+import { PopupComponent } from 'src/libs/@modules/popup/container/popup.component';
 import { DELETE_BOOKING_ACTION } from 'src/apps/booking/src/app/shared/stores/booking-store/booking.actions';
 import { IBookingState } from 'src/apps/booking/src/app/shared/stores/booking-store/booking.state';
 
@@ -27,17 +27,17 @@ export class BookingTableBtnsComponent {
     private router: Router
   ) {}
 
-  openBookingDetails(booking: IBooking): void {
+  openBookingDetails(): void {
     this.dialog.open(PopupComponent, {
-      data: { ...OPEN_BOOKING_DETAILS, payload: booking },
+      data: { ...OPEN_BOOKING_DETAILS, payload: this.row },
     });
   }
 
-  openBookingEdit(booking: IBooking): void {
-    this.router.navigate(['board', 'booking', 'update', booking.id]);
+  openBookingEdit(): void {
+    this.router.navigate(['board', 'booking', 'update', this.row.id]);
   }
 
-  openDeleteConfirmation(bookingId: string): void {
+  openDeleteConfirmation(): void {
     const dialogRef = this.dialog.open(PopupComponent, {
       data: DELETE_BOOKING_CONFIRM,
     });
@@ -47,7 +47,9 @@ export class BookingTableBtnsComponent {
       .pipe(take(1))
       .subscribe((isDeletingConfirmed) => {
         if (isDeletingConfirmed)
-          this.store.dispatch(DELETE_BOOKING_ACTION({ bookingId }));
+          this.store.dispatch(
+            DELETE_BOOKING_ACTION({ bookingId: this.row.id })
+          );
       });
   }
 }

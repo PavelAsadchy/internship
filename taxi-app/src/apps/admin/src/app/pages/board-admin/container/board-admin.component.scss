@@ -1,0 +1,31 @@
+@import "app-colors";
+
+.board-admin {
+  position: relative;
+  display: flex;
+
+  &__nav {
+    position: fixed;
+    z-index: 100;
+    height: 100vh;
+    transition: left 0.3s;
+    background-color: $dark-xxl;
+  }
+
+  &__content {
+    position: relative;
+    flex-grow: 1;
+    min-height: 100vh;
+    padding: 74px 10px 10px;
+    transition: margin-left 0.3s;
+    background: $light-xl;
+  }
+
+  &__toolbar {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+}

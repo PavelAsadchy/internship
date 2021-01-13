@@ -1,0 +1,14 @@
+<div class="drop-down">
+    <p class="drop-down__title">Apps</p>
+    <div class="drop-down__list">
+        <a
+            class="drop-down__link"
+            *ngFor="let app of menuContent"
+            href="{{ app.link }}"
+            target="_blank"
+        >
+            <mat-icon color="primary">{{ app.icon }}</mat-icon>
+            <p class="drop-down__subtitle">{{ app.name }}</p>
+        </a>
+    </div>
+</div>

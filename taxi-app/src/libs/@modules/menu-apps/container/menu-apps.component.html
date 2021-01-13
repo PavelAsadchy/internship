@@ -1,0 +1,23 @@
+<mat-toolbar>
+    <button mat-icon-button color="favorites">
+        <mat-icon>star</mat-icon>
+    </button>
+    <span class="toolbar__spacer"></span>
+
+    <div class="toolbar__apps">
+        <button mat-icon-button>
+            <mat-icon (click)="onDropDownMenuToggle()" #toggleAppsMenu>apps</mat-icon>
+        </button>
+        <div class="toolbar__drop-down" *ngIf="isDropDownMenu" #appsMenu [@inOutAnimation]>
+            <app-drop-down></app-drop-down>
+        </div>
+    </div>
+
+    <button mat-icon-button>
+        <mat-icon>account_circle</mat-icon>
+    </button>
+    <button mat-icon-button>
+        <mat-icon>expand_more</mat-icon>
+    </button>
+</mat-toolbar>
+<mat-divider></mat-divider>

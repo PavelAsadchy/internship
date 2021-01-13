@@ -1,0 +1,11 @@
+<form class="edit-privileges" [formGroup]="parentGroup">
+    <section class="edit-privileges__chbx" formArrayName="options">
+        <mat-checkbox
+            color="primary"
+            *ngFor="let privilegeOption of privilegeOptions | search:searchPrivilegeService.privilegeSearched; let i = index"
+            [formControlName]="i"
+        >
+            {{ privilegeOption.name }}
+        </mat-checkbox>
+    </section>
+</form>

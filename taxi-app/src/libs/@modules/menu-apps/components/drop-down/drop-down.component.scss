@@ -1,0 +1,29 @@
+@import "app-colors";
+
+.drop-down {
+  background-color: $light-xxl;
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+  }
+
+  &__link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  &__subtitle {
+    width: 90%;
+    color: $light-xxl;
+    font-size: 0.7rem;
+  }
+}
+
+p {
+  background-color: $primary;
+  text-align: center;
+}

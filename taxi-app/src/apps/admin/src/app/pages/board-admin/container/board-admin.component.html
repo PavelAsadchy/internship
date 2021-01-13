@@ -1,0 +1,29 @@
+<div class="board-admin">
+    <div
+        class="board-admin__nav"
+        [style.left]="isNavActive ? '0' : '-250px'"
+        (mouseover)="navToggle()"
+        (mouseout)="navToggle()"
+    >
+        <app-menu-side
+            [userName]="user"
+            [isNavActive]="isNavActive"
+        >
+        </app-menu-side>
+    </div>
+
+    <div
+        class="board-admin__content"
+        [style.margin-left]="isNavActive ? '300px' : '50px'"
+    >
+        <div class="board-admin__toolbar">
+            <app-menu-apps></app-menu-apps>
+        </div>
+        <div
+            [@routeAnimations]="outlet && outlet.activatedRouteData 
+                                && outlet.activatedRouteData['animation']"
+        >
+            <router-outlet #outlet="outlet"></router-outlet>
+        </div>
+    </div>
+</div>

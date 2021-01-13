@@ -1,0 +1,16 @@
+<div class="admin-detail" *ngIf="selectedGroup">
+    <mat-card-title>
+        User Group #{{ selectedGroup.name }}
+    </mat-card-title>
+    <mat-tab-group>
+        <mat-tab label="Detail">
+            <app-admin-detail-table [adminGroup]="selectedGroup"></app-admin-detail-table>
+        </mat-tab>
+    </mat-tab-group>
+    <button class="admin-detail__btn" mat-raised-button color="warn" (click)="onClose()">
+        Close
+    </button>
+</div>
+<div class="admin-detail__spinner" *ngIf="isLoading$ | async">
+    <app-progress-spinner></app-progress-spinner>
+</div>

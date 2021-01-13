@@ -7,10 +7,10 @@ import {
   BOOKING_STATUS_OPTIONS,
   BOOKING_CHANNEL_OPTIONS,
 } from 'src/apps/booking/src/app/shared/consts/booking-options.consts';
-import { IFilterParams } from 'src/apps/booking/src/app/shared/models/query-params.model';
+import { IFilterParams } from 'src/libs/@shared/models/query-params.model';
 import { REFRESH_QUERY_PARAMS_ACTION } from 'src/apps/booking/src/app/shared/stores/booking-store/booking.actions';
 import {
-  DEFAULT_QUERY_PARAMS,
+  DEFAULT_BOOKING_QUERY_PARAMS,
   IBookingState,
 } from 'src/apps/booking/src/app/shared/stores/booking-store/booking.state';
 
@@ -89,7 +89,7 @@ export class BookingFilterComponent {
     this.filterForm.reset();
     this.store.dispatch(
       REFRESH_QUERY_PARAMS_ACTION({
-        params: DEFAULT_QUERY_PARAMS,
+        params: DEFAULT_BOOKING_QUERY_PARAMS,
       })
     );
   }

@@ -1,0 +1,36 @@
+@import "app-colors";
+
+.table {
+  width: 100%;
+  margin-top: 40px;
+  border-collapse: collapse;
+
+  & td {
+    border: 2px dashed $dark-xl;
+  }
+
+  &__cell {
+    padding: 20px;
+
+    &--heading {
+      width: 25%;
+      text-align: right;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+  }
+
+  &__privileges {
+    list-style: none;
+  }
+
+  &__privilege-item::before {
+    content: "·";
+    vertical-align: middle;
+    font-size: 3rem;
+  }
+}
+
+::ng-deep .mat-tab-body-content {
+  overflow: hidden !important;
+}

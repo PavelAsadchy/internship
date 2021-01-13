@@ -1,0 +1,39 @@
+<nav class="menu">
+    <label class="menu__btn" [class.opened]="isNavActive">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+
+    <span class="menu__username">Hello, {{ userName }}</span>
+
+    <ul class="menu__list">
+        <li
+            class="menu__item"
+            *ngFor="let item of menuContent$ | async"
+        >
+            <mat-icon>{{ item.icon }}</mat-icon>
+            <a
+                class="menu__link"
+                [routerLink]="[(baseRouterLink$ | async) + item.link]"
+            >
+                {{ item.name }}
+            </a>
+        </li>
+        <li class="menu__item menu__item--home">
+            <mat-icon>{{ menuItemHome.icon }}</mat-icon>
+            <a
+                class="menu__link"
+                [routerLink]="[(baseRouterLink$ | async)]"
+            >
+                {{ menuItemHome.name }}
+            </a>
+        </li>
+        <li class="menu__item menu__item--home">
+            <mat-icon>{{ menuItemLogout.icon }}</mat-icon>
+            <a class="menu__link" [routerLink]="['/login']" (click)="logout()">
+                {{ menuItemLogout.name }}
+            </a>
+        </li>
+    </ul>
+</nav>

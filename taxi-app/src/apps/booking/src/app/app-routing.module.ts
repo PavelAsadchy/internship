@@ -7,7 +7,7 @@ import { AuthGuard } from '../../../../libs/@shared/guards/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'board',
     pathMatch: 'full',
   },
   {
@@ -17,7 +17,7 @@ const routes: Routes = [
   {
     path: 'board',
     loadChildren: () =>
-      import('src/libs/@modules/board/board.module').then(
+      import('src/apps/booking/src/app/pages/board/board.module').then(
         (module) => module.BoardModule
       ),
     canActivate: [AuthGuard],

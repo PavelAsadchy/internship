@@ -5,7 +5,7 @@ import {
   IPaginateParams,
   IQueryParams,
   ISortParams,
-} from '../../models/query-params.model';
+} from 'src/libs/@shared/models/query-params.model';
 
 export interface IBookingState extends EntityState<IBooking> {
   selectedBooking: IBooking;
@@ -18,7 +18,7 @@ export interface IBookingState extends EntityState<IBooking> {
 
 export const bookingAdapter: EntityAdapter<IBooking> = createEntityAdapter<IBooking>();
 
-export const DEFAULT_FILTER_PARAMS: IFilterParams = {
+export const DEFAULT_BOOKING_FILTER_PARAMS: IFilterParams = {
   bookingId: null,
   price: null,
   search: null,
@@ -29,27 +29,27 @@ export const DEFAULT_FILTER_PARAMS: IFilterParams = {
   vehicle: null,
 };
 
-export const DEFAULT_SORT_PARAMS: ISortParams = {
+export const DEFAULT_BOOKING_SORT_PARAMS: ISortParams = {
   field: null,
   direction: null,
 };
 
-export const DEFAULT_PAGINATE_PARAMS: IPaginateParams = {
+export const DEFAULT_BOOKING_PAGINATE_PARAMS: IPaginateParams = {
   pageIndex: 0,
   pageSize: 5,
 };
 
-export const DEFAULT_QUERY_PARAMS: IQueryParams = {
-  filter: DEFAULT_FILTER_PARAMS,
-  sort: DEFAULT_SORT_PARAMS,
-  paginate: DEFAULT_PAGINATE_PARAMS,
+export const DEFAULT_BOOKING_QUERY_PARAMS: IQueryParams = {
+  filter: DEFAULT_BOOKING_FILTER_PARAMS,
+  sort: DEFAULT_BOOKING_SORT_PARAMS,
+  paginate: DEFAULT_BOOKING_PAGINATE_PARAMS,
 };
 
 export const DEFAULT_BOOKING: IBookingState = {
   ids: [],
   entities: {},
   selectedBooking: null,
-  bookingQueryParams: DEFAULT_QUERY_PARAMS,
+  bookingQueryParams: DEFAULT_BOOKING_QUERY_PARAMS,
   totalLength: null,
   loading: false,
   loaded: false,
