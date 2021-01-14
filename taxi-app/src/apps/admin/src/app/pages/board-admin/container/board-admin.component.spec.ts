@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { BoardAdminComponent } from './board-admin.component';
 
@@ -8,9 +10,9 @@ describe('BoardAdminComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BoardAdminComponent ]
-    })
-    .compileComponents();
+      declarations: [BoardAdminComponent],
+      imports: [BrowserAnimationsModule, RouterTestingModule],
+    }).compileComponents();
   });
 
   beforeEach(() => {

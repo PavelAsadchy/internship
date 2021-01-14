@@ -163,6 +163,11 @@
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/apps/booking/src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/libs/@styles"
+              ]
+            },
             "scripts": []
           }
         },
@@ -292,6 +297,11 @@
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/apps/admin/src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/libs/@styles"
+              ]
+            },
             "scripts": []
           }
         },
