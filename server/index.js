@@ -33,6 +33,10 @@ passport.serializeUser(function (user, done) {
   done(null, user.username)
 });
 
+app.get('/', (req, res) => {
+  res.json({ message: 'Welcome' });
+})
+
 app.post('/login', function (req, res) { 
     const {username, password} = req.body;
     const user = { 
@@ -69,4 +73,4 @@ app.post('/refresh', function (req, res) {
     }
 });
 
-app.listen(8080);
+app.listen(8080, () => console.log('Server is running at PORT 8080'));

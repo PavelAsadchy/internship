@@ -96,7 +96,7 @@ class Table {
   count: HTMLTableElement[];
 
   constructor() {
-    const tableNodes = fixture.nativeElement.querySelectorAll('table ');
+    const tableNodes = fixture.nativeElement.querySelectorAll('table');
     this.count = Array.from(tableNodes);
   }
 }
