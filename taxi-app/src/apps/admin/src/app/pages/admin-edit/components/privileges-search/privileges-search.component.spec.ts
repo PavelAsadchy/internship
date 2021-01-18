@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormBuilder } from '@angular/forms';
 
 import { PrivilegesSearchComponent } from './privileges-search.component';
 
@@ -8,9 +9,9 @@ describe('PrivilegesSearchComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PrivilegesSearchComponent ]
-    })
-    .compileComponents();
+      declarations: [PrivilegesSearchComponent],
+      providers: [FormBuilder],
+    }).compileComponents();
   });
 
   beforeEach(() => {
