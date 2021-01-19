@@ -98,7 +98,7 @@ app.post('/refresh', function (req, res) {
     }
 });
 
-app.listen(serverConfig.port, () => console.log('Server is running at PORT 8080'));
+app.listen(serverConfig.port, () => console.log('Server is running at PORT 8080...'));
 
 // Create rows in roles collection
 function init() {
