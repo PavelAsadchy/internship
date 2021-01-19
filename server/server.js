@@ -58,9 +58,9 @@ passport.serializeUser(function (user, done) {
   done(null, user.username)
 });
 
-app.get('/', (req, res) => {
-  res.json({ message: 'Welcome' });
-})
+// app.get('/', (req, res) => {
+//   res.json({ message: 'Welcome' });
+// })
 
 app.post('/login', function (req, res) { 
     const {username, password} = req.body;
