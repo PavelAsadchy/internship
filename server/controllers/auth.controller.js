@@ -5,7 +5,7 @@ const db = require('../models');
 const User = db.user;
 const Role = db.role;
 
-exports.signup = (req, res) => {
+const signup = (req, res) => {
   const { username, email, password, roles, photoUrl } = req.body;
   const hashedPassword = bcrypt.hashSync(password, 12);
 
@@ -40,7 +40,7 @@ exports.signup = (req, res) => {
   })
 }
 
-exports.signin = (req, res) => {
+const signin = (req, res) => {
   const { username, password, roles } = req.body;
 
   User
@@ -71,6 +71,11 @@ exports.signin = (req, res) => {
         accessToken: token
       });
     });
+}
+
+module.exports = {
+  signin,
+  signup
 }
 
 function handleError(err) {
