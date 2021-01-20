@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { JWT_TOKEN, REFRESH_TOKEN, USER_NAME } from '../consts/app.consts';
+import { LOCAL_STORAGE_DATA } from '../consts/app.consts';
 import { ILoggedInUser } from '../models/user-logged.model';
-import { ITokens } from '../models/tokens.model';
+import { IUserAuthorized } from '../models/tokens.model';
 import { IUser } from '../models/user.model';
 import { HttpClientService } from './http-client.service';
 import { GenericService } from './generic.service';
@@ -37,8 +37,8 @@ export class AuthService extends HttpClientService {
     });
   }
 
-  login(user: IUser): Observable<ITokens> {
-    return this.myPost<ITokens>({
+  login(user: IUser): Observable<IUserAuthorized> {
+    return this.myPost<IUserAuthorized>({
       url: this.authUrl + '/login',
       payload: user,
     });
@@ -64,7 +64,7 @@ export class AuthService extends HttpClientService {
   }
 
   getJwtToken(): string {
-    return localStorage.getItem(JWT_TOKEN);
+    return localStorage.getItem(LOCAL_STORAGE_DATA.JWT_TOKEN);
   }
 
   doLoginUser(user: ILoggedInUser): void {
@@ -72,9 +72,10 @@ export class AuthService extends HttpClientService {
   }
 
   private storeUser(user: ILoggedInUser) {
-    localStorage.setItem(USER_NAME, user.username);
-    localStorage.setItem(JWT_TOKEN, user.jwt);
-    localStorage.setItem(REFRESH_TOKEN, user.refreshToken);
+    localStorage.setItem(LOCAL_STORAGE_DATA.USER_NAME, user.username);
+    localStorage.setItem(LOCAL_STORAGE_DATA.JWT_TOKEN, user.jwt);
+    localStorage.setItem(LOCAL_STORAGE_DATA.REFRESH_TOKEN, user.refreshToken);
+    localStorage.setItem(LOCAL_STORAGE_DATA.ROLES, JSON.stringify(user.roles));
   }
 
   private doLogoutUser(): void {
@@ -82,16 +83,17 @@ export class AuthService extends HttpClientService {
   }
 
   private removeTokens(): void {
-    localStorage.removeItem(USER_NAME);
-    localStorage.removeItem(JWT_TOKEN);
-    localStorage.removeItem(REFRESH_TOKEN);
+    localStorage.removeItem(LOCAL_STORAGE_DATA.USER_NAME);
+    localStorage.removeItem(LOCAL_STORAGE_DATA.JWT_TOKEN);
+    localStorage.removeItem(LOCAL_STORAGE_DATA.REFRESH_TOKEN);
+    localStorage.removeItem(LOCAL_STORAGE_DATA.ROLES);
   }
 
   storeJwtToken(jwt: string): void {
-    localStorage.setItem(JWT_TOKEN, jwt);
+    localStorage.setItem(LOCAL_STORAGE_DATA.JWT_TOKEN, jwt);
   }
 
   private getRefreshToken(): string {
-    return localStorage.getItem(REFRESH_TOKEN);
+    return localStorage.getItem(LOCAL_STORAGE_DATA.REFRESH_TOKEN);
   }
 }

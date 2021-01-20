@@ -203,6 +203,6 @@ export class BookingListService extends HttpClientService {
   }
 
   dateMonthAgo(): Moment {
-    return moment().subtract(1, 'months');
+    return moment().subtract(2, 'months');
   }
 }

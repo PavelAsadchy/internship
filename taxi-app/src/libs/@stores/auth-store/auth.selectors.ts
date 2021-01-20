@@ -9,5 +9,5 @@ export const SELECT_AUTH_FEATURE = createFeatureSelector<IAuthState>(
 
 export const SELECT_AUTH_USER = createSelector(
   SELECT_AUTH_FEATURE,
-  (state: IAuthState) => state.user.username
+  (state: IAuthState) => (state.user ? state.user.username : null)
 );

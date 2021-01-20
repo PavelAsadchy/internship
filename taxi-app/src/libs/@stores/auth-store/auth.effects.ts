@@ -4,7 +4,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AuthService } from 'src/libs/@shared/services/auth.service';
 import * as AuthActions from './auth.actions';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { ITokens } from 'src/libs/@shared/models/tokens.model';
+import { IUserAuthorized } from 'src/libs/@shared/models/tokens.model';
 import { ILoggedInUser } from 'src/libs/@shared/models/user-logged.model';
 import { of } from 'rxjs';
 import { IUser } from 'src/libs/@shared/models/user.model';
@@ -62,12 +62,13 @@ export class AuthEffects {
             password: user.password,
           })
           .pipe(
-            map((tokens: ITokens) => {
+            map((authorizedUser: IUserAuthorized) => {
               return AuthActions.AUTH_SUCCESS_ACTION({
                 loggedInUser: {
-                  username: user.username,
-                  jwt: tokens.jwt,
-                  refreshToken: tokens.refreshToken,
+                  username: authorizedUser.username,
+                  jwt: authorizedUser.jwt,
+                  refreshToken: authorizedUser.refreshToken,
+                  roles: authorizedUser.roles,
                 },
               });
             }),

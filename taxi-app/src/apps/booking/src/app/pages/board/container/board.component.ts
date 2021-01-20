@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { USER_NAME } from 'src/libs/@shared/consts/app.consts';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { IAdminState } from 'src/apps/admin/src/app/shared/stores/admin-store/admin.state';
 import { IMenuItem } from 'src/libs/@shared/models/menu-item.model';
 import { MenuService } from 'src/libs/@shared/services/menu.service';
+import { SELECT_AUTH_USER } from 'src/libs/@stores/auth-store/auth.selectors';
 
 @Component({
   selector: 'app-board',
@@ -12,7 +15,7 @@ import { MenuService } from 'src/libs/@shared/services/menu.service';
 export class BoardComponent implements OnInit {
   isNavActive = false;
   baseRouterLink = '/board';
-  user: string;
+  user$: Observable<string>;
 
   menuContent: IMenuItem[] = [
     new IMenuItem(
@@ -29,11 +32,14 @@ export class BoardComponent implements OnInit {
     ),
   ];
 
-  constructor(private readonly menuService: MenuService) {}
+  constructor(
+    private readonly menuService: MenuService,
+    private store: Store<IAdminState>
+  ) {}
 
   ngOnInit(): void {
     this.menuService.setMenuItemList(this.menuContent, this.baseRouterLink);
-    this.user = localStorage.getItem(USER_NAME);
+    this.user$ = this.store.select(SELECT_AUTH_USER);
   }
 
   navToggle(): void {

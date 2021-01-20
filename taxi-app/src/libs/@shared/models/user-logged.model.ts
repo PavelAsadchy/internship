@@ -3,4 +3,5 @@ export interface ILoggedInUser {
   username: string;
   jwt: string;
   refreshToken: string;
+  roles: string[];
 }
