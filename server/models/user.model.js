@@ -19,8 +19,7 @@ const schema = new Schema({
       type: Schema.Types.ObjectId,
       ref: 'Role'
     }
-  ],
-  photoUrl: String
+  ]
 });
 
 const User = model('User', schema);

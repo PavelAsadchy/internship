@@ -6,6 +6,9 @@
   height: 100vh;
 
   &__welcome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex-grow: 1;
     background: $dark-xxl;
   }

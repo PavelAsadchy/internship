@@ -4,7 +4,6 @@ const users = [
     email: 'admin@admin.com',
     displayName: 'Admin',
     password: '123456',
-    photoURL: './assets/users/admin.png',
     role: 'admin',
   }
 ];

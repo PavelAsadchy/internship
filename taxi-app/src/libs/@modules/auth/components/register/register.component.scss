@@ -1,0 +1,15 @@
+@import "app-colors";
+
+.signup {
+  display: flex;
+  flex-direction: column;
+  color: $dark-xxl;
+
+  &__legend {
+    text-transform: uppercase;
+  }
+
+  &__submit {
+    text-transform: uppercase;
+  }
+}

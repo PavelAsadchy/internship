@@ -1,1 +1,29 @@
-<p>register works!</p>
+<form class="signup" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+
+    <legend class="signup__legend">
+        sign up to create account
+    </legend>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input matInput type="text" placeholder="Enter username" formControlName="username">
+        <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" placeholder="Enter email" formControlName="email">
+        <mat-icon matSuffix>email</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" placeholder="Enter password" formControlName="password">
+        <mat-icon matSuffix>vpn_key</mat-icon>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" class="signup__submit" [disabled]="signupForm.invalid">
+        sign up
+    </button>
+
+</form>

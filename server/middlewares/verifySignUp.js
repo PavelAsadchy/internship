@@ -41,7 +41,7 @@ const checkDuplicateEmail = (req, res, next) => {
 }
 
 const checkRolesExisting = (req, res, next) => {
-  const { roles } = req.body.roles;
+  const { roles } = req.body;
 
   if (roles) {
     for (let i = 0; i < roles.length; i++) {

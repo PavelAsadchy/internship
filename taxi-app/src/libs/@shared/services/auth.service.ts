@@ -9,6 +9,7 @@ import { HttpClientService } from './http-client.service';
 import { GenericService } from './generic.service';
 import { DatePipe } from '@angular/common';
 import { environment } from 'src/environments/environment';
+import { IUserNew } from '../models/user-new.model';
 
 @Injectable({
   providedIn: 'root',
@@ -27,6 +28,13 @@ export class AuthService extends HttpClientService {
 
   isLoggedIn(): boolean {
     return Boolean(this.getJwtToken());
+  }
+
+  signup(newUser: IUserNew): Observable<any> {
+    return this.myPost<IUserNew>({
+      url: this.authUrl + '/signup',
+      payload: newUser,
+    });
   }
 
   login(user: IUser): Observable<ITokens> {

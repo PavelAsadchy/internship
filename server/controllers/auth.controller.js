@@ -11,10 +11,10 @@ const Role = db.role;
 const refreshTokens = {};
 
 const signup = (req, res) => {
-  const { username, email, password, roles, photoUrl } = req.body;
+  const { username, email, password, roles } = req.body;
   const hashedPassword = bcrypt.hashSync(password, 12);
 
-  const user = new User({ username, email, password: hashedPassword, photoUrl });
+  const user = new User({ username, email, password: hashedPassword });
 
   user.save((err, user) => {
     if (err) return handleError(err);
@@ -45,8 +45,8 @@ const signup = (req, res) => {
   })
 }
 
-const login = (req, res) => {
-  const { username, password, roles } = req.body;
+const login = async (req, res) => {
+  const { username, password } = req.body;
 
   User
     .findOne({ username })
@@ -57,7 +57,7 @@ const login = (req, res) => {
 
       const isPasswordValid = bcrypt.compareSync(password, user.password);
       if (!isPasswordValid) return res.status(401).json({
-        accessToken: null,
+        jwt: null,
         message: 'Invalid password'
       });
 
@@ -65,7 +65,7 @@ const login = (req, res) => {
       const refreshToken = randtoken.uid(256);
       refreshTokens[refreshToken] = user.id;
       const authorities = [];
-      for (let i = 0; i < roles.length; i++) {
+      for (let i = 0; i < user.roles.length; i++) {
         authorities.push('ROLE_' + user.roles[i].name.toUpperCase());
       }
 
@@ -74,7 +74,6 @@ const login = (req, res) => {
         username: user.username,
         email: user.email,
         roles: authorities,
-        photoUrl: user.photoUrl,
         jwt: token,
         refreshToken
       });

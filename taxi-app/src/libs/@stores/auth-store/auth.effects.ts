@@ -12,6 +12,7 @@ import { Store } from '@ngrx/store';
 import { SHOW_MESSAGE_ACTION } from '../message-store/message.actions';
 import { SHOW_MESSAGE_VALUES } from 'src/libs/@shared/consts/store.consts';
 import { IMessageState } from '../message-store/message.state';
+import { IUserNew } from 'src/libs/@shared/models/user-new.model';
 
 @Injectable()
 export class AuthEffects {
@@ -21,6 +22,34 @@ export class AuthEffects {
     private router: Router,
     private store: Store<IMessageState>
   ) {}
+
+  signup$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.ActionsType.SIGNUP),
+      map((action: { newUser: IUserNew; type: string }) => action.newUser),
+      switchMap((newUser: IUserNew) => {
+        return this.authService
+          .signup({
+            username: newUser.username,
+            email: newUser.email,
+            password: newUser.password,
+          })
+          .pipe(
+            map(() => {
+              return AuthActions.AUTH_LOGIN_ACTION({
+                user: {
+                  username: newUser.username,
+                  password: newUser.password,
+                },
+              });
+            }),
+            catchError((error) =>
+              of(AuthActions.AUTH_FAILURE_ACTION({ err: error }))
+            )
+          );
+      })
+    )
+  );
 
   login$ = createEffect(() =>
     this.actions$.pipe(
