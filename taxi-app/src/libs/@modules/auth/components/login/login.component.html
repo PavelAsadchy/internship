@@ -1,40 +1,59 @@
-<form
-    class="login"
-    [formGroup]="loginForm"
-    (ngSubmit)="onSubmit()">
+<div class="login">
+    <form
+        class="login__form form"
+        [formGroup]="loginForm"
+        (ngSubmit)="onSubmit()"
+    >
+        <legend class="form__legend">
+            login to your account
+        </legend>
 
-    <legend class="login__legend">
-        login to your account
-    </legend>
+        <p class="form__text">
+            Use your ID credentials.
+        </p>
 
-    <p class="login__text">
-        Use your ID credentials.
-    </p>
+        <mat-form-field appearance="outline">
+            <mat-label>Username</mat-label>
+            <input matInput
+                type="text"
+                placeholder="Enter username"
+                formControlName="username"
+            >
+            <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
 
-    <mat-form-field appearance="outline">
-        <mat-label>Username</mat-label>
-        <input matInput
-            type="text"
-            placeholder="Enter username"
-            formControlName="username">
-        <mat-icon matSuffix>person</mat-icon>
-    </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput
+                type="password"
+                placeholder="Enter password"
+                formControlName="password"
+            >
+            <mat-icon matSuffix>vpn_key</mat-icon>
+        </mat-form-field>
 
-    <mat-form-field appearance="outline">
-        <mat-label>Password</mat-label>
-        <input matInput
-            type="password"
-            placeholder="Enter password"
-            formControlName="password">
-        <mat-icon matSuffix>vpn_key</mat-icon>
-    </mat-form-field>
+        <button
+            mat-raised-button
+            color="primary"
+            class="form__submit"
+            [disabled]="loginForm.invalid"
+            type="submit"
+        >
+            login
+        </button>
+    </form>
+
+    <mat-divider></mat-divider>
+
+    <mat-card-subtitle>Don't have an account?</mat-card-subtitle>
 
     <button
         mat-raised-button
-        color="primary"
-        class="login__submit"
-        [disabled]="loginForm.invalid">
-        login
+        color="sign-up"
+        class="login__signup"
+        type="button"
+        (click)="onSignupClick()"
+    >
+        sign up
     </button>
-
-</form>
+</div>
