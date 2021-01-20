@@ -1,6 +1,24 @@
+const { check, validationResult } = require('express-validator');
 const db = require('../models');
 const ROLES = db.ROLES;
 const User = db.user;
+
+const checkSignupInputs = [
+  check('email', 'Incorrect email').isEmail(),
+  check('password', 'Minimal length is 6 digits').isLength({ min: 6 }),
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.status(400).json({
+        errors: errors.array(),
+        message: 'Incorrect registration inputs'
+      });
+      return;
+    }
+
+    next();
+  }
+];
 
 const checkDuplicateEmail = (req, res, next) => {
   const { email } = req.body;
@@ -9,12 +27,12 @@ const checkDuplicateEmail = (req, res, next) => {
     .findOne({ email })
     .exec((err, user) => {
       if (err) {
-        res.status(500).send({ message: 'Unexpected error:', err });
+        res.status(500).json({ message: 'Unexpected error:', err });
         return;
       }
       
       if (user) {
-        res.status(400).send({ message: 'Email already exists!' });
+        res.status(400).json({ message: 'Email already exists!' });
         return;
       }
 
@@ -28,7 +46,7 @@ const checkRolesExisting = (req, res, next) => {
   if (roles) {
     for (let i = 0; i < roles.length; i++) {
       if (ROLES.includes(roles[i])) {
-        res.status(400).send({ message: `Role ${roles[i]} doesn't exist!` });
+        res.status(400).json({ message: `Role ${roles[i]} doesn't exist!` });
         return;
       }
     }
@@ -38,6 +56,7 @@ const checkRolesExisting = (req, res, next) => {
 }
 
 const verifySignUp = {
+  checkSignupInputs,
   checkDuplicateEmail,
   checkRolesExisting
 };

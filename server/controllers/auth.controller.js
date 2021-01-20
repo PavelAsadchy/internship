@@ -1,9 +1,14 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const randtoken = require('rand-token');
+
 const authConfig = require('../config/auth.config');
 const db = require('../models');
+const { user } = require('../models');
 const User = db.user;
 const Role = db.role;
+
+const refreshTokens = {};
 
 const signup = (req, res) => {
   const { username, email, password, roles, photoUrl } = req.body;
@@ -22,7 +27,7 @@ const signup = (req, res) => {
         user.save(err => {
           if (err) return handleError(err);
 
-          res.status(201).send({ message: 'User created' });
+          res.status(201).json({ message: 'User created' });
         });
       })
     } else {
@@ -33,14 +38,14 @@ const signup = (req, res) => {
         user.save(err => {
           if (err) return handleError(err);
 
-          res.status(201).send({ message: 'User created' });
+          res.status(201).json({ message: 'User created' });
         });
       })
     }
   })
 }
 
-const signin = (req, res) => {
+const login = (req, res) => {
   const { username, password, roles } = req.body;
 
   User
@@ -48,36 +53,55 @@ const signin = (req, res) => {
     .populate('roles', '-__v')
     .exec((err, user) => {
       if (err) return handleError(err);
-      if (!user) return res.status(404).send({ message: 'User not found' });
+      if (!user) return res.status(404).json({ message: 'User not found' });
 
       const isPasswordValid = bcrypt.compareSync(password, user.password);
-      if (!isPasswordValid) return res.status(401).send({
+      if (!isPasswordValid) return res.status(401).json({
         accessToken: null,
         message: 'Invalid password'
       });
 
       const token = jwt.sign({ id: user.id }, authConfig.jwtSecret, { expiresIn: '1h' });
+      const refreshToken = randtoken.uid(256);
+      refreshTokens[refreshToken] = user.id;
       const authorities = [];
       for (let i = 0; i < roles.length; i++) {
         authorities.push('ROLE_' + user.roles[i].name.toUpperCase());
       }
 
-      res.status(200).send({
+      res.status(200).json({
         id: user._id,
         username: user.username,
         email: user.email,
         roles: authorities,
         photoUrl: user.photoUrl,
-        accessToken: token
+        jwt: token,
+        refreshToken
       });
     });
 }
 
+const logout = (req, res) => {
+  const { refreshToken } = req.body;
+  if (refreshToken in refreshTokens) delete refreshTokens[refreshToken];
+  res.sendStatus(204);
+}
+
+const refresh = (req, res) => {
+  const { refreshToken } = req.body;
+  if (refreshToken in refreshTokens) {
+    const token = jwt.sign({ id: user.id }, authConfig.jwtSecret, { expiresIn: '1h' });
+    res.json({ jwt: token });
+  } else res.sendStatus(401);
+}
+
 module.exports = {
-  signin,
-  signup
+  signup,
+  login,
+  logout,
+  refresh
 }
 
 function handleError(err) {
-  res.status(500).send({ message: 'Error occured', err });
+  res.status(500).json({ message: 'Error occured', err });
 }

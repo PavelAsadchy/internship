@@ -17,8 +17,13 @@ const verifyToken = (req, res, next) => {
   });
 };
 
-const isAdmin = isRoleActive(req, res, next, 'admin');
-const isManager = isRoleActive(req, res, next, 'manager');
+const isAdmin = (req, res, next) => {
+  isRoleActive('admin');
+};
+
+const isManager = (req, res, next) => {
+  isRoleActive('manager');
+};
 
 const authJwt = {
   verifyToken,
@@ -28,7 +33,7 @@ const authJwt = {
 
 module.exports = authJwt;
 
-function isRoleActive(req, res, next, roleToCheck) {
+function isRoleActive(roleToCheck) {
   User.findById(req.userId).exec((err, user) => {
     if (err) {
       res.status(500).send({ message: 'Unexpected error:', err });

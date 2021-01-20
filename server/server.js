@@ -8,6 +8,7 @@ const cors = require('cors');
 
 const express = require('express');
 // const mongoose = require('mongoose');
+const authRoutes = require('./routes/auth.routes');
 const serverConfig = require('./config/server.config');
 const db = require('./models');
 const Role = db.role;
@@ -20,7 +21,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors());
 
-// app.use('/api/')
+app.use(authRoutes);
 
 db.mongoose
   .connect(serverConfig.mongoUri, {
@@ -37,9 +38,9 @@ db.mongoose
     process.exit();
   });
 
-app.get('/', (req, res) => {
-  res.json({ message: 'Welcome' });
-})
+// app.get('/', (req, res) => {
+//   res.json({ message: 'Welcome' });
+// })
 
 // const refreshTokens = {};
 // const SECRET = 'VERY_SECRET_KEY!';
