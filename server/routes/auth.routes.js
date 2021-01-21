@@ -4,10 +4,6 @@ const authController = require('../controllers/auth.controller');
 
 const router = Router();
 
-router.get('/', (req, res) => {
-  res.json({ message: 'Welcome' });
-});
-
 router.post(
   '/signup',
   verifySignUp.checkSignupInputs,

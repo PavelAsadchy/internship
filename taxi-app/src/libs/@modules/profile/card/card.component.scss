@@ -1,0 +1,12 @@
+.card {
+  max-width: 1000px;
+
+  &__avatar {
+    background-image: url("../../../@assets/avatars/admin.png");
+    background-size: cover;
+  }
+}
+
+.mat-expansion-panel p {
+  word-break: break-all;
+}

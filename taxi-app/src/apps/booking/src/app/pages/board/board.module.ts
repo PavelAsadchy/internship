@@ -8,6 +8,7 @@ import { BookingCreateModule } from 'src/apps/booking/src/app/pages/booking-crea
 import { BookingListModule } from '../booking-list/booking-list.module';
 import { BookingEditModule } from '../booking-edit/booking-edit.module';
 import { BoardContentComponent } from './components/board-content/board-content.component';
+import { MenuAppsModule } from 'src/libs/@modules/menu-apps/menu-apps.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { BoardContentComponent } from './components/board-content/board-content.
     BookingCreateModule,
     BookingListModule,
     BookingEditModule,
+    MenuAppsModule,
   ],
   exports: [BoardComponent],
 })

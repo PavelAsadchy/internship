@@ -34,6 +34,7 @@ import {
 } from '@mat-datetimepicker/core';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   imports: [
@@ -70,6 +71,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatDatetimepickerModule,
     MatMomentDateModule,
     MatToolbarModule,
+    MatExpansionModule,
   ],
   exports: [
     CommonModule,
@@ -106,6 +108,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatNativeDatetimeModule,
     MatMomentDateModule,
     MatToolbarModule,
+    MatExpansionModule,
   ],
   providers: [DatePipe],
 })

@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IMenuItem } from 'src/libs/@shared/models/menu-item.model';
 import { MenuService } from 'src/libs/@shared/services/menu.service';
-import { SELECT_AUTH_USER } from 'src/libs/@stores/auth-store/auth.selectors';
+import { SELECT_AUTH_USERNAME } from 'src/libs/@stores/auth-store/auth.selectors';
 import { IAdminState } from '../../../shared/stores/admin-store/admin.state';
 import { slideInAnimation } from '../route-animation';
 
@@ -17,7 +17,7 @@ import { slideInAnimation } from '../route-animation';
 export class BoardAdminComponent implements OnInit {
   isNavActive = false;
   baseRouterLink = '/admin';
-  user$: Observable<string>;
+  username$: Observable<string>;
 
   menuContent: IMenuItem[] = [
     new IMenuItem(
@@ -35,7 +35,7 @@ export class BoardAdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.menuService.setMenuItemList(this.menuContent, this.baseRouterLink);
-    this.user$ = this.store.select(SELECT_AUTH_USER);
+    this.username$ = this.store.select(SELECT_AUTH_USERNAME);
   }
 
   navToggle(): void {
