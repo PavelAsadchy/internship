@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/libs/@shared/shared.module';
 import { ProfileComponent } from './container/profile.component';
 import { ProfileRoutingModule } from './profile-routing.module';
-import { CardComponent } from './card/card.component';
+import { CardComponent } from './components/card/card.component';
 
 @NgModule({
   declarations: [ProfileComponent, CardComponent],
