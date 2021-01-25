@@ -6,7 +6,7 @@
         (mouseout)="navToggle()"
     >
         <app-menu-side
-            [userName]="user"
+            [userName$]="username$"
             [isNavActive]="isNavActive"
         >
         </app-menu-side>
@@ -16,6 +16,10 @@
         class="board__content"
         [style.margin-left]="isNavActive ? '300px' : '50px'"
     >
+        <div class="board__toolbar">
+            <app-menu-apps></app-menu-apps>
+        </div>
+
         <router-outlet></router-outlet>
     </div>
 </div>

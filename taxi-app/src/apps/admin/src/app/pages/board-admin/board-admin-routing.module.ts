@@ -43,6 +43,13 @@ const routes: Routes = [
           },
         ],
       },
+      {
+        path: 'profile',
+        loadChildren: () =>
+          import('src/libs/@modules/profile/profile.module').then(
+            (module) => module.ProfileModule
+          ),
+      },
     ],
   },
 ];

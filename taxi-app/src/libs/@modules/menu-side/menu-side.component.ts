@@ -19,7 +19,7 @@ import { IAuthState } from 'src/libs/@stores/auth-store/auth.state';
 })
 export class MenuSideComponent implements OnInit {
   @Input()
-  userName: string;
+  userName$: Observable<string>;
 
   @Input()
   isNavActive: boolean;

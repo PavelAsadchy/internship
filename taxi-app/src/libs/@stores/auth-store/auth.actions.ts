@@ -1,16 +1,23 @@
 import { createAction, props } from '@ngrx/store';
 import { ILoggedInUser } from 'src/libs/@shared/models/user-logged.model';
+import { IUserNew } from 'src/libs/@shared/models/user-new.model';
 import { IUser } from 'src/libs/@shared/models/user.model';
 
 export enum ActionsType {
+  SIGNUP = '[AUTH] Signup',
   LOGIN = '[AUTH] Login',
-  LOGIN_SUCCESS = '[AUTH] Login Success',
+  LOGIN_SUCCESS = '[AUTH] Success',
   LOGIN_FAILURE = '[AUTH] Failure',
   LOGOUT = '[AUTH] Logout',
   REFRESH_TOKEN = '[AUTH] Refresh Token',
   REFRESH_TOKEN_SUCCESS = '[AUTH] Refresh Token Success',
   REFRESH_TOKEN_FAILURE_ACTION = '[AUTH] Refresh Token Failure',
 }
+
+export const AUTH_SIGNUP_ACTION = createAction(
+  ActionsType.SIGNUP,
+  props<{ newUser: IUserNew }>()
+);
 
 export const AUTH_LOGIN_ACTION = createAction(
   ActionsType.LOGIN,

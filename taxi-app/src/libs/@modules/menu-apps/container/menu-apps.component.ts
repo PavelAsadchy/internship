@@ -1,5 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu-apps',
@@ -38,7 +39,11 @@ export class MenuAppsComponent {
   @ViewChild('toggleAppsMenu', { read: ElementRef }) toggleAppsMenu: ElementRef;
   @ViewChild('appsMenu', { read: ElementRef }) appsMenu: ElementRef;
 
-  constructor(private renderer: Renderer2) {
+  constructor(
+    private renderer: Renderer2,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {
     this.renderer.listen('window', 'click', (event: Event) => {
       if (
         this.isDropDownMenu &&
@@ -52,5 +57,11 @@ export class MenuAppsComponent {
 
   onDropDownMenuToggle(): void {
     this.isDropDownMenu = !this.isDropDownMenu;
+  }
+
+  onProfileClick(): void {
+    this.router.navigate(['profile'], {
+      relativeTo: this.activatedRoute.parent,
+    });
   }
 }

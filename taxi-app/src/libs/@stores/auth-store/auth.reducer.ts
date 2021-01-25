@@ -3,14 +3,12 @@ import * as AuthActions from './auth.actions';
 import { IAuthState, INITIAL_AUTH_STATE } from './auth.state';
 
 const authReducer = createReducer(
-  INITIAL_AUTH_STATE,
+  INITIAL_AUTH_STATE(),
   on(AuthActions.AUTH_SUCCESS_ACTION, (state, { loggedInUser }) => ({
     ...state,
     isLoggedIn: true,
     user: {
-      username: loggedInUser.username,
-      jwt: loggedInUser.jwt,
-      refreshToken: loggedInUser.refreshToken,
+      ...loggedInUser,
     },
     errorMessage: null,
   })),
@@ -20,7 +18,12 @@ const authReducer = createReducer(
     user: null,
     errorMessage: err,
   })),
-  on(AuthActions.AUTH_LOGOUT_ACTION, () => INITIAL_AUTH_STATE)
+  on(AuthActions.AUTH_LOGOUT_ACTION, (state) => ({
+    ...state,
+    isLoggedIn: false,
+    user: null,
+    errorMessage: null,
+  }))
 );
 
 export function reducer(state: IAuthState | undefined, action: Action) {

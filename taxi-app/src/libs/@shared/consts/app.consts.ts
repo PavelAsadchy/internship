@@ -1,3 +1,6 @@
-export const USER_NAME = 'USER_NAME';
-export const JWT_TOKEN = 'JWT_TOKEN';
-export const REFRESH_TOKEN = 'REFRESH_TOKEN';
+export const LOCAL_STORAGE_DATA = {
+  USER_NAME: 'USER_NAME',
+  JWT_TOKEN: 'JWT_TOKEN',
+  REFRESH_TOKEN: 'REFRESH_TOKEN',
+  ROLES: 'ROLES',
+};

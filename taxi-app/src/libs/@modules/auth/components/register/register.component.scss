@@ -1,0 +1,38 @@
+@import "app-colors";
+
+.signup {
+  display: flex;
+  flex-direction: column;
+
+  &__login {
+    text-transform: uppercase;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  color: $dark-xxl;
+
+  &__legend {
+    text-transform: uppercase;
+  }
+
+  &__submit {
+    text-transform: uppercase;
+  }
+}
+
+.mat-divider {
+  margin: 20px 0;
+}
+
+.mat-card-subtitle {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.mat-log-in {
+  background-color: $main;
+  color: $light-xxl;
+}
